@@ -17,6 +17,6 @@ export function createAgent(settings) {
     model: createModel(settings),
     instructions: SYSTEM_PROMPT,
     tools: forumTools,
-    stopWhen: stepCountIs(15),
+    stopWhen: stepCountIs(50),
   });
 }
