@@ -56,6 +56,12 @@ const TOOL_META = {
     label: 'Fetching user activity',
     argKey: 'username',
   },
+  get_user_profile: {
+    icon: '📋',
+    iconClass: 'user',
+    label: 'Fetching user profile',
+    argKey: 'username',
+  },
   get_current_user: {
     icon: '🔑',
     iconClass: 'user',
@@ -99,6 +105,9 @@ export function describeToolCall(name, args) {
   } else if (name === 'get_user_actions') {
     title = `Activity for @${args?.username || '?'}`;
     subtitle = args?.filter ? `filter: ${args.filter}` : 'all activity';
+  } else if (name === 'get_user_profile') {
+    title = `Profile of @${args?.username || '?'}`;
+    subtitle = 'detailed stats & badges';
   } else if (name === 'get_current_user') {
     title = 'Getting current user';
     subtitle = 'session info';

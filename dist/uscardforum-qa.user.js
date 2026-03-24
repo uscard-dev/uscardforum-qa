@@ -30441,6 +30441,42 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
       hide_profile: u.user_option?.hide_profile
     };
   }
+  async function getUserProfile({ username }) {
+    const data = await forumGet(`/u/${username}.json`);
+    if (isError(data)) return data;
+    const u = data.user || {};
+    const s = u.user_stat || {};
+    return {
+      id: u.id,
+      username: u.username,
+      name: u.name,
+      title: u.title,
+      trust_level: u.trust_level,
+      admin: u.admin,
+      moderator: u.moderator,
+      created_at: u.created_at,
+      last_seen_at: u.last_seen_at,
+      last_posted_at: u.last_posted_at,
+      stats: {
+        days_visited: s.days_visited,
+        time_read: s.time_read,
+        posts_read_count: s.posts_read_count,
+        topics_entered: s.topics_entered,
+        topic_count: s.topic_count,
+        post_count: s.post_count,
+        likes_given: s.likes_given,
+        likes_received: s.likes_received
+      },
+      badges: (u.badges || []).map((b) => ({
+        id: b.id,
+        name: b.name,
+        description: b.description,
+        badge_type_id: b.badge_type_id,
+        grant_count: b.grant_count
+      })),
+      groups: (u.groups || []).map((g) => ({ id: g.id, name: g.name }))
+    };
+  }
   async function getNotifications({ limit }) {
     const data = await forumGet("/notifications.json");
     if (isError(data)) return data;
@@ -30535,6 +30571,13 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
         offset: external_exports2.number().optional().describe("Pagination offset (0, 30, 60, ...)")
       }),
       execute: getUserActions
+    }),
+    get_user_profile: tool({
+      description: "Fetch a detailed user profile including all-time stats (days visited, posts read, topics entered, likes given/received), badges, groups, and timestamps. More data than get_user_summary.",
+      inputSchema: external_exports2.object({
+        username: external_exports2.string().describe("The user's handle")
+      }),
+      execute: getUserProfile
     }),
     get_current_user: tool({
       description: "Get the currently logged-in user info including username, trust level, and unread notification counts.",
@@ -30687,6 +30730,30 @@ Category IDs and their slugs for search operators:
 - **Phone plans**: T-Mobile insider discounts, Tello rollover tricks, Mint Mobile
 - **MS (\u5236\u9020\u6D88\u8D39)**: Gift card \u2192 money order pipelines, Safeway Zillions GC
 - **Rent/\u623F\u79DF**: Bilt for rent payments, Atmos stacking
+
+# Trust Level 3 (\u767D\u91D1\u4F1A\u5458) requirements
+
+The forum uses Discourse trust levels. TL3 = \u767D\u91D1\u4F1A\u5458, which grants access to \u767D\u91D1 Lounge (id:68). Requirements are checked daily at UTC 04:00 over a rolling 100-day window:
+
+## Upgrade to TL3 (all must be met in last 100 days):
+1. Not suspended or silenced, no penalties in last 6 months
+2. 50+ days visited **with at least 1 post read** per day (just logging in doesn't count)
+3. 10+ different non-self topics replied to
+4. 500+ topics viewed
+5. 20,000+ posts read
+6. Flagged posts <= 5 (by unique users <= 5)
+7. 30+ likes given
+8. 20+ likes received, from 5+ different users, spread across 7+ days
+
+## Retention (already TL3, demotion check):
+All thresholds multiplied by 0.9 (e.g. 45 days visited, 9 topics replied, 450 topics viewed, 18k posts read, 27 likes given, 18 likes received from 5 users across 7 days). 2-week grace period after initial promotion.
+
+## How to check progress:
+1. Use get_current_user() to get username and current trust_level
+2. Use get_user_profile(username) for all-time stats (days_visited, posts_read_count, topics_entered, likes_given, likes_received)
+3. Use get_user_actions(username, filter=1) for recent likes given (check dates)
+4. Use get_user_actions(username, filter=2) for recent likes received (check dates and unique users)
+5. Compare against requirements above. Note: API gives all-time stats, so you can estimate but not get exact 100-day window. Explain this limitation.
 
 # Discourse structure
 
@@ -30898,6 +30965,12 @@ Category IDs and their slugs for search operators:
       label: "Fetching user activity",
       argKey: "username"
     },
+    get_user_profile: {
+      icon: "\u{1F4CB}",
+      iconClass: "user",
+      label: "Fetching user profile",
+      argKey: "username"
+    },
     get_current_user: {
       icon: "\u{1F511}",
       iconClass: "user",
@@ -30938,6 +31011,9 @@ Category IDs and their slugs for search operators:
     } else if (name21 === "get_user_actions") {
       title = `Activity for @${args?.username || "?"}`;
       subtitle = args?.filter ? `filter: ${args.filter}` : "all activity";
+    } else if (name21 === "get_user_profile") {
+      title = `Profile of @${args?.username || "?"}`;
+      subtitle = "detailed stats & badges";
     } else if (name21 === "get_current_user") {
       title = "Getting current user";
       subtitle = "session info";

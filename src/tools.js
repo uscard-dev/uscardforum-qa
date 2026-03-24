@@ -12,6 +12,7 @@ import {
   getUserReplies,
   getUserActions,
   getCurrentUser,
+  getUserProfile,
   getNotifications,
 } from './forum-api.js';
 
@@ -115,6 +116,15 @@ export const forumTools = {
       offset: z.number().optional().describe('Pagination offset (0, 30, 60, ...)'),
     }),
     execute: getUserActions,
+  }),
+
+  get_user_profile: tool({
+    description:
+      'Fetch a detailed user profile including all-time stats (days visited, posts read, topics entered, likes given/received), badges, groups, and timestamps. More data than get_user_summary.',
+    inputSchema: z.object({
+      username: z.string().describe("The user's handle"),
+    }),
+    execute: getUserProfile,
   }),
 
   get_current_user: tool({

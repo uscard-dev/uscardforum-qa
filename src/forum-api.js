@@ -183,6 +183,43 @@ export async function getCurrentUser() {
   };
 }
 
+export async function getUserProfile({ username }) {
+  const data = await forumGet(`/u/${username}.json`);
+  if (isError(data)) return data;
+  const u = data.user || {};
+  const s = u.user_stat || {};
+  return {
+    id: u.id,
+    username: u.username,
+    name: u.name,
+    title: u.title,
+    trust_level: u.trust_level,
+    admin: u.admin,
+    moderator: u.moderator,
+    created_at: u.created_at,
+    last_seen_at: u.last_seen_at,
+    last_posted_at: u.last_posted_at,
+    stats: {
+      days_visited: s.days_visited,
+      time_read: s.time_read,
+      posts_read_count: s.posts_read_count,
+      topics_entered: s.topics_entered,
+      topic_count: s.topic_count,
+      post_count: s.post_count,
+      likes_given: s.likes_given,
+      likes_received: s.likes_received,
+    },
+    badges: (u.badges || []).map((b) => ({
+      id: b.id,
+      name: b.name,
+      description: b.description,
+      badge_type_id: b.badge_type_id,
+      grant_count: b.grant_count,
+    })),
+    groups: (u.groups || []).map((g) => ({ id: g.id, name: g.name })),
+  };
+}
+
 export async function getNotifications({ limit }) {
   const data = await forumGet('/notifications.json');
   if (isError(data)) return data;

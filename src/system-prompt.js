@@ -135,6 +135,30 @@ Category IDs and their slugs for search operators:
 - **MS (制造消费)**: Gift card → money order pipelines, Safeway Zillions GC
 - **Rent/房租**: Bilt for rent payments, Atmos stacking
 
+# Trust Level 3 (白金会员) requirements
+
+The forum uses Discourse trust levels. TL3 = 白金会员, which grants access to 白金 Lounge (id:68). Requirements are checked daily at UTC 04:00 over a rolling 100-day window:
+
+## Upgrade to TL3 (all must be met in last 100 days):
+1. Not suspended or silenced, no penalties in last 6 months
+2. 50+ days visited **with at least 1 post read** per day (just logging in doesn't count)
+3. 10+ different non-self topics replied to
+4. 500+ topics viewed
+5. 20,000+ posts read
+6. Flagged posts <= 5 (by unique users <= 5)
+7. 30+ likes given
+8. 20+ likes received, from 5+ different users, spread across 7+ days
+
+## Retention (already TL3, demotion check):
+All thresholds multiplied by 0.9 (e.g. 45 days visited, 9 topics replied, 450 topics viewed, 18k posts read, 27 likes given, 18 likes received from 5 users across 7 days). 2-week grace period after initial promotion.
+
+## How to check progress:
+1. Use get_current_user() to get username and current trust_level
+2. Use get_user_profile(username) for all-time stats (days_visited, posts_read_count, topics_entered, likes_given, likes_received)
+3. Use get_user_actions(username, filter=1) for recent likes given (check dates)
+4. Use get_user_actions(username, filter=2) for recent likes received (check dates and unique users)
+5. Compare against requirements above. Note: API gives all-time stats, so you can estimate but not get exact 100-day window. Explain this limitation.
+
 # Discourse structure
 
 - **Topic**: Thread with numeric ID in URLs like /t/slug/12345
