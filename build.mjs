@@ -12,7 +12,7 @@ const buildOptions = {
   target: 'es2022',
   outfile: 'dist/uscardforum-qa.user.js',
   banner: { js: banner },
-  minify: !isWatch,
+  minify: false,
   sourcemap: isWatch ? 'inline' : false,
   define: {
     'process.env.GOOGLE_GENERATIVE_AI_API_KEY': 'undefined',

@@ -2,17 +2,42 @@
 
 Tampermonkey userscript that embeds an AI-powered QA bot on [USCardForum](https://www.uscardforum.com). The agent uses Gemini via the Vercel AI SDK to autonomously search and read forum content through 10 Discourse API tools, then synthesizes thorough answers with source citations.
 
-![screenshot](https://github.com/user-attachments/assets/placeholder.png)
+## Install (One-Click)
+
+> **Requires [Tampermonkey](https://www.tampermonkey.net/) browser extension**
+
+### Option A: Install from GitHub (recommended)
+
+[![Install](https://img.shields.io/badge/Install-USCardForum_QA_Bot-blue?style=for-the-badge&logo=tampermonkey)](https://github.com/uscard-dev/uscardforum-qa/raw/main/dist/uscardforum-qa.user.js)
+
+Click the button above — Tampermonkey will prompt you to install the script. Updates are automatic.
+
+### Option B: Install from Greasy Fork
+
+[![Greasy Fork](https://img.shields.io/badge/Greasy_Fork-Install-red?style=for-the-badge&logo=tampermonkey)](https://greasyfork.org/scripts/by-site/uscardforum.com)
+
+Search for **USCardForum QA Bot** on Greasy Fork.
+
+## First-Time Setup
+
+1. Navigate to https://www.uscardforum.com
+2. Click the **✦** gradient button (bottom-right corner) to open the QA panel
+3. Click **Settings** → enter your **Gemini API Key** and choose a model
+4. Start asking questions!
+
+Supports **Gemini API** (direct) or **LiteLLM** (Gemini-compatible) as the provider.
 
 ## Features
 
-- **Autonomous multi-step research** — the agent plans, searches, reads posts, cross-references, and iterates until it has enough evidence
+- **Autonomous multi-step research** — the agent thinks, searches, reads posts, cross-references, and iterates until it has enough evidence
 - **10 forum tools** — full-text search with Discourse operators, topic reading with pagination, user profiles, trending/new/top topics, categories
-- **Streaming UI** — real-time token streaming, collapsible reasoning blocks, animated tool call cards with status indicators
-- **Smart auto-scroll** — auto-follows new content but pauses when you scroll up to read
-- **Shadow DOM isolation** — zero CSS conflicts with the host forum
-- **Persistent settings** — API key and model saved via `GM_setValue`
+- **Thinking mode** — Gemini's reasoning is shown in real-time via collapsible thinking blocks
+- **Streaming UI** — real-time token streaming, animated tool call cards with status indicators
+- **Conversation history** — conversations saved to browser storage, restorable from the History panel
+- **Parallel tool calls** — independent API calls run simultaneously for faster research
 - **Stop button** — abort any in-flight generation
+- **Shadow DOM isolation** — zero CSS conflicts with the host forum
+- **Auto-update** — script updates automatically from GitHub
 
 ## Architecture
 
@@ -25,53 +50,23 @@ src/
   tool-labels.js    Human-readable tool call descriptions for the UI
   system-prompt.js  System prompt: research methodology and forum knowledge
   ui.js             Floating chat panel (shadow DOM, streaming, tool cards)
-  markdown.js       Block-level markdown→HTML renderer (lists, tables, code, etc.)
+  markdown.js       Block-level markdown→HTML renderer
   settings.js       Persistent settings via GM_getValue/GM_setValue
-  http.js           GM_xmlhttpRequest wrapper for cross-origin API calls
+  conversations.js  Conversation persistence via GM_getValue/GM_setValue
+  http.js           Native fetch wrapper for same-origin API calls
 ```
 
 Bundled by esbuild into `dist/uscardforum-qa.user.js` for direct Tampermonkey installation.
 
-## Stack
-
-- **[Vercel AI SDK](https://ai-sdk.dev)** (`ai` v6) — agent loop, parallel tool execution, streaming
-- **[@ai-sdk/google](https://ai-sdk.dev/providers/ai-sdk-providers/google-generative-ai)** — Gemini provider
-- **[Zod](https://zod.dev)** — tool input schema validation
-- **[esbuild](https://esbuild.github.io)** — bundler (dev dependency only)
-
-## Setup
+## Development
 
 ```bash
 npm install
-```
-
-## Build
-
-```bash
-# Production
-npm run build
-
-# Development (watch mode)
-npm run dev
+npm run build      # Production build
+npm run dev        # Watch mode with sourcemaps
 ```
 
 Output: `dist/uscardforum-qa.user.js`
-
-## Install
-
-1. Install [Tampermonkey](https://www.tampermonkey.net/) in your browser
-2. Run `npm run build`
-3. Open `dist/uscardforum-qa.user.js` in your browser — Tampermonkey will prompt to install, or create a new script and paste its contents
-4. Navigate to https://www.uscardforum.com — the toggle button appears in the bottom-right corner
-
-## Usage
-
-1. Click the gradient toggle button (bottom-right) to open the QA panel
-2. Type a question and press Enter
-3. Watch the agent think, search, and read posts in real-time
-4. The final answer includes structured summaries with source references
-
-Click **Settings** to configure your Gemini API key and model. Settings persist across page reloads.
 
 ## Agent Tools
 
@@ -88,23 +83,14 @@ Click **Settings** to configure your Gemini API key and model. Settings persist 
 | `get_user_replies` | Replies posted by a user |
 | `get_user_actions` | User activity feed with type filters |
 
-## How the Agent Works
-
-The system prompt instructs the agent to follow a research loop:
-
-1. **Think out loud** — explain reasoning before each tool call
-2. **Call tools** — search, read posts, look up users (parallel when possible)
-3. **Analyze results** — identify gaps, contradictions, leads worth following
-4. **Repeat or respond** — iterate until sufficient evidence, then synthesize
-
-The agent is trained to never answer after a single search — it cross-references multiple sources, reads actual post content (not just titles), and verifies claims from different angles.
-
 ## Configuration
 
-| Setting | Default |
-|---------|---------|
-| API Key | Pre-configured Gemini key |
-| Model | `gemini-3.1-pro-preview` |
+| Setting | Default | Storage |
+|---------|---------|---------|
+| Provider | Gemini API | `GM_setValue` |
+| API Key | (empty) | `GM_setValue` |
+| Model | `gemini-3.1-pro-preview` | `GM_setValue` |
+| Base URL | (empty, for LiteLLM) | `GM_setValue` |
 
 ## License
 
