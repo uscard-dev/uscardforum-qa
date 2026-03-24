@@ -11,6 +11,8 @@ import {
   getUserTopics,
   getUserReplies,
   getUserActions,
+  getCurrentUser,
+  getNotifications,
 } from './forum-api.js';
 
 export const forumTools = {
@@ -113,5 +115,21 @@ export const forumTools = {
       offset: z.number().optional().describe('Pagination offset (0, 30, 60, ...)'),
     }),
     execute: getUserActions,
+  }),
+
+  get_current_user: tool({
+    description:
+      'Get the currently logged-in user info including username, trust level, and unread notification counts.',
+    inputSchema: z.object({}),
+    execute: getCurrentUser,
+  }),
+
+  get_notifications: tool({
+    description:
+      'Fetch the current user\'s notifications (replies, mentions, likes, badges, etc.). Returns newest first.',
+    inputSchema: z.object({
+      limit: z.number().optional().describe('Max notifications to return'),
+    }),
+    execute: getNotifications,
   }),
 };

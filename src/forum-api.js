@@ -147,3 +147,36 @@ export async function getUserActions({ username, filter, offset }) {
     username: a.username,
   }));
 }
+
+export async function getCurrentUser() {
+  const data = await forumGet('/session/current.json');
+  if (isError(data)) return data;
+  const u = data.current_user || {};
+  return {
+    username: u.username,
+    name: u.name,
+    trust_level: u.trust_level,
+    unread_notifications: u.unread_notifications,
+    unread_high_priority_notifications: u.unread_high_priority_notifications,
+    unread_private_messages: u.unread_private_messages,
+    all_unread_notifications_count: u.all_unread_notifications_count,
+  };
+}
+
+export async function getNotifications({ limit }) {
+  const data = await forumGet('/notifications.json');
+  if (isError(data)) return data;
+  let notifications = (data.notifications || []).map((n) => ({
+    id: n.id,
+    type: n.notification_type,
+    read: n.read,
+    created_at: n.created_at,
+    topic_id: n.topic_id,
+    post_number: n.post_number,
+    slug: n.slug,
+    data: n.data,
+  }));
+  if (limit) notifications = notifications.slice(0, limit);
+  return notifications;
+}
+

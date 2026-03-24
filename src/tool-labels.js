@@ -56,6 +56,16 @@ const TOOL_META = {
     label: 'Fetching user activity',
     argKey: 'username',
   },
+  get_current_user: {
+    icon: '🔑',
+    iconClass: 'user',
+    label: 'Getting current user',
+  },
+  get_notifications: {
+    icon: '🔔',
+    iconClass: 'list',
+    label: 'Fetching notifications',
+  },
 };
 
 export function describeToolCall(name, args) {
@@ -89,6 +99,12 @@ export function describeToolCall(name, args) {
   } else if (name === 'get_user_actions') {
     title = `Activity for @${args?.username || '?'}`;
     subtitle = args?.filter ? `filter: ${args.filter}` : 'all activity';
+  } else if (name === 'get_current_user') {
+    title = 'Getting current user';
+    subtitle = 'session info';
+  } else if (name === 'get_notifications') {
+    title = 'Fetching notifications';
+    subtitle = args?.limit ? `latest ${args.limit}` : 'all recent';
   } else if (argVal) {
     subtitle = String(argVal);
   }
@@ -118,6 +134,14 @@ export function summarizeToolResult(name, result) {
   if (name === 'get_user_summary') {
     const stats = result.stats || {};
     return `${stats.post_count || 0} posts, ${stats.likes_received || 0} likes`;
+  }
+
+  if (name === 'get_current_user') {
+    return result.username ? `@${result.username}` : 'not logged in';
+  }
+
+  if (name === 'get_notifications') {
+    return `${Array.isArray(result) ? result.length : 0} notifications`;
   }
 
   if (Array.isArray(result)) {

@@ -30407,6 +30407,36 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
       username: a.username
     }));
   }
+  async function getCurrentUser() {
+    const data = await forumGet("/session/current.json");
+    if (isError(data)) return data;
+    const u = data.current_user || {};
+    return {
+      username: u.username,
+      name: u.name,
+      trust_level: u.trust_level,
+      unread_notifications: u.unread_notifications,
+      unread_high_priority_notifications: u.unread_high_priority_notifications,
+      unread_private_messages: u.unread_private_messages,
+      all_unread_notifications_count: u.all_unread_notifications_count
+    };
+  }
+  async function getNotifications({ limit }) {
+    const data = await forumGet("/notifications.json");
+    if (isError(data)) return data;
+    let notifications = (data.notifications || []).map((n) => ({
+      id: n.id,
+      type: n.notification_type,
+      read: n.read,
+      created_at: n.created_at,
+      topic_id: n.topic_id,
+      post_number: n.post_number,
+      slug: n.slug,
+      data: n.data
+    }));
+    if (limit) notifications = notifications.slice(0, limit);
+    return notifications;
+  }
 
   // src/tools.js
   var forumTools = {
@@ -30485,6 +30515,18 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
         offset: external_exports2.number().optional().describe("Pagination offset (0, 30, 60, ...)")
       }),
       execute: getUserActions
+    }),
+    get_current_user: tool({
+      description: "Get the currently logged-in user info including username, trust level, and unread notification counts.",
+      inputSchema: external_exports2.object({}),
+      execute: getCurrentUser
+    }),
+    get_notifications: tool({
+      description: "Fetch the current user's notifications (replies, mentions, likes, badges, etc.). Returns newest first.",
+      inputSchema: external_exports2.object({
+        limit: external_exports2.number().optional().describe("Max notifications to return")
+      }),
+      execute: getNotifications
     })
   };
 
@@ -30835,6 +30877,16 @@ Category IDs and their slugs for search operators:
       iconClass: "user",
       label: "Fetching user activity",
       argKey: "username"
+    },
+    get_current_user: {
+      icon: "\u{1F511}",
+      iconClass: "user",
+      label: "Getting current user"
+    },
+    get_notifications: {
+      icon: "\u{1F514}",
+      iconClass: "list",
+      label: "Fetching notifications"
     }
   };
   function describeToolCall(name21, args) {
@@ -30866,6 +30918,12 @@ Category IDs and their slugs for search operators:
     } else if (name21 === "get_user_actions") {
       title = `Activity for @${args?.username || "?"}`;
       subtitle = args?.filter ? `filter: ${args.filter}` : "all activity";
+    } else if (name21 === "get_current_user") {
+      title = "Getting current user";
+      subtitle = "session info";
+    } else if (name21 === "get_notifications") {
+      title = "Fetching notifications";
+      subtitle = args?.limit ? `latest ${args.limit}` : "all recent";
     } else if (argVal) {
       subtitle = String(argVal);
     }
@@ -30889,6 +30947,12 @@ Category IDs and their slugs for search operators:
     if (name21 === "get_user_summary") {
       const stats = result.stats || {};
       return `${stats.post_count || 0} posts, ${stats.likes_received || 0} likes`;
+    }
+    if (name21 === "get_current_user") {
+      return result.username ? `@${result.username}` : "not logged in";
+    }
+    if (name21 === "get_notifications") {
+      return `${Array.isArray(result) ? result.length : 0} notifications`;
     }
     if (Array.isArray(result)) {
       return `${result.length} results`;
