@@ -82,6 +82,29 @@ const CSS = `
 .settings .row-base-url{display:none}
 .settings.show-base-url .row-base-url{display:block}
 
+/* ── history panel ── */
+.history{display:none;flex:1 1 0;overflow-y:auto;padding:8px 10px;scrollbar-width:thin;scrollbar-color:rgba(139,92,246,.2) transparent}
+.history.open{display:block}
+.history.open ~ .msgs{display:none}
+.history.open ~ .status{display:none}
+.history.open ~ .input-area{display:none}
+.history-empty{color:#3f3f46;font-size:12px;text-align:center;padding:32px 0}
+.history-item{
+  display:flex;align-items:center;gap:8px;
+  padding:9px 12px;border-radius:10px;cursor:pointer;
+  transition:background .15s;margin-bottom:2px;
+}
+.history-item:hover{background:rgba(139,92,246,.08)}
+.history-item-body{flex:1;min-width:0}
+.history-item-title{color:#c8ccd4;font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.history-item-date{color:#3f3f46;font-size:10px;font-family:'SF Mono','Fira Code',monospace;margin-top:1px}
+.history-item-del{
+  flex:0 0 auto;opacity:0;color:#71717a;font-size:14px;cursor:pointer;
+  padding:2px 4px;border-radius:4px;transition:opacity .15s,color .15s;
+}
+.history-item:hover .history-item-del{opacity:1}
+.history-item-del:hover{color:#f87171}
+
 /* ── scroll area ── */
 .msgs{
   flex:1 1 0;
@@ -249,8 +272,9 @@ const HTML = `
   <div class="hdr">
     <div class="hdr-title"><span class="hdr-dot"></span> USCardForum QA</div>
     <div class="hdr-actions">
+      <button class="btn-history">History</button>
       <button class="btn-settings">Settings</button>
-      <button class="btn-clear">Clear</button>
+      <button class="btn-new">+ New</button>
     </div>
   </div>
   <div class="settings">
@@ -268,6 +292,7 @@ const HTML = `
       <input type="text" class="in-base-url" placeholder="https://your-litellm-server/v1">
     </div>
   </div>
+  <div class="history"></div>
   <div class="msgs"></div>
   <div class="status"></div>
   <div class="input-area">
@@ -295,6 +320,7 @@ export function createUI() {
   const panel = $('.panel');
   const settingsEl = $('.settings');
   const providerEl = $('.in-provider');
+  const historyEl = $('.history');
   const msgs = $('.msgs');
   const statusEl = $('.status');
   const inputEl = $('.in-text');
@@ -314,6 +340,13 @@ export function createUI() {
     if (panel.classList.contains('open')) requestAnimationFrame(() => inputEl.focus());
   });
   $('.btn-settings').addEventListener('click', () => settingsEl.classList.toggle('open'));
+
+  let _onHistoryOpen = null;
+  $('.btn-history').addEventListener('click', () => {
+    const opening = !historyEl.classList.contains('open');
+    historyEl.classList.toggle('open');
+    if (opening && _onHistoryOpen) _onHistoryOpen();
+  });
 
   inputEl.addEventListener('input', () => {
     inputEl.style.height = 'auto';
@@ -462,6 +495,53 @@ export function createUI() {
     scroll();
   }
 
+  function formatDate(ts) {
+    const d = new Date(ts);
+    const now = new Date();
+    const diff = now - d;
+    if (diff < 60000) return 'just now';
+    if (diff < 3600000) return `${Math.floor(diff / 60000)}m ago`;
+    if (diff < 86400000) return `${Math.floor(diff / 3600000)}h ago`;
+    if (diff < 604800000) return `${Math.floor(diff / 86400000)}d ago`;
+    return d.toLocaleDateString();
+  }
+
+  function renderHistory(items, { onSelect, onDelete }) {
+    historyEl.innerHTML = '';
+    if (items.length === 0) {
+      historyEl.innerHTML = '<div class="history-empty">No conversations yet</div>';
+      return;
+    }
+    for (const item of items) {
+      const row = el('history-item');
+      row.innerHTML = `
+        <div class="history-item-body">
+          <div class="history-item-title">${esc(item.title || 'Untitled')}</div>
+          <div class="history-item-date">${formatDate(item.createdAt)}</div>
+        </div>
+        <span class="history-item-del" title="Delete">×</span>
+      `;
+      row.querySelector('.history-item-body').addEventListener('click', () => {
+        historyEl.classList.remove('open');
+        onSelect(item.id);
+      });
+      row.querySelector('.history-item-del').addEventListener('click', (e) => {
+        e.stopPropagation();
+        onDelete(item.id);
+      });
+      historyEl.appendChild(row);
+    }
+  }
+
+  function hideHistory() {
+    historyEl.classList.remove('open');
+  }
+
+  function clearMessages() {
+    msgs.innerHTML = '';
+    statusEl.textContent = '';
+  }
+
   return {
     panel,
     providerInput: providerEl,
@@ -472,7 +552,7 @@ export function createUI() {
     messagesEl: msgs,
     inputEl,
     sendBtn,
-    clearBtn: $('.btn-clear'),
+    newBtn: $('.btn-new'),
     addMessage,
     addToolCard,
     updateToolCard,
@@ -485,5 +565,9 @@ export function createUI() {
     setInputEnabled,
     scrollToBottom: scroll,
     updateStreamingMessage,
+    renderHistory,
+    hideHistory,
+    clearMessages,
+    set onHistoryOpen(fn) { _onHistoryOpen = fn; },
   };
 }

@@ -1,6 +1,13 @@
 import { loadSettings, saveSettings } from './settings.js';
 import { createAgent } from './agent.js';
 import { createUI } from './ui.js';
+import {
+  listConversations,
+  getConversation,
+  saveConversation,
+  deleteConversation,
+  newConversationId,
+} from './conversations.js';
 
 function init() {
   const settings = loadSettings();
@@ -15,6 +22,8 @@ function init() {
   let running = false;
   let abortController = null;
   let conversationMessages = [];
+  let currentConvoId = null;
+  let currentConvoTitle = '';
 
   function currentSettings() {
     return {
@@ -31,13 +40,88 @@ function init() {
     const s = currentSettings();
     saveSettings(s);
     agent = createAgent(s);
-    conversationMessages = [];
   }
 
   ui.providerInput.addEventListener('change', onSettingsChange);
   ui.apiKeyInput.addEventListener('change', onSettingsChange);
   ui.modelInput.addEventListener('change', onSettingsChange);
   ui.baseUrlInput.addEventListener('change', onSettingsChange);
+
+  function persistCurrentConvo() {
+    if (!currentConvoId || conversationMessages.length === 0) return;
+    saveConversation({
+      id: currentConvoId,
+      title: currentConvoTitle,
+      messages: conversationMessages,
+    });
+  }
+
+  function startNewConvo() {
+    persistCurrentConvo();
+    currentConvoId = null;
+    currentConvoTitle = '';
+    conversationMessages = [];
+    ui.clearMessages();
+    ui.hideHistory();
+    ui.inputEl.focus();
+  }
+
+  function replayConversation(messages) {
+    ui.clearMessages();
+    for (const msg of messages) {
+      if (msg.role === 'user') {
+        ui.addMessage('user', typeof msg.content === 'string' ? msg.content : JSON.stringify(msg.content));
+      } else if (msg.role === 'assistant') {
+        if (typeof msg.content === 'string') {
+          ui.addMessage('assistant', msg.content);
+        } else if (Array.isArray(msg.content)) {
+          const textParts = msg.content.filter((p) => p.type === 'text').map((p) => p.text).join('');
+          const toolParts = msg.content.filter((p) => p.type === 'tool-call');
+          for (const tc of toolParts) {
+            const card = ui.addToolCard(tc.toolName, tc.args);
+            card.dataset.toolName = tc.toolName;
+            card.classList.remove('running');
+            card.classList.add('done');
+            const st = card.querySelector('.tool-st');
+            st.className = 'tool-st done';
+            st.textContent = '✓';
+          }
+          if (textParts) ui.addMessage('assistant', textParts);
+        }
+      } else if (msg.role === 'tool') {
+        // tool results displayed inline via tool cards above
+      }
+    }
+  }
+
+  function loadConvo(id) {
+    persistCurrentConvo();
+    const convo = getConversation(id);
+    if (!convo) return;
+    currentConvoId = convo.id;
+    currentConvoTitle = convo.title;
+    conversationMessages = convo.messages;
+    replayConversation(convo.messages);
+    ui.setStatus('');
+    ui.inputEl.focus();
+  }
+
+  function refreshHistory() {
+    const items = listConversations();
+    ui.renderHistory(items, {
+      onSelect: loadConvo,
+      onDelete: (id) => {
+        deleteConversation(id);
+        if (currentConvoId === id) {
+          currentConvoId = null;
+          currentConvoTitle = '';
+          conversationMessages = [];
+          ui.clearMessages();
+        }
+        refreshHistory();
+      },
+    });
+  }
 
   function handleStop() {
     if (abortController) {
@@ -49,6 +133,11 @@ function init() {
   async function handleSend() {
     const prompt = ui.inputEl.value.trim();
     if (!prompt || running) return;
+
+    if (!currentConvoId) {
+      currentConvoId = newConversationId();
+      currentConvoTitle = prompt.slice(0, 80);
+    }
 
     conversationMessages.push({ role: 'user', content: prompt });
 
@@ -177,6 +266,7 @@ function init() {
       running = false;
       ui.setInputEnabled(true, false);
       ui.inputEl.focus();
+      persistCurrentConvo();
     }
   }
 
@@ -194,11 +284,12 @@ function init() {
     }
   });
 
-  ui.clearBtn.addEventListener('click', () => {
-    ui.messagesEl.innerHTML = '';
-    ui.setStatus('');
-    conversationMessages = [];
+  ui.newBtn.addEventListener('click', () => {
+    if (running) handleStop();
+    startNewConvo();
   });
+
+  ui.onHistoryOpen = refreshHistory;
 }
 
 if (document.readyState === 'loading') {
