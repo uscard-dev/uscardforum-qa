@@ -11,5 +11,6 @@
 // @grant        GM_addStyle
 // @connect      www.uscardforum.com
 // @connect      generativelanguage.googleapis.com
+// @connect      *
 // @run-at       document-idle
 // ==/UserScript==

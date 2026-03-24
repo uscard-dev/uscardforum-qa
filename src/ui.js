@@ -71,12 +71,16 @@ const CSS = `
 .settings{display:none;padding:12px 16px;background:rgba(139,92,246,.03);border-bottom:1px solid rgba(255,255,255,.05);flex:0 0 auto}
 .settings.open{display:block}
 .settings label{display:block;font-size:10px;font-weight:700;color:#52525b;margin:0 0 4px;text-transform:uppercase;letter-spacing:1px}
-.settings input{
+.settings input,.settings select{
   width:100%;padding:8px 10px;border:1px solid rgba(255,255,255,.08);border-radius:8px;
   font-size:12px;margin-bottom:10px;background:rgba(255,255,255,.03);color:#c8ccd4;
-  font-family:'SF Mono','Fira Code',monospace;
+  font-family:'SF Mono','Fira Code',monospace;appearance:none;
 }
-.settings input:focus{outline:none;border-color:rgba(139,92,246,.5);box-shadow:0 0 10px rgba(139,92,246,.1)}
+.settings select{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2371717a' d='M3 5l3 3 3-3'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center}
+.settings select option{background:#1a1a22;color:#c8ccd4}
+.settings input:focus,.settings select:focus{outline:none;border-color:rgba(139,92,246,.5);box-shadow:0 0 10px rgba(139,92,246,.1)}
+.settings .row-base-url{display:none}
+.settings.show-base-url .row-base-url{display:block}
 
 /* ── scroll area ── */
 .msgs{
@@ -95,9 +99,13 @@ const CSS = `
 .msgs > *:last-child{margin-bottom:0}
 
 /* ── user bubble ── */
+.msg-user-wrap{
+  text-align:right;
+}
 .msg-user{
+  display:inline-block;
+  text-align:left;
   max-width:88%;
-  margin-left:auto;
   background:linear-gradient(135deg,#6366f1,#8b5cf6);
   color:#fff;padding:8px 14px;
   border-radius:14px 14px 4px 14px;
@@ -246,10 +254,19 @@ const HTML = `
     </div>
   </div>
   <div class="settings">
+    <label>Provider</label>
+    <select class="in-provider">
+      <option value="gemini">Gemini API</option>
+      <option value="litellm">LiteLLM (Gemini-compatible)</option>
+    </select>
     <label>API Key</label>
-    <input type="password" class="in-key" placeholder="Gemini API Key">
+    <input type="password" class="in-key" placeholder="API Key">
     <label>Model</label>
     <input type="text" class="in-model" placeholder="gemini-3.1-pro-preview">
+    <div class="row-base-url">
+      <label>Base URL</label>
+      <input type="text" class="in-base-url" placeholder="https://your-litellm-server/v1">
+    </div>
   </div>
   <div class="msgs"></div>
   <div class="status"></div>
@@ -277,10 +294,20 @@ export function createUI() {
   const $ = (s) => shadow.querySelector(s);
   const panel = $('.panel');
   const settingsEl = $('.settings');
+  const providerEl = $('.in-provider');
   const msgs = $('.msgs');
   const statusEl = $('.status');
   const inputEl = $('.in-text');
   const sendBtn = $('.btn-send');
+
+  function syncProviderUI() {
+    if (providerEl.value === 'litellm') {
+      settingsEl.classList.add('show-base-url');
+    } else {
+      settingsEl.classList.remove('show-base-url');
+    }
+  }
+  providerEl.addEventListener('change', syncProviderUI);
 
   $('.toggle').addEventListener('click', () => {
     panel.classList.toggle('open');
@@ -323,7 +350,9 @@ export function createUI() {
   function addMessage(role, content) {
     if (role === 'user') {
       userScrolledUp = false;
-      return append(el('msg-user', esc(content)));
+      const wrap = el('msg-user-wrap');
+      wrap.appendChild(el('msg-user', esc(content)));
+      return append(wrap);
     }
     if (role === 'error') {
       return append(el('msg-err', esc(content)));
@@ -435,8 +464,11 @@ export function createUI() {
 
   return {
     panel,
+    providerInput: providerEl,
     apiKeyInput: $('.in-key'),
     modelInput: $('.in-model'),
+    baseUrlInput: $('.in-base-url'),
+    syncProviderUI,
     messagesEl: msgs,
     inputEl,
     sendBtn,

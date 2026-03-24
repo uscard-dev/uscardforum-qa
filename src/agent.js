@@ -3,11 +3,18 @@ import { createGoogleGenerativeAI } from '@ai-sdk/google';
 import { forumTools } from './tools.js';
 import { SYSTEM_PROMPT } from './system-prompt.js';
 
-export function createAgent(apiKey, model) {
-  const google = createGoogleGenerativeAI({ apiKey });
+function createModel({ provider, apiKey, model, baseUrl }) {
+  const opts = { apiKey };
+  if (provider === 'litellm' && baseUrl) {
+    opts.baseURL = baseUrl;
+  }
+  const google = createGoogleGenerativeAI(opts);
+  return google(model);
+}
 
+export function createAgent(settings) {
   return new ToolLoopAgent({
-    model: google(model),
+    model: createModel(settings),
     instructions: SYSTEM_PROMPT,
     tools: forumTools,
     stopWhen: stepCountIs(15),

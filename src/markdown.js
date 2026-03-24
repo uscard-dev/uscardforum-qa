@@ -44,9 +44,9 @@ export function renderMarkdown(text) {
     }
 
     if (/^#{1,3} /.test(line)) {
-      const m = line.match(/^(#{1,3}) (.+)$/);
+      const m = line.match(/^(#{1,3})\s*(.*)$/);
       const tag = `h${m[1].length}`;
-      blocks.push(`<${tag}>${inline(m[2])}</${tag}>`);
+      blocks.push(`<${tag}>${inline(m[2] || '')}</${tag}>`);
       i++;
       continue;
     }

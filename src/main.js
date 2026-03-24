@@ -6,23 +6,38 @@ function init() {
   const settings = loadSettings();
   const ui = createUI();
 
+  ui.providerInput.value = settings.provider;
   ui.apiKeyInput.value = settings.apiKey;
   ui.modelInput.value = settings.model;
+  ui.baseUrlInput.value = settings.baseUrl;
+  ui.syncProviderUI();
 
   let running = false;
   let abortController = null;
   let conversationMessages = [];
-  let agent = createAgent(settings.apiKey, settings.model);
+
+  function currentSettings() {
+    return {
+      provider: ui.providerInput.value,
+      apiKey: ui.apiKeyInput.value,
+      model: ui.modelInput.value,
+      baseUrl: ui.baseUrlInput.value,
+    };
+  }
+
+  let agent = createAgent(currentSettings());
 
   function onSettingsChange() {
-    saveSettings({ apiKey: ui.apiKeyInput.value, model: ui.modelInput.value });
-    const s = loadSettings();
-    agent = createAgent(s.apiKey, s.model);
+    const s = currentSettings();
+    saveSettings(s);
+    agent = createAgent(s);
     conversationMessages = [];
   }
 
+  ui.providerInput.addEventListener('change', onSettingsChange);
   ui.apiKeyInput.addEventListener('change', onSettingsChange);
   ui.modelInput.addEventListener('change', onSettingsChange);
+  ui.baseUrlInput.addEventListener('change', onSettingsChange);
 
   function handleStop() {
     if (abortController) {
@@ -113,6 +128,10 @@ function init() {
 
           case 'tool-call': {
             ui.removeThinking();
+            if (reasoningBlock) {
+              ui.finalizeReasoningBlock(reasoningBlock);
+              reasoningBlock = null;
+            }
             const card = ui.addToolCard(part.toolName, part.input);
             card.dataset.toolName = part.toolName;
             toolCards.set(part.toolCallId, card);
