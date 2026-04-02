@@ -40005,7 +40005,7 @@ Category IDs for search operators:
     <select class="in-provider">
       <option value="gemini">Gemini API</option>
       <option value="litellm">LiteLLM (Gemini-compatible)</option>
-      <option value="openai">OpenAI Compatible</option>
+      <option value="openai">Custom (OpenAI Chat Completions API)</option>
     </select>
     <label>API Key</label>
     <input type="password" class="in-key" placeholder="API Key">
