@@ -39377,7 +39377,9 @@ Category IDs for search operators:
   // src/agent.js
   function createModel({ provider, apiKey, model, baseUrl }) {
     if (provider === "openai") {
-      const openai2 = createOpenAI({ apiKey, baseURL: baseUrl });
+      let url2 = baseUrl.replace(/\/+$/, "");
+      if (!url2.endsWith("/v1")) url2 += "/v1";
+      const openai2 = createOpenAI({ apiKey, baseURL: url2 });
       return openai2.chat(model);
     }
     const opts = { apiKey };
@@ -40067,14 +40069,15 @@ Category IDs for search operators:
     const modelSelectEl = $(".in-model-select");
     const listModelsBtn = $(".btn-list-models");
     listModelsBtn.addEventListener("click", () => {
-      const baseUrl = $(".in-base-url").value.replace(/\/+$/, "");
+      let baseUrl = $(".in-base-url").value.replace(/\/+$/, "");
       const apiKey = $(".in-key").value;
       if (!baseUrl) return;
+      if (!baseUrl.endsWith("/v1")) baseUrl += "/v1";
       listModelsBtn.disabled = true;
       listModelsBtn.textContent = "Loading...";
       GM_xmlhttpRequest({
         method: "GET",
-        url: `${baseUrl}/v1/models`,
+        url: `${baseUrl}/models`,
         headers: {
           Authorization: `Bearer ${apiKey}`,
           Accept: "application/json"

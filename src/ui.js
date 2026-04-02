@@ -409,16 +409,17 @@ export function createUI() {
   const listModelsBtn = $('.btn-list-models');
 
   listModelsBtn.addEventListener('click', () => {
-    const baseUrl = $('.in-base-url').value.replace(/\/+$/, '');
+    let baseUrl = $('.in-base-url').value.replace(/\/+$/, '');
     const apiKey = $('.in-key').value;
     if (!baseUrl) return;
+    if (!baseUrl.endsWith('/v1')) baseUrl += '/v1';
 
     listModelsBtn.disabled = true;
     listModelsBtn.textContent = 'Loading...';
 
     GM_xmlhttpRequest({
       method: 'GET',
-      url: `${baseUrl}/v1/models`,
+      url: `${baseUrl}/models`,
       headers: {
         Authorization: `Bearer ${apiKey}`,
         Accept: 'application/json',

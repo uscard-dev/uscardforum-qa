@@ -6,7 +6,9 @@ import { SYSTEM_PROMPT } from './system-prompt.js';
 
 function createModel({ provider, apiKey, model, baseUrl }) {
   if (provider === 'openai') {
-    const openai = createOpenAI({ apiKey, baseURL: baseUrl });
+    let url = baseUrl.replace(/\/+$/, '');
+    if (!url.endsWith('/v1')) url += '/v1';
+    const openai = createOpenAI({ apiKey, baseURL: url });
     return openai.chat(model);
   }
   const opts = { apiKey };
