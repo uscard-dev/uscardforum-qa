@@ -31,8 +31,8 @@
     return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
   };
   var __export = (target, all) => {
-    for (var name21 in all)
-      __defProp(target, name21, { get: all[name21], enumerable: true });
+    for (var name24 in all)
+      __defProp(target, name24, { get: all[name24], enumerable: true });
   };
   var __copyProps = (to, from, except, desc) => {
     if (from && typeof from === "object" || typeof from === "function") {
@@ -60,8 +60,8 @@
       var __getOwnPropNames2 = Object.getOwnPropertyNames;
       var __hasOwnProp2 = Object.prototype.hasOwnProperty;
       var __export3 = (target, all) => {
-        for (var name21 in all)
-          __defProp3(target, name21, { get: all[name21], enumerable: true });
+        for (var name24 in all)
+          __defProp3(target, name24, { get: all[name24], enumerable: true });
       };
       var __copyProps2 = (to, from, except, desc) => {
         if (from && typeof from === "object" || typeof from === "function") {
@@ -95,8 +95,8 @@
       var __getOwnPropNames2 = Object.getOwnPropertyNames;
       var __hasOwnProp2 = Object.prototype.hasOwnProperty;
       var __export3 = (target, all) => {
-        for (var name21 in all)
-          __defProp3(target, name21, { get: all[name21], enumerable: true });
+        for (var name24 in all)
+          __defProp3(target, name24, { get: all[name24], enumerable: true });
       };
       var __copyProps2 = (to, from, except, desc) => {
         if (from && typeof from === "object" || typeof from === "function") {
@@ -956,15 +956,15 @@ Error message: ${getErrorMessage(cause)}`,
     status: "aborted"
   });
   // @__NO_SIDE_EFFECTS__
-  function $constructor(name21, initializer3, params) {
+  function $constructor(name24, initializer3, params) {
     function init2(inst, def) {
-      var _a21;
+      var _a24;
       Object.defineProperty(inst, "_zod", {
         value: inst._zod ?? {},
         enumerable: false
       });
-      (_a21 = inst._zod).traits ?? (_a21.traits = /* @__PURE__ */ new Set());
-      inst._zod.traits.add(name21);
+      (_a24 = inst._zod).traits ?? (_a24.traits = /* @__PURE__ */ new Set());
+      inst._zod.traits.add(name24);
       initializer3(inst, def);
       for (const k in _.prototype) {
         if (!(k in inst))
@@ -976,12 +976,12 @@ Error message: ${getErrorMessage(cause)}`,
     const Parent = params?.Parent ?? Object;
     class Definition extends Parent {
     }
-    Object.defineProperty(Definition, "name", { value: name21 });
+    Object.defineProperty(Definition, "name", { value: name24 });
     function _(def) {
-      var _a21;
+      var _a24;
       const inst = params?.Parent ? new Definition() : this;
       init2(inst, def);
-      (_a21 = inst._zod).deferred ?? (_a21.deferred = []);
+      (_a24 = inst._zod).deferred ?? (_a24.deferred = []);
       for (const fn of inst._zod.deferred) {
         fn();
       }
@@ -992,10 +992,10 @@ Error message: ${getErrorMessage(cause)}`,
       value: (inst) => {
         if (params?.Parent && inst instanceof params.Parent)
           return true;
-        return inst?._zod?.traits?.has(name21);
+        return inst?._zod?.traits?.has(name24);
       }
     });
-    Object.defineProperty(_, "name", { value: name21 });
+    Object.defineProperty(_, "name", { value: name24 });
     return _;
   }
   var $brand = /* @__PURE__ */ Symbol("zod_brand");
@@ -1472,8 +1472,8 @@ Error message: ${getErrorMessage(cause)}`,
   }
   function prefixIssues(path, issues) {
     return issues.map((iss) => {
-      var _a21;
-      (_a21 = iss).path ?? (_a21.path = []);
+      var _a24;
+      (_a24 = iss).path ?? (_a24.path = []);
       iss.path.unshift(path);
       return iss;
     });
@@ -1612,7 +1612,7 @@ Error message: ${getErrorMessage(cause)}`,
     };
     const result = { errors: [] };
     const processError = (error41, path = []) => {
-      var _a21, _b17;
+      var _a24, _b18;
       for (const issue2 of error41.issues) {
         if (issue2.code === "invalid_union" && issue2.errors.length) {
           issue2.errors.map((issues) => processError({ issues }, issue2.path));
@@ -1633,11 +1633,11 @@ Error message: ${getErrorMessage(cause)}`,
             const terminal = i === fullpath.length - 1;
             if (typeof el === "string") {
               curr.properties ?? (curr.properties = {});
-              (_a21 = curr.properties)[el] ?? (_a21[el] = { errors: [] });
+              (_a24 = curr.properties)[el] ?? (_a24[el] = { errors: [] });
               curr = curr.properties[el];
             } else {
               curr.items ?? (curr.items = []);
-              (_b17 = curr.items)[el] ?? (_b17[el] = { errors: [] });
+              (_b18 = curr.items)[el] ?? (_b18[el] = { errors: [] });
               curr = curr.items[el];
             }
             if (terminal) {
@@ -1846,10 +1846,10 @@ Error message: ${getErrorMessage(cause)}`,
 
   // node_modules/zod/v4/core/checks.js
   var $ZodCheck = /* @__PURE__ */ $constructor("$ZodCheck", (inst, def) => {
-    var _a21;
+    var _a24;
     inst._zod ?? (inst._zod = {});
     inst._zod.def = def;
-    (_a21 = inst._zod).onattach ?? (_a21.onattach = []);
+    (_a24 = inst._zod).onattach ?? (_a24.onattach = []);
   });
   var numericOriginMap = {
     number: "number",
@@ -1915,8 +1915,8 @@ Error message: ${getErrorMessage(cause)}`,
   var $ZodCheckMultipleOf = /* @__PURE__ */ $constructor("$ZodCheckMultipleOf", (inst, def) => {
     $ZodCheck.init(inst, def);
     inst._zod.onattach.push((inst2) => {
-      var _a21;
-      (_a21 = inst2._zod.bag).multipleOf ?? (_a21.multipleOf = def.value);
+      var _a24;
+      (_a24 = inst2._zod.bag).multipleOf ?? (_a24.multipleOf = def.value);
     });
     inst._zod.check = (payload) => {
       if (typeof payload.value !== typeof def.value)
@@ -2042,9 +2042,9 @@ Error message: ${getErrorMessage(cause)}`,
     };
   });
   var $ZodCheckMaxSize = /* @__PURE__ */ $constructor("$ZodCheckMaxSize", (inst, def) => {
-    var _a21;
+    var _a24;
     $ZodCheck.init(inst, def);
-    (_a21 = inst._zod.def).when ?? (_a21.when = (payload) => {
+    (_a24 = inst._zod.def).when ?? (_a24.when = (payload) => {
       const val = payload.value;
       return !nullish(val) && val.size !== void 0;
     });
@@ -2069,9 +2069,9 @@ Error message: ${getErrorMessage(cause)}`,
     };
   });
   var $ZodCheckMinSize = /* @__PURE__ */ $constructor("$ZodCheckMinSize", (inst, def) => {
-    var _a21;
+    var _a24;
     $ZodCheck.init(inst, def);
-    (_a21 = inst._zod.def).when ?? (_a21.when = (payload) => {
+    (_a24 = inst._zod.def).when ?? (_a24.when = (payload) => {
       const val = payload.value;
       return !nullish(val) && val.size !== void 0;
     });
@@ -2096,9 +2096,9 @@ Error message: ${getErrorMessage(cause)}`,
     };
   });
   var $ZodCheckSizeEquals = /* @__PURE__ */ $constructor("$ZodCheckSizeEquals", (inst, def) => {
-    var _a21;
+    var _a24;
     $ZodCheck.init(inst, def);
-    (_a21 = inst._zod.def).when ?? (_a21.when = (payload) => {
+    (_a24 = inst._zod.def).when ?? (_a24.when = (payload) => {
       const val = payload.value;
       return !nullish(val) && val.size !== void 0;
     });
@@ -2126,9 +2126,9 @@ Error message: ${getErrorMessage(cause)}`,
     };
   });
   var $ZodCheckMaxLength = /* @__PURE__ */ $constructor("$ZodCheckMaxLength", (inst, def) => {
-    var _a21;
+    var _a24;
     $ZodCheck.init(inst, def);
-    (_a21 = inst._zod.def).when ?? (_a21.when = (payload) => {
+    (_a24 = inst._zod.def).when ?? (_a24.when = (payload) => {
       const val = payload.value;
       return !nullish(val) && val.length !== void 0;
     });
@@ -2155,9 +2155,9 @@ Error message: ${getErrorMessage(cause)}`,
     };
   });
   var $ZodCheckMinLength = /* @__PURE__ */ $constructor("$ZodCheckMinLength", (inst, def) => {
-    var _a21;
+    var _a24;
     $ZodCheck.init(inst, def);
-    (_a21 = inst._zod.def).when ?? (_a21.when = (payload) => {
+    (_a24 = inst._zod.def).when ?? (_a24.when = (payload) => {
       const val = payload.value;
       return !nullish(val) && val.length !== void 0;
     });
@@ -2184,9 +2184,9 @@ Error message: ${getErrorMessage(cause)}`,
     };
   });
   var $ZodCheckLengthEquals = /* @__PURE__ */ $constructor("$ZodCheckLengthEquals", (inst, def) => {
-    var _a21;
+    var _a24;
     $ZodCheck.init(inst, def);
-    (_a21 = inst._zod.def).when ?? (_a21.when = (payload) => {
+    (_a24 = inst._zod.def).when ?? (_a24.when = (payload) => {
       const val = payload.value;
       return !nullish(val) && val.length !== void 0;
     });
@@ -2215,7 +2215,7 @@ Error message: ${getErrorMessage(cause)}`,
     };
   });
   var $ZodCheckStringFormat = /* @__PURE__ */ $constructor("$ZodCheckStringFormat", (inst, def) => {
-    var _a21, _b17;
+    var _a24, _b18;
     $ZodCheck.init(inst, def);
     inst._zod.onattach.push((inst2) => {
       const bag = inst2._zod.bag;
@@ -2226,7 +2226,7 @@ Error message: ${getErrorMessage(cause)}`,
       }
     });
     if (def.pattern)
-      (_a21 = inst._zod).check ?? (_a21.check = (payload) => {
+      (_a24 = inst._zod).check ?? (_a24.check = (payload) => {
         def.pattern.lastIndex = 0;
         if (def.pattern.test(payload.value))
           return;
@@ -2241,7 +2241,7 @@ Error message: ${getErrorMessage(cause)}`,
         });
       });
     else
-      (_b17 = inst._zod).check ?? (_b17.check = () => {
+      (_b18 = inst._zod).check ?? (_b18.check = () => {
       });
   });
   var $ZodCheckRegex = /* @__PURE__ */ $constructor("$ZodCheckRegex", (inst, def) => {
@@ -2427,7 +2427,7 @@ Error message: ${getErrorMessage(cause)}`,
 
   // node_modules/zod/v4/core/schemas.js
   var $ZodType = /* @__PURE__ */ $constructor("$ZodType", (inst, def) => {
-    var _a21;
+    var _a24;
     inst ?? (inst = {});
     inst._zod.def = def;
     inst._zod.bag = inst._zod.bag || {};
@@ -2442,7 +2442,7 @@ Error message: ${getErrorMessage(cause)}`,
       }
     }
     if (checks.length === 0) {
-      (_a21 = inst._zod).deferred ?? (_a21.deferred = []);
+      (_a24 = inst._zod).deferred ?? (_a24.deferred = []);
       inst._zod.deferred?.push(() => {
         inst._zod.run = inst._zod.parse;
       });
@@ -9808,7 +9808,7 @@ Error message: ${getErrorMessage(cause)}`,
       this.seen = /* @__PURE__ */ new Map();
     }
     process(schema, _params = { path: [], schemaPath: [] }) {
-      var _a21;
+      var _a24;
       const def = schema._zod.def;
       const formatMap = {
         guid: "uuid",
@@ -10270,7 +10270,7 @@ Error message: ${getErrorMessage(cause)}`,
         delete result.schema.default;
       }
       if (this.io === "input" && result.schema._prefault)
-        (_a21 = result.schema).default ?? (_a21.default = result.schema._prefault);
+        (_a24 = result.schema).default ?? (_a24.default = result.schema._prefault);
       delete result.schema._prefault;
       const _result = this.seen.get(schema);
       return _result.schema;
@@ -10360,8 +10360,8 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
           }
         }
       }
-      const flattenRef = (zodSchema2, params2) => {
-        const seen = this.seen.get(zodSchema2);
+      const flattenRef = (zodSchema3, params2) => {
+        const seen = this.seen.get(zodSchema3);
         const schema2 = seen.def ?? seen.schema;
         const _cached = { ...schema2 };
         if (seen.ref === null) {
@@ -10382,7 +10382,7 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
         }
         if (!seen.isParent)
           this.override({
-            zodSchema: zodSchema2,
+            zodSchema: zodSchema3,
             jsonSchema: schema2,
             path: seen.path ?? []
           });
@@ -11574,10 +11574,10 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
     Transform: ZodTransform
   }, ...args);
   function json(params) {
-    const jsonSchema2 = lazy(() => {
-      return union([string2(params), number2(), boolean2(), _null3(), array(jsonSchema2), record(string2(), jsonSchema2)]);
+    const jsonSchema3 = lazy(() => {
+      return union([string2(params), number2(), boolean2(), _null3(), array(jsonSchema3), record(string2(), jsonSchema3)]);
     });
-    return jsonSchema2;
+    return jsonSchema3;
   }
   function preprocess(fn, schema) {
     return pipe(transform(fn), schema);
@@ -15011,8 +15011,8 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
     }
     _parse(input) {
       const { ctx } = this._processInputParams(input);
-      const lazySchema2 = this._def.getter();
-      return lazySchema2._parse({ data: ctx.data, path: ctx.path, parent: ctx });
+      const lazySchema3 = this._def.getter();
+      return lazySchema3._parse({ data: ctx.data, path: ctx.path, parent: ctx });
     }
   };
   ZodLazy2.create = (getter, params) => {
@@ -16390,35 +16390,35 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
       Error.stackTraceLimit = stackTraceLimit;
     }
   }
-  function addAdditionalPropertiesToJsonSchema(jsonSchema2) {
-    if (jsonSchema2.type === "object" || Array.isArray(jsonSchema2.type) && jsonSchema2.type.includes("object")) {
-      jsonSchema2.additionalProperties = false;
-      const { properties } = jsonSchema2;
+  function addAdditionalPropertiesToJsonSchema(jsonSchema22) {
+    if (jsonSchema22.type === "object" || Array.isArray(jsonSchema22.type) && jsonSchema22.type.includes("object")) {
+      jsonSchema22.additionalProperties = false;
+      const { properties } = jsonSchema22;
       if (properties != null) {
         for (const key of Object.keys(properties)) {
           properties[key] = visit(properties[key]);
         }
       }
     }
-    if (jsonSchema2.items != null) {
-      jsonSchema2.items = Array.isArray(jsonSchema2.items) ? jsonSchema2.items.map(visit) : visit(jsonSchema2.items);
+    if (jsonSchema22.items != null) {
+      jsonSchema22.items = Array.isArray(jsonSchema22.items) ? jsonSchema22.items.map(visit) : visit(jsonSchema22.items);
     }
-    if (jsonSchema2.anyOf != null) {
-      jsonSchema2.anyOf = jsonSchema2.anyOf.map(visit);
+    if (jsonSchema22.anyOf != null) {
+      jsonSchema22.anyOf = jsonSchema22.anyOf.map(visit);
     }
-    if (jsonSchema2.allOf != null) {
-      jsonSchema2.allOf = jsonSchema2.allOf.map(visit);
+    if (jsonSchema22.allOf != null) {
+      jsonSchema22.allOf = jsonSchema22.allOf.map(visit);
     }
-    if (jsonSchema2.oneOf != null) {
-      jsonSchema2.oneOf = jsonSchema2.oneOf.map(visit);
+    if (jsonSchema22.oneOf != null) {
+      jsonSchema22.oneOf = jsonSchema22.oneOf.map(visit);
     }
-    const { definitions } = jsonSchema2;
+    const { definitions } = jsonSchema22;
     if (definitions != null) {
       for (const key of Object.keys(definitions)) {
         definitions[key] = visit(definitions[key]);
       }
     }
-    return jsonSchema2;
+    return jsonSchema22;
   }
   function visit(def) {
     if (typeof def === "boolean") return def;
@@ -17415,17 +17415,17 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
     const newItem = { def, path: refs.currentPath, jsonSchema: void 0 };
     refs.seen.set(def, newItem);
     const jsonSchemaOrGetter = selectParser(def, def.typeName, refs);
-    const jsonSchema2 = typeof jsonSchemaOrGetter === "function" ? parseDef(jsonSchemaOrGetter(), refs) : jsonSchemaOrGetter;
-    if (jsonSchema2) {
-      addMeta(def, refs, jsonSchema2);
+    const jsonSchema22 = typeof jsonSchemaOrGetter === "function" ? parseDef(jsonSchemaOrGetter(), refs) : jsonSchemaOrGetter;
+    if (jsonSchema22) {
+      addMeta(def, refs, jsonSchema22);
     }
     if (refs.postProcess) {
-      const postProcessResult = refs.postProcess(jsonSchema2, def, refs);
-      newItem.jsonSchema = jsonSchema2;
+      const postProcessResult = refs.postProcess(jsonSchema22, def, refs);
+      newItem.jsonSchema = jsonSchema22;
       return postProcessResult;
     }
-    newItem.jsonSchema = jsonSchema2;
-    return jsonSchema2;
+    newItem.jsonSchema = jsonSchema22;
+    return jsonSchema22;
   }
   var get$ref = (item, refs) => {
     switch (refs.$refStrategy) {
@@ -17447,11 +17447,11 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
       }
     }
   };
-  var addMeta = (def, refs, jsonSchema2) => {
+  var addMeta = (def, refs, jsonSchema22) => {
     if (def.description) {
-      jsonSchema2.description = def.description;
+      jsonSchema22.description = def.description;
     }
-    return jsonSchema2;
+    return jsonSchema22;
   };
   var getRefs = (options) => {
     const _options = getDefaultOptions(options);
@@ -17533,7 +17533,7 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
       return schema;
     };
   }
-  function jsonSchema(jsonSchema2, {
+  function jsonSchema(jsonSchema22, {
     validate
   } = {}) {
     return {
@@ -17541,10 +17541,10 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
       _type: void 0,
       // should never be used directly
       get jsonSchema() {
-        if (typeof jsonSchema2 === "function") {
-          jsonSchema2 = jsonSchema2();
+        if (typeof jsonSchema22 === "function") {
+          jsonSchema22 = jsonSchema22();
         }
-        return jsonSchema2;
+        return jsonSchema22;
       },
       validate
     };
@@ -17555,16 +17555,16 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
   function asSchema(schema) {
     return schema == null ? jsonSchema({ properties: {}, additionalProperties: false }) : isSchema(schema) ? schema : "~standard" in schema ? schema["~standard"].vendor === "zod" ? zodSchema(schema) : standardSchema(schema) : schema();
   }
-  function standardSchema(standardSchema2) {
+  function standardSchema(standardSchema22) {
     return jsonSchema(
       () => addAdditionalPropertiesToJsonSchema(
-        standardSchema2["~standard"].jsonSchema.input({
+        standardSchema22["~standard"].jsonSchema.input({
           target: "draft-07"
         })
       ),
       {
         validate: async (value) => {
-          const result = await standardSchema2["~standard"].validate(value);
+          const result = await standardSchema22["~standard"].validate(value);
           return "value" in result ? { success: true, value: result.value } : {
             success: false,
             error: new TypeValidationError({
@@ -17576,29 +17576,29 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
       }
     );
   }
-  function zod3Schema(zodSchema2, options) {
+  function zod3Schema(zodSchema22, options) {
     var _a24;
     const useReferences = (_a24 = options == null ? void 0 : options.useReferences) != null ? _a24 : false;
     return jsonSchema(
       // defer json schema creation to avoid unnecessary computation when only validation is needed
-      () => zod3ToJsonSchema(zodSchema2, {
+      () => zod3ToJsonSchema(zodSchema22, {
         $refStrategy: useReferences ? "root" : "none"
       }),
       {
         validate: async (value) => {
-          const result = await zodSchema2.safeParseAsync(value);
+          const result = await zodSchema22.safeParseAsync(value);
           return result.success ? { success: true, value: result.data } : { success: false, error: result.error };
         }
       }
     );
   }
-  function zod4Schema(zodSchema2, options) {
+  function zod4Schema(zodSchema22, options) {
     var _a24;
     const useReferences = (_a24 = options == null ? void 0 : options.useReferences) != null ? _a24 : false;
     return jsonSchema(
       // defer json schema creation to avoid unnecessary computation when only validation is needed
       () => addAdditionalPropertiesToJsonSchema(
-        toJSONSchema(zodSchema2, {
+        toJSONSchema(zodSchema22, {
           target: "draft-7",
           io: "input",
           reused: useReferences ? "ref" : "inline"
@@ -17606,20 +17606,20 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
       ),
       {
         validate: async (value) => {
-          const result = await safeParseAsync2(zodSchema2, value);
+          const result = await safeParseAsync2(zodSchema22, value);
           return result.success ? { success: true, value: result.data } : { success: false, error: result.error };
         }
       }
     );
   }
-  function isZod4Schema(zodSchema2) {
-    return "_zod" in zodSchema2;
+  function isZod4Schema(zodSchema22) {
+    return "_zod" in zodSchema22;
   }
-  function zodSchema(zodSchema2, options) {
-    if (isZod4Schema(zodSchema2)) {
-      return zod4Schema(zodSchema2, options);
+  function zodSchema(zodSchema22, options) {
+    if (isZod4Schema(zodSchema22)) {
+      return zod4Schema(zodSchema22, options);
     } else {
-      return zod3Schema(zodSchema2, options);
+      return zod3Schema(zodSchema22, options);
     }
   }
   async function validateTypes({
@@ -17824,8 +17824,8 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
       throw handleFetchError({ error: error40, url: url2, requestBodyValues: body.values });
     }
   };
-  function tool(tool2) {
-    return tool2;
+  function tool(tool22) {
+    return tool22;
   }
   function createProviderToolFactory({
     id,
@@ -19477,11 +19477,11 @@ Run 'npx vercel link' to link your project, then 'vc env pull' to fetch the toke
   var GLOBAL_OPENTELEMETRY_API_KEY = /* @__PURE__ */ Symbol.for("opentelemetry.js.api." + major);
   var _global = _globalThis;
   function registerGlobal(type, instance, diag, allowOverride) {
-    var _a21;
+    var _a24;
     if (allowOverride === void 0) {
       allowOverride = false;
     }
-    var api = _global[GLOBAL_OPENTELEMETRY_API_KEY] = (_a21 = _global[GLOBAL_OPENTELEMETRY_API_KEY]) !== null && _a21 !== void 0 ? _a21 : {
+    var api = _global[GLOBAL_OPENTELEMETRY_API_KEY] = (_a24 = _global[GLOBAL_OPENTELEMETRY_API_KEY]) !== null && _a24 !== void 0 ? _a24 : {
       version: VERSION3
     };
     if (!allowOverride && api[type]) {
@@ -19499,12 +19499,12 @@ Run 'npx vercel link' to link your project, then 'vc env pull' to fetch the toke
     return true;
   }
   function getGlobal(type) {
-    var _a21, _b17;
-    var globalVersion = (_a21 = _global[GLOBAL_OPENTELEMETRY_API_KEY]) === null || _a21 === void 0 ? void 0 : _a21.version;
+    var _a24, _b18;
+    var globalVersion = (_a24 = _global[GLOBAL_OPENTELEMETRY_API_KEY]) === null || _a24 === void 0 ? void 0 : _a24.version;
     if (!globalVersion || !isCompatible(globalVersion)) {
       return;
     }
-    return (_b17 = _global[GLOBAL_OPENTELEMETRY_API_KEY]) === null || _b17 === void 0 ? void 0 : _b17[type];
+    return (_b18 = _global[GLOBAL_OPENTELEMETRY_API_KEY]) === null || _b18 === void 0 ? void 0 : _b18[type];
   }
   function unregisterGlobal(type, diag) {
     diag.debug("@opentelemetry/api: Unregistering a global for " + type + " v" + VERSION3 + ".");
@@ -19677,13 +19677,13 @@ Run 'npx vercel link' to link your project, then 'vc env pull' to fetch the toke
         }
         var self2 = this;
         var setLogger = function(logger, optionsOrLogLevel) {
-          var _a21, _b17, _c;
+          var _a24, _b18, _c;
           if (optionsOrLogLevel === void 0) {
             optionsOrLogLevel = { logLevel: DiagLogLevel.INFO };
           }
           if (logger === self2) {
             var err = new Error("Cannot use diag as the logger for itself. Please use a DiagLogger implementation like ConsoleDiagLogger or a custom implementation");
-            self2.error((_a21 = err.stack) !== null && _a21 !== void 0 ? _a21 : err.message);
+            self2.error((_a24 = err.stack) !== null && _a24 !== void 0 ? _a24 : err.message);
             return false;
           }
           if (typeof optionsOrLogLevel === "number") {
@@ -19692,7 +19692,7 @@ Run 'npx vercel link' to link your project, then 'vc env pull' to fetch the toke
             };
           }
           var oldLogger = getGlobal("diag");
-          var newLogger = createLogLevelDiagLogger((_b17 = optionsOrLogLevel.logLevel) !== null && _b17 !== void 0 ? _b17 : DiagLogLevel.INFO, logger);
+          var newLogger = createLogLevelDiagLogger((_b18 = optionsOrLogLevel.logLevel) !== null && _b18 !== void 0 ? _b18 : DiagLogLevel.INFO, logger);
           if (oldLogger && !optionsOrLogLevel.suppressOverrideMessage) {
             var stack = (_c = new Error().stack) !== null && _c !== void 0 ? _c : "<failed to generate stacktrace>";
             oldLogger.warn("Current logger will be overwritten from " + stack);
@@ -19854,12 +19854,12 @@ Run 'npx vercel link' to link your project, then 'vc env pull' to fetch the toke
         return this._getContextManager().active();
       };
       ContextAPI2.prototype.with = function(context2, fn, thisArg) {
-        var _a21;
+        var _a24;
         var args = [];
         for (var _i = 3; _i < arguments.length; _i++) {
           args[_i - 3] = arguments[_i];
         }
-        return (_a21 = this._getContextManager()).with.apply(_a21, __spreadArray4([context2, fn, thisArg], __read4(args), false));
+        return (_a24 = this._getContextManager()).with.apply(_a24, __spreadArray4([context2, fn, thisArg], __read4(args), false));
       };
       ContextAPI2.prototype.bind = function(context2, target) {
         return this._getContextManager().bind(context2, target);
@@ -19954,8 +19954,8 @@ Run 'npx vercel link' to link your project, then 'vc env pull' to fetch the toke
     return setSpan(context2, new NonRecordingSpan(spanContext));
   }
   function getSpanContext(context2) {
-    var _a21;
-    return (_a21 = getSpan(context2)) === null || _a21 === void 0 ? void 0 : _a21.spanContext();
+    var _a24;
+    return (_a24 = getSpan(context2)) === null || _a24 === void 0 ? void 0 : _a24.spanContext();
   }
 
   // node_modules/@opentelemetry/api/build/esm/trace/spancontext-utils.js
@@ -19981,7 +19981,7 @@ Run 'npx vercel link' to link your project, then 'vc env pull' to fetch the toke
     (function() {
       function NoopTracer2() {
       }
-      NoopTracer2.prototype.startSpan = function(name21, options, context2) {
+      NoopTracer2.prototype.startSpan = function(name24, options, context2) {
         if (context2 === void 0) {
           context2 = contextApi.active();
         }
@@ -19996,7 +19996,7 @@ Run 'npx vercel link' to link your project, then 'vc env pull' to fetch the toke
           return new NonRecordingSpan();
         }
       };
-      NoopTracer2.prototype.startActiveSpan = function(name21, arg2, arg3, arg4) {
+      NoopTracer2.prototype.startActiveSpan = function(name24, arg2, arg3, arg4) {
         var opts;
         var ctx;
         var fn;
@@ -20013,7 +20013,7 @@ Run 'npx vercel link' to link your project, then 'vc env pull' to fetch the toke
           fn = arg4;
         }
         var parentContext = ctx !== null && ctx !== void 0 ? ctx : contextApi.active();
-        var span = this.startSpan(name21, opts, parentContext);
+        var span = this.startSpan(name24, opts, parentContext);
         var contextWithSpanSet = setSpan(parentContext, span);
         return contextApi.with(contextWithSpanSet, fn, void 0, span);
       };
@@ -20029,14 +20029,14 @@ Run 'npx vercel link' to link your project, then 'vc env pull' to fetch the toke
   var ProxyTracer = (
     /** @class */
     (function() {
-      function ProxyTracer2(_provider, name21, version2, options) {
+      function ProxyTracer2(_provider, name24, version2, options) {
         this._provider = _provider;
-        this.name = name21;
+        this.name = name24;
         this.version = version2;
         this.options = options;
       }
-      ProxyTracer2.prototype.startSpan = function(name21, options, context2) {
-        return this._getTracer().startSpan(name21, options, context2);
+      ProxyTracer2.prototype.startSpan = function(name24, options, context2) {
+        return this._getTracer().startSpan(name24, options, context2);
       };
       ProxyTracer2.prototype.startActiveSpan = function(_name, _options, _context, _fn) {
         var tracer = this._getTracer();
@@ -20077,20 +20077,20 @@ Run 'npx vercel link' to link your project, then 'vc env pull' to fetch the toke
     (function() {
       function ProxyTracerProvider2() {
       }
-      ProxyTracerProvider2.prototype.getTracer = function(name21, version2, options) {
-        var _a21;
-        return (_a21 = this.getDelegateTracer(name21, version2, options)) !== null && _a21 !== void 0 ? _a21 : new ProxyTracer(this, name21, version2, options);
+      ProxyTracerProvider2.prototype.getTracer = function(name24, version2, options) {
+        var _a24;
+        return (_a24 = this.getDelegateTracer(name24, version2, options)) !== null && _a24 !== void 0 ? _a24 : new ProxyTracer(this, name24, version2, options);
       };
       ProxyTracerProvider2.prototype.getDelegate = function() {
-        var _a21;
-        return (_a21 = this._delegate) !== null && _a21 !== void 0 ? _a21 : NOOP_TRACER_PROVIDER;
+        var _a24;
+        return (_a24 = this._delegate) !== null && _a24 !== void 0 ? _a24 : NOOP_TRACER_PROVIDER;
       };
       ProxyTracerProvider2.prototype.setDelegate = function(delegate) {
         this._delegate = delegate;
       };
-      ProxyTracerProvider2.prototype.getDelegateTracer = function(name21, version2, options) {
-        var _a21;
-        return (_a21 = this._delegate) === null || _a21 === void 0 ? void 0 : _a21.getTracer(name21, version2, options);
+      ProxyTracerProvider2.prototype.getDelegateTracer = function(name24, version2, options) {
+        var _a24;
+        return (_a24 = this._delegate) === null || _a24 === void 0 ? void 0 : _a24.getTracer(name24, version2, options);
       };
       return ProxyTracerProvider2;
     })()
@@ -20139,8 +20139,8 @@ Run 'npx vercel link' to link your project, then 'vc env pull' to fetch the toke
       TraceAPI2.prototype.getTracerProvider = function() {
         return getGlobal(API_NAME3) || this._proxyTracerProvider;
       };
-      TraceAPI2.prototype.getTracer = function(name21, version2) {
-        return this.getTracerProvider().getTracer(name21, version2);
+      TraceAPI2.prototype.getTracer = function(name24, version2) {
+        return this.getTracerProvider().getTracer(name24, version2);
       };
       TraceAPI2.prototype.disable = function() {
         unregisterGlobal(API_NAME3, DiagAPI.instance());
@@ -20156,8 +20156,8 @@ Run 'npx vercel link' to link your project, then 'vc env pull' to fetch the toke
   // node_modules/ai/dist/index.mjs
   var __defProp2 = Object.defineProperty;
   var __export2 = (target, all) => {
-    for (var name21 in all)
-      __defProp2(target, name21, { get: all[name21], enumerable: true });
+    for (var name212 in all)
+      __defProp2(target, name212, { get: all[name212], enumerable: true });
   };
   var name16 = "AI_InvalidArgumentError";
   var marker17 = `vercel.ai.error.${name16}`;
@@ -20628,8 +20628,8 @@ Run 'npx vercel link' to link your project, then 'vc env pull' to fetch the toke
     return getGlobalProvider().languageModel(model);
   }
   function getGlobalProvider() {
-    var _a21;
-    return (_a21 = globalThis.AI_SDK_DEFAULT_PROVIDER) != null ? _a21 : gateway;
+    var _a212;
+    return (_a212 = globalThis.AI_SDK_DEFAULT_PROVIDER) != null ? _a212 : gateway;
   }
   function getTotalTimeoutMs(timeout) {
     if (timeout == null) {
@@ -20769,7 +20769,7 @@ Run 'npx vercel link' to link your project, then 'vc env pull' to fetch the toke
     maxBytes,
     abortSignal
   }) => {
-    var _a21;
+    var _a212;
     const urlText = url2.toString();
     validateDownloadUrl(urlText);
     try {
@@ -20798,7 +20798,7 @@ Run 'npx vercel link' to link your project, then 'vc env pull' to fetch the toke
       });
       return {
         data,
-        mediaType: (_a21 = response.headers.get("content-type")) != null ? _a21 : void 0
+        mediaType: (_a212 = response.headers.get("content-type")) != null ? _a212 : void 0
       };
     } catch (error40) {
       if (DownloadError.isInstance(error40)) {
@@ -20833,8 +20833,8 @@ Run 'npx vercel link' to link your project, then 'vc env pull' to fetch the toke
     external_exports.custom(
       // Buffer might not be available in some environments such as CloudFlare:
       (value) => {
-        var _a21, _b17;
-        return (_b17 = (_a21 = globalThis.Buffer) == null ? void 0 : _a21.isBuffer(value)) != null ? _b17 : false;
+        var _a212, _b18;
+        return (_b18 = (_a212 = globalThis.Buffer) == null ? void 0 : _a212.isBuffer(value)) != null ? _b18 : false;
       },
       { message: "Must be a Buffer" }
     )
@@ -21117,8 +21117,8 @@ Run 'npx vercel link' to link your project, then 'vc env pull' to fetch the toke
     ).flat().filter(
       (part) => part.type === "image" || part.type === "file"
     ).map((part) => {
-      var _a21;
-      const mediaType = (_a21 = part.mediaType) != null ? _a21 : part.type === "image" ? "image/*" : void 0;
+      var _a212;
+      const mediaType = (_a212 = part.mediaType) != null ? _a212 : part.type === "image" ? "image/*" : void 0;
       let data = part.type === "image" ? part.image : part.data;
       if (typeof data === "string") {
         try {
@@ -21148,7 +21148,7 @@ Run 'npx vercel link' to link your project, then 'vc env pull' to fetch the toke
     );
   }
   function convertPartToLanguageModelPart(part, downloadedAssets) {
-    var _a21;
+    var _a212;
     if (part.type === "text") {
       return {
         type: "text",
@@ -21181,7 +21181,7 @@ Run 'npx vercel link' to link your project, then 'vc env pull' to fetch the toke
     switch (type) {
       case "image": {
         if (data instanceof Uint8Array || typeof data === "string") {
-          mediaType = (_a21 = detectMediaType({ data, signatures: imageMediaTypeSignatures })) != null ? _a21 : mediaType;
+          mediaType = (_a212 = detectMediaType({ data, signatures: imageMediaTypeSignatures })) != null ? _a212 : mediaType;
         }
         return {
           type: "file",
@@ -21235,7 +21235,7 @@ Run 'npx vercel link' to link your project, then 'vc env pull' to fetch the toke
     toolCallId,
     input,
     output,
-    tool: tool2,
+    tool: tool22,
     errorMode
   }) {
     if (errorMode === "text") {
@@ -21243,8 +21243,8 @@ Run 'npx vercel link' to link your project, then 'vc env pull' to fetch the toke
     } else if (errorMode === "json") {
       return { type: "error-json", value: toJSONValue(output) };
     }
-    if (tool2 == null ? void 0 : tool2.toModelOutput) {
-      return await tool2.toModelOutput({ toolCallId, input, output });
+    if (tool22 == null ? void 0 : tool22.toModelOutput) {
+      return await tool22.toModelOutput({ toolCallId, input, output });
     }
     return typeof output === "string" ? { type: "text", value: output } : { type: "json", value: toJSONValue(output) };
   }
@@ -21357,31 +21357,31 @@ Run 'npx vercel link' to link your project, then 'vc env pull' to fetch the toke
       };
     }
     const filteredTools = activeTools != null ? Object.entries(tools).filter(
-      ([name21]) => activeTools.includes(name21)
+      ([name212]) => activeTools.includes(name212)
     ) : Object.entries(tools);
     const languageModelTools = [];
-    for (const [name21, tool2] of filteredTools) {
-      const toolType = tool2.type;
+    for (const [name212, tool22] of filteredTools) {
+      const toolType = tool22.type;
       switch (toolType) {
         case void 0:
         case "dynamic":
         case "function":
           languageModelTools.push({
             type: "function",
-            name: name21,
-            description: tool2.description,
-            inputSchema: await asSchema(tool2.inputSchema).jsonSchema,
-            ...tool2.inputExamples != null ? { inputExamples: tool2.inputExamples } : {},
-            providerOptions: tool2.providerOptions,
-            ...tool2.strict != null ? { strict: tool2.strict } : {}
+            name: name212,
+            description: tool22.description,
+            inputSchema: await asSchema(tool22.inputSchema).jsonSchema,
+            ...tool22.inputExamples != null ? { inputExamples: tool22.inputExamples } : {},
+            providerOptions: tool22.providerOptions,
+            ...tool22.strict != null ? { strict: tool22.strict } : {}
           });
           break;
         case "provider":
           languageModelTools.push({
             type: "provider",
-            name: name21,
-            id: tool2.id,
-            args: tool2.args
+            name: name212,
+            id: tool22.id,
+            args: tool22.args
           });
           break;
         default: {
@@ -21684,7 +21684,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
     telemetry,
     headers
   }) {
-    var _a21;
+    var _a212;
     return {
       "ai.model.provider": model.provider,
       "ai.model.id": model.modelId,
@@ -21703,7 +21703,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
         return attributes;
       }, {}),
       // add metadata as attributes:
-      ...Object.entries((_a21 = telemetry == null ? void 0 : telemetry.metadata) != null ? _a21 : {}).reduce(
+      ...Object.entries((_a212 = telemetry == null ? void 0 : telemetry.metadata) != null ? _a212 : {}).reduce(
         (attributes, [key, value]) => {
           attributes[`ai.telemetry.metadata.${key}`] = value;
           return attributes;
@@ -21723,7 +21723,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
     startSpan() {
       return noopSpan;
     },
-    startActiveSpan(name21, arg1, arg2, arg3) {
+    startActiveSpan(name212, arg1, arg2, arg3) {
       if (typeof arg1 === "function") {
         return arg1(noopSpan);
       }
@@ -21788,14 +21788,14 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
     return trace.getTracer("ai");
   }
   async function recordSpan({
-    name: name21,
+    name: name212,
     tracer,
     attributes,
     fn,
     endWhenDone = true
   }) {
     return tracer.startActiveSpan(
-      name21,
+      name212,
       { attributes: await attributes },
       async (span) => {
         const ctx = context.active();
@@ -21881,8 +21881,8 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
     );
   }
   function getGlobalTelemetryIntegrations() {
-    var _a21;
-    return (_a21 = globalThis.AI_SDK_TELEMETRY_INTEGRATIONS) != null ? _a21 : [];
+    var _a212;
+    return (_a212 = globalThis.AI_SDK_TELEMETRY_INTEGRATIONS) != null ? _a212 : [];
   }
   function getGlobalTelemetryIntegration() {
     const globalIntegrations = getGlobalTelemetryIntegrations();
@@ -21958,13 +21958,13 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
     };
   }
   function addLanguageModelUsage(usage1, usage2) {
-    var _a21, _b17, _c, _d, _e, _f, _g, _h, _i, _j;
+    var _a212, _b18, _c, _d, _e, _f, _g, _h, _i, _j;
     return {
       inputTokens: addTokenCounts(usage1.inputTokens, usage2.inputTokens),
       inputTokenDetails: {
         noCacheTokens: addTokenCounts(
-          (_a21 = usage1.inputTokenDetails) == null ? void 0 : _a21.noCacheTokens,
-          (_b17 = usage2.inputTokenDetails) == null ? void 0 : _b17.noCacheTokens
+          (_a212 = usage1.inputTokenDetails) == null ? void 0 : _a212.noCacheTokens,
+          (_b18 = usage2.inputTokenDetails) == null ? void 0 : _b18.noCacheTokens
         ),
         cacheReadTokens: addTokenCounts(
           (_c = usage1.inputTokenDetails) == null ? void 0 : _c.cacheReadTokens,
@@ -22228,8 +22228,8 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
     return { approvedToolApprovals, deniedToolApprovals };
   }
   function now() {
-    var _a21, _b17;
-    return (_b17 = (_a21 = globalThis == null ? void 0 : globalThis.performance) == null ? void 0 : _a21.now()) != null ? _b17 : Date.now();
+    var _a212, _b18;
+    return (_b18 = (_a212 = globalThis == null ? void 0 : globalThis.performance) == null ? void 0 : _a212.now()) != null ? _b18 : Date.now();
   }
   async function executeToolCall({
     toolCall,
@@ -22246,8 +22246,8 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
     onToolCallFinish
   }) {
     const { toolName, toolCallId, input } = toolCall;
-    const tool2 = tools == null ? void 0 : tools[toolName];
-    if ((tool2 == null ? void 0 : tool2.execute) == null) {
+    const tool22 = tools == null ? void 0 : tools[toolName];
+    if ((tool22 == null ? void 0 : tool22.execute) == null) {
       return void 0;
     }
     const baseCallbackEvent = {
@@ -22283,7 +22283,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
         const startTime = now();
         try {
           const stream = executeTool({
-            execute: tool2.execute.bind(tool2),
+            execute: tool22.execute.bind(tool22),
             input,
             options: {
               toolCallId,
@@ -22322,7 +22322,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
             toolName,
             input,
             error: error40,
-            dynamic: tool2.type === "dynamic",
+            dynamic: tool22.type === "dynamic",
             ...toolCall.providerMetadata != null ? { providerMetadata: toolCall.providerMetadata } : {}
           };
         }
@@ -22355,7 +22355,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
           toolName,
           input,
           output,
-          dynamic: tool2.type === "dynamic",
+          dynamic: tool22.type === "dynamic",
           ...toolCall.providerMetadata != null ? { providerMetadata: toolCall.providerMetadata } : {}
         };
       }
@@ -22408,18 +22408,18 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
     }
   };
   async function isApprovalNeeded({
-    tool: tool2,
+    tool: tool22,
     toolCall,
     messages,
     experimental_context
   }) {
-    if (tool2.needsApproval == null) {
+    if (tool22.needsApproval == null) {
       return false;
     }
-    if (typeof tool2.needsApproval === "boolean") {
-      return tool2.needsApproval;
+    if (typeof tool22.needsApproval === "boolean") {
+      return tool22.needsApproval;
     }
-    return await tool2.needsApproval(toolCall.input, {
+    return await tool22.needsApproval(toolCall.input, {
       toolCallId: toolCall.toolCallId,
       messages,
       experimental_context
@@ -22778,16 +22778,16 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
   });
   var object2 = ({
     schema: inputSchema,
-    name: name21,
+    name: name212,
     description
   }) => {
     const schema = asSchema(inputSchema);
     return {
       name: "object",
-      responseFormat: resolve(schema.jsonSchema).then((jsonSchema2) => ({
+      responseFormat: resolve(schema.jsonSchema).then((jsonSchema22) => ({
         type: "json",
-        schema: jsonSchema2,
-        ...name21 != null && { name: name21 },
+        schema: jsonSchema22,
+        ...name212 != null && { name: name212 },
         ...description != null && { description }
       })),
       async parseCompleteOutput({ text: text2 }, context2) {
@@ -22841,15 +22841,15 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
   };
   var array2 = ({
     element: inputElementSchema,
-    name: name21,
+    name: name212,
     description
   }) => {
     const elementSchema = asSchema(inputElementSchema);
     return {
       name: "array",
       // JSON schema that describes an array of elements:
-      responseFormat: resolve(elementSchema.jsonSchema).then((jsonSchema2) => {
-        const { $schema, ...itemSchema } = jsonSchema2;
+      responseFormat: resolve(elementSchema.jsonSchema).then((jsonSchema22) => {
+        const { $schema, ...itemSchema } = jsonSchema22;
         return {
           type: "json",
           schema: {
@@ -22861,7 +22861,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
             required: ["elements"],
             additionalProperties: false
           },
-          ...name21 != null && { name: name21 },
+          ...name212 != null && { name: name212 },
           ...description != null && { description }
         };
       }),
@@ -22953,7 +22953,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
   };
   var choice = ({
     options: choiceOptions,
-    name: name21,
+    name: name212,
     description
   }) => {
     return {
@@ -22970,7 +22970,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
           required: ["result"],
           additionalProperties: false
         },
-        ...name21 != null && { name: name21 },
+        ...name212 != null && { name: name212 },
         ...description != null && { description }
       }),
       async parseCompleteOutput({ text: text2 }, context2) {
@@ -23031,14 +23031,14 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
     };
   };
   var json2 = ({
-    name: name21,
+    name: name212,
     description
   } = {}) => {
     return {
       name: "json",
       responseFormat: Promise.resolve({
         type: "json",
-        ...name21 != null && { name: name21 },
+        ...name212 != null && { name: name212 },
         ...description != null && { description }
       }),
       async parseCompleteOutput({ text: text2 }, context2) {
@@ -23080,7 +23080,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
     system,
     messages
   }) {
-    var _a21;
+    var _a212;
     try {
       if (tools == null) {
         if (toolCall.providerExecuted && toolCall.dynamic) {
@@ -23129,7 +23129,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
         dynamic: true,
         invalid: true,
         error: error40,
-        title: (_a21 = tools == null ? void 0 : tools[toolCall.toolName]) == null ? void 0 : _a21.title,
+        title: (_a212 = tools == null ? void 0 : tools[toolCall.toolName]) == null ? void 0 : _a212.title,
         providerExecuted: toolCall.providerExecuted,
         providerMetadata: toolCall.providerMetadata
       };
@@ -23159,8 +23159,8 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
     tools
   }) {
     const toolName = toolCall.toolName;
-    const tool2 = tools[toolName];
-    if (tool2 == null) {
+    const tool22 = tools[toolName];
+    if (tool22 == null) {
       if (toolCall.providerExecuted && toolCall.dynamic) {
         return await parseProviderExecutedDynamicToolCall(toolCall);
       }
@@ -23169,7 +23169,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
         availableTools: Object.keys(tools)
       });
     }
-    const schema = asSchema(tool2.inputSchema);
+    const schema = asSchema(tool22.inputSchema);
     const parseResult = toolCall.input.trim() === "" ? await safeValidateTypes({ value: {}, schema }) : await safeParseJSON({ text: toolCall.input, schema });
     if (parseResult.success === false) {
       throw new InvalidToolInputError({
@@ -23178,7 +23178,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
         cause: parseResult.error
       });
     }
-    return tool2.type === "dynamic" ? {
+    return tool22.type === "dynamic" ? {
       type: "tool-call",
       toolCallId: toolCall.toolCallId,
       toolName: toolCall.toolName,
@@ -23186,7 +23186,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
       providerExecuted: toolCall.providerExecuted,
       providerMetadata: toolCall.providerMetadata,
       dynamic: true,
-      title: tool2.title
+      title: tool22.title
     } : {
       type: "tool-call",
       toolCallId: toolCall.toolCallId,
@@ -23194,7 +23194,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
       input: parseResult.value,
       providerExecuted: toolCall.providerExecuted,
       providerMetadata: toolCall.providerMetadata,
-      title: tool2.title
+      title: tool22.title
     };
   }
   var DefaultStepResult = class {
@@ -23458,7 +23458,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
     experimental_download: download2,
     experimental_context,
     experimental_include: include,
-    _internal: { generateId: generateId2 = originalGenerateId } = {},
+    _internal: { generateId: generateId22 = originalGenerateId } = {},
     experimental_onStart: onStart,
     experimental_onStepStart: onStepStart,
     experimental_onToolCallStart: onToolCallStart,
@@ -23557,7 +23557,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
         }),
         tracer,
         fn: async (span) => {
-          var _a21, _b17, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t;
+          var _a212, _b18, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t;
           const initialMessages = initialPrompt.messages;
           const responseMessages = [];
           const { approvedToolApprovals, deniedToolApprovals } = collectToolApprovals({ messages: initialMessages });
@@ -23662,7 +23662,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
                 experimental_context
               }));
               const stepModel = resolveLanguageModel(
-                (_a21 = prepareStepResult == null ? void 0 : prepareStepResult.model) != null ? _a21 : model
+                (_a212 = prepareStepResult == null ? void 0 : prepareStepResult.model) != null ? _a212 : model
               );
               const stepModelInfo = {
                 provider: stepModel.provider,
@@ -23670,7 +23670,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
               };
               const promptMessages = await convertToLanguageModelPrompt({
                 prompt: {
-                  system: (_b17 = prepareStepResult == null ? void 0 : prepareStepResult.system) != null ? _b17 : initialPrompt.system,
+                  system: (_b18 = prepareStepResult == null ? void 0 : prepareStepResult.system) != null ? _b18 : initialPrompt.system,
                   messages: (_c = prepareStepResult == null ? void 0 : prepareStepResult.messages) != null ? _c : stepInputMessages
                 },
                 supportedUrls: await stepModel.supportedUrls,
@@ -23737,7 +23737,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
                         },
                         "ai.prompt.tools": {
                           // convert the language model level tools:
-                          input: () => stepTools == null ? void 0 : stepTools.map((tool2) => JSON.stringify(tool2))
+                          input: () => stepTools == null ? void 0 : stepTools.map((tool22) => JSON.stringify(tool22))
                         },
                         "ai.prompt.toolChoice": {
                           input: () => stepToolChoice != null ? JSON.stringify(stepToolChoice) : void 0
@@ -23768,7 +23768,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
                         headers: headersWithUserAgent
                       });
                       const responseData = {
-                        id: (_b23 = (_a232 = result.response) == null ? void 0 : _a232.id) != null ? _b23 : generateId2(),
+                        id: (_b23 = (_a232 = result.response) == null ? void 0 : _a232.id) != null ? _b23 : generateId22(),
                         timestamp: (_d2 = (_c2 = result.response) == null ? void 0 : _c2.timestamp) != null ? _d2 : /* @__PURE__ */ new Date(),
                         modelId: (_f2 = (_e2 = result.response) == null ? void 0 : _e2.modelId) != null ? _f2 : stepModel.modelId,
                         headers: (_g2 = result.response) == null ? void 0 : _g2.headers,
@@ -23842,12 +23842,12 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
                 if (toolCall.invalid) {
                   continue;
                 }
-                const tool2 = tools == null ? void 0 : tools[toolCall.toolName];
-                if (tool2 == null) {
+                const tool22 = tools == null ? void 0 : tools[toolCall.toolName];
+                if (tool22 == null) {
                   continue;
                 }
-                if ((tool2 == null ? void 0 : tool2.onInputAvailable) != null) {
-                  await tool2.onInputAvailable({
+                if ((tool22 == null ? void 0 : tool22.onInputAvailable) != null) {
+                  await tool22.onInputAvailable({
                     input: toolCall.input,
                     toolCallId: toolCall.toolCallId,
                     messages: stepInputMessages,
@@ -23856,14 +23856,14 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
                   });
                 }
                 if (await isApprovalNeeded({
-                  tool: tool2,
+                  tool: tool22,
                   toolCall,
                   messages: stepInputMessages,
                   experimental_context
                 })) {
                   toolApprovalRequests[toolCall.toolCallId] = {
                     type: "tool-approval-request",
-                    approvalId: generateId2(),
+                    approvalId: generateId22(),
                     toolCall
                   };
                 }
@@ -23913,8 +23913,8 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
               for (const toolCall of stepToolCalls) {
                 if (!toolCall.providerExecuted)
                   continue;
-                const tool2 = tools == null ? void 0 : tools[toolCall.toolName];
-                if ((tool2 == null ? void 0 : tool2.type) === "provider" && tool2.supportsDeferredResults) {
+                const tool22 = tools == null ? void 0 : tools[toolCall.toolName];
+                if ((tool22 == null ? void 0 : tool22.type) === "provider" && tool22.supportsDeferredResults) {
                   const hasResultInResponse = currentModelResponse.content.some(
                     (part) => part.type === "tool-result" && part.toolCallId === toolCall.toolCallId
                   );
@@ -24256,8 +24256,8 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
             (toolCall2) => toolCall2.toolCallId === part.toolCallId
           );
           if (toolCall == null) {
-            const tool2 = tools == null ? void 0 : tools[part.toolName];
-            const supportsDeferredResults = (tool2 == null ? void 0 : tool2.type) === "provider" && tool2.supportsDeferredResults;
+            const tool22 = tools == null ? void 0 : tools[part.toolName];
+            const supportsDeferredResults = (tool22 == null ? void 0 : tool22.type) === "provider" && tool22.supportsDeferredResults;
             if (!supportsDeferredResults) {
               throw new Error(`Tool call ${part.toolCallId} not found.`);
             }
@@ -24668,7 +24668,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
       new TransformStream({
         async transform(chunk, controller) {
           await runUpdateMessageJob(async ({ state, write }) => {
-            var _a21, _b17, _c, _d;
+            var _a212, _b18, _c, _d;
             function getToolInvocation(toolCallId) {
               const toolInvocations = state.message.parts.filter(isToolUIPart);
               const toolInvocation = toolInvocations.find(
@@ -24811,7 +24811,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
                   });
                 }
                 textPart.text += chunk.delta;
-                textPart.providerMetadata = (_a21 = chunk.providerMetadata) != null ? _a21 : textPart.providerMetadata;
+                textPart.providerMetadata = (_a212 = chunk.providerMetadata) != null ? _a212 : textPart.providerMetadata;
                 write();
                 break;
               }
@@ -24825,7 +24825,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
                   });
                 }
                 textPart.state = "done";
-                textPart.providerMetadata = (_b17 = chunk.providerMetadata) != null ? _b17 : textPart.providerMetadata;
+                textPart.providerMetadata = (_b18 = chunk.providerMetadata) != null ? _b18 : textPart.providerMetadata;
                 delete state.activeTextParts[chunk.id];
                 write();
                 break;
@@ -25312,13 +25312,13 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
       const reader = this.getReader();
       let finished = false;
       async function cleanup(cancelStream) {
-        var _a21;
+        var _a212;
         if (finished)
           return;
         finished = true;
         try {
           if (cancelStream) {
-            await ((_a21 = reader.cancel) == null ? void 0 : _a21.call(reader));
+            await ((_a212 = reader.cancel) == null ? void 0 : _a212.call(reader));
           }
         } finally {
           try {
@@ -25485,7 +25485,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
     abortSignal,
     repairToolCall,
     experimental_context,
-    generateId: generateId2,
+    generateId: generateId22,
     stepNumber,
     model,
     onToolCallStart,
@@ -25594,12 +25594,12 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
                 });
                 break;
               }
-              const tool2 = tools == null ? void 0 : tools[toolCall.toolName];
-              if (tool2 == null) {
+              const tool22 = tools == null ? void 0 : tools[toolCall.toolName];
+              if (tool22 == null) {
                 break;
               }
-              if (tool2.onInputAvailable != null) {
-                await tool2.onInputAvailable({
+              if (tool22.onInputAvailable != null) {
+                await tool22.onInputAvailable({
                   input: toolCall.input,
                   toolCallId: toolCall.toolCallId,
                   messages,
@@ -25608,21 +25608,21 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
                 });
               }
               if (await isApprovalNeeded({
-                tool: tool2,
+                tool: tool22,
                 toolCall,
                 messages,
                 experimental_context
               })) {
                 toolResultsStreamController.enqueue({
                   type: "tool-approval-request",
-                  approvalId: generateId2(),
+                  approvalId: generateId22(),
                   toolCall
                 });
                 break;
               }
               toolInputs.set(toolCall.toolCallId, toolCall.input);
-              if (tool2.execute != null && toolCall.providerExecuted !== true) {
-                const toolExecutionId = generateId2();
+              if (tool22.execute != null && toolCall.providerExecuted !== true) {
+                const toolExecutionId = generateId22();
                 outstandingToolResults.add(toolExecutionId);
                 executeToolCall({
                   toolCall,
@@ -25760,7 +25760,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
     experimental_onToolCallFinish: onToolCallFinish,
     experimental_context,
     experimental_include: include,
-    _internal: { now: now2 = now, generateId: generateId2 = originalGenerateId2 } = {},
+    _internal: { now: now2 = now, generateId: generateId22 = originalGenerateId2 } = {},
     ...settings
   }) {
     const totalTimeoutMs = getTotalTimeoutMs(timeout);
@@ -25810,7 +25810,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
       onToolCallStart,
       onToolCallFinish,
       now: now2,
-      generateId: generateId2,
+      generateId: generateId22,
       experimental_context,
       download: download2,
       include
@@ -25839,7 +25839,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
     }
     return new TransformStream({
       async transform(chunk, controller) {
-        var _a21;
+        var _a212;
         if (chunk.type === "finish-step" && textChunk.length > 0) {
           publishTextChunk({ controller });
         }
@@ -25866,7 +25866,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
         }
         text2 += chunk.text;
         textChunk += chunk.text;
-        textProviderMetadata = (_a21 = chunk.providerMetadata) != null ? _a21 : textProviderMetadata;
+        textProviderMetadata = (_a212 = chunk.providerMetadata) != null ? _a212 : textProviderMetadata;
         const result = await output.parsePartialOutput({ text: text2 });
         if (result !== void 0) {
           const currentJson = JSON.stringify(result.partial);
@@ -25904,7 +25904,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
       prepareStep,
       includeRawChunks,
       now: now2,
-      generateId: generateId2,
+      generateId: generateId22,
       timeout,
       stopWhen,
       originalAbortSignal,
@@ -25945,7 +25945,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
       let activeReasoningContent = {};
       const eventProcessor = new TransformStream({
         async transform(chunk, controller) {
-          var _a21, _b17, _c, _d;
+          var _a212, _b18, _c, _d;
           controller.enqueue(chunk);
           const { part } = chunk;
           if (part.type === "text-delta" || part.type === "reasoning-delta" || part.type === "source" || part.type === "tool-call" || part.type === "tool-result" || part.type === "tool-input-start" || part.type === "tool-input-delta" || part.type === "raw") {
@@ -25975,7 +25975,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
               return;
             }
             activeText.text += part.text;
-            activeText.providerMetadata = (_a21 = part.providerMetadata) != null ? _a21 : activeText.providerMetadata;
+            activeText.providerMetadata = (_a212 = part.providerMetadata) != null ? _a212 : activeText.providerMetadata;
           }
           if (part.type === "text-end") {
             const activeText = activeTextContent[part.id];
@@ -25989,7 +25989,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
               });
               return;
             }
-            activeText.providerMetadata = (_b17 = part.providerMetadata) != null ? _b17 : activeText.providerMetadata;
+            activeText.providerMetadata = (_b18 = part.providerMetadata) != null ? _b18 : activeText.providerMetadata;
             delete activeTextContent[part.id];
           }
           if (part.type === "reasoning-start") {
@@ -26101,7 +26101,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
           }
         },
         async flush(controller) {
-          var _a21, _b17, _c, _d, _e, _f, _g;
+          var _a212, _b18, _c, _d, _e, _f, _g;
           try {
             if (recordedSteps.length === 0) {
               const error40 = (abortSignal == null ? void 0 : abortSignal.aborted) ? abortSignal.reason : new NoOutputGeneratedError({
@@ -26173,8 +26173,8 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
                     finalStep.providerMetadata
                   ),
                   "ai.usage.inputTokens": totalUsage.inputTokens,
-                  "ai.usage.inputTokenDetails.noCacheTokens": (_a21 = totalUsage.inputTokenDetails) == null ? void 0 : _a21.noCacheTokens,
-                  "ai.usage.inputTokenDetails.cacheReadTokens": (_b17 = totalUsage.inputTokenDetails) == null ? void 0 : _b17.cacheReadTokens,
+                  "ai.usage.inputTokenDetails.noCacheTokens": (_a212 = totalUsage.inputTokenDetails) == null ? void 0 : _a212.noCacheTokens,
+                  "ai.usage.inputTokenDetails.cacheReadTokens": (_b18 = totalUsage.inputTokenDetails) == null ? void 0 : _b18.cacheReadTokens,
                   "ai.usage.inputTokenDetails.cacheWriteTokens": (_c = totalUsage.inputTokenDetails) == null ? void 0 : _c.cacheWriteTokens,
                   "ai.usage.outputTokens": totalUsage.outputTokens,
                   "ai.usage.outputTokenDetails.textTokens": (_d = totalUsage.outputTokenDetails) == null ? void 0 : _d.textTokens,
@@ -26441,7 +26441,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
             responseMessages,
             usage
           }) {
-            var _a21, _b17, _c, _d, _e, _f, _g, _h, _i;
+            var _a212, _b18, _c, _d, _e, _f, _g, _h, _i;
             const includeRawChunks2 = self2.includeRawChunks;
             const stepTimeoutId = stepTimeoutMs != null ? setTimeout(() => stepAbortController.abort(), stepTimeoutMs) : void 0;
             let chunkTimeoutId = void 0;
@@ -26478,7 +26478,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
                 experimental_context
               }));
               const stepModel = resolveLanguageModel(
-                (_a21 = prepareStepResult == null ? void 0 : prepareStepResult.model) != null ? _a21 : model
+                (_a212 = prepareStepResult == null ? void 0 : prepareStepResult.model) != null ? _a212 : model
               );
               const stepModelInfo = {
                 provider: stepModel.provider,
@@ -26486,7 +26486,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
               };
               const promptMessages = await convertToLanguageModelPrompt({
                 prompt: {
-                  system: (_b17 = prepareStepResult == null ? void 0 : prepareStepResult.system) != null ? _b17 : initialPrompt.system,
+                  system: (_b18 = prepareStepResult == null ? void 0 : prepareStepResult.system) != null ? _b18 : initialPrompt.system,
                   messages: (_c = prepareStepResult == null ? void 0 : prepareStepResult.messages) != null ? _c : stepInputMessages
                 },
                 supportedUrls: await stepModel.supportedUrls,
@@ -26554,7 +26554,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
                       },
                       "ai.prompt.tools": {
                         // convert the language model level tools:
-                        input: () => stepTools == null ? void 0 : stepTools.map((tool2) => JSON.stringify(tool2))
+                        input: () => stepTools == null ? void 0 : stepTools.map((tool22) => JSON.stringify(tool22))
                       },
                       "ai.prompt.toolChoice": {
                         input: () => stepToolChoice != null ? JSON.stringify(stepToolChoice) : void 0
@@ -26601,7 +26601,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
                 repairToolCall,
                 abortSignal,
                 experimental_context,
-                generateId: generateId2,
+                generateId: generateId22,
                 stepNumber: recordedSteps.length,
                 model: stepModelInfo,
                 onToolCallStart: [
@@ -26624,7 +26624,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
               let stepProviderMetadata;
               let stepFirstChunk = true;
               let stepResponse = {
-                id: generateId2(),
+                id: generateId22(),
                 timestamp: /* @__PURE__ */ new Date(),
                 modelId: modelInfo.modelId
               };
@@ -26736,9 +26736,9 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
                         }
                         case "tool-input-start": {
                           activeToolCallToolNames[chunk.id] = chunk.toolName;
-                          const tool2 = tools == null ? void 0 : tools[chunk.toolName];
-                          if ((tool2 == null ? void 0 : tool2.onInputStart) != null) {
-                            await tool2.onInputStart({
+                          const tool22 = tools == null ? void 0 : tools[chunk.toolName];
+                          if ((tool22 == null ? void 0 : tool22.onInputStart) != null) {
+                            await tool22.onInputStart({
                               toolCallId: chunk.id,
                               messages: stepInputMessages,
                               abortSignal,
@@ -26747,8 +26747,8 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
                           }
                           controller.enqueue({
                             ...chunk,
-                            dynamic: (_e2 = chunk.dynamic) != null ? _e2 : (tool2 == null ? void 0 : tool2.type) === "dynamic",
-                            title: tool2 == null ? void 0 : tool2.title
+                            dynamic: (_e2 = chunk.dynamic) != null ? _e2 : (tool22 == null ? void 0 : tool22.type) === "dynamic",
+                            title: tool22 == null ? void 0 : tool22.title
                           });
                           break;
                         }
@@ -26759,9 +26759,9 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
                         }
                         case "tool-input-delta": {
                           const toolName = activeToolCallToolNames[chunk.id];
-                          const tool2 = tools == null ? void 0 : tools[toolName];
-                          if ((tool2 == null ? void 0 : tool2.onInputDelta) != null) {
-                            await tool2.onInputDelta({
+                          const tool22 = tools == null ? void 0 : tools[toolName];
+                          if ((tool22 == null ? void 0 : tool22.onInputDelta) != null) {
+                            await tool22.onInputDelta({
                               inputTextDelta: chunk.delta,
                               toolCallId: chunk.id,
                               messages: stepInputMessages,
@@ -26877,8 +26877,8 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
                       for (const toolCall of stepToolCalls) {
                         if (toolCall.providerExecuted !== true)
                           continue;
-                        const tool2 = tools == null ? void 0 : tools[toolCall.toolName];
-                        if ((tool2 == null ? void 0 : tool2.type) === "provider" && tool2.supportsDeferredResults) {
+                        const tool22 = tools == null ? void 0 : tools[toolCall.toolName];
+                        if ((tool22 == null ? void 0 : tool22.type) === "provider" && tool22.supportsDeferredResults) {
                           const hasResultInStep = stepToolOutputs.some(
                             (output2) => (output2.type === "tool-result" || output2.type === "tool-error") && output2.toolCallId === toolCall.toolCallId
                           );
@@ -27072,14 +27072,14 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
       );
     }
     async consumeStream(options) {
-      var _a21;
+      var _a212;
       try {
         await consumeStream({
           stream: this.fullStream,
           onError: options == null ? void 0 : options.onError
         });
       } catch (error40) {
-        (_a21 = options == null ? void 0 : options.onError) == null ? void 0 : _a21.call(options, error40);
+        (_a212 = options == null ? void 0 : options.onError) == null ? void 0 : _a212.call(options, error40);
       }
     }
     get experimental_partialOutputStream() {
@@ -27099,19 +27099,19 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
       );
     }
     get elementStream() {
-      var _a21, _b17, _c;
-      const transform2 = (_a21 = this.outputSpecification) == null ? void 0 : _a21.createElementStreamTransform();
+      var _a212, _b18, _c;
+      const transform2 = (_a212 = this.outputSpecification) == null ? void 0 : _a212.createElementStreamTransform();
       if (transform2 == null) {
         throw new UnsupportedFunctionalityError({
-          functionality: `element streams in ${(_c = (_b17 = this.outputSpecification) == null ? void 0 : _b17.name) != null ? _c : "text"} mode`
+          functionality: `element streams in ${(_c = (_b18 = this.outputSpecification) == null ? void 0 : _b18.name) != null ? _c : "text"} mode`
         });
       }
       return createAsyncIterableStream(this.teeStream().pipeThrough(transform2));
     }
     get output() {
       return this.finalStep.then((step) => {
-        var _a21;
-        const output = (_a21 = this.outputSpecification) != null ? _a21 : text();
+        var _a212;
+        const output = (_a212 = this.outputSpecification) != null ? _a212 : text();
         return output.parseCompleteOutput(
           { text: step.text },
           {
@@ -27138,12 +27138,12 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
         responseMessageId: generateMessageId
       }) : void 0;
       const isDynamic = (part) => {
-        var _a21;
-        const tool2 = (_a21 = this.tools) == null ? void 0 : _a21[part.toolName];
-        if (tool2 == null) {
+        var _a212;
+        const tool22 = (_a212 = this.tools) == null ? void 0 : _a212[part.toolName];
+        if (tool22 == null) {
           return part.dynamic;
         }
-        return (tool2 == null ? void 0 : tool2.type) === "dynamic" ? true : void 0;
+        return (tool22 == null ? void 0 : tool22.type) === "dynamic" ? true : void 0;
       };
       const baseStream = this.fullStream.pipeThrough(
         new TransformStream({
@@ -27479,15 +27479,15 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
       return this.settings.tools;
     }
     async prepareCall(options) {
-      var _a21, _b17, _c, _d;
+      var _a212, _b18, _c, _d;
       const { onStepFinish: _settingsOnStepFinish, ...settingsWithoutCallback } = this.settings;
       const baseCallArgs = {
         ...settingsWithoutCallback,
-        stopWhen: (_a21 = this.settings.stopWhen) != null ? _a21 : stepCountIs(20),
+        stopWhen: (_a212 = this.settings.stopWhen) != null ? _a212 : stepCountIs(20),
         ...options
       };
-      const preparedCallArgs = (_d = await ((_c = (_b17 = this.settings).prepareCall) == null ? void 0 : _c.call(
-        _b17,
+      const preparedCallArgs = (_d = await ((_c = (_b18 = this.settings).prepareCall) == null ? void 0 : _c.call(
+        _b18,
         baseCallArgs
       ))) != null ? _d : baseCallArgs;
       const { instructions, messages, prompt, ...callArgs } = preparedCallArgs;
@@ -28015,7 +28015,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
     )
   );
   function convertGoogleGenerativeAIUsage(usage) {
-    var _a21, _b17, _c, _d;
+    var _a24, _b18, _c, _d;
     if (usage == null) {
       return {
         inputTokens: {
@@ -28032,8 +28032,8 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
         raw: void 0
       };
     }
-    const promptTokens = (_a21 = usage.promptTokenCount) != null ? _a21 : 0;
-    const candidatesTokens = (_b17 = usage.candidatesTokenCount) != null ? _b17 : 0;
+    const promptTokens = (_a24 = usage.promptTokenCount) != null ? _a24 : 0;
+    const candidatesTokens = (_b18 = usage.candidatesTokenCount) != null ? _b18 : 0;
     const cachedContentTokens = (_c = usage.cachedContentTokenCount) != null ? _c : 0;
     const thoughtsTokens = (_d = usage.thoughtsTokenCount) != null ? _d : 0;
     return {
@@ -28051,20 +28051,20 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
       raw: usage
     };
   }
-  function convertJSONSchemaToOpenAPISchema(jsonSchema2, isRoot = true) {
-    if (jsonSchema2 == null) {
+  function convertJSONSchemaToOpenAPISchema(jsonSchema3, isRoot = true) {
+    if (jsonSchema3 == null) {
       return void 0;
     }
-    if (isEmptyObjectSchema(jsonSchema2)) {
+    if (isEmptyObjectSchema(jsonSchema3)) {
       if (isRoot) {
         return void 0;
       }
-      if (typeof jsonSchema2 === "object" && jsonSchema2.description) {
-        return { type: "object", description: jsonSchema2.description };
+      if (typeof jsonSchema3 === "object" && jsonSchema3.description) {
+        return { type: "object", description: jsonSchema3.description };
       }
       return { type: "object" };
     }
-    if (typeof jsonSchema2 === "boolean") {
+    if (typeof jsonSchema3 === "boolean") {
       return { type: "boolean", properties: {} };
     }
     const {
@@ -28080,7 +28080,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
       const: constValue,
       minLength,
       enum: enumValues
-    } = jsonSchema2;
+    } = jsonSchema3;
     const result = {};
     if (description) result.description = description;
     if (required2) result.required = required2;
@@ -28162,8 +28162,8 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
     }
     return result;
   }
-  function isEmptyObjectSchema(jsonSchema2) {
-    return jsonSchema2 != null && typeof jsonSchema2 === "object" && jsonSchema2.type === "object" && (jsonSchema2.properties == null || Object.keys(jsonSchema2.properties).length === 0) && !jsonSchema2.additionalProperties;
+  function isEmptyObjectSchema(jsonSchema3) {
+    return jsonSchema3 != null && typeof jsonSchema3 === "object" && jsonSchema3.type === "object" && (jsonSchema3.properties == null || Object.keys(jsonSchema3.properties).length === 0) && !jsonSchema3.additionalProperties;
   }
   var dataUrlRegex = /^data:([^;,]+);base64,(.+)$/s;
   function parseBase64DataUrl(value) {
@@ -28270,12 +28270,12 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
     }
   }
   function convertToGoogleGenerativeAIMessages(prompt, options) {
-    var _a21, _b17, _c, _d;
+    var _a24, _b18, _c, _d;
     const systemInstructionParts = [];
     const contents = [];
     let systemMessagesAllowed = true;
-    const isGemmaModel = (_a21 = options == null ? void 0 : options.isGemmaModel) != null ? _a21 : false;
-    const providerOptionsName = (_b17 = options == null ? void 0 : options.providerOptionsName) != null ? _b17 : "google";
+    const isGemmaModel = (_a24 = options == null ? void 0 : options.isGemmaModel) != null ? _a24 : false;
+    const providerOptionsName = (_b18 = options == null ? void 0 : options.providerOptionsName) != null ? _b18 : "google";
     const supportsFunctionResponseParts = (_c = options == null ? void 0 : options.supportsFunctionResponseParts) != null ? _c : true;
     for (const { role, content } of prompt) {
       switch (role) {
@@ -28324,8 +28324,8 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
           contents.push({
             role: "model",
             parts: content.map((part) => {
-              var _a24, _b23, _c2, _d2;
-              const providerOpts = (_d2 = (_a24 = part.providerOptions) == null ? void 0 : _a24[providerOptionsName]) != null ? _d2 : providerOptionsName !== "google" ? (_b23 = part.providerOptions) == null ? void 0 : _b23.google : (_c2 = part.providerOptions) == null ? void 0 : _c2.vertex;
+              var _a25, _b23, _c2, _d2;
+              const providerOpts = (_d2 = (_a25 = part.providerOptions) == null ? void 0 : _a25[providerOptionsName]) != null ? _d2 : providerOptionsName !== "google" ? (_b23 = part.providerOptions) == null ? void 0 : _b23.google : (_c2 = part.providerOptions) == null ? void 0 : _c2.vertex;
               const thoughtSignature = (providerOpts == null ? void 0 : providerOpts.thoughtSignature) != null ? String(providerOpts.thoughtSignature) : void 0;
               switch (part.type) {
                 case "text": {
@@ -28539,7 +28539,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
     toolChoice,
     modelId
   }) {
-    var _a21;
+    var _a24;
     tools = (tools == null ? void 0 : tools.length) ? tools : void 0;
     const toolWarnings = [];
     const isLatest = [
@@ -28552,8 +28552,8 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
     if (tools == null) {
       return { tools: void 0, toolConfig: void 0, toolWarnings };
     }
-    const hasFunctionTools = tools.some((tool2) => tool2.type === "function");
-    const hasProviderTools = tools.some((tool2) => tool2.type === "provider");
+    const hasFunctionTools = tools.some((tool3) => tool3.type === "function");
+    const hasProviderTools = tools.some((tool3) => tool3.type === "provider");
     if (hasFunctionTools && hasProviderTools) {
       toolWarnings.push({
         type: "unsupported",
@@ -28562,16 +28562,16 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
     }
     if (hasProviderTools) {
       const googleTools2 = [];
-      const ProviderTools = tools.filter((tool2) => tool2.type === "provider");
-      ProviderTools.forEach((tool2) => {
-        switch (tool2.id) {
+      const ProviderTools = tools.filter((tool3) => tool3.type === "provider");
+      ProviderTools.forEach((tool3) => {
+        switch (tool3.id) {
           case "google.google_search":
             if (isGemini2orNewer) {
-              googleTools2.push({ googleSearch: { ...tool2.args } });
+              googleTools2.push({ googleSearch: { ...tool3.args } });
             } else {
               toolWarnings.push({
                 type: "unsupported",
-                feature: `provider-defined tool ${tool2.id}`,
+                feature: `provider-defined tool ${tool3.id}`,
                 details: "Google Search requires Gemini 2.0 or newer."
               });
             }
@@ -28582,7 +28582,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
             } else {
               toolWarnings.push({
                 type: "unsupported",
-                feature: `provider-defined tool ${tool2.id}`,
+                feature: `provider-defined tool ${tool3.id}`,
                 details: "Enterprise Web Search requires Gemini 2.0 or newer."
               });
             }
@@ -28593,7 +28593,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
             } else {
               toolWarnings.push({
                 type: "unsupported",
-                feature: `provider-defined tool ${tool2.id}`,
+                feature: `provider-defined tool ${tool3.id}`,
                 details: "The URL context tool is not supported with other Gemini models than Gemini 2."
               });
             }
@@ -28604,18 +28604,18 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
             } else {
               toolWarnings.push({
                 type: "unsupported",
-                feature: `provider-defined tool ${tool2.id}`,
+                feature: `provider-defined tool ${tool3.id}`,
                 details: "The code execution tools is not supported with other Gemini models than Gemini 2."
               });
             }
             break;
           case "google.file_search":
             if (supportsFileSearch) {
-              googleTools2.push({ fileSearch: { ...tool2.args } });
+              googleTools2.push({ fileSearch: { ...tool3.args } });
             } else {
               toolWarnings.push({
                 type: "unsupported",
-                feature: `provider-defined tool ${tool2.id}`,
+                feature: `provider-defined tool ${tool3.id}`,
                 details: "The file search tool is only supported with Gemini 2.5 models and Gemini 3 models."
               });
             }
@@ -28626,16 +28626,16 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
                 retrieval: {
                   vertex_rag_store: {
                     rag_resources: {
-                      rag_corpus: tool2.args.ragCorpus
+                      rag_corpus: tool3.args.ragCorpus
                     },
-                    similarity_top_k: tool2.args.topK
+                    similarity_top_k: tool3.args.topK
                   }
                 }
               });
             } else {
               toolWarnings.push({
                 type: "unsupported",
-                feature: `provider-defined tool ${tool2.id}`,
+                feature: `provider-defined tool ${tool3.id}`,
                 details: "The RAG store tool is not supported with other Gemini models than Gemini 2."
               });
             }
@@ -28646,7 +28646,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
             } else {
               toolWarnings.push({
                 type: "unsupported",
-                feature: `provider-defined tool ${tool2.id}`,
+                feature: `provider-defined tool ${tool3.id}`,
                 details: "The Google Maps grounding tool is not supported with Gemini models other than Gemini 2 or newer."
               });
             }
@@ -28654,7 +28654,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
           default:
             toolWarnings.push({
               type: "unsupported",
-              feature: `provider-defined tool ${tool2.id}`
+              feature: `provider-defined tool ${tool3.id}`
             });
             break;
         }
@@ -28667,22 +28667,22 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
     }
     const functionDeclarations = [];
     let hasStrictTools = false;
-    for (const tool2 of tools) {
-      switch (tool2.type) {
+    for (const tool3 of tools) {
+      switch (tool3.type) {
         case "function":
           functionDeclarations.push({
-            name: tool2.name,
-            description: (_a21 = tool2.description) != null ? _a21 : "",
-            parameters: convertJSONSchemaToOpenAPISchema(tool2.inputSchema)
+            name: tool3.name,
+            description: (_a24 = tool3.description) != null ? _a24 : "",
+            parameters: convertJSONSchemaToOpenAPISchema(tool3.inputSchema)
           });
-          if (tool2.strict === true) {
+          if (tool3.strict === true) {
             hasStrictTools = true;
           }
           break;
         default:
           toolWarnings.push({
             type: "unsupported",
-            feature: `function tool ${tool2.name}`
+            feature: `function tool ${tool3.name}`
           });
           break;
       }
@@ -28768,17 +28768,17 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
   var GoogleGenerativeAILanguageModel = class {
     constructor(modelId, config2) {
       this.specificationVersion = "v3";
-      var _a21;
+      var _a24;
       this.modelId = modelId;
       this.config = config2;
-      this.generateId = (_a21 = config2.generateId) != null ? _a21 : generateId;
+      this.generateId = (_a24 = config2.generateId) != null ? _a24 : generateId;
     }
     get provider() {
       return this.config.provider;
     }
     get supportedUrls() {
-      var _a21, _b17, _c;
-      return (_c = (_b17 = (_a21 = this.config).supportedUrls) == null ? void 0 : _b17.call(_a21)) != null ? _c : {};
+      var _a24, _b18, _c;
+      return (_c = (_b18 = (_a24 = this.config).supportedUrls) == null ? void 0 : _b18.call(_a24)) != null ? _c : {};
     }
     async getArgs({
       prompt,
@@ -28795,7 +28795,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
       toolChoice,
       providerOptions
     }) {
-      var _a21;
+      var _a24;
       const warnings = [];
       const providerOptionsName = this.config.provider.includes("vertex") ? "vertex" : "google";
       let googleOptions = await parseProviderOptions({
@@ -28811,7 +28811,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
         });
       }
       if ((tools == null ? void 0 : tools.some(
-        (tool2) => tool2.type === "provider" && tool2.id === "google.vertex_rag_store"
+        (tool3) => tool3.type === "provider" && tool3.id === "google.vertex_rag_store"
       )) && !this.config.provider.startsWith("google.vertex.")) {
         warnings.push({
           type: "other",
@@ -28854,7 +28854,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
             responseSchema: (responseFormat == null ? void 0 : responseFormat.type) === "json" && responseFormat.schema != null && // Google GenAI does not support all OpenAPI Schema features,
             // so this is needed as an escape hatch:
             // TODO convert into provider option
-            ((_a21 = googleOptions == null ? void 0 : googleOptions.structuredOutputs) != null ? _a21 : true) ? convertJSONSchemaToOpenAPISchema(responseFormat.schema) : void 0,
+            ((_a24 = googleOptions == null ? void 0 : googleOptions.structuredOutputs) != null ? _a24 : true) ? convertJSONSchemaToOpenAPISchema(responseFormat.schema) : void 0,
             ...(googleOptions == null ? void 0 : googleOptions.audioTimestamp) && {
               audioTimestamp: googleOptions.audioTimestamp
             },
@@ -28884,7 +28884,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
       };
     }
     async doGenerate(options) {
-      var _a21, _b17, _c, _d, _e, _f, _g, _h, _i, _j, _k;
+      var _a24, _b18, _c, _d, _e, _f, _g, _h, _i, _j, _k;
       const { args, warnings, providerOptionsName } = await this.getArgs(options);
       const mergedHeaders = combineHeaders(
         await resolve(this.config.headers),
@@ -28907,7 +28907,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
       });
       const candidate = response.candidates[0];
       const content = [];
-      const parts = (_b17 = (_a21 = candidate.content) == null ? void 0 : _a21.parts) != null ? _b17 : [];
+      const parts = (_b18 = (_a24 = candidate.content) == null ? void 0 : _a24.parts) != null ? _b18 : [];
       const usageMetadata = response.usageMetadata;
       let lastCodeExecutionToolCallId;
       for (const part of parts) {
@@ -29057,7 +29057,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
               controller.enqueue({ type: "stream-start", warnings });
             },
             transform(chunk, controller) {
-              var _a21, _b17, _c, _d, _e, _f, _g;
+              var _a24, _b18, _c, _d, _e, _f, _g;
               if (options.includeRawChunks) {
                 controller.enqueue({ type: "raw", rawValue: chunk.rawValue });
               }
@@ -29070,7 +29070,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
               if (usageMetadata != null) {
                 usage = usageMetadata;
               }
-              const candidate = (_a21 = value.candidates) == null ? void 0 : _a21[0];
+              const candidate = (_a24 = value.candidates) == null ? void 0 : _a24[0];
               if (candidate == null) {
                 return;
               }
@@ -29094,7 +29094,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
                 }
               }
               if (content != null) {
-                const parts = (_b17 = content.parts) != null ? _b17 : [];
+                const parts = (_b18 = content.parts) != null ? _b18 : [];
                 for (const part of parts) {
                   if ("executableCode" in part && ((_c = part.executableCode) == null ? void 0 : _c.code)) {
                     const toolCallId = generateId3();
@@ -29317,7 +29317,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
     groundingMetadata,
     generateId: generateId3
   }) {
-    var _a21, _b17, _c, _d, _e, _f;
+    var _a24, _b18, _c, _d, _e, _f;
     if (!(groundingMetadata == null ? void 0 : groundingMetadata.groundingChunks)) {
       return void 0;
     }
@@ -29329,7 +29329,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
           sourceType: "url",
           id: generateId3(),
           url: chunk.web.uri,
-          title: (_a21 = chunk.web.title) != null ? _a21 : void 0
+          title: (_a24 = chunk.web.title) != null ? _a24 : void 0
         });
       } else if (chunk.image != null) {
         sources.push({
@@ -29339,7 +29339,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
           // Google requires attribution to the source URI, not the actual image URI.
           // TODO: add another type in v7 to allow both the image and source URL to be included separately
           url: chunk.image.sourceUri,
-          title: (_b17 = chunk.image.title) != null ? _b17 : void 0
+          title: (_b18 = chunk.image.title) != null ? _b18 : void 0
         });
       } else if (chunk.retrievedContext != null) {
         const uri = chunk.retrievedContext.uri;
@@ -29714,7 +29714,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
       return this.doGenerateImagen(options);
     }
     async doGenerateImagen(options) {
-      var _a21, _b17, _c;
+      var _a24, _b18, _c;
       const {
         prompt,
         n = 1,
@@ -29757,7 +29757,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
         providerOptions,
         schema: googleImageModelOptionsSchema
       });
-      const currentDate = (_c = (_b17 = (_a21 = this.config._internal) == null ? void 0 : _a21.currentDate) == null ? void 0 : _b17.call(_a21)) != null ? _c : /* @__PURE__ */ new Date();
+      const currentDate = (_c = (_b18 = (_a24 = this.config._internal) == null ? void 0 : _a24.currentDate) == null ? void 0 : _b18.call(_a24)) != null ? _c : /* @__PURE__ */ new Date();
       const parameters = {
         sampleCount: n
       };
@@ -29802,7 +29802,7 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
       };
     }
     async doGenerateGemini(options) {
-      var _a21, _b17, _c, _d, _e, _f, _g, _h, _i;
+      var _a24, _b18, _c, _d, _e, _f, _g, _h, _i;
       const {
         prompt,
         n,
@@ -29860,9 +29860,9 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
       const languageModel = new GoogleGenerativeAILanguageModel(this.modelId, {
         provider: this.config.provider,
         baseURL: this.config.baseURL,
-        headers: (_a21 = this.config.headers) != null ? _a21 : {},
+        headers: (_a24 = this.config.headers) != null ? _a24 : {},
         fetch: this.config.fetch,
-        generateId: (_b17 = this.config.generateId) != null ? _b17 : generateId
+        generateId: (_b18 = this.config.generateId) != null ? _b18 : generateId
       });
       const result = await languageModel.doGenerate({
         prompt: languageModelPrompt,
@@ -29938,8 +29938,8 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
       return 4;
     }
     async doGenerate(options) {
-      var _a21, _b17, _c, _d, _e, _f, _g, _h;
-      const currentDate = (_c = (_b17 = (_a21 = this.config._internal) == null ? void 0 : _a21.currentDate) == null ? void 0 : _b17.call(_a21)) != null ? _c : /* @__PURE__ */ new Date();
+      var _a24, _b18, _c, _d, _e, _f, _g, _h;
+      const currentDate = (_c = (_b18 = (_a24 = this.config._internal) == null ? void 0 : _a24.currentDate) == null ? void 0 : _b18.call(_a24)) != null ? _c : /* @__PURE__ */ new Date();
       const warnings = [];
       const googleOptions = await parseProviderOptions({
         provider: "google",
@@ -30173,9 +30173,9 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
     )
   );
   function createGoogleGenerativeAI(options = {}) {
-    var _a21, _b17;
-    const baseURL = (_a21 = withoutTrailingSlash(options.baseURL)) != null ? _a21 : "https://generativelanguage.googleapis.com/v1beta";
-    const providerName = (_b17 = options.name) != null ? _b17 : "google.generative-ai";
+    var _a24, _b18;
+    const baseURL = (_a24 = withoutTrailingSlash(options.baseURL)) != null ? _a24 : "https://generativelanguage.googleapis.com/v1beta";
+    const providerName = (_b18 = options.name) != null ? _b18 : "google.generative-ai";
     const getHeaders = () => withUserAgentSuffix(
       {
         "x-goog-api-key": loadApiKey({
@@ -30188,12 +30188,12 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
       `ai-sdk/google/${VERSION5}`
     );
     const createChatModel = (modelId) => {
-      var _a24;
+      var _a25;
       return new GoogleGenerativeAILanguageModel(modelId, {
         provider: providerName,
         baseURL,
         headers: getHeaders,
-        generateId: (_a24 = options.generateId) != null ? _a24 : generateId,
+        generateId: (_a25 = options.generateId) != null ? _a25 : generateId,
         supportedUrls: () => ({
           "*": [
             // Google Generative Language "files" endpoint
@@ -30222,13 +30222,13 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
       fetch: options.fetch
     });
     const createVideoModel = (modelId) => {
-      var _a24;
+      var _a25;
       return new GoogleGenerativeAIVideoModel(modelId, {
         provider: providerName,
         baseURL,
         headers: getHeaders,
         fetch: options.fetch,
-        generateId: (_a24 = options.generateId) != null ? _a24 : generateId
+        generateId: (_a25 = options.generateId) != null ? _a25 : generateId
       });
     };
     const provider = function(modelId) {
@@ -30255,6 +30255,8716 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
     return provider;
   }
   var google = createGoogleGenerativeAI();
+
+  // node_modules/@ai-sdk/openai/node_modules/@ai-sdk/provider-utils/dist/index.mjs
+  function combineHeaders2(...headers) {
+    return headers.reduce(
+      (combinedHeaders, currentHeaders) => ({
+        ...combinedHeaders,
+        ...currentHeaders != null ? currentHeaders : {}
+      }),
+      {}
+    );
+  }
+  function createToolNameMapping({
+    tools = [],
+    providerToolNames,
+    resolveProviderToolName
+  }) {
+    var _a24;
+    const customToolNameToProviderToolName = {};
+    const providerToolNameToCustomToolName = {};
+    for (const tool22 of tools) {
+      if (tool22.type === "provider") {
+        const providerToolName = (_a24 = resolveProviderToolName == null ? void 0 : resolveProviderToolName(tool22)) != null ? _a24 : tool22.id in providerToolNames ? providerToolNames[tool22.id] : void 0;
+        if (providerToolName == null) {
+          continue;
+        }
+        customToolNameToProviderToolName[tool22.name] = providerToolName;
+        providerToolNameToCustomToolName[providerToolName] = tool22.name;
+      }
+    }
+    return {
+      toProviderToolName: (customToolName) => {
+        var _a34;
+        return (_a34 = customToolNameToProviderToolName[customToolName]) != null ? _a34 : customToolName;
+      },
+      toCustomToolName: (providerToolName) => {
+        var _a34;
+        return (_a34 = providerToolNameToCustomToolName[providerToolName]) != null ? _a34 : providerToolName;
+      }
+    };
+  }
+  function extractResponseHeaders2(response) {
+    return Object.fromEntries([...response.headers]);
+  }
+  var { btoa: btoa2, atob: atob3 } = globalThis;
+  function convertBase64ToUint8Array2(base64String) {
+    const base64Url = base64String.replace(/-/g, "+").replace(/_/g, "/");
+    const latin1string = atob3(base64Url);
+    return Uint8Array.from(latin1string, (byte) => byte.codePointAt(0));
+  }
+  function convertUint8ArrayToBase642(array3) {
+    let latin1string = "";
+    for (let i = 0; i < array3.length; i++) {
+      latin1string += String.fromCodePoint(array3[i]);
+    }
+    return btoa2(latin1string);
+  }
+  function convertToBase642(value) {
+    return value instanceof Uint8Array ? convertUint8ArrayToBase642(value) : value;
+  }
+  function convertToFormData(input, options = {}) {
+    const { useArrayBrackets = true } = options;
+    const formData = new FormData();
+    for (const [key, value] of Object.entries(input)) {
+      if (value == null) {
+        continue;
+      }
+      if (Array.isArray(value)) {
+        if (value.length === 1) {
+          formData.append(key, value[0]);
+          continue;
+        }
+        const arrayKey = useArrayBrackets ? `${key}[]` : key;
+        for (const item of value) {
+          formData.append(arrayKey, item);
+        }
+        continue;
+      }
+      formData.append(key, value);
+    }
+    return formData;
+  }
+  var name21 = "AI_DownloadError";
+  var marker21 = `vercel.ai.error.${name21}`;
+  var symbol21 = Symbol.for(marker21);
+  var _a21;
+  var _b17;
+  var DownloadError2 = class extends (_b17 = AISDKError, _a21 = symbol21, _b17) {
+    constructor({
+      url: url2,
+      statusCode,
+      statusText,
+      cause,
+      message = cause == null ? `Failed to download ${url2}: ${statusCode} ${statusText}` : `Failed to download ${url2}: ${cause}`
+    }) {
+      super({ name: name21, message, cause });
+      this[_a21] = true;
+      this.url = url2;
+      this.statusCode = statusCode;
+      this.statusText = statusText;
+    }
+    static isInstance(error40) {
+      return AISDKError.hasMarker(error40, marker21);
+    }
+  };
+  var DEFAULT_MAX_DOWNLOAD_SIZE2 = 2 * 1024 * 1024 * 1024;
+  async function readResponseWithSizeLimit2({
+    response,
+    url: url2,
+    maxBytes = DEFAULT_MAX_DOWNLOAD_SIZE2
+  }) {
+    const contentLength = response.headers.get("content-length");
+    if (contentLength != null) {
+      const length = parseInt(contentLength, 10);
+      if (!isNaN(length) && length > maxBytes) {
+        throw new DownloadError2({
+          url: url2,
+          message: `Download of ${url2} exceeded maximum size of ${maxBytes} bytes (Content-Length: ${length}).`
+        });
+      }
+    }
+    const body = response.body;
+    if (body == null) {
+      return new Uint8Array(0);
+    }
+    const reader = body.getReader();
+    const chunks = [];
+    let totalBytes = 0;
+    try {
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) {
+          break;
+        }
+        totalBytes += value.length;
+        if (totalBytes > maxBytes) {
+          throw new DownloadError2({
+            url: url2,
+            message: `Download of ${url2} exceeded maximum size of ${maxBytes} bytes.`
+          });
+        }
+        chunks.push(value);
+      }
+    } finally {
+      try {
+        await reader.cancel();
+      } finally {
+        reader.releaseLock();
+      }
+    }
+    const result = new Uint8Array(totalBytes);
+    let offset = 0;
+    for (const chunk of chunks) {
+      result.set(chunk, offset);
+      offset += chunk.length;
+    }
+    return result;
+  }
+  function validateDownloadUrl2(url2) {
+    let parsed;
+    try {
+      parsed = new URL(url2);
+    } catch (e) {
+      throw new DownloadError2({
+        url: url2,
+        message: `Invalid URL: ${url2}`
+      });
+    }
+    if (parsed.protocol === "data:") {
+      return;
+    }
+    if (parsed.protocol !== "http:" && parsed.protocol !== "https:") {
+      throw new DownloadError2({
+        url: url2,
+        message: `URL scheme must be http, https, or data, got ${parsed.protocol}`
+      });
+    }
+    const hostname2 = parsed.hostname;
+    if (!hostname2) {
+      throw new DownloadError2({
+        url: url2,
+        message: `URL must have a hostname`
+      });
+    }
+    if (hostname2 === "localhost" || hostname2.endsWith(".local") || hostname2.endsWith(".localhost")) {
+      throw new DownloadError2({
+        url: url2,
+        message: `URL with hostname ${hostname2} is not allowed`
+      });
+    }
+    if (hostname2.startsWith("[") && hostname2.endsWith("]")) {
+      const ipv63 = hostname2.slice(1, -1);
+      if (isPrivateIPv62(ipv63)) {
+        throw new DownloadError2({
+          url: url2,
+          message: `URL with IPv6 address ${hostname2} is not allowed`
+        });
+      }
+      return;
+    }
+    if (isIPv42(hostname2)) {
+      if (isPrivateIPv42(hostname2)) {
+        throw new DownloadError2({
+          url: url2,
+          message: `URL with IP address ${hostname2} is not allowed`
+        });
+      }
+      return;
+    }
+  }
+  function isIPv42(hostname2) {
+    const parts = hostname2.split(".");
+    if (parts.length !== 4) return false;
+    return parts.every((part) => {
+      const num = Number(part);
+      return Number.isInteger(num) && num >= 0 && num <= 255 && String(num) === part;
+    });
+  }
+  function isPrivateIPv42(ip) {
+    const parts = ip.split(".").map(Number);
+    const [a, b] = parts;
+    if (a === 0) return true;
+    if (a === 10) return true;
+    if (a === 127) return true;
+    if (a === 169 && b === 254) return true;
+    if (a === 172 && b >= 16 && b <= 31) return true;
+    if (a === 192 && b === 168) return true;
+    return false;
+  }
+  function isPrivateIPv62(ip) {
+    const normalized = ip.toLowerCase();
+    if (normalized === "::1") return true;
+    if (normalized === "::") return true;
+    if (normalized.startsWith("::ffff:")) {
+      const mappedPart = normalized.slice(7);
+      if (isIPv42(mappedPart)) {
+        return isPrivateIPv42(mappedPart);
+      }
+      const hexParts = mappedPart.split(":");
+      if (hexParts.length === 2) {
+        const high = parseInt(hexParts[0], 16);
+        const low = parseInt(hexParts[1], 16);
+        if (!isNaN(high) && !isNaN(low)) {
+          const a = high >> 8 & 255;
+          const b = high & 255;
+          const c = low >> 8 & 255;
+          const d = low & 255;
+          return isPrivateIPv42(`${a}.${b}.${c}.${d}`);
+        }
+      }
+    }
+    if (normalized.startsWith("fc") || normalized.startsWith("fd")) return true;
+    if (normalized.startsWith("fe80")) return true;
+    return false;
+  }
+  async function downloadBlob(url2, options) {
+    var _a24, _b23;
+    validateDownloadUrl2(url2);
+    try {
+      const response = await fetch(url2, {
+        signal: options == null ? void 0 : options.abortSignal
+      });
+      if (response.redirected) {
+        validateDownloadUrl2(response.url);
+      }
+      if (!response.ok) {
+        throw new DownloadError2({
+          url: url2,
+          statusCode: response.status,
+          statusText: response.statusText
+        });
+      }
+      const data = await readResponseWithSizeLimit2({
+        response,
+        url: url2,
+        maxBytes: (_a24 = options == null ? void 0 : options.maxBytes) != null ? _a24 : DEFAULT_MAX_DOWNLOAD_SIZE2
+      });
+      const contentType = (_b23 = response.headers.get("content-type")) != null ? _b23 : void 0;
+      return new Blob([data], contentType ? { type: contentType } : void 0);
+    } catch (error40) {
+      if (DownloadError2.isInstance(error40)) {
+        throw error40;
+      }
+      throw new DownloadError2({ url: url2, cause: error40 });
+    }
+  }
+  var createIdGenerator2 = ({
+    prefix,
+    size = 16,
+    alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+    separator = "-"
+  } = {}) => {
+    const generator = () => {
+      const alphabetLength = alphabet.length;
+      const chars = new Array(size);
+      for (let i = 0; i < size; i++) {
+        chars[i] = alphabet[Math.random() * alphabetLength | 0];
+      }
+      return chars.join("");
+    };
+    if (prefix == null) {
+      return generator;
+    }
+    if (alphabet.includes(separator)) {
+      throw new InvalidArgumentError({
+        argument: "separator",
+        message: `The separator "${separator}" must not be part of the alphabet "${alphabet}".`
+      });
+    }
+    return () => `${prefix}${separator}${generator()}`;
+  };
+  var generateId2 = createIdGenerator2();
+  function isAbortError2(error40) {
+    return (error40 instanceof Error || error40 instanceof DOMException) && (error40.name === "AbortError" || error40.name === "ResponseAborted" || // Next.js
+    error40.name === "TimeoutError");
+  }
+  var FETCH_FAILED_ERROR_MESSAGES2 = ["fetch failed", "failed to fetch"];
+  var BUN_ERROR_CODES2 = [
+    "ConnectionRefused",
+    "ConnectionClosed",
+    "FailedToOpenSocket",
+    "ECONNRESET",
+    "ECONNREFUSED",
+    "ETIMEDOUT",
+    "EPIPE"
+  ];
+  function isBunNetworkError2(error40) {
+    if (!(error40 instanceof Error)) {
+      return false;
+    }
+    const code = error40.code;
+    if (typeof code === "string" && BUN_ERROR_CODES2.includes(code)) {
+      return true;
+    }
+    return false;
+  }
+  function handleFetchError2({
+    error: error40,
+    url: url2,
+    requestBodyValues
+  }) {
+    if (isAbortError2(error40)) {
+      return error40;
+    }
+    if (error40 instanceof TypeError && FETCH_FAILED_ERROR_MESSAGES2.includes(error40.message.toLowerCase())) {
+      const cause = error40.cause;
+      if (cause != null) {
+        return new APICallError({
+          message: `Cannot connect to API: ${cause.message}`,
+          cause,
+          url: url2,
+          requestBodyValues,
+          isRetryable: true
+          // retry when network error
+        });
+      }
+    }
+    if (isBunNetworkError2(error40)) {
+      return new APICallError({
+        message: `Cannot connect to API: ${error40.message}`,
+        cause: error40,
+        url: url2,
+        requestBodyValues,
+        isRetryable: true
+      });
+    }
+    return error40;
+  }
+  function getRuntimeEnvironmentUserAgent2(globalThisAny = globalThis) {
+    var _a24, _b23, _c;
+    if (globalThisAny.window) {
+      return `runtime/browser`;
+    }
+    if ((_a24 = globalThisAny.navigator) == null ? void 0 : _a24.userAgent) {
+      return `runtime/${globalThisAny.navigator.userAgent.toLowerCase()}`;
+    }
+    if ((_c = (_b23 = globalThisAny.process) == null ? void 0 : _b23.versions) == null ? void 0 : _c.node) {
+      return `runtime/node.js/${globalThisAny.process.version.substring(0)}`;
+    }
+    if (globalThisAny.EdgeRuntime) {
+      return `runtime/vercel-edge`;
+    }
+    return "runtime/unknown";
+  }
+  function normalizeHeaders2(headers) {
+    if (headers == null) {
+      return {};
+    }
+    const normalized = {};
+    if (headers instanceof Headers) {
+      headers.forEach((value, key) => {
+        normalized[key.toLowerCase()] = value;
+      });
+    } else {
+      if (!Array.isArray(headers)) {
+        headers = Object.entries(headers);
+      }
+      for (const [key, value] of headers) {
+        if (value != null) {
+          normalized[key.toLowerCase()] = value;
+        }
+      }
+    }
+    return normalized;
+  }
+  function withUserAgentSuffix2(headers, ...userAgentSuffixParts) {
+    const normalizedHeaders = new Headers(normalizeHeaders2(headers));
+    const currentUserAgentHeader = normalizedHeaders.get("user-agent") || "";
+    normalizedHeaders.set(
+      "user-agent",
+      [currentUserAgentHeader, ...userAgentSuffixParts].filter(Boolean).join(" ")
+    );
+    return Object.fromEntries(normalizedHeaders.entries());
+  }
+  var VERSION6 = true ? "4.0.22" : "0.0.0-test";
+  function isNonNullable(value) {
+    return value != null;
+  }
+  function loadApiKey2({
+    apiKey,
+    environmentVariableName,
+    apiKeyParameterName = "apiKey",
+    description
+  }) {
+    if (typeof apiKey === "string") {
+      return apiKey;
+    }
+    if (apiKey != null) {
+      throw new LoadAPIKeyError({
+        message: `${description} API key must be a string.`
+      });
+    }
+    if (typeof process === "undefined") {
+      throw new LoadAPIKeyError({
+        message: `${description} API key is missing. Pass it using the '${apiKeyParameterName}' parameter. Environment variables is not supported in this environment.`
+      });
+    }
+    apiKey = process.env[environmentVariableName];
+    if (apiKey == null) {
+      throw new LoadAPIKeyError({
+        message: `${description} API key is missing. Pass it using the '${apiKeyParameterName}' parameter or the ${environmentVariableName} environment variable.`
+      });
+    }
+    if (typeof apiKey !== "string") {
+      throw new LoadAPIKeyError({
+        message: `${description} API key must be a string. The value of the ${environmentVariableName} environment variable is not a string.`
+      });
+    }
+    return apiKey;
+  }
+  function loadOptionalSetting2({
+    settingValue,
+    environmentVariableName
+  }) {
+    if (typeof settingValue === "string") {
+      return settingValue;
+    }
+    if (settingValue != null || typeof process === "undefined") {
+      return void 0;
+    }
+    settingValue = process.env[environmentVariableName];
+    if (settingValue == null || typeof settingValue !== "string") {
+      return void 0;
+    }
+    return settingValue;
+  }
+  function mediaTypeToExtension(mediaType) {
+    var _a24;
+    const [_type, subtype = ""] = mediaType.toLowerCase().split("/");
+    return (_a24 = {
+      mpeg: "mp3",
+      "x-wav": "wav",
+      opus: "ogg",
+      mp4: "m4a",
+      "x-m4a": "m4a"
+    }[subtype]) != null ? _a24 : subtype;
+  }
+  var suspectProtoRx2 = /"(?:_|\\u005[Ff])(?:_|\\u005[Ff])(?:p|\\u0070)(?:r|\\u0072)(?:o|\\u006[Ff])(?:t|\\u0074)(?:o|\\u006[Ff])(?:_|\\u005[Ff])(?:_|\\u005[Ff])"\s*:/;
+  var suspectConstructorRx2 = /"(?:c|\\u0063)(?:o|\\u006[Ff])(?:n|\\u006[Ee])(?:s|\\u0073)(?:t|\\u0074)(?:r|\\u0072)(?:u|\\u0075)(?:c|\\u0063)(?:t|\\u0074)(?:o|\\u006[Ff])(?:r|\\u0072)"\s*:/;
+  function _parse3(text2) {
+    const obj = JSON.parse(text2);
+    if (obj === null || typeof obj !== "object") {
+      return obj;
+    }
+    if (suspectProtoRx2.test(text2) === false && suspectConstructorRx2.test(text2) === false) {
+      return obj;
+    }
+    return filter2(obj);
+  }
+  function filter2(obj) {
+    let next = [obj];
+    while (next.length) {
+      const nodes = next;
+      next = [];
+      for (const node of nodes) {
+        if (Object.prototype.hasOwnProperty.call(node, "__proto__")) {
+          throw new SyntaxError("Object contains forbidden prototype property");
+        }
+        if (Object.prototype.hasOwnProperty.call(node, "constructor") && node.constructor !== null && typeof node.constructor === "object" && Object.prototype.hasOwnProperty.call(node.constructor, "prototype")) {
+          throw new SyntaxError("Object contains forbidden prototype property");
+        }
+        for (const key in node) {
+          const value = node[key];
+          if (value && typeof value === "object") {
+            next.push(value);
+          }
+        }
+      }
+    }
+    return obj;
+  }
+  function secureJsonParse2(text2) {
+    const { stackTraceLimit } = Error;
+    try {
+      Error.stackTraceLimit = 0;
+    } catch (e) {
+      return _parse3(text2);
+    }
+    try {
+      return _parse3(text2);
+    } finally {
+      Error.stackTraceLimit = stackTraceLimit;
+    }
+  }
+  function addAdditionalPropertiesToJsonSchema2(jsonSchema22) {
+    if (jsonSchema22.type === "object" || Array.isArray(jsonSchema22.type) && jsonSchema22.type.includes("object")) {
+      jsonSchema22.additionalProperties = false;
+      const { properties } = jsonSchema22;
+      if (properties != null) {
+        for (const key of Object.keys(properties)) {
+          properties[key] = visit2(properties[key]);
+        }
+      }
+    }
+    if (jsonSchema22.items != null) {
+      jsonSchema22.items = Array.isArray(jsonSchema22.items) ? jsonSchema22.items.map(visit2) : visit2(jsonSchema22.items);
+    }
+    if (jsonSchema22.anyOf != null) {
+      jsonSchema22.anyOf = jsonSchema22.anyOf.map(visit2);
+    }
+    if (jsonSchema22.allOf != null) {
+      jsonSchema22.allOf = jsonSchema22.allOf.map(visit2);
+    }
+    if (jsonSchema22.oneOf != null) {
+      jsonSchema22.oneOf = jsonSchema22.oneOf.map(visit2);
+    }
+    const { definitions } = jsonSchema22;
+    if (definitions != null) {
+      for (const key of Object.keys(definitions)) {
+        definitions[key] = visit2(definitions[key]);
+      }
+    }
+    return jsonSchema22;
+  }
+  function visit2(def) {
+    if (typeof def === "boolean") return def;
+    return addAdditionalPropertiesToJsonSchema2(def);
+  }
+  var ignoreOverride2 = /* @__PURE__ */ Symbol(
+    "Let zodToJsonSchema decide on which parser to use"
+  );
+  var defaultOptions2 = {
+    name: void 0,
+    $refStrategy: "root",
+    basePath: ["#"],
+    effectStrategy: "input",
+    pipeStrategy: "all",
+    dateStrategy: "format:date-time",
+    mapStrategy: "entries",
+    removeAdditionalStrategy: "passthrough",
+    allowedAdditionalProperties: true,
+    rejectedAdditionalProperties: false,
+    definitionPath: "definitions",
+    strictUnions: false,
+    definitions: {},
+    errorMessages: false,
+    patternStrategy: "escape",
+    applyRegexFlags: false,
+    emailStrategy: "format:email",
+    base64Strategy: "contentEncoding:base64",
+    nameStrategy: "ref"
+  };
+  var getDefaultOptions2 = (options) => typeof options === "string" ? {
+    ...defaultOptions2,
+    name: options
+  } : {
+    ...defaultOptions2,
+    ...options
+  };
+  function parseAnyDef2() {
+    return {};
+  }
+  function parseArrayDef2(def, refs) {
+    var _a24, _b23, _c;
+    const res = {
+      type: "array"
+    };
+    if (((_a24 = def.type) == null ? void 0 : _a24._def) && ((_c = (_b23 = def.type) == null ? void 0 : _b23._def) == null ? void 0 : _c.typeName) !== ZodFirstPartyTypeKind.ZodAny) {
+      res.items = parseDef2(def.type._def, {
+        ...refs,
+        currentPath: [...refs.currentPath, "items"]
+      });
+    }
+    if (def.minLength) {
+      res.minItems = def.minLength.value;
+    }
+    if (def.maxLength) {
+      res.maxItems = def.maxLength.value;
+    }
+    if (def.exactLength) {
+      res.minItems = def.exactLength.value;
+      res.maxItems = def.exactLength.value;
+    }
+    return res;
+  }
+  function parseBigintDef2(def) {
+    const res = {
+      type: "integer",
+      format: "int64"
+    };
+    if (!def.checks) return res;
+    for (const check2 of def.checks) {
+      switch (check2.kind) {
+        case "min":
+          if (check2.inclusive) {
+            res.minimum = check2.value;
+          } else {
+            res.exclusiveMinimum = check2.value;
+          }
+          break;
+        case "max":
+          if (check2.inclusive) {
+            res.maximum = check2.value;
+          } else {
+            res.exclusiveMaximum = check2.value;
+          }
+          break;
+        case "multipleOf":
+          res.multipleOf = check2.value;
+          break;
+      }
+    }
+    return res;
+  }
+  function parseBooleanDef2() {
+    return { type: "boolean" };
+  }
+  function parseBrandedDef2(_def, refs) {
+    return parseDef2(_def.type._def, refs);
+  }
+  var parseCatchDef2 = (def, refs) => {
+    return parseDef2(def.innerType._def, refs);
+  };
+  function parseDateDef2(def, refs, overrideDateStrategy) {
+    const strategy = overrideDateStrategy != null ? overrideDateStrategy : refs.dateStrategy;
+    if (Array.isArray(strategy)) {
+      return {
+        anyOf: strategy.map((item, i) => parseDateDef2(def, refs, item))
+      };
+    }
+    switch (strategy) {
+      case "string":
+      case "format:date-time":
+        return {
+          type: "string",
+          format: "date-time"
+        };
+      case "format:date":
+        return {
+          type: "string",
+          format: "date"
+        };
+      case "integer":
+        return integerDateParser2(def);
+    }
+  }
+  var integerDateParser2 = (def) => {
+    const res = {
+      type: "integer",
+      format: "unix-time"
+    };
+    for (const check2 of def.checks) {
+      switch (check2.kind) {
+        case "min":
+          res.minimum = check2.value;
+          break;
+        case "max":
+          res.maximum = check2.value;
+          break;
+      }
+    }
+    return res;
+  };
+  function parseDefaultDef2(_def, refs) {
+    return {
+      ...parseDef2(_def.innerType._def, refs),
+      default: _def.defaultValue()
+    };
+  }
+  function parseEffectsDef2(_def, refs) {
+    return refs.effectStrategy === "input" ? parseDef2(_def.schema._def, refs) : parseAnyDef2();
+  }
+  function parseEnumDef2(def) {
+    return {
+      type: "string",
+      enum: Array.from(def.values)
+    };
+  }
+  var isJsonSchema7AllOfType2 = (type) => {
+    if ("type" in type && type.type === "string") return false;
+    return "allOf" in type;
+  };
+  function parseIntersectionDef2(def, refs) {
+    const allOf = [
+      parseDef2(def.left._def, {
+        ...refs,
+        currentPath: [...refs.currentPath, "allOf", "0"]
+      }),
+      parseDef2(def.right._def, {
+        ...refs,
+        currentPath: [...refs.currentPath, "allOf", "1"]
+      })
+    ].filter((x) => !!x);
+    const mergedAllOf = [];
+    allOf.forEach((schema) => {
+      if (isJsonSchema7AllOfType2(schema)) {
+        mergedAllOf.push(...schema.allOf);
+      } else {
+        let nestedSchema = schema;
+        if ("additionalProperties" in schema && schema.additionalProperties === false) {
+          const { additionalProperties, ...rest } = schema;
+          nestedSchema = rest;
+        }
+        mergedAllOf.push(nestedSchema);
+      }
+    });
+    return mergedAllOf.length ? { allOf: mergedAllOf } : void 0;
+  }
+  function parseLiteralDef2(def) {
+    const parsedType4 = typeof def.value;
+    if (parsedType4 !== "bigint" && parsedType4 !== "number" && parsedType4 !== "boolean" && parsedType4 !== "string") {
+      return {
+        type: Array.isArray(def.value) ? "array" : "object"
+      };
+    }
+    return {
+      type: parsedType4 === "bigint" ? "integer" : parsedType4,
+      const: def.value
+    };
+  }
+  var emojiRegex3 = void 0;
+  var zodPatterns2 = {
+    /**
+     * `c` was changed to `[cC]` to replicate /i flag
+     */
+    cuid: /^[cC][^\s-]{8,}$/,
+    cuid2: /^[0-9a-z]+$/,
+    ulid: /^[0-9A-HJKMNP-TV-Z]{26}$/,
+    /**
+     * `a-z` was added to replicate /i flag
+     */
+    email: /^(?!\.)(?!.*\.\.)([a-zA-Z0-9_'+\-\.]*)[a-zA-Z0-9_+-]@([a-zA-Z0-9][a-zA-Z0-9\-]*\.)+[a-zA-Z]{2,}$/,
+    /**
+     * Constructed a valid Unicode RegExp
+     *
+     * Lazily instantiate since this type of regex isn't supported
+     * in all envs (e.g. React Native).
+     *
+     * See:
+     * https://github.com/colinhacks/zod/issues/2433
+     * Fix in Zod:
+     * https://github.com/colinhacks/zod/commit/9340fd51e48576a75adc919bff65dbc4a5d4c99b
+     */
+    emoji: () => {
+      if (emojiRegex3 === void 0) {
+        emojiRegex3 = RegExp(
+          "^(\\p{Extended_Pictographic}|\\p{Emoji_Component})+$",
+          "u"
+        );
+      }
+      return emojiRegex3;
+    },
+    /**
+     * Unused
+     */
+    uuid: /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/,
+    /**
+     * Unused
+     */
+    ipv4: /^(?:(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\.){3}(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])$/,
+    ipv4Cidr: /^(?:(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\.){3}(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\/(3[0-2]|[12]?[0-9])$/,
+    /**
+     * Unused
+     */
+    ipv6: /^(([a-f0-9]{1,4}:){7}|::([a-f0-9]{1,4}:){0,6}|([a-f0-9]{1,4}:){1}:([a-f0-9]{1,4}:){0,5}|([a-f0-9]{1,4}:){2}:([a-f0-9]{1,4}:){0,4}|([a-f0-9]{1,4}:){3}:([a-f0-9]{1,4}:){0,3}|([a-f0-9]{1,4}:){4}:([a-f0-9]{1,4}:){0,2}|([a-f0-9]{1,4}:){5}:([a-f0-9]{1,4}:){0,1})([a-f0-9]{1,4}|(((25[0-5])|(2[0-4][0-9])|(1[0-9]{2})|([0-9]{1,2}))\.){3}((25[0-5])|(2[0-4][0-9])|(1[0-9]{2})|([0-9]{1,2})))$/,
+    ipv6Cidr: /^(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))\/(12[0-8]|1[01][0-9]|[1-9]?[0-9])$/,
+    base64: /^([0-9a-zA-Z+/]{4})*(([0-9a-zA-Z+/]{2}==)|([0-9a-zA-Z+/]{3}=))?$/,
+    base64url: /^([0-9a-zA-Z-_]{4})*(([0-9a-zA-Z-_]{2}(==)?)|([0-9a-zA-Z-_]{3}(=)?))?$/,
+    nanoid: /^[a-zA-Z0-9_-]{21}$/,
+    jwt: /^[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+\.[A-Za-z0-9-_]*$/
+  };
+  function parseStringDef2(def, refs) {
+    const res = {
+      type: "string"
+    };
+    if (def.checks) {
+      for (const check2 of def.checks) {
+        switch (check2.kind) {
+          case "min":
+            res.minLength = typeof res.minLength === "number" ? Math.max(res.minLength, check2.value) : check2.value;
+            break;
+          case "max":
+            res.maxLength = typeof res.maxLength === "number" ? Math.min(res.maxLength, check2.value) : check2.value;
+            break;
+          case "email":
+            switch (refs.emailStrategy) {
+              case "format:email":
+                addFormat2(res, "email", check2.message, refs);
+                break;
+              case "format:idn-email":
+                addFormat2(res, "idn-email", check2.message, refs);
+                break;
+              case "pattern:zod":
+                addPattern2(res, zodPatterns2.email, check2.message, refs);
+                break;
+            }
+            break;
+          case "url":
+            addFormat2(res, "uri", check2.message, refs);
+            break;
+          case "uuid":
+            addFormat2(res, "uuid", check2.message, refs);
+            break;
+          case "regex":
+            addPattern2(res, check2.regex, check2.message, refs);
+            break;
+          case "cuid":
+            addPattern2(res, zodPatterns2.cuid, check2.message, refs);
+            break;
+          case "cuid2":
+            addPattern2(res, zodPatterns2.cuid2, check2.message, refs);
+            break;
+          case "startsWith":
+            addPattern2(
+              res,
+              RegExp(`^${escapeLiteralCheckValue2(check2.value, refs)}`),
+              check2.message,
+              refs
+            );
+            break;
+          case "endsWith":
+            addPattern2(
+              res,
+              RegExp(`${escapeLiteralCheckValue2(check2.value, refs)}$`),
+              check2.message,
+              refs
+            );
+            break;
+          case "datetime":
+            addFormat2(res, "date-time", check2.message, refs);
+            break;
+          case "date":
+            addFormat2(res, "date", check2.message, refs);
+            break;
+          case "time":
+            addFormat2(res, "time", check2.message, refs);
+            break;
+          case "duration":
+            addFormat2(res, "duration", check2.message, refs);
+            break;
+          case "length":
+            res.minLength = typeof res.minLength === "number" ? Math.max(res.minLength, check2.value) : check2.value;
+            res.maxLength = typeof res.maxLength === "number" ? Math.min(res.maxLength, check2.value) : check2.value;
+            break;
+          case "includes": {
+            addPattern2(
+              res,
+              RegExp(escapeLiteralCheckValue2(check2.value, refs)),
+              check2.message,
+              refs
+            );
+            break;
+          }
+          case "ip": {
+            if (check2.version !== "v6") {
+              addFormat2(res, "ipv4", check2.message, refs);
+            }
+            if (check2.version !== "v4") {
+              addFormat2(res, "ipv6", check2.message, refs);
+            }
+            break;
+          }
+          case "base64url":
+            addPattern2(res, zodPatterns2.base64url, check2.message, refs);
+            break;
+          case "jwt":
+            addPattern2(res, zodPatterns2.jwt, check2.message, refs);
+            break;
+          case "cidr": {
+            if (check2.version !== "v6") {
+              addPattern2(res, zodPatterns2.ipv4Cidr, check2.message, refs);
+            }
+            if (check2.version !== "v4") {
+              addPattern2(res, zodPatterns2.ipv6Cidr, check2.message, refs);
+            }
+            break;
+          }
+          case "emoji":
+            addPattern2(res, zodPatterns2.emoji(), check2.message, refs);
+            break;
+          case "ulid": {
+            addPattern2(res, zodPatterns2.ulid, check2.message, refs);
+            break;
+          }
+          case "base64": {
+            switch (refs.base64Strategy) {
+              case "format:binary": {
+                addFormat2(res, "binary", check2.message, refs);
+                break;
+              }
+              case "contentEncoding:base64": {
+                res.contentEncoding = "base64";
+                break;
+              }
+              case "pattern:zod": {
+                addPattern2(res, zodPatterns2.base64, check2.message, refs);
+                break;
+              }
+            }
+            break;
+          }
+          case "nanoid": {
+            addPattern2(res, zodPatterns2.nanoid, check2.message, refs);
+          }
+          case "toLowerCase":
+          case "toUpperCase":
+          case "trim":
+            break;
+          default:
+            /* @__PURE__ */ ((_) => {
+            })(check2);
+        }
+      }
+    }
+    return res;
+  }
+  function escapeLiteralCheckValue2(literal2, refs) {
+    return refs.patternStrategy === "escape" ? escapeNonAlphaNumeric2(literal2) : literal2;
+  }
+  var ALPHA_NUMERIC2 = new Set(
+    "ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvxyz0123456789"
+  );
+  function escapeNonAlphaNumeric2(source) {
+    let result = "";
+    for (let i = 0; i < source.length; i++) {
+      if (!ALPHA_NUMERIC2.has(source[i])) {
+        result += "\\";
+      }
+      result += source[i];
+    }
+    return result;
+  }
+  function addFormat2(schema, value, message, refs) {
+    var _a24;
+    if (schema.format || ((_a24 = schema.anyOf) == null ? void 0 : _a24.some((x) => x.format))) {
+      if (!schema.anyOf) {
+        schema.anyOf = [];
+      }
+      if (schema.format) {
+        schema.anyOf.push({
+          format: schema.format
+        });
+        delete schema.format;
+      }
+      schema.anyOf.push({
+        format: value,
+        ...message && refs.errorMessages && { errorMessage: { format: message } }
+      });
+    } else {
+      schema.format = value;
+    }
+  }
+  function addPattern2(schema, regex, message, refs) {
+    var _a24;
+    if (schema.pattern || ((_a24 = schema.allOf) == null ? void 0 : _a24.some((x) => x.pattern))) {
+      if (!schema.allOf) {
+        schema.allOf = [];
+      }
+      if (schema.pattern) {
+        schema.allOf.push({
+          pattern: schema.pattern
+        });
+        delete schema.pattern;
+      }
+      schema.allOf.push({
+        pattern: stringifyRegExpWithFlags2(regex, refs),
+        ...message && refs.errorMessages && { errorMessage: { pattern: message } }
+      });
+    } else {
+      schema.pattern = stringifyRegExpWithFlags2(regex, refs);
+    }
+  }
+  function stringifyRegExpWithFlags2(regex, refs) {
+    var _a24;
+    if (!refs.applyRegexFlags || !regex.flags) {
+      return regex.source;
+    }
+    const flags = {
+      i: regex.flags.includes("i"),
+      // Case-insensitive
+      m: regex.flags.includes("m"),
+      // `^` and `$` matches adjacent to newline characters
+      s: regex.flags.includes("s")
+      // `.` matches newlines
+    };
+    const source = flags.i ? regex.source.toLowerCase() : regex.source;
+    let pattern = "";
+    let isEscaped = false;
+    let inCharGroup = false;
+    let inCharRange = false;
+    for (let i = 0; i < source.length; i++) {
+      if (isEscaped) {
+        pattern += source[i];
+        isEscaped = false;
+        continue;
+      }
+      if (flags.i) {
+        if (inCharGroup) {
+          if (source[i].match(/[a-z]/)) {
+            if (inCharRange) {
+              pattern += source[i];
+              pattern += `${source[i - 2]}-${source[i]}`.toUpperCase();
+              inCharRange = false;
+            } else if (source[i + 1] === "-" && ((_a24 = source[i + 2]) == null ? void 0 : _a24.match(/[a-z]/))) {
+              pattern += source[i];
+              inCharRange = true;
+            } else {
+              pattern += `${source[i]}${source[i].toUpperCase()}`;
+            }
+            continue;
+          }
+        } else if (source[i].match(/[a-z]/)) {
+          pattern += `[${source[i]}${source[i].toUpperCase()}]`;
+          continue;
+        }
+      }
+      if (flags.m) {
+        if (source[i] === "^") {
+          pattern += `(^|(?<=[\r
+]))`;
+          continue;
+        } else if (source[i] === "$") {
+          pattern += `($|(?=[\r
+]))`;
+          continue;
+        }
+      }
+      if (flags.s && source[i] === ".") {
+        pattern += inCharGroup ? `${source[i]}\r
+` : `[${source[i]}\r
+]`;
+        continue;
+      }
+      pattern += source[i];
+      if (source[i] === "\\") {
+        isEscaped = true;
+      } else if (inCharGroup && source[i] === "]") {
+        inCharGroup = false;
+      } else if (!inCharGroup && source[i] === "[") {
+        inCharGroup = true;
+      }
+    }
+    try {
+      new RegExp(pattern);
+    } catch (e) {
+      console.warn(
+        `Could not convert regex pattern at ${refs.currentPath.join(
+          "/"
+        )} to a flag-independent form! Falling back to the flag-ignorant source`
+      );
+      return regex.source;
+    }
+    return pattern;
+  }
+  function parseRecordDef2(def, refs) {
+    var _a24, _b23, _c, _d, _e, _f;
+    const schema = {
+      type: "object",
+      additionalProperties: (_a24 = parseDef2(def.valueType._def, {
+        ...refs,
+        currentPath: [...refs.currentPath, "additionalProperties"]
+      })) != null ? _a24 : refs.allowedAdditionalProperties
+    };
+    if (((_b23 = def.keyType) == null ? void 0 : _b23._def.typeName) === ZodFirstPartyTypeKind.ZodString && ((_c = def.keyType._def.checks) == null ? void 0 : _c.length)) {
+      const { type, ...keyType } = parseStringDef2(def.keyType._def, refs);
+      return {
+        ...schema,
+        propertyNames: keyType
+      };
+    } else if (((_d = def.keyType) == null ? void 0 : _d._def.typeName) === ZodFirstPartyTypeKind.ZodEnum) {
+      return {
+        ...schema,
+        propertyNames: {
+          enum: def.keyType._def.values
+        }
+      };
+    } else if (((_e = def.keyType) == null ? void 0 : _e._def.typeName) === ZodFirstPartyTypeKind.ZodBranded && def.keyType._def.type._def.typeName === ZodFirstPartyTypeKind.ZodString && ((_f = def.keyType._def.type._def.checks) == null ? void 0 : _f.length)) {
+      const { type, ...keyType } = parseBrandedDef2(
+        def.keyType._def,
+        refs
+      );
+      return {
+        ...schema,
+        propertyNames: keyType
+      };
+    }
+    return schema;
+  }
+  function parseMapDef2(def, refs) {
+    if (refs.mapStrategy === "record") {
+      return parseRecordDef2(def, refs);
+    }
+    const keys = parseDef2(def.keyType._def, {
+      ...refs,
+      currentPath: [...refs.currentPath, "items", "items", "0"]
+    }) || parseAnyDef2();
+    const values = parseDef2(def.valueType._def, {
+      ...refs,
+      currentPath: [...refs.currentPath, "items", "items", "1"]
+    }) || parseAnyDef2();
+    return {
+      type: "array",
+      maxItems: 125,
+      items: {
+        type: "array",
+        items: [keys, values],
+        minItems: 2,
+        maxItems: 2
+      }
+    };
+  }
+  function parseNativeEnumDef2(def) {
+    const object3 = def.values;
+    const actualKeys = Object.keys(def.values).filter((key) => {
+      return typeof object3[object3[key]] !== "number";
+    });
+    const actualValues = actualKeys.map((key) => object3[key]);
+    const parsedTypes = Array.from(
+      new Set(actualValues.map((values) => typeof values))
+    );
+    return {
+      type: parsedTypes.length === 1 ? parsedTypes[0] === "string" ? "string" : "number" : ["string", "number"],
+      enum: actualValues
+    };
+  }
+  function parseNeverDef2() {
+    return { not: parseAnyDef2() };
+  }
+  function parseNullDef2() {
+    return {
+      type: "null"
+    };
+  }
+  var primitiveMappings2 = {
+    ZodString: "string",
+    ZodNumber: "number",
+    ZodBigInt: "integer",
+    ZodBoolean: "boolean",
+    ZodNull: "null"
+  };
+  function parseUnionDef2(def, refs) {
+    const options = def.options instanceof Map ? Array.from(def.options.values()) : def.options;
+    if (options.every(
+      (x) => x._def.typeName in primitiveMappings2 && (!x._def.checks || !x._def.checks.length)
+    )) {
+      const types = options.reduce((types2, x) => {
+        const type = primitiveMappings2[x._def.typeName];
+        return type && !types2.includes(type) ? [...types2, type] : types2;
+      }, []);
+      return {
+        type: types.length > 1 ? types : types[0]
+      };
+    } else if (options.every((x) => x._def.typeName === "ZodLiteral" && !x.description)) {
+      const types = options.reduce(
+        (acc, x) => {
+          const type = typeof x._def.value;
+          switch (type) {
+            case "string":
+            case "number":
+            case "boolean":
+              return [...acc, type];
+            case "bigint":
+              return [...acc, "integer"];
+            case "object":
+              if (x._def.value === null) return [...acc, "null"];
+            case "symbol":
+            case "undefined":
+            case "function":
+            default:
+              return acc;
+          }
+        },
+        []
+      );
+      if (types.length === options.length) {
+        const uniqueTypes = types.filter((x, i, a) => a.indexOf(x) === i);
+        return {
+          type: uniqueTypes.length > 1 ? uniqueTypes : uniqueTypes[0],
+          enum: options.reduce(
+            (acc, x) => {
+              return acc.includes(x._def.value) ? acc : [...acc, x._def.value];
+            },
+            []
+          )
+        };
+      }
+    } else if (options.every((x) => x._def.typeName === "ZodEnum")) {
+      return {
+        type: "string",
+        enum: options.reduce(
+          (acc, x) => [
+            ...acc,
+            ...x._def.values.filter((x2) => !acc.includes(x2))
+          ],
+          []
+        )
+      };
+    }
+    return asAnyOf2(def, refs);
+  }
+  var asAnyOf2 = (def, refs) => {
+    const anyOf = (def.options instanceof Map ? Array.from(def.options.values()) : def.options).map(
+      (x, i) => parseDef2(x._def, {
+        ...refs,
+        currentPath: [...refs.currentPath, "anyOf", `${i}`]
+      })
+    ).filter(
+      (x) => !!x && (!refs.strictUnions || typeof x === "object" && Object.keys(x).length > 0)
+    );
+    return anyOf.length ? { anyOf } : void 0;
+  };
+  function parseNullableDef2(def, refs) {
+    if (["ZodString", "ZodNumber", "ZodBigInt", "ZodBoolean", "ZodNull"].includes(
+      def.innerType._def.typeName
+    ) && (!def.innerType._def.checks || !def.innerType._def.checks.length)) {
+      return {
+        type: [
+          primitiveMappings2[def.innerType._def.typeName],
+          "null"
+        ]
+      };
+    }
+    const base = parseDef2(def.innerType._def, {
+      ...refs,
+      currentPath: [...refs.currentPath, "anyOf", "0"]
+    });
+    return base && { anyOf: [base, { type: "null" }] };
+  }
+  function parseNumberDef2(def) {
+    const res = {
+      type: "number"
+    };
+    if (!def.checks) return res;
+    for (const check2 of def.checks) {
+      switch (check2.kind) {
+        case "int":
+          res.type = "integer";
+          break;
+        case "min":
+          if (check2.inclusive) {
+            res.minimum = check2.value;
+          } else {
+            res.exclusiveMinimum = check2.value;
+          }
+          break;
+        case "max":
+          if (check2.inclusive) {
+            res.maximum = check2.value;
+          } else {
+            res.exclusiveMaximum = check2.value;
+          }
+          break;
+        case "multipleOf":
+          res.multipleOf = check2.value;
+          break;
+      }
+    }
+    return res;
+  }
+  function parseObjectDef2(def, refs) {
+    const result = {
+      type: "object",
+      properties: {}
+    };
+    const required2 = [];
+    const shape = def.shape();
+    for (const propName in shape) {
+      let propDef = shape[propName];
+      if (propDef === void 0 || propDef._def === void 0) {
+        continue;
+      }
+      const propOptional = safeIsOptional2(propDef);
+      const parsedDef = parseDef2(propDef._def, {
+        ...refs,
+        currentPath: [...refs.currentPath, "properties", propName],
+        propertyPath: [...refs.currentPath, "properties", propName]
+      });
+      if (parsedDef === void 0) {
+        continue;
+      }
+      result.properties[propName] = parsedDef;
+      if (!propOptional) {
+        required2.push(propName);
+      }
+    }
+    if (required2.length) {
+      result.required = required2;
+    }
+    const additionalProperties = decideAdditionalProperties2(def, refs);
+    if (additionalProperties !== void 0) {
+      result.additionalProperties = additionalProperties;
+    }
+    return result;
+  }
+  function decideAdditionalProperties2(def, refs) {
+    if (def.catchall._def.typeName !== "ZodNever") {
+      return parseDef2(def.catchall._def, {
+        ...refs,
+        currentPath: [...refs.currentPath, "additionalProperties"]
+      });
+    }
+    switch (def.unknownKeys) {
+      case "passthrough":
+        return refs.allowedAdditionalProperties;
+      case "strict":
+        return refs.rejectedAdditionalProperties;
+      case "strip":
+        return refs.removeAdditionalStrategy === "strict" ? refs.allowedAdditionalProperties : refs.rejectedAdditionalProperties;
+    }
+  }
+  function safeIsOptional2(schema) {
+    try {
+      return schema.isOptional();
+    } catch (e) {
+      return true;
+    }
+  }
+  var parseOptionalDef2 = (def, refs) => {
+    var _a24;
+    if (refs.currentPath.toString() === ((_a24 = refs.propertyPath) == null ? void 0 : _a24.toString())) {
+      return parseDef2(def.innerType._def, refs);
+    }
+    const innerSchema = parseDef2(def.innerType._def, {
+      ...refs,
+      currentPath: [...refs.currentPath, "anyOf", "1"]
+    });
+    return innerSchema ? { anyOf: [{ not: parseAnyDef2() }, innerSchema] } : parseAnyDef2();
+  };
+  var parsePipelineDef2 = (def, refs) => {
+    if (refs.pipeStrategy === "input") {
+      return parseDef2(def.in._def, refs);
+    } else if (refs.pipeStrategy === "output") {
+      return parseDef2(def.out._def, refs);
+    }
+    const a = parseDef2(def.in._def, {
+      ...refs,
+      currentPath: [...refs.currentPath, "allOf", "0"]
+    });
+    const b = parseDef2(def.out._def, {
+      ...refs,
+      currentPath: [...refs.currentPath, "allOf", a ? "1" : "0"]
+    });
+    return {
+      allOf: [a, b].filter((x) => x !== void 0)
+    };
+  };
+  function parsePromiseDef2(def, refs) {
+    return parseDef2(def.type._def, refs);
+  }
+  function parseSetDef2(def, refs) {
+    const items = parseDef2(def.valueType._def, {
+      ...refs,
+      currentPath: [...refs.currentPath, "items"]
+    });
+    const schema = {
+      type: "array",
+      uniqueItems: true,
+      items
+    };
+    if (def.minSize) {
+      schema.minItems = def.minSize.value;
+    }
+    if (def.maxSize) {
+      schema.maxItems = def.maxSize.value;
+    }
+    return schema;
+  }
+  function parseTupleDef2(def, refs) {
+    if (def.rest) {
+      return {
+        type: "array",
+        minItems: def.items.length,
+        items: def.items.map(
+          (x, i) => parseDef2(x._def, {
+            ...refs,
+            currentPath: [...refs.currentPath, "items", `${i}`]
+          })
+        ).reduce(
+          (acc, x) => x === void 0 ? acc : [...acc, x],
+          []
+        ),
+        additionalItems: parseDef2(def.rest._def, {
+          ...refs,
+          currentPath: [...refs.currentPath, "additionalItems"]
+        })
+      };
+    } else {
+      return {
+        type: "array",
+        minItems: def.items.length,
+        maxItems: def.items.length,
+        items: def.items.map(
+          (x, i) => parseDef2(x._def, {
+            ...refs,
+            currentPath: [...refs.currentPath, "items", `${i}`]
+          })
+        ).reduce(
+          (acc, x) => x === void 0 ? acc : [...acc, x],
+          []
+        )
+      };
+    }
+  }
+  function parseUndefinedDef2() {
+    return {
+      not: parseAnyDef2()
+    };
+  }
+  function parseUnknownDef2() {
+    return parseAnyDef2();
+  }
+  var parseReadonlyDef2 = (def, refs) => {
+    return parseDef2(def.innerType._def, refs);
+  };
+  var selectParser2 = (def, typeName, refs) => {
+    switch (typeName) {
+      case ZodFirstPartyTypeKind.ZodString:
+        return parseStringDef2(def, refs);
+      case ZodFirstPartyTypeKind.ZodNumber:
+        return parseNumberDef2(def);
+      case ZodFirstPartyTypeKind.ZodObject:
+        return parseObjectDef2(def, refs);
+      case ZodFirstPartyTypeKind.ZodBigInt:
+        return parseBigintDef2(def);
+      case ZodFirstPartyTypeKind.ZodBoolean:
+        return parseBooleanDef2();
+      case ZodFirstPartyTypeKind.ZodDate:
+        return parseDateDef2(def, refs);
+      case ZodFirstPartyTypeKind.ZodUndefined:
+        return parseUndefinedDef2();
+      case ZodFirstPartyTypeKind.ZodNull:
+        return parseNullDef2();
+      case ZodFirstPartyTypeKind.ZodArray:
+        return parseArrayDef2(def, refs);
+      case ZodFirstPartyTypeKind.ZodUnion:
+      case ZodFirstPartyTypeKind.ZodDiscriminatedUnion:
+        return parseUnionDef2(def, refs);
+      case ZodFirstPartyTypeKind.ZodIntersection:
+        return parseIntersectionDef2(def, refs);
+      case ZodFirstPartyTypeKind.ZodTuple:
+        return parseTupleDef2(def, refs);
+      case ZodFirstPartyTypeKind.ZodRecord:
+        return parseRecordDef2(def, refs);
+      case ZodFirstPartyTypeKind.ZodLiteral:
+        return parseLiteralDef2(def);
+      case ZodFirstPartyTypeKind.ZodEnum:
+        return parseEnumDef2(def);
+      case ZodFirstPartyTypeKind.ZodNativeEnum:
+        return parseNativeEnumDef2(def);
+      case ZodFirstPartyTypeKind.ZodNullable:
+        return parseNullableDef2(def, refs);
+      case ZodFirstPartyTypeKind.ZodOptional:
+        return parseOptionalDef2(def, refs);
+      case ZodFirstPartyTypeKind.ZodMap:
+        return parseMapDef2(def, refs);
+      case ZodFirstPartyTypeKind.ZodSet:
+        return parseSetDef2(def, refs);
+      case ZodFirstPartyTypeKind.ZodLazy:
+        return () => def.getter()._def;
+      case ZodFirstPartyTypeKind.ZodPromise:
+        return parsePromiseDef2(def, refs);
+      case ZodFirstPartyTypeKind.ZodNaN:
+      case ZodFirstPartyTypeKind.ZodNever:
+        return parseNeverDef2();
+      case ZodFirstPartyTypeKind.ZodEffects:
+        return parseEffectsDef2(def, refs);
+      case ZodFirstPartyTypeKind.ZodAny:
+        return parseAnyDef2();
+      case ZodFirstPartyTypeKind.ZodUnknown:
+        return parseUnknownDef2();
+      case ZodFirstPartyTypeKind.ZodDefault:
+        return parseDefaultDef2(def, refs);
+      case ZodFirstPartyTypeKind.ZodBranded:
+        return parseBrandedDef2(def, refs);
+      case ZodFirstPartyTypeKind.ZodReadonly:
+        return parseReadonlyDef2(def, refs);
+      case ZodFirstPartyTypeKind.ZodCatch:
+        return parseCatchDef2(def, refs);
+      case ZodFirstPartyTypeKind.ZodPipeline:
+        return parsePipelineDef2(def, refs);
+      case ZodFirstPartyTypeKind.ZodFunction:
+      case ZodFirstPartyTypeKind.ZodVoid:
+      case ZodFirstPartyTypeKind.ZodSymbol:
+        return void 0;
+      default:
+        return /* @__PURE__ */ ((_) => void 0)(typeName);
+    }
+  };
+  var getRelativePath2 = (pathA, pathB) => {
+    let i = 0;
+    for (; i < pathA.length && i < pathB.length; i++) {
+      if (pathA[i] !== pathB[i]) break;
+    }
+    return [(pathA.length - i).toString(), ...pathB.slice(i)].join("/");
+  };
+  function parseDef2(def, refs, forceResolution = false) {
+    var _a24;
+    const seenItem = refs.seen.get(def);
+    if (refs.override) {
+      const overrideResult = (_a24 = refs.override) == null ? void 0 : _a24.call(
+        refs,
+        def,
+        refs,
+        seenItem,
+        forceResolution
+      );
+      if (overrideResult !== ignoreOverride2) {
+        return overrideResult;
+      }
+    }
+    if (seenItem && !forceResolution) {
+      const seenSchema = get$ref2(seenItem, refs);
+      if (seenSchema !== void 0) {
+        return seenSchema;
+      }
+    }
+    const newItem = { def, path: refs.currentPath, jsonSchema: void 0 };
+    refs.seen.set(def, newItem);
+    const jsonSchemaOrGetter = selectParser2(def, def.typeName, refs);
+    const jsonSchema22 = typeof jsonSchemaOrGetter === "function" ? parseDef2(jsonSchemaOrGetter(), refs) : jsonSchemaOrGetter;
+    if (jsonSchema22) {
+      addMeta2(def, refs, jsonSchema22);
+    }
+    if (refs.postProcess) {
+      const postProcessResult = refs.postProcess(jsonSchema22, def, refs);
+      newItem.jsonSchema = jsonSchema22;
+      return postProcessResult;
+    }
+    newItem.jsonSchema = jsonSchema22;
+    return jsonSchema22;
+  }
+  var get$ref2 = (item, refs) => {
+    switch (refs.$refStrategy) {
+      case "root":
+        return { $ref: item.path.join("/") };
+      case "relative":
+        return { $ref: getRelativePath2(refs.currentPath, item.path) };
+      case "none":
+      case "seen": {
+        if (item.path.length < refs.currentPath.length && item.path.every((value, index) => refs.currentPath[index] === value)) {
+          console.warn(
+            `Recursive reference detected at ${refs.currentPath.join(
+              "/"
+            )}! Defaulting to any`
+          );
+          return parseAnyDef2();
+        }
+        return refs.$refStrategy === "seen" ? parseAnyDef2() : void 0;
+      }
+    }
+  };
+  var addMeta2 = (def, refs, jsonSchema22) => {
+    if (def.description) {
+      jsonSchema22.description = def.description;
+    }
+    return jsonSchema22;
+  };
+  var getRefs2 = (options) => {
+    const _options = getDefaultOptions2(options);
+    const currentPath = _options.name !== void 0 ? [..._options.basePath, _options.definitionPath, _options.name] : _options.basePath;
+    return {
+      ..._options,
+      currentPath,
+      propertyPath: void 0,
+      seen: new Map(
+        Object.entries(_options.definitions).map(([name24, def]) => [
+          def._def,
+          {
+            def: def._def,
+            path: [..._options.basePath, _options.definitionPath, name24],
+            // Resolution of references will be forced even though seen, so it's ok that the schema is undefined here for now.
+            jsonSchema: void 0
+          }
+        ])
+      )
+    };
+  };
+  var zod3ToJsonSchema2 = (schema, options) => {
+    var _a24;
+    const refs = getRefs2(options);
+    let definitions = typeof options === "object" && options.definitions ? Object.entries(options.definitions).reduce(
+      (acc, [name34, schema2]) => {
+        var _a34;
+        return {
+          ...acc,
+          [name34]: (_a34 = parseDef2(
+            schema2._def,
+            {
+              ...refs,
+              currentPath: [...refs.basePath, refs.definitionPath, name34]
+            },
+            true
+          )) != null ? _a34 : parseAnyDef2()
+        };
+      },
+      {}
+    ) : void 0;
+    const name24 = typeof options === "string" ? options : (options == null ? void 0 : options.nameStrategy) === "title" ? void 0 : options == null ? void 0 : options.name;
+    const main = (_a24 = parseDef2(
+      schema._def,
+      name24 === void 0 ? refs : {
+        ...refs,
+        currentPath: [...refs.basePath, refs.definitionPath, name24]
+      },
+      false
+    )) != null ? _a24 : parseAnyDef2();
+    const title = typeof options === "object" && options.name !== void 0 && options.nameStrategy === "title" ? options.name : void 0;
+    if (title !== void 0) {
+      main.title = title;
+    }
+    const combined = name24 === void 0 ? definitions ? {
+      ...main,
+      [refs.definitionPath]: definitions
+    } : main : {
+      $ref: [
+        ...refs.$refStrategy === "relative" ? [] : refs.basePath,
+        refs.definitionPath,
+        name24
+      ].join("/"),
+      [refs.definitionPath]: {
+        ...definitions,
+        [name24]: main
+      }
+    };
+    combined.$schema = "http://json-schema.org/draft-07/schema#";
+    return combined;
+  };
+  var schemaSymbol2 = /* @__PURE__ */ Symbol.for("vercel.ai.schema");
+  function lazySchema2(createSchema) {
+    let schema;
+    return () => {
+      if (schema == null) {
+        schema = createSchema();
+      }
+      return schema;
+    };
+  }
+  function jsonSchema2(jsonSchema22, {
+    validate
+  } = {}) {
+    return {
+      [schemaSymbol2]: true,
+      _type: void 0,
+      // should never be used directly
+      get jsonSchema() {
+        if (typeof jsonSchema22 === "function") {
+          jsonSchema22 = jsonSchema22();
+        }
+        return jsonSchema22;
+      },
+      validate
+    };
+  }
+  function isSchema2(value) {
+    return typeof value === "object" && value !== null && schemaSymbol2 in value && value[schemaSymbol2] === true && "jsonSchema" in value && "validate" in value;
+  }
+  function asSchema2(schema) {
+    return schema == null ? jsonSchema2({ properties: {}, additionalProperties: false }) : isSchema2(schema) ? schema : "~standard" in schema ? schema["~standard"].vendor === "zod" ? zodSchema2(schema) : standardSchema2(schema) : schema();
+  }
+  function standardSchema2(standardSchema22) {
+    return jsonSchema2(
+      () => addAdditionalPropertiesToJsonSchema2(
+        standardSchema22["~standard"].jsonSchema.input({
+          target: "draft-07"
+        })
+      ),
+      {
+        validate: async (value) => {
+          const result = await standardSchema22["~standard"].validate(value);
+          return "value" in result ? { success: true, value: result.value } : {
+            success: false,
+            error: new TypeValidationError({
+              value,
+              cause: result.issues
+            })
+          };
+        }
+      }
+    );
+  }
+  function zod3Schema2(zodSchema22, options) {
+    var _a24;
+    const useReferences = (_a24 = options == null ? void 0 : options.useReferences) != null ? _a24 : false;
+    return jsonSchema2(
+      // defer json schema creation to avoid unnecessary computation when only validation is needed
+      () => zod3ToJsonSchema2(zodSchema22, {
+        $refStrategy: useReferences ? "root" : "none"
+      }),
+      {
+        validate: async (value) => {
+          const result = await zodSchema22.safeParseAsync(value);
+          return result.success ? { success: true, value: result.data } : { success: false, error: result.error };
+        }
+      }
+    );
+  }
+  function zod4Schema2(zodSchema22, options) {
+    var _a24;
+    const useReferences = (_a24 = options == null ? void 0 : options.useReferences) != null ? _a24 : false;
+    return jsonSchema2(
+      // defer json schema creation to avoid unnecessary computation when only validation is needed
+      () => addAdditionalPropertiesToJsonSchema2(
+        toJSONSchema(zodSchema22, {
+          target: "draft-7",
+          io: "input",
+          reused: useReferences ? "ref" : "inline"
+        })
+      ),
+      {
+        validate: async (value) => {
+          const result = await safeParseAsync2(zodSchema22, value);
+          return result.success ? { success: true, value: result.data } : { success: false, error: result.error };
+        }
+      }
+    );
+  }
+  function isZod4Schema2(zodSchema22) {
+    return "_zod" in zodSchema22;
+  }
+  function zodSchema2(zodSchema22, options) {
+    if (isZod4Schema2(zodSchema22)) {
+      return zod4Schema2(zodSchema22, options);
+    } else {
+      return zod3Schema2(zodSchema22, options);
+    }
+  }
+  async function validateTypes2({
+    value,
+    schema,
+    context: context2
+  }) {
+    const result = await safeValidateTypes2({ value, schema, context: context2 });
+    if (!result.success) {
+      throw TypeValidationError.wrap({ value, cause: result.error, context: context2 });
+    }
+    return result.value;
+  }
+  async function safeValidateTypes2({
+    value,
+    schema,
+    context: context2
+  }) {
+    const actualSchema = asSchema2(schema);
+    try {
+      if (actualSchema.validate == null) {
+        return { success: true, value, rawValue: value };
+      }
+      const result = await actualSchema.validate(value);
+      if (result.success) {
+        return { success: true, value: result.value, rawValue: value };
+      }
+      return {
+        success: false,
+        error: TypeValidationError.wrap({ value, cause: result.error, context: context2 }),
+        rawValue: value
+      };
+    } catch (error40) {
+      return {
+        success: false,
+        error: TypeValidationError.wrap({ value, cause: error40, context: context2 }),
+        rawValue: value
+      };
+    }
+  }
+  async function parseJSON2({
+    text: text2,
+    schema
+  }) {
+    try {
+      const value = secureJsonParse2(text2);
+      if (schema == null) {
+        return value;
+      }
+      return validateTypes2({ value, schema });
+    } catch (error40) {
+      if (JSONParseError.isInstance(error40) || TypeValidationError.isInstance(error40)) {
+        throw error40;
+      }
+      throw new JSONParseError({ text: text2, cause: error40 });
+    }
+  }
+  async function safeParseJSON2({
+    text: text2,
+    schema
+  }) {
+    try {
+      const value = secureJsonParse2(text2);
+      if (schema == null) {
+        return { success: true, value, rawValue: value };
+      }
+      return await safeValidateTypes2({ value, schema });
+    } catch (error40) {
+      return {
+        success: false,
+        error: JSONParseError.isInstance(error40) ? error40 : new JSONParseError({ text: text2, cause: error40 }),
+        rawValue: void 0
+      };
+    }
+  }
+  function isParsableJson(input) {
+    try {
+      secureJsonParse2(input);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+  function parseJsonEventStream2({
+    stream,
+    schema
+  }) {
+    return stream.pipeThrough(new TextDecoderStream()).pipeThrough(new EventSourceParserStream()).pipeThrough(
+      new TransformStream({
+        async transform({ data }, controller) {
+          if (data === "[DONE]") {
+            return;
+          }
+          controller.enqueue(await safeParseJSON2({ text: data, schema }));
+        }
+      })
+    );
+  }
+  async function parseProviderOptions2({
+    provider,
+    providerOptions,
+    schema
+  }) {
+    if ((providerOptions == null ? void 0 : providerOptions[provider]) == null) {
+      return void 0;
+    }
+    const parsedProviderOptions = await safeValidateTypes2({
+      value: providerOptions[provider],
+      schema
+    });
+    if (!parsedProviderOptions.success) {
+      throw new InvalidArgumentError({
+        argument: "providerOptions",
+        message: `invalid ${provider} provider options`,
+        cause: parsedProviderOptions.error
+      });
+    }
+    return parsedProviderOptions.value;
+  }
+  var getOriginalFetch22 = () => globalThis.fetch;
+  var postJsonToApi2 = async ({
+    url: url2,
+    headers,
+    body,
+    failedResponseHandler,
+    successfulResponseHandler,
+    abortSignal,
+    fetch: fetch2
+  }) => postToApi2({
+    url: url2,
+    headers: {
+      "Content-Type": "application/json",
+      ...headers
+    },
+    body: {
+      content: JSON.stringify(body),
+      values: body
+    },
+    failedResponseHandler,
+    successfulResponseHandler,
+    abortSignal,
+    fetch: fetch2
+  });
+  var postFormDataToApi = async ({
+    url: url2,
+    headers,
+    formData,
+    failedResponseHandler,
+    successfulResponseHandler,
+    abortSignal,
+    fetch: fetch2
+  }) => postToApi2({
+    url: url2,
+    headers,
+    body: {
+      content: formData,
+      values: Object.fromEntries(formData.entries())
+    },
+    failedResponseHandler,
+    successfulResponseHandler,
+    abortSignal,
+    fetch: fetch2
+  });
+  var postToApi2 = async ({
+    url: url2,
+    headers = {},
+    body,
+    successfulResponseHandler,
+    failedResponseHandler,
+    abortSignal,
+    fetch: fetch2 = getOriginalFetch22()
+  }) => {
+    try {
+      const response = await fetch2(url2, {
+        method: "POST",
+        headers: withUserAgentSuffix2(
+          headers,
+          `ai-sdk/provider-utils/${VERSION6}`,
+          getRuntimeEnvironmentUserAgent2()
+        ),
+        body: body.content,
+        signal: abortSignal
+      });
+      const responseHeaders = extractResponseHeaders2(response);
+      if (!response.ok) {
+        let errorInformation;
+        try {
+          errorInformation = await failedResponseHandler({
+            response,
+            url: url2,
+            requestBodyValues: body.values
+          });
+        } catch (error40) {
+          if (isAbortError2(error40) || APICallError.isInstance(error40)) {
+            throw error40;
+          }
+          throw new APICallError({
+            message: "Failed to process error response",
+            cause: error40,
+            statusCode: response.status,
+            url: url2,
+            responseHeaders,
+            requestBodyValues: body.values
+          });
+        }
+        throw errorInformation.value;
+      }
+      try {
+        return await successfulResponseHandler({
+          response,
+          url: url2,
+          requestBodyValues: body.values
+        });
+      } catch (error40) {
+        if (error40 instanceof Error) {
+          if (isAbortError2(error40) || APICallError.isInstance(error40)) {
+            throw error40;
+          }
+        }
+        throw new APICallError({
+          message: "Failed to process successful response",
+          cause: error40,
+          statusCode: response.status,
+          url: url2,
+          responseHeaders,
+          requestBodyValues: body.values
+        });
+      }
+    } catch (error40) {
+      throw handleFetchError2({ error: error40, url: url2, requestBodyValues: body.values });
+    }
+  };
+  function tool2(tool22) {
+    return tool22;
+  }
+  function createProviderToolFactory2({
+    id,
+    inputSchema
+  }) {
+    return ({
+      execute,
+      outputSchema: outputSchema2,
+      needsApproval,
+      toModelOutput,
+      onInputStart,
+      onInputDelta,
+      onInputAvailable,
+      ...args
+    }) => tool2({
+      type: "provider",
+      id,
+      args,
+      inputSchema,
+      outputSchema: outputSchema2,
+      execute,
+      needsApproval,
+      toModelOutput,
+      onInputStart,
+      onInputDelta,
+      onInputAvailable
+    });
+  }
+  function createProviderToolFactoryWithOutputSchema2({
+    id,
+    inputSchema,
+    outputSchema: outputSchema2,
+    supportsDeferredResults
+  }) {
+    return ({
+      execute,
+      needsApproval,
+      toModelOutput,
+      onInputStart,
+      onInputDelta,
+      onInputAvailable,
+      ...args
+    }) => tool2({
+      type: "provider",
+      id,
+      args,
+      inputSchema,
+      outputSchema: outputSchema2,
+      execute,
+      needsApproval,
+      toModelOutput,
+      onInputStart,
+      onInputDelta,
+      onInputAvailable,
+      supportsDeferredResults
+    });
+  }
+  var createJsonErrorResponseHandler2 = ({
+    errorSchema,
+    errorToMessage,
+    isRetryable
+  }) => async ({ response, url: url2, requestBodyValues }) => {
+    const responseBody = await response.text();
+    const responseHeaders = extractResponseHeaders2(response);
+    if (responseBody.trim() === "") {
+      return {
+        responseHeaders,
+        value: new APICallError({
+          message: response.statusText,
+          url: url2,
+          requestBodyValues,
+          statusCode: response.status,
+          responseHeaders,
+          responseBody,
+          isRetryable: isRetryable == null ? void 0 : isRetryable(response)
+        })
+      };
+    }
+    try {
+      const parsedError = await parseJSON2({
+        text: responseBody,
+        schema: errorSchema
+      });
+      return {
+        responseHeaders,
+        value: new APICallError({
+          message: errorToMessage(parsedError),
+          url: url2,
+          requestBodyValues,
+          statusCode: response.status,
+          responseHeaders,
+          responseBody,
+          data: parsedError,
+          isRetryable: isRetryable == null ? void 0 : isRetryable(response, parsedError)
+        })
+      };
+    } catch (parseError) {
+      return {
+        responseHeaders,
+        value: new APICallError({
+          message: response.statusText,
+          url: url2,
+          requestBodyValues,
+          statusCode: response.status,
+          responseHeaders,
+          responseBody,
+          isRetryable: isRetryable == null ? void 0 : isRetryable(response)
+        })
+      };
+    }
+  };
+  var createEventSourceResponseHandler2 = (chunkSchema2) => async ({ response }) => {
+    const responseHeaders = extractResponseHeaders2(response);
+    if (response.body == null) {
+      throw new EmptyResponseBodyError({});
+    }
+    return {
+      responseHeaders,
+      value: parseJsonEventStream2({
+        stream: response.body,
+        schema: chunkSchema2
+      })
+    };
+  };
+  var createJsonResponseHandler2 = (responseSchema2) => async ({ response, url: url2, requestBodyValues }) => {
+    const responseBody = await response.text();
+    const parsedResult = await safeParseJSON2({
+      text: responseBody,
+      schema: responseSchema2
+    });
+    const responseHeaders = extractResponseHeaders2(response);
+    if (!parsedResult.success) {
+      throw new APICallError({
+        message: "Invalid JSON response",
+        cause: parsedResult.error,
+        statusCode: response.status,
+        responseHeaders,
+        responseBody,
+        url: url2,
+        requestBodyValues
+      });
+    }
+    return {
+      responseHeaders,
+      value: parsedResult.value,
+      rawValue: parsedResult.rawValue
+    };
+  };
+  var createBinaryResponseHandler = () => async ({ response, url: url2, requestBodyValues }) => {
+    const responseHeaders = extractResponseHeaders2(response);
+    if (!response.body) {
+      throw new APICallError({
+        message: "Response body is empty",
+        url: url2,
+        requestBodyValues,
+        statusCode: response.status,
+        responseHeaders,
+        responseBody: void 0
+      });
+    }
+    try {
+      const buffer = await response.arrayBuffer();
+      return {
+        responseHeaders,
+        value: new Uint8Array(buffer)
+      };
+    } catch (error40) {
+      throw new APICallError({
+        message: "Failed to read response as array buffer",
+        url: url2,
+        requestBodyValues,
+        statusCode: response.status,
+        responseHeaders,
+        responseBody: void 0,
+        cause: error40
+      });
+    }
+  };
+  function withoutTrailingSlash2(url2) {
+    return url2 == null ? void 0 : url2.replace(/\/$/, "");
+  }
+
+  // node_modules/@ai-sdk/openai/dist/index.mjs
+  var openaiErrorDataSchema = external_exports.object({
+    error: external_exports.object({
+      message: external_exports.string(),
+      // The additional information below is handled loosely to support
+      // OpenAI-compatible providers that have slightly different error
+      // responses:
+      type: external_exports.string().nullish(),
+      param: external_exports.any().nullish(),
+      code: external_exports.union([external_exports.string(), external_exports.number()]).nullish()
+    })
+  });
+  var openaiFailedResponseHandler = createJsonErrorResponseHandler2({
+    errorSchema: openaiErrorDataSchema,
+    errorToMessage: (data) => data.error.message
+  });
+  function getOpenAILanguageModelCapabilities(modelId) {
+    const supportsFlexProcessing = modelId.startsWith("o3") || modelId.startsWith("o4-mini") || modelId.startsWith("gpt-5") && !modelId.startsWith("gpt-5-chat");
+    const supportsPriorityProcessing = modelId.startsWith("gpt-4") || modelId.startsWith("gpt-5") && !modelId.startsWith("gpt-5-nano") && !modelId.startsWith("gpt-5-chat") && !modelId.startsWith("gpt-5.4-nano") || modelId.startsWith("o3") || modelId.startsWith("o4-mini");
+    const isReasoningModel = modelId.startsWith("o1") || modelId.startsWith("o3") || modelId.startsWith("o4-mini") || modelId.startsWith("gpt-5") && !modelId.startsWith("gpt-5-chat");
+    const supportsNonReasoningParameters = modelId.startsWith("gpt-5.1") || modelId.startsWith("gpt-5.2") || modelId.startsWith("gpt-5.3") || modelId.startsWith("gpt-5.4");
+    const systemMessageMode = isReasoningModel ? "developer" : "system";
+    return {
+      supportsFlexProcessing,
+      supportsPriorityProcessing,
+      isReasoningModel,
+      systemMessageMode,
+      supportsNonReasoningParameters
+    };
+  }
+  function convertOpenAIChatUsage(usage) {
+    var _a24, _b18, _c, _d, _e, _f;
+    if (usage == null) {
+      return {
+        inputTokens: {
+          total: void 0,
+          noCache: void 0,
+          cacheRead: void 0,
+          cacheWrite: void 0
+        },
+        outputTokens: {
+          total: void 0,
+          text: void 0,
+          reasoning: void 0
+        },
+        raw: void 0
+      };
+    }
+    const promptTokens = (_a24 = usage.prompt_tokens) != null ? _a24 : 0;
+    const completionTokens = (_b18 = usage.completion_tokens) != null ? _b18 : 0;
+    const cachedTokens = (_d = (_c = usage.prompt_tokens_details) == null ? void 0 : _c.cached_tokens) != null ? _d : 0;
+    const reasoningTokens = (_f = (_e = usage.completion_tokens_details) == null ? void 0 : _e.reasoning_tokens) != null ? _f : 0;
+    return {
+      inputTokens: {
+        total: promptTokens,
+        noCache: promptTokens - cachedTokens,
+        cacheRead: cachedTokens,
+        cacheWrite: void 0
+      },
+      outputTokens: {
+        total: completionTokens,
+        text: completionTokens - reasoningTokens,
+        reasoning: reasoningTokens
+      },
+      raw: usage
+    };
+  }
+  function convertToOpenAIChatMessages({
+    prompt,
+    systemMessageMode = "system"
+  }) {
+    var _a24;
+    const messages = [];
+    const warnings = [];
+    for (const { role, content } of prompt) {
+      switch (role) {
+        case "system": {
+          switch (systemMessageMode) {
+            case "system": {
+              messages.push({ role: "system", content });
+              break;
+            }
+            case "developer": {
+              messages.push({ role: "developer", content });
+              break;
+            }
+            case "remove": {
+              warnings.push({
+                type: "other",
+                message: "system messages are removed for this model"
+              });
+              break;
+            }
+            default: {
+              const _exhaustiveCheck = systemMessageMode;
+              throw new Error(
+                `Unsupported system message mode: ${_exhaustiveCheck}`
+              );
+            }
+          }
+          break;
+        }
+        case "user": {
+          if (content.length === 1 && content[0].type === "text") {
+            messages.push({ role: "user", content: content[0].text });
+            break;
+          }
+          messages.push({
+            role: "user",
+            content: content.map((part, index) => {
+              var _a25, _b18, _c;
+              switch (part.type) {
+                case "text": {
+                  return { type: "text", text: part.text };
+                }
+                case "file": {
+                  if (part.mediaType.startsWith("image/")) {
+                    const mediaType = part.mediaType === "image/*" ? "image/jpeg" : part.mediaType;
+                    return {
+                      type: "image_url",
+                      image_url: {
+                        url: part.data instanceof URL ? part.data.toString() : `data:${mediaType};base64,${convertToBase642(part.data)}`,
+                        // OpenAI specific extension: image detail
+                        detail: (_b18 = (_a25 = part.providerOptions) == null ? void 0 : _a25.openai) == null ? void 0 : _b18.imageDetail
+                      }
+                    };
+                  } else if (part.mediaType.startsWith("audio/")) {
+                    if (part.data instanceof URL) {
+                      throw new UnsupportedFunctionalityError({
+                        functionality: "audio file parts with URLs"
+                      });
+                    }
+                    switch (part.mediaType) {
+                      case "audio/wav": {
+                        return {
+                          type: "input_audio",
+                          input_audio: {
+                            data: convertToBase642(part.data),
+                            format: "wav"
+                          }
+                        };
+                      }
+                      case "audio/mp3":
+                      case "audio/mpeg": {
+                        return {
+                          type: "input_audio",
+                          input_audio: {
+                            data: convertToBase642(part.data),
+                            format: "mp3"
+                          }
+                        };
+                      }
+                      default: {
+                        throw new UnsupportedFunctionalityError({
+                          functionality: `audio content parts with media type ${part.mediaType}`
+                        });
+                      }
+                    }
+                  } else if (part.mediaType === "application/pdf") {
+                    if (part.data instanceof URL) {
+                      throw new UnsupportedFunctionalityError({
+                        functionality: "PDF file parts with URLs"
+                      });
+                    }
+                    return {
+                      type: "file",
+                      file: typeof part.data === "string" && part.data.startsWith("file-") ? { file_id: part.data } : {
+                        filename: (_c = part.filename) != null ? _c : `part-${index}.pdf`,
+                        file_data: `data:application/pdf;base64,${convertToBase642(part.data)}`
+                      }
+                    };
+                  } else {
+                    throw new UnsupportedFunctionalityError({
+                      functionality: `file part media type ${part.mediaType}`
+                    });
+                  }
+                }
+              }
+            })
+          });
+          break;
+        }
+        case "assistant": {
+          let text2 = "";
+          const toolCalls = [];
+          for (const part of content) {
+            switch (part.type) {
+              case "text": {
+                text2 += part.text;
+                break;
+              }
+              case "tool-call": {
+                toolCalls.push({
+                  id: part.toolCallId,
+                  type: "function",
+                  function: {
+                    name: part.toolName,
+                    arguments: JSON.stringify(part.input)
+                  }
+                });
+                break;
+              }
+            }
+          }
+          messages.push({
+            role: "assistant",
+            content: text2,
+            tool_calls: toolCalls.length > 0 ? toolCalls : void 0
+          });
+          break;
+        }
+        case "tool": {
+          for (const toolResponse of content) {
+            if (toolResponse.type === "tool-approval-response") {
+              continue;
+            }
+            const output = toolResponse.output;
+            let contentValue;
+            switch (output.type) {
+              case "text":
+              case "error-text":
+                contentValue = output.value;
+                break;
+              case "execution-denied":
+                contentValue = (_a24 = output.reason) != null ? _a24 : "Tool execution denied.";
+                break;
+              case "content":
+              case "json":
+              case "error-json":
+                contentValue = JSON.stringify(output.value);
+                break;
+            }
+            messages.push({
+              role: "tool",
+              tool_call_id: toolResponse.toolCallId,
+              content: contentValue
+            });
+          }
+          break;
+        }
+        default: {
+          const _exhaustiveCheck = role;
+          throw new Error(`Unsupported role: ${_exhaustiveCheck}`);
+        }
+      }
+    }
+    return { messages, warnings };
+  }
+  function getResponseMetadata({
+    id,
+    model,
+    created
+  }) {
+    return {
+      id: id != null ? id : void 0,
+      modelId: model != null ? model : void 0,
+      timestamp: created ? new Date(created * 1e3) : void 0
+    };
+  }
+  function mapOpenAIFinishReason(finishReason) {
+    switch (finishReason) {
+      case "stop":
+        return "stop";
+      case "length":
+        return "length";
+      case "content_filter":
+        return "content-filter";
+      case "function_call":
+      case "tool_calls":
+        return "tool-calls";
+      default:
+        return "other";
+    }
+  }
+  var openaiChatResponseSchema = lazySchema2(
+    () => zodSchema2(
+      external_exports.object({
+        id: external_exports.string().nullish(),
+        created: external_exports.number().nullish(),
+        model: external_exports.string().nullish(),
+        choices: external_exports.array(
+          external_exports.object({
+            message: external_exports.object({
+              role: external_exports.literal("assistant").nullish(),
+              content: external_exports.string().nullish(),
+              tool_calls: external_exports.array(
+                external_exports.object({
+                  id: external_exports.string().nullish(),
+                  type: external_exports.literal("function"),
+                  function: external_exports.object({
+                    name: external_exports.string(),
+                    arguments: external_exports.string()
+                  })
+                })
+              ).nullish(),
+              annotations: external_exports.array(
+                external_exports.object({
+                  type: external_exports.literal("url_citation"),
+                  url_citation: external_exports.object({
+                    start_index: external_exports.number(),
+                    end_index: external_exports.number(),
+                    url: external_exports.string(),
+                    title: external_exports.string()
+                  })
+                })
+              ).nullish()
+            }),
+            index: external_exports.number(),
+            logprobs: external_exports.object({
+              content: external_exports.array(
+                external_exports.object({
+                  token: external_exports.string(),
+                  logprob: external_exports.number(),
+                  top_logprobs: external_exports.array(
+                    external_exports.object({
+                      token: external_exports.string(),
+                      logprob: external_exports.number()
+                    })
+                  )
+                })
+              ).nullish()
+            }).nullish(),
+            finish_reason: external_exports.string().nullish()
+          })
+        ),
+        usage: external_exports.object({
+          prompt_tokens: external_exports.number().nullish(),
+          completion_tokens: external_exports.number().nullish(),
+          total_tokens: external_exports.number().nullish(),
+          prompt_tokens_details: external_exports.object({
+            cached_tokens: external_exports.number().nullish()
+          }).nullish(),
+          completion_tokens_details: external_exports.object({
+            reasoning_tokens: external_exports.number().nullish(),
+            accepted_prediction_tokens: external_exports.number().nullish(),
+            rejected_prediction_tokens: external_exports.number().nullish()
+          }).nullish()
+        }).nullish()
+      })
+    )
+  );
+  var openaiChatChunkSchema = lazySchema2(
+    () => zodSchema2(
+      external_exports.union([
+        external_exports.object({
+          id: external_exports.string().nullish(),
+          created: external_exports.number().nullish(),
+          model: external_exports.string().nullish(),
+          choices: external_exports.array(
+            external_exports.object({
+              delta: external_exports.object({
+                role: external_exports.enum(["assistant"]).nullish(),
+                content: external_exports.string().nullish(),
+                tool_calls: external_exports.array(
+                  external_exports.object({
+                    index: external_exports.number(),
+                    id: external_exports.string().nullish(),
+                    type: external_exports.literal("function").nullish(),
+                    function: external_exports.object({
+                      name: external_exports.string().nullish(),
+                      arguments: external_exports.string().nullish()
+                    })
+                  })
+                ).nullish(),
+                annotations: external_exports.array(
+                  external_exports.object({
+                    type: external_exports.literal("url_citation"),
+                    url_citation: external_exports.object({
+                      start_index: external_exports.number(),
+                      end_index: external_exports.number(),
+                      url: external_exports.string(),
+                      title: external_exports.string()
+                    })
+                  })
+                ).nullish()
+              }).nullish(),
+              logprobs: external_exports.object({
+                content: external_exports.array(
+                  external_exports.object({
+                    token: external_exports.string(),
+                    logprob: external_exports.number(),
+                    top_logprobs: external_exports.array(
+                      external_exports.object({
+                        token: external_exports.string(),
+                        logprob: external_exports.number()
+                      })
+                    )
+                  })
+                ).nullish()
+              }).nullish(),
+              finish_reason: external_exports.string().nullish(),
+              index: external_exports.number()
+            })
+          ),
+          usage: external_exports.object({
+            prompt_tokens: external_exports.number().nullish(),
+            completion_tokens: external_exports.number().nullish(),
+            total_tokens: external_exports.number().nullish(),
+            prompt_tokens_details: external_exports.object({
+              cached_tokens: external_exports.number().nullish()
+            }).nullish(),
+            completion_tokens_details: external_exports.object({
+              reasoning_tokens: external_exports.number().nullish(),
+              accepted_prediction_tokens: external_exports.number().nullish(),
+              rejected_prediction_tokens: external_exports.number().nullish()
+            }).nullish()
+          }).nullish()
+        }),
+        openaiErrorDataSchema
+      ])
+    )
+  );
+  var openaiLanguageModelChatOptions = lazySchema2(
+    () => zodSchema2(
+      external_exports.object({
+        /**
+         * Modify the likelihood of specified tokens appearing in the completion.
+         *
+         * Accepts a JSON object that maps tokens (specified by their token ID in
+         * the GPT tokenizer) to an associated bias value from -100 to 100.
+         */
+        logitBias: external_exports.record(external_exports.coerce.number(), external_exports.number()).optional(),
+        /**
+         * Return the log probabilities of the tokens.
+         *
+         * Setting to true will return the log probabilities of the tokens that
+         * were generated.
+         *
+         * Setting to a number will return the log probabilities of the top n
+         * tokens that were generated.
+         */
+        logprobs: external_exports.union([external_exports.boolean(), external_exports.number()]).optional(),
+        /**
+         * Whether to enable parallel function calling during tool use. Default to true.
+         */
+        parallelToolCalls: external_exports.boolean().optional(),
+        /**
+         * A unique identifier representing your end-user, which can help OpenAI to
+         * monitor and detect abuse.
+         */
+        user: external_exports.string().optional(),
+        /**
+         * Reasoning effort for reasoning models. Defaults to `medium`.
+         */
+        reasoningEffort: external_exports.enum(["none", "minimal", "low", "medium", "high", "xhigh"]).optional(),
+        /**
+         * Maximum number of completion tokens to generate. Useful for reasoning models.
+         */
+        maxCompletionTokens: external_exports.number().optional(),
+        /**
+         * Whether to enable persistence in responses API.
+         */
+        store: external_exports.boolean().optional(),
+        /**
+         * Metadata to associate with the request.
+         */
+        metadata: external_exports.record(external_exports.string().max(64), external_exports.string().max(512)).optional(),
+        /**
+         * Parameters for prediction mode.
+         */
+        prediction: external_exports.record(external_exports.string(), external_exports.any()).optional(),
+        /**
+         * Service tier for the request.
+         * - 'auto': Default service tier. The request will be processed with the service tier configured in the
+         *           Project settings. Unless otherwise configured, the Project will use 'default'.
+         * - 'flex': 50% cheaper processing at the cost of increased latency. Only available for o3 and o4-mini models.
+         * - 'priority': Higher-speed processing with predictably low latency at premium cost. Available for Enterprise customers.
+         * - 'default': The request will be processed with the standard pricing and performance for the selected model.
+         *
+         * @default 'auto'
+         */
+        serviceTier: external_exports.enum(["auto", "flex", "priority", "default"]).optional(),
+        /**
+         * Whether to use strict JSON schema validation.
+         *
+         * @default true
+         */
+        strictJsonSchema: external_exports.boolean().optional(),
+        /**
+         * Controls the verbosity of the model's responses.
+         * Lower values will result in more concise responses, while higher values will result in more verbose responses.
+         */
+        textVerbosity: external_exports.enum(["low", "medium", "high"]).optional(),
+        /**
+         * A cache key for prompt caching. Allows manual control over prompt caching behavior.
+         * Useful for improving cache hit rates and working around automatic caching issues.
+         */
+        promptCacheKey: external_exports.string().optional(),
+        /**
+         * The retention policy for the prompt cache.
+         * - 'in_memory': Default. Standard prompt caching behavior.
+         * - '24h': Extended prompt caching that keeps cached prefixes active for up to 24 hours.
+         *          Currently only available for 5.1 series models.
+         *
+         * @default 'in_memory'
+         */
+        promptCacheRetention: external_exports.enum(["in_memory", "24h"]).optional(),
+        /**
+         * A stable identifier used to help detect users of your application
+         * that may be violating OpenAI's usage policies. The IDs should be a
+         * string that uniquely identifies each user. We recommend hashing their
+         * username or email address, in order to avoid sending us any identifying
+         * information.
+         */
+        safetyIdentifier: external_exports.string().optional(),
+        /**
+         * Override the system message mode for this model.
+         * - 'system': Use the 'system' role for system messages (default for most models)
+         * - 'developer': Use the 'developer' role for system messages (used by reasoning models)
+         * - 'remove': Remove system messages entirely
+         *
+         * If not specified, the mode is automatically determined based on the model.
+         */
+        systemMessageMode: external_exports.enum(["system", "developer", "remove"]).optional(),
+        /**
+         * Force treating this model as a reasoning model.
+         *
+         * This is useful for "stealth" reasoning models (e.g. via a custom baseURL)
+         * where the model ID is not recognized by the SDK's allowlist.
+         *
+         * When enabled, the SDK applies reasoning-model parameter compatibility rules
+         * and defaults `systemMessageMode` to `developer` unless overridden.
+         */
+        forceReasoning: external_exports.boolean().optional()
+      })
+    )
+  );
+  function prepareChatTools({
+    tools,
+    toolChoice
+  }) {
+    tools = (tools == null ? void 0 : tools.length) ? tools : void 0;
+    const toolWarnings = [];
+    if (tools == null) {
+      return { tools: void 0, toolChoice: void 0, toolWarnings };
+    }
+    const openaiTools2 = [];
+    for (const tool3 of tools) {
+      switch (tool3.type) {
+        case "function":
+          openaiTools2.push({
+            type: "function",
+            function: {
+              name: tool3.name,
+              description: tool3.description,
+              parameters: tool3.inputSchema,
+              ...tool3.strict != null ? { strict: tool3.strict } : {}
+            }
+          });
+          break;
+        default:
+          toolWarnings.push({
+            type: "unsupported",
+            feature: `tool type: ${tool3.type}`
+          });
+          break;
+      }
+    }
+    if (toolChoice == null) {
+      return { tools: openaiTools2, toolChoice: void 0, toolWarnings };
+    }
+    const type = toolChoice.type;
+    switch (type) {
+      case "auto":
+      case "none":
+      case "required":
+        return { tools: openaiTools2, toolChoice: type, toolWarnings };
+      case "tool":
+        return {
+          tools: openaiTools2,
+          toolChoice: {
+            type: "function",
+            function: {
+              name: toolChoice.toolName
+            }
+          },
+          toolWarnings
+        };
+      default: {
+        const _exhaustiveCheck = type;
+        throw new UnsupportedFunctionalityError({
+          functionality: `tool choice type: ${_exhaustiveCheck}`
+        });
+      }
+    }
+  }
+  var OpenAIChatLanguageModel = class {
+    constructor(modelId, config2) {
+      this.specificationVersion = "v3";
+      this.supportedUrls = {
+        "image/*": [/^https?:\/\/.*$/]
+      };
+      this.modelId = modelId;
+      this.config = config2;
+    }
+    get provider() {
+      return this.config.provider;
+    }
+    async getArgs({
+      prompt,
+      maxOutputTokens,
+      temperature,
+      topP,
+      topK,
+      frequencyPenalty,
+      presencePenalty,
+      stopSequences,
+      responseFormat,
+      seed,
+      tools,
+      toolChoice,
+      providerOptions
+    }) {
+      var _a24, _b18, _c, _d, _e;
+      const warnings = [];
+      const openaiOptions = (_a24 = await parseProviderOptions2({
+        provider: "openai",
+        providerOptions,
+        schema: openaiLanguageModelChatOptions
+      })) != null ? _a24 : {};
+      const modelCapabilities = getOpenAILanguageModelCapabilities(this.modelId);
+      const isReasoningModel = (_b18 = openaiOptions.forceReasoning) != null ? _b18 : modelCapabilities.isReasoningModel;
+      if (topK != null) {
+        warnings.push({ type: "unsupported", feature: "topK" });
+      }
+      const { messages, warnings: messageWarnings } = convertToOpenAIChatMessages(
+        {
+          prompt,
+          systemMessageMode: (_c = openaiOptions.systemMessageMode) != null ? _c : isReasoningModel ? "developer" : modelCapabilities.systemMessageMode
+        }
+      );
+      warnings.push(...messageWarnings);
+      const strictJsonSchema = (_d = openaiOptions.strictJsonSchema) != null ? _d : true;
+      const baseArgs = {
+        // model id:
+        model: this.modelId,
+        // model specific settings:
+        logit_bias: openaiOptions.logitBias,
+        logprobs: openaiOptions.logprobs === true || typeof openaiOptions.logprobs === "number" ? true : void 0,
+        top_logprobs: typeof openaiOptions.logprobs === "number" ? openaiOptions.logprobs : typeof openaiOptions.logprobs === "boolean" ? openaiOptions.logprobs ? 0 : void 0 : void 0,
+        user: openaiOptions.user,
+        parallel_tool_calls: openaiOptions.parallelToolCalls,
+        // standardized settings:
+        max_tokens: maxOutputTokens,
+        temperature,
+        top_p: topP,
+        frequency_penalty: frequencyPenalty,
+        presence_penalty: presencePenalty,
+        response_format: (responseFormat == null ? void 0 : responseFormat.type) === "json" ? responseFormat.schema != null ? {
+          type: "json_schema",
+          json_schema: {
+            schema: responseFormat.schema,
+            strict: strictJsonSchema,
+            name: (_e = responseFormat.name) != null ? _e : "response",
+            description: responseFormat.description
+          }
+        } : { type: "json_object" } : void 0,
+        stop: stopSequences,
+        seed,
+        verbosity: openaiOptions.textVerbosity,
+        // openai specific settings:
+        // TODO AI SDK 6: remove, we auto-map maxOutputTokens now
+        max_completion_tokens: openaiOptions.maxCompletionTokens,
+        store: openaiOptions.store,
+        metadata: openaiOptions.metadata,
+        prediction: openaiOptions.prediction,
+        reasoning_effort: openaiOptions.reasoningEffort,
+        service_tier: openaiOptions.serviceTier,
+        prompt_cache_key: openaiOptions.promptCacheKey,
+        prompt_cache_retention: openaiOptions.promptCacheRetention,
+        safety_identifier: openaiOptions.safetyIdentifier,
+        // messages:
+        messages
+      };
+      if (isReasoningModel) {
+        if (openaiOptions.reasoningEffort !== "none" || !modelCapabilities.supportsNonReasoningParameters) {
+          if (baseArgs.temperature != null) {
+            baseArgs.temperature = void 0;
+            warnings.push({
+              type: "unsupported",
+              feature: "temperature",
+              details: "temperature is not supported for reasoning models"
+            });
+          }
+          if (baseArgs.top_p != null) {
+            baseArgs.top_p = void 0;
+            warnings.push({
+              type: "unsupported",
+              feature: "topP",
+              details: "topP is not supported for reasoning models"
+            });
+          }
+          if (baseArgs.logprobs != null) {
+            baseArgs.logprobs = void 0;
+            warnings.push({
+              type: "other",
+              message: "logprobs is not supported for reasoning models"
+            });
+          }
+        }
+        if (baseArgs.frequency_penalty != null) {
+          baseArgs.frequency_penalty = void 0;
+          warnings.push({
+            type: "unsupported",
+            feature: "frequencyPenalty",
+            details: "frequencyPenalty is not supported for reasoning models"
+          });
+        }
+        if (baseArgs.presence_penalty != null) {
+          baseArgs.presence_penalty = void 0;
+          warnings.push({
+            type: "unsupported",
+            feature: "presencePenalty",
+            details: "presencePenalty is not supported for reasoning models"
+          });
+        }
+        if (baseArgs.logit_bias != null) {
+          baseArgs.logit_bias = void 0;
+          warnings.push({
+            type: "other",
+            message: "logitBias is not supported for reasoning models"
+          });
+        }
+        if (baseArgs.top_logprobs != null) {
+          baseArgs.top_logprobs = void 0;
+          warnings.push({
+            type: "other",
+            message: "topLogprobs is not supported for reasoning models"
+          });
+        }
+        if (baseArgs.max_tokens != null) {
+          if (baseArgs.max_completion_tokens == null) {
+            baseArgs.max_completion_tokens = baseArgs.max_tokens;
+          }
+          baseArgs.max_tokens = void 0;
+        }
+      } else if (this.modelId.startsWith("gpt-4o-search-preview") || this.modelId.startsWith("gpt-4o-mini-search-preview")) {
+        if (baseArgs.temperature != null) {
+          baseArgs.temperature = void 0;
+          warnings.push({
+            type: "unsupported",
+            feature: "temperature",
+            details: "temperature is not supported for the search preview models and has been removed."
+          });
+        }
+      }
+      if (openaiOptions.serviceTier === "flex" && !modelCapabilities.supportsFlexProcessing) {
+        warnings.push({
+          type: "unsupported",
+          feature: "serviceTier",
+          details: "flex processing is only available for o3, o4-mini, and gpt-5 models"
+        });
+        baseArgs.service_tier = void 0;
+      }
+      if (openaiOptions.serviceTier === "priority" && !modelCapabilities.supportsPriorityProcessing) {
+        warnings.push({
+          type: "unsupported",
+          feature: "serviceTier",
+          details: "priority processing is only available for supported models (gpt-4, gpt-5, gpt-5-mini, o3, o4-mini) and requires Enterprise access. gpt-5-nano is not supported"
+        });
+        baseArgs.service_tier = void 0;
+      }
+      const {
+        tools: openaiTools2,
+        toolChoice: openaiToolChoice,
+        toolWarnings
+      } = prepareChatTools({
+        tools,
+        toolChoice
+      });
+      return {
+        args: {
+          ...baseArgs,
+          tools: openaiTools2,
+          tool_choice: openaiToolChoice
+        },
+        warnings: [...warnings, ...toolWarnings]
+      };
+    }
+    async doGenerate(options) {
+      var _a24, _b18, _c, _d, _e, _f, _g;
+      const { args: body, warnings } = await this.getArgs(options);
+      const {
+        responseHeaders,
+        value: response,
+        rawValue: rawResponse
+      } = await postJsonToApi2({
+        url: this.config.url({
+          path: "/chat/completions",
+          modelId: this.modelId
+        }),
+        headers: combineHeaders2(this.config.headers(), options.headers),
+        body,
+        failedResponseHandler: openaiFailedResponseHandler,
+        successfulResponseHandler: createJsonResponseHandler2(
+          openaiChatResponseSchema
+        ),
+        abortSignal: options.abortSignal,
+        fetch: this.config.fetch
+      });
+      const choice2 = response.choices[0];
+      const content = [];
+      const text2 = choice2.message.content;
+      if (text2 != null && text2.length > 0) {
+        content.push({ type: "text", text: text2 });
+      }
+      for (const toolCall of (_a24 = choice2.message.tool_calls) != null ? _a24 : []) {
+        content.push({
+          type: "tool-call",
+          toolCallId: (_b18 = toolCall.id) != null ? _b18 : generateId2(),
+          toolName: toolCall.function.name,
+          input: toolCall.function.arguments
+        });
+      }
+      for (const annotation of (_c = choice2.message.annotations) != null ? _c : []) {
+        content.push({
+          type: "source",
+          sourceType: "url",
+          id: generateId2(),
+          url: annotation.url_citation.url,
+          title: annotation.url_citation.title
+        });
+      }
+      const completionTokenDetails = (_d = response.usage) == null ? void 0 : _d.completion_tokens_details;
+      const promptTokenDetails = (_e = response.usage) == null ? void 0 : _e.prompt_tokens_details;
+      const providerMetadata = { openai: {} };
+      if ((completionTokenDetails == null ? void 0 : completionTokenDetails.accepted_prediction_tokens) != null) {
+        providerMetadata.openai.acceptedPredictionTokens = completionTokenDetails == null ? void 0 : completionTokenDetails.accepted_prediction_tokens;
+      }
+      if ((completionTokenDetails == null ? void 0 : completionTokenDetails.rejected_prediction_tokens) != null) {
+        providerMetadata.openai.rejectedPredictionTokens = completionTokenDetails == null ? void 0 : completionTokenDetails.rejected_prediction_tokens;
+      }
+      if (((_f = choice2.logprobs) == null ? void 0 : _f.content) != null) {
+        providerMetadata.openai.logprobs = choice2.logprobs.content;
+      }
+      return {
+        content,
+        finishReason: {
+          unified: mapOpenAIFinishReason(choice2.finish_reason),
+          raw: (_g = choice2.finish_reason) != null ? _g : void 0
+        },
+        usage: convertOpenAIChatUsage(response.usage),
+        request: { body },
+        response: {
+          ...getResponseMetadata(response),
+          headers: responseHeaders,
+          body: rawResponse
+        },
+        warnings,
+        providerMetadata
+      };
+    }
+    async doStream(options) {
+      const { args, warnings } = await this.getArgs(options);
+      const body = {
+        ...args,
+        stream: true,
+        stream_options: {
+          include_usage: true
+        }
+      };
+      const { responseHeaders, value: response } = await postJsonToApi2({
+        url: this.config.url({
+          path: "/chat/completions",
+          modelId: this.modelId
+        }),
+        headers: combineHeaders2(this.config.headers(), options.headers),
+        body,
+        failedResponseHandler: openaiFailedResponseHandler,
+        successfulResponseHandler: createEventSourceResponseHandler2(
+          openaiChatChunkSchema
+        ),
+        abortSignal: options.abortSignal,
+        fetch: this.config.fetch
+      });
+      const toolCalls = [];
+      let finishReason = {
+        unified: "other",
+        raw: void 0
+      };
+      let usage = void 0;
+      let metadataExtracted = false;
+      let isActiveText = false;
+      const providerMetadata = { openai: {} };
+      return {
+        stream: response.pipeThrough(
+          new TransformStream({
+            start(controller) {
+              controller.enqueue({ type: "stream-start", warnings });
+            },
+            transform(chunk, controller) {
+              var _a24, _b18, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q;
+              if (options.includeRawChunks) {
+                controller.enqueue({ type: "raw", rawValue: chunk.rawValue });
+              }
+              if (!chunk.success) {
+                finishReason = { unified: "error", raw: void 0 };
+                controller.enqueue({ type: "error", error: chunk.error });
+                return;
+              }
+              const value = chunk.value;
+              if ("error" in value) {
+                finishReason = { unified: "error", raw: void 0 };
+                controller.enqueue({ type: "error", error: value.error });
+                return;
+              }
+              if (!metadataExtracted) {
+                const metadata = getResponseMetadata(value);
+                if (Object.values(metadata).some(Boolean)) {
+                  metadataExtracted = true;
+                  controller.enqueue({
+                    type: "response-metadata",
+                    ...getResponseMetadata(value)
+                  });
+                }
+              }
+              if (value.usage != null) {
+                usage = value.usage;
+                if (((_a24 = value.usage.completion_tokens_details) == null ? void 0 : _a24.accepted_prediction_tokens) != null) {
+                  providerMetadata.openai.acceptedPredictionTokens = (_b18 = value.usage.completion_tokens_details) == null ? void 0 : _b18.accepted_prediction_tokens;
+                }
+                if (((_c = value.usage.completion_tokens_details) == null ? void 0 : _c.rejected_prediction_tokens) != null) {
+                  providerMetadata.openai.rejectedPredictionTokens = (_d = value.usage.completion_tokens_details) == null ? void 0 : _d.rejected_prediction_tokens;
+                }
+              }
+              const choice2 = value.choices[0];
+              if ((choice2 == null ? void 0 : choice2.finish_reason) != null) {
+                finishReason = {
+                  unified: mapOpenAIFinishReason(choice2.finish_reason),
+                  raw: choice2.finish_reason
+                };
+              }
+              if (((_e = choice2 == null ? void 0 : choice2.logprobs) == null ? void 0 : _e.content) != null) {
+                providerMetadata.openai.logprobs = choice2.logprobs.content;
+              }
+              if ((choice2 == null ? void 0 : choice2.delta) == null) {
+                return;
+              }
+              const delta = choice2.delta;
+              if (delta.content != null) {
+                if (!isActiveText) {
+                  controller.enqueue({ type: "text-start", id: "0" });
+                  isActiveText = true;
+                }
+                controller.enqueue({
+                  type: "text-delta",
+                  id: "0",
+                  delta: delta.content
+                });
+              }
+              if (delta.tool_calls != null) {
+                for (const toolCallDelta of delta.tool_calls) {
+                  const index = toolCallDelta.index;
+                  if (toolCalls[index] == null) {
+                    if (toolCallDelta.type != null && toolCallDelta.type !== "function") {
+                      throw new InvalidResponseDataError({
+                        data: toolCallDelta,
+                        message: `Expected 'function' type.`
+                      });
+                    }
+                    if (toolCallDelta.id == null) {
+                      throw new InvalidResponseDataError({
+                        data: toolCallDelta,
+                        message: `Expected 'id' to be a string.`
+                      });
+                    }
+                    if (((_f = toolCallDelta.function) == null ? void 0 : _f.name) == null) {
+                      throw new InvalidResponseDataError({
+                        data: toolCallDelta,
+                        message: `Expected 'function.name' to be a string.`
+                      });
+                    }
+                    controller.enqueue({
+                      type: "tool-input-start",
+                      id: toolCallDelta.id,
+                      toolName: toolCallDelta.function.name
+                    });
+                    toolCalls[index] = {
+                      id: toolCallDelta.id,
+                      type: "function",
+                      function: {
+                        name: toolCallDelta.function.name,
+                        arguments: (_g = toolCallDelta.function.arguments) != null ? _g : ""
+                      },
+                      hasFinished: false
+                    };
+                    const toolCall2 = toolCalls[index];
+                    if (((_h = toolCall2.function) == null ? void 0 : _h.name) != null && ((_i = toolCall2.function) == null ? void 0 : _i.arguments) != null) {
+                      if (toolCall2.function.arguments.length > 0) {
+                        controller.enqueue({
+                          type: "tool-input-delta",
+                          id: toolCall2.id,
+                          delta: toolCall2.function.arguments
+                        });
+                      }
+                      if (isParsableJson(toolCall2.function.arguments)) {
+                        controller.enqueue({
+                          type: "tool-input-end",
+                          id: toolCall2.id
+                        });
+                        controller.enqueue({
+                          type: "tool-call",
+                          toolCallId: (_j = toolCall2.id) != null ? _j : generateId2(),
+                          toolName: toolCall2.function.name,
+                          input: toolCall2.function.arguments
+                        });
+                        toolCall2.hasFinished = true;
+                      }
+                    }
+                    continue;
+                  }
+                  const toolCall = toolCalls[index];
+                  if (toolCall.hasFinished) {
+                    continue;
+                  }
+                  if (((_k = toolCallDelta.function) == null ? void 0 : _k.arguments) != null) {
+                    toolCall.function.arguments += (_m = (_l = toolCallDelta.function) == null ? void 0 : _l.arguments) != null ? _m : "";
+                  }
+                  controller.enqueue({
+                    type: "tool-input-delta",
+                    id: toolCall.id,
+                    delta: (_n = toolCallDelta.function.arguments) != null ? _n : ""
+                  });
+                  if (((_o = toolCall.function) == null ? void 0 : _o.name) != null && ((_p = toolCall.function) == null ? void 0 : _p.arguments) != null && isParsableJson(toolCall.function.arguments)) {
+                    controller.enqueue({
+                      type: "tool-input-end",
+                      id: toolCall.id
+                    });
+                    controller.enqueue({
+                      type: "tool-call",
+                      toolCallId: (_q = toolCall.id) != null ? _q : generateId2(),
+                      toolName: toolCall.function.name,
+                      input: toolCall.function.arguments
+                    });
+                    toolCall.hasFinished = true;
+                  }
+                }
+              }
+              if (delta.annotations != null) {
+                for (const annotation of delta.annotations) {
+                  controller.enqueue({
+                    type: "source",
+                    sourceType: "url",
+                    id: generateId2(),
+                    url: annotation.url_citation.url,
+                    title: annotation.url_citation.title
+                  });
+                }
+              }
+            },
+            flush(controller) {
+              if (isActiveText) {
+                controller.enqueue({ type: "text-end", id: "0" });
+              }
+              controller.enqueue({
+                type: "finish",
+                finishReason,
+                usage: convertOpenAIChatUsage(usage),
+                ...providerMetadata != null ? { providerMetadata } : {}
+              });
+            }
+          })
+        ),
+        request: { body },
+        response: { headers: responseHeaders }
+      };
+    }
+  };
+  function convertOpenAICompletionUsage(usage) {
+    var _a24, _b18, _c, _d;
+    if (usage == null) {
+      return {
+        inputTokens: {
+          total: void 0,
+          noCache: void 0,
+          cacheRead: void 0,
+          cacheWrite: void 0
+        },
+        outputTokens: {
+          total: void 0,
+          text: void 0,
+          reasoning: void 0
+        },
+        raw: void 0
+      };
+    }
+    const promptTokens = (_a24 = usage.prompt_tokens) != null ? _a24 : 0;
+    const completionTokens = (_b18 = usage.completion_tokens) != null ? _b18 : 0;
+    return {
+      inputTokens: {
+        total: (_c = usage.prompt_tokens) != null ? _c : void 0,
+        noCache: promptTokens,
+        cacheRead: void 0,
+        cacheWrite: void 0
+      },
+      outputTokens: {
+        total: (_d = usage.completion_tokens) != null ? _d : void 0,
+        text: completionTokens,
+        reasoning: void 0
+      },
+      raw: usage
+    };
+  }
+  function convertToOpenAICompletionPrompt({
+    prompt,
+    user = "user",
+    assistant = "assistant"
+  }) {
+    let text2 = "";
+    if (prompt[0].role === "system") {
+      text2 += `${prompt[0].content}
+
+`;
+      prompt = prompt.slice(1);
+    }
+    for (const { role, content } of prompt) {
+      switch (role) {
+        case "system": {
+          throw new InvalidPromptError({
+            message: "Unexpected system message in prompt: ${content}",
+            prompt
+          });
+        }
+        case "user": {
+          const userMessage = content.map((part) => {
+            switch (part.type) {
+              case "text": {
+                return part.text;
+              }
+            }
+          }).filter(Boolean).join("");
+          text2 += `${user}:
+${userMessage}
+
+`;
+          break;
+        }
+        case "assistant": {
+          const assistantMessage = content.map((part) => {
+            switch (part.type) {
+              case "text": {
+                return part.text;
+              }
+              case "tool-call": {
+                throw new UnsupportedFunctionalityError({
+                  functionality: "tool-call messages"
+                });
+              }
+            }
+          }).join("");
+          text2 += `${assistant}:
+${assistantMessage}
+
+`;
+          break;
+        }
+        case "tool": {
+          throw new UnsupportedFunctionalityError({
+            functionality: "tool messages"
+          });
+        }
+        default: {
+          const _exhaustiveCheck = role;
+          throw new Error(`Unsupported role: ${_exhaustiveCheck}`);
+        }
+      }
+    }
+    text2 += `${assistant}:
+`;
+    return {
+      prompt: text2,
+      stopSequences: [`
+${user}:`]
+    };
+  }
+  function getResponseMetadata2({
+    id,
+    model,
+    created
+  }) {
+    return {
+      id: id != null ? id : void 0,
+      modelId: model != null ? model : void 0,
+      timestamp: created != null ? new Date(created * 1e3) : void 0
+    };
+  }
+  function mapOpenAIFinishReason2(finishReason) {
+    switch (finishReason) {
+      case "stop":
+        return "stop";
+      case "length":
+        return "length";
+      case "content_filter":
+        return "content-filter";
+      case "function_call":
+      case "tool_calls":
+        return "tool-calls";
+      default:
+        return "other";
+    }
+  }
+  var openaiCompletionResponseSchema = lazySchema2(
+    () => zodSchema2(
+      external_exports.object({
+        id: external_exports.string().nullish(),
+        created: external_exports.number().nullish(),
+        model: external_exports.string().nullish(),
+        choices: external_exports.array(
+          external_exports.object({
+            text: external_exports.string(),
+            finish_reason: external_exports.string(),
+            logprobs: external_exports.object({
+              tokens: external_exports.array(external_exports.string()),
+              token_logprobs: external_exports.array(external_exports.number()),
+              top_logprobs: external_exports.array(external_exports.record(external_exports.string(), external_exports.number())).nullish()
+            }).nullish()
+          })
+        ),
+        usage: external_exports.object({
+          prompt_tokens: external_exports.number(),
+          completion_tokens: external_exports.number(),
+          total_tokens: external_exports.number()
+        }).nullish()
+      })
+    )
+  );
+  var openaiCompletionChunkSchema = lazySchema2(
+    () => zodSchema2(
+      external_exports.union([
+        external_exports.object({
+          id: external_exports.string().nullish(),
+          created: external_exports.number().nullish(),
+          model: external_exports.string().nullish(),
+          choices: external_exports.array(
+            external_exports.object({
+              text: external_exports.string(),
+              finish_reason: external_exports.string().nullish(),
+              index: external_exports.number(),
+              logprobs: external_exports.object({
+                tokens: external_exports.array(external_exports.string()),
+                token_logprobs: external_exports.array(external_exports.number()),
+                top_logprobs: external_exports.array(external_exports.record(external_exports.string(), external_exports.number())).nullish()
+              }).nullish()
+            })
+          ),
+          usage: external_exports.object({
+            prompt_tokens: external_exports.number(),
+            completion_tokens: external_exports.number(),
+            total_tokens: external_exports.number()
+          }).nullish()
+        }),
+        openaiErrorDataSchema
+      ])
+    )
+  );
+  var openaiLanguageModelCompletionOptions = lazySchema2(
+    () => zodSchema2(
+      external_exports.object({
+        /**
+         * Echo back the prompt in addition to the completion.
+         */
+        echo: external_exports.boolean().optional(),
+        /**
+         * Modify the likelihood of specified tokens appearing in the completion.
+         *
+         * Accepts a JSON object that maps tokens (specified by their token ID in
+         * the GPT tokenizer) to an associated bias value from -100 to 100. You
+         * can use this tokenizer tool to convert text to token IDs. Mathematically,
+         * the bias is added to the logits generated by the model prior to sampling.
+         * The exact effect will vary per model, but values between -1 and 1 should
+         * decrease or increase likelihood of selection; values like -100 or 100
+         * should result in a ban or exclusive selection of the relevant token.
+         *
+         * As an example, you can pass {"50256": -100} to prevent the <|endoftext|>
+         * token from being generated.
+         */
+        logitBias: external_exports.record(external_exports.string(), external_exports.number()).optional(),
+        /**
+         * The suffix that comes after a completion of inserted text.
+         */
+        suffix: external_exports.string().optional(),
+        /**
+         * A unique identifier representing your end-user, which can help OpenAI to
+         * monitor and detect abuse. Learn more.
+         */
+        user: external_exports.string().optional(),
+        /**
+         * Return the log probabilities of the tokens. Including logprobs will increase
+         * the response size and can slow down response times. However, it can
+         * be useful to better understand how the model is behaving.
+         * Setting to true will return the log probabilities of the tokens that
+         * were generated.
+         * Setting to a number will return the log probabilities of the top n
+         * tokens that were generated.
+         */
+        logprobs: external_exports.union([external_exports.boolean(), external_exports.number()]).optional()
+      })
+    )
+  );
+  var OpenAICompletionLanguageModel = class {
+    constructor(modelId, config2) {
+      this.specificationVersion = "v3";
+      this.supportedUrls = {
+        // No URLs are supported for completion models.
+      };
+      this.modelId = modelId;
+      this.config = config2;
+    }
+    get providerOptionsName() {
+      return this.config.provider.split(".")[0].trim();
+    }
+    get provider() {
+      return this.config.provider;
+    }
+    async getArgs({
+      prompt,
+      maxOutputTokens,
+      temperature,
+      topP,
+      topK,
+      frequencyPenalty,
+      presencePenalty,
+      stopSequences: userStopSequences,
+      responseFormat,
+      tools,
+      toolChoice,
+      seed,
+      providerOptions
+    }) {
+      const warnings = [];
+      const openaiOptions = {
+        ...await parseProviderOptions2({
+          provider: "openai",
+          providerOptions,
+          schema: openaiLanguageModelCompletionOptions
+        }),
+        ...await parseProviderOptions2({
+          provider: this.providerOptionsName,
+          providerOptions,
+          schema: openaiLanguageModelCompletionOptions
+        })
+      };
+      if (topK != null) {
+        warnings.push({ type: "unsupported", feature: "topK" });
+      }
+      if (tools == null ? void 0 : tools.length) {
+        warnings.push({ type: "unsupported", feature: "tools" });
+      }
+      if (toolChoice != null) {
+        warnings.push({ type: "unsupported", feature: "toolChoice" });
+      }
+      if (responseFormat != null && responseFormat.type !== "text") {
+        warnings.push({
+          type: "unsupported",
+          feature: "responseFormat",
+          details: "JSON response format is not supported."
+        });
+      }
+      const { prompt: completionPrompt, stopSequences } = convertToOpenAICompletionPrompt({ prompt });
+      const stop = [...stopSequences != null ? stopSequences : [], ...userStopSequences != null ? userStopSequences : []];
+      return {
+        args: {
+          // model id:
+          model: this.modelId,
+          // model specific settings:
+          echo: openaiOptions.echo,
+          logit_bias: openaiOptions.logitBias,
+          logprobs: (openaiOptions == null ? void 0 : openaiOptions.logprobs) === true ? 0 : (openaiOptions == null ? void 0 : openaiOptions.logprobs) === false ? void 0 : openaiOptions == null ? void 0 : openaiOptions.logprobs,
+          suffix: openaiOptions.suffix,
+          user: openaiOptions.user,
+          // standardized settings:
+          max_tokens: maxOutputTokens,
+          temperature,
+          top_p: topP,
+          frequency_penalty: frequencyPenalty,
+          presence_penalty: presencePenalty,
+          seed,
+          // prompt:
+          prompt: completionPrompt,
+          // stop sequences:
+          stop: stop.length > 0 ? stop : void 0
+        },
+        warnings
+      };
+    }
+    async doGenerate(options) {
+      var _a24;
+      const { args, warnings } = await this.getArgs(options);
+      const {
+        responseHeaders,
+        value: response,
+        rawValue: rawResponse
+      } = await postJsonToApi2({
+        url: this.config.url({
+          path: "/completions",
+          modelId: this.modelId
+        }),
+        headers: combineHeaders2(this.config.headers(), options.headers),
+        body: args,
+        failedResponseHandler: openaiFailedResponseHandler,
+        successfulResponseHandler: createJsonResponseHandler2(
+          openaiCompletionResponseSchema
+        ),
+        abortSignal: options.abortSignal,
+        fetch: this.config.fetch
+      });
+      const choice2 = response.choices[0];
+      const providerMetadata = { openai: {} };
+      if (choice2.logprobs != null) {
+        providerMetadata.openai.logprobs = choice2.logprobs;
+      }
+      return {
+        content: [{ type: "text", text: choice2.text }],
+        usage: convertOpenAICompletionUsage(response.usage),
+        finishReason: {
+          unified: mapOpenAIFinishReason2(choice2.finish_reason),
+          raw: (_a24 = choice2.finish_reason) != null ? _a24 : void 0
+        },
+        request: { body: args },
+        response: {
+          ...getResponseMetadata2(response),
+          headers: responseHeaders,
+          body: rawResponse
+        },
+        providerMetadata,
+        warnings
+      };
+    }
+    async doStream(options) {
+      const { args, warnings } = await this.getArgs(options);
+      const body = {
+        ...args,
+        stream: true,
+        stream_options: {
+          include_usage: true
+        }
+      };
+      const { responseHeaders, value: response } = await postJsonToApi2({
+        url: this.config.url({
+          path: "/completions",
+          modelId: this.modelId
+        }),
+        headers: combineHeaders2(this.config.headers(), options.headers),
+        body,
+        failedResponseHandler: openaiFailedResponseHandler,
+        successfulResponseHandler: createEventSourceResponseHandler2(
+          openaiCompletionChunkSchema
+        ),
+        abortSignal: options.abortSignal,
+        fetch: this.config.fetch
+      });
+      let finishReason = {
+        unified: "other",
+        raw: void 0
+      };
+      const providerMetadata = { openai: {} };
+      let usage = void 0;
+      let isFirstChunk = true;
+      return {
+        stream: response.pipeThrough(
+          new TransformStream({
+            start(controller) {
+              controller.enqueue({ type: "stream-start", warnings });
+            },
+            transform(chunk, controller) {
+              if (options.includeRawChunks) {
+                controller.enqueue({ type: "raw", rawValue: chunk.rawValue });
+              }
+              if (!chunk.success) {
+                finishReason = { unified: "error", raw: void 0 };
+                controller.enqueue({ type: "error", error: chunk.error });
+                return;
+              }
+              const value = chunk.value;
+              if ("error" in value) {
+                finishReason = { unified: "error", raw: void 0 };
+                controller.enqueue({ type: "error", error: value.error });
+                return;
+              }
+              if (isFirstChunk) {
+                isFirstChunk = false;
+                controller.enqueue({
+                  type: "response-metadata",
+                  ...getResponseMetadata2(value)
+                });
+                controller.enqueue({ type: "text-start", id: "0" });
+              }
+              if (value.usage != null) {
+                usage = value.usage;
+              }
+              const choice2 = value.choices[0];
+              if ((choice2 == null ? void 0 : choice2.finish_reason) != null) {
+                finishReason = {
+                  unified: mapOpenAIFinishReason2(choice2.finish_reason),
+                  raw: choice2.finish_reason
+                };
+              }
+              if ((choice2 == null ? void 0 : choice2.logprobs) != null) {
+                providerMetadata.openai.logprobs = choice2.logprobs;
+              }
+              if ((choice2 == null ? void 0 : choice2.text) != null && choice2.text.length > 0) {
+                controller.enqueue({
+                  type: "text-delta",
+                  id: "0",
+                  delta: choice2.text
+                });
+              }
+            },
+            flush(controller) {
+              if (!isFirstChunk) {
+                controller.enqueue({ type: "text-end", id: "0" });
+              }
+              controller.enqueue({
+                type: "finish",
+                finishReason,
+                providerMetadata,
+                usage: convertOpenAICompletionUsage(usage)
+              });
+            }
+          })
+        ),
+        request: { body },
+        response: { headers: responseHeaders }
+      };
+    }
+  };
+  var openaiEmbeddingModelOptions = lazySchema2(
+    () => zodSchema2(
+      external_exports.object({
+        /**
+         * The number of dimensions the resulting output embeddings should have.
+         * Only supported in text-embedding-3 and later models.
+         */
+        dimensions: external_exports.number().optional(),
+        /**
+         * A unique identifier representing your end-user, which can help OpenAI to
+         * monitor and detect abuse. Learn more.
+         */
+        user: external_exports.string().optional()
+      })
+    )
+  );
+  var openaiTextEmbeddingResponseSchema = lazySchema2(
+    () => zodSchema2(
+      external_exports.object({
+        data: external_exports.array(external_exports.object({ embedding: external_exports.array(external_exports.number()) })),
+        usage: external_exports.object({ prompt_tokens: external_exports.number() }).nullish()
+      })
+    )
+  );
+  var OpenAIEmbeddingModel = class {
+    constructor(modelId, config2) {
+      this.specificationVersion = "v3";
+      this.maxEmbeddingsPerCall = 2048;
+      this.supportsParallelCalls = true;
+      this.modelId = modelId;
+      this.config = config2;
+    }
+    get provider() {
+      return this.config.provider;
+    }
+    async doEmbed({
+      values,
+      headers,
+      abortSignal,
+      providerOptions
+    }) {
+      var _a24;
+      if (values.length > this.maxEmbeddingsPerCall) {
+        throw new TooManyEmbeddingValuesForCallError({
+          provider: this.provider,
+          modelId: this.modelId,
+          maxEmbeddingsPerCall: this.maxEmbeddingsPerCall,
+          values
+        });
+      }
+      const openaiOptions = (_a24 = await parseProviderOptions2({
+        provider: "openai",
+        providerOptions,
+        schema: openaiEmbeddingModelOptions
+      })) != null ? _a24 : {};
+      const {
+        responseHeaders,
+        value: response,
+        rawValue
+      } = await postJsonToApi2({
+        url: this.config.url({
+          path: "/embeddings",
+          modelId: this.modelId
+        }),
+        headers: combineHeaders2(this.config.headers(), headers),
+        body: {
+          model: this.modelId,
+          input: values,
+          encoding_format: "float",
+          dimensions: openaiOptions.dimensions,
+          user: openaiOptions.user
+        },
+        failedResponseHandler: openaiFailedResponseHandler,
+        successfulResponseHandler: createJsonResponseHandler2(
+          openaiTextEmbeddingResponseSchema
+        ),
+        abortSignal,
+        fetch: this.config.fetch
+      });
+      return {
+        warnings: [],
+        embeddings: response.data.map((item) => item.embedding),
+        usage: response.usage ? { tokens: response.usage.prompt_tokens } : void 0,
+        response: { headers: responseHeaders, body: rawValue }
+      };
+    }
+  };
+  var openaiImageResponseSchema = lazySchema2(
+    () => zodSchema2(
+      external_exports.object({
+        created: external_exports.number().nullish(),
+        data: external_exports.array(
+          external_exports.object({
+            b64_json: external_exports.string(),
+            revised_prompt: external_exports.string().nullish()
+          })
+        ),
+        background: external_exports.string().nullish(),
+        output_format: external_exports.string().nullish(),
+        size: external_exports.string().nullish(),
+        quality: external_exports.string().nullish(),
+        usage: external_exports.object({
+          input_tokens: external_exports.number().nullish(),
+          output_tokens: external_exports.number().nullish(),
+          total_tokens: external_exports.number().nullish(),
+          input_tokens_details: external_exports.object({
+            image_tokens: external_exports.number().nullish(),
+            text_tokens: external_exports.number().nullish()
+          }).nullish()
+        }).nullish()
+      })
+    )
+  );
+  var modelMaxImagesPerCall = {
+    "dall-e-3": 1,
+    "dall-e-2": 10,
+    "gpt-image-1": 10,
+    "gpt-image-1-mini": 10,
+    "gpt-image-1.5": 10,
+    "chatgpt-image-latest": 10
+  };
+  var defaultResponseFormatPrefixes = [
+    "chatgpt-image-",
+    "gpt-image-1-mini",
+    "gpt-image-1.5",
+    "gpt-image-1"
+  ];
+  function hasDefaultResponseFormat(modelId) {
+    return defaultResponseFormatPrefixes.some(
+      (prefix) => modelId.startsWith(prefix)
+    );
+  }
+  var OpenAIImageModel = class {
+    constructor(modelId, config2) {
+      this.modelId = modelId;
+      this.config = config2;
+      this.specificationVersion = "v3";
+    }
+    get maxImagesPerCall() {
+      var _a24;
+      return (_a24 = modelMaxImagesPerCall[this.modelId]) != null ? _a24 : 1;
+    }
+    get provider() {
+      return this.config.provider;
+    }
+    async doGenerate({
+      prompt,
+      files,
+      mask,
+      n,
+      size,
+      aspectRatio,
+      seed,
+      providerOptions,
+      headers,
+      abortSignal
+    }) {
+      var _a24, _b18, _c, _d, _e, _f, _g, _h, _i, _j, _k;
+      const warnings = [];
+      if (aspectRatio != null) {
+        warnings.push({
+          type: "unsupported",
+          feature: "aspectRatio",
+          details: "This model does not support aspect ratio. Use `size` instead."
+        });
+      }
+      if (seed != null) {
+        warnings.push({ type: "unsupported", feature: "seed" });
+      }
+      const currentDate = (_c = (_b18 = (_a24 = this.config._internal) == null ? void 0 : _a24.currentDate) == null ? void 0 : _b18.call(_a24)) != null ? _c : /* @__PURE__ */ new Date();
+      if (files != null) {
+        const { value: response2, responseHeaders: responseHeaders2 } = await postFormDataToApi({
+          url: this.config.url({
+            path: "/images/edits",
+            modelId: this.modelId
+          }),
+          headers: combineHeaders2(this.config.headers(), headers),
+          formData: convertToFormData({
+            model: this.modelId,
+            prompt,
+            image: await Promise.all(
+              files.map(
+                (file2) => file2.type === "file" ? new Blob(
+                  [
+                    file2.data instanceof Uint8Array ? new Blob([file2.data], {
+                      type: file2.mediaType
+                    }) : new Blob([convertBase64ToUint8Array2(file2.data)], {
+                      type: file2.mediaType
+                    })
+                  ],
+                  { type: file2.mediaType }
+                ) : downloadBlob(file2.url)
+              )
+            ),
+            mask: mask != null ? await fileToBlob(mask) : void 0,
+            n,
+            size,
+            ...(_d = providerOptions.openai) != null ? _d : {}
+          }),
+          failedResponseHandler: openaiFailedResponseHandler,
+          successfulResponseHandler: createJsonResponseHandler2(
+            openaiImageResponseSchema
+          ),
+          abortSignal,
+          fetch: this.config.fetch
+        });
+        return {
+          images: response2.data.map((item) => item.b64_json),
+          warnings,
+          usage: response2.usage != null ? {
+            inputTokens: (_e = response2.usage.input_tokens) != null ? _e : void 0,
+            outputTokens: (_f = response2.usage.output_tokens) != null ? _f : void 0,
+            totalTokens: (_g = response2.usage.total_tokens) != null ? _g : void 0
+          } : void 0,
+          response: {
+            timestamp: currentDate,
+            modelId: this.modelId,
+            headers: responseHeaders2
+          },
+          providerMetadata: {
+            openai: {
+              images: response2.data.map((item, index) => {
+                var _a25, _b23, _c2, _d2, _e2, _f2;
+                return {
+                  ...item.revised_prompt ? { revisedPrompt: item.revised_prompt } : {},
+                  created: (_a25 = response2.created) != null ? _a25 : void 0,
+                  size: (_b23 = response2.size) != null ? _b23 : void 0,
+                  quality: (_c2 = response2.quality) != null ? _c2 : void 0,
+                  background: (_d2 = response2.background) != null ? _d2 : void 0,
+                  outputFormat: (_e2 = response2.output_format) != null ? _e2 : void 0,
+                  ...distributeTokenDetails(
+                    (_f2 = response2.usage) == null ? void 0 : _f2.input_tokens_details,
+                    index,
+                    response2.data.length
+                  )
+                };
+              })
+            }
+          }
+        };
+      }
+      const { value: response, responseHeaders } = await postJsonToApi2({
+        url: this.config.url({
+          path: "/images/generations",
+          modelId: this.modelId
+        }),
+        headers: combineHeaders2(this.config.headers(), headers),
+        body: {
+          model: this.modelId,
+          prompt,
+          n,
+          size,
+          ...(_h = providerOptions.openai) != null ? _h : {},
+          ...!hasDefaultResponseFormat(this.modelId) ? { response_format: "b64_json" } : {}
+        },
+        failedResponseHandler: openaiFailedResponseHandler,
+        successfulResponseHandler: createJsonResponseHandler2(
+          openaiImageResponseSchema
+        ),
+        abortSignal,
+        fetch: this.config.fetch
+      });
+      return {
+        images: response.data.map((item) => item.b64_json),
+        warnings,
+        usage: response.usage != null ? {
+          inputTokens: (_i = response.usage.input_tokens) != null ? _i : void 0,
+          outputTokens: (_j = response.usage.output_tokens) != null ? _j : void 0,
+          totalTokens: (_k = response.usage.total_tokens) != null ? _k : void 0
+        } : void 0,
+        response: {
+          timestamp: currentDate,
+          modelId: this.modelId,
+          headers: responseHeaders
+        },
+        providerMetadata: {
+          openai: {
+            images: response.data.map((item, index) => {
+              var _a25, _b23, _c2, _d2, _e2, _f2;
+              return {
+                ...item.revised_prompt ? { revisedPrompt: item.revised_prompt } : {},
+                created: (_a25 = response.created) != null ? _a25 : void 0,
+                size: (_b23 = response.size) != null ? _b23 : void 0,
+                quality: (_c2 = response.quality) != null ? _c2 : void 0,
+                background: (_d2 = response.background) != null ? _d2 : void 0,
+                outputFormat: (_e2 = response.output_format) != null ? _e2 : void 0,
+                ...distributeTokenDetails(
+                  (_f2 = response.usage) == null ? void 0 : _f2.input_tokens_details,
+                  index,
+                  response.data.length
+                )
+              };
+            })
+          }
+        }
+      };
+    }
+  };
+  function distributeTokenDetails(details, index, total) {
+    if (details == null) {
+      return {};
+    }
+    const result = {};
+    if (details.image_tokens != null) {
+      const base = Math.floor(details.image_tokens / total);
+      const remainder = details.image_tokens - base * (total - 1);
+      result.imageTokens = index === total - 1 ? remainder : base;
+    }
+    if (details.text_tokens != null) {
+      const base = Math.floor(details.text_tokens / total);
+      const remainder = details.text_tokens - base * (total - 1);
+      result.textTokens = index === total - 1 ? remainder : base;
+    }
+    return result;
+  }
+  async function fileToBlob(file2) {
+    if (!file2) return void 0;
+    if (file2.type === "url") {
+      return downloadBlob(file2.url);
+    }
+    const data = file2.data instanceof Uint8Array ? file2.data : convertBase64ToUint8Array2(file2.data);
+    return new Blob([data], { type: file2.mediaType });
+  }
+  var applyPatchInputSchema = lazySchema2(
+    () => zodSchema2(
+      external_exports.object({
+        callId: external_exports.string(),
+        operation: external_exports.discriminatedUnion("type", [
+          external_exports.object({
+            type: external_exports.literal("create_file"),
+            path: external_exports.string(),
+            diff: external_exports.string()
+          }),
+          external_exports.object({
+            type: external_exports.literal("delete_file"),
+            path: external_exports.string()
+          }),
+          external_exports.object({
+            type: external_exports.literal("update_file"),
+            path: external_exports.string(),
+            diff: external_exports.string()
+          })
+        ])
+      })
+    )
+  );
+  var applyPatchOutputSchema = lazySchema2(
+    () => zodSchema2(
+      external_exports.object({
+        status: external_exports.enum(["completed", "failed"]),
+        output: external_exports.string().optional()
+      })
+    )
+  );
+  var applyPatchArgsSchema = lazySchema2(() => zodSchema2(external_exports.object({})));
+  var applyPatchToolFactory = createProviderToolFactoryWithOutputSchema2({
+    id: "openai.apply_patch",
+    inputSchema: applyPatchInputSchema,
+    outputSchema: applyPatchOutputSchema
+  });
+  var applyPatch = applyPatchToolFactory;
+  var codeInterpreterInputSchema = lazySchema2(
+    () => zodSchema2(
+      external_exports.object({
+        code: external_exports.string().nullish(),
+        containerId: external_exports.string()
+      })
+    )
+  );
+  var codeInterpreterOutputSchema = lazySchema2(
+    () => zodSchema2(
+      external_exports.object({
+        outputs: external_exports.array(
+          external_exports.discriminatedUnion("type", [
+            external_exports.object({ type: external_exports.literal("logs"), logs: external_exports.string() }),
+            external_exports.object({ type: external_exports.literal("image"), url: external_exports.string() })
+          ])
+        ).nullish()
+      })
+    )
+  );
+  var codeInterpreterArgsSchema = lazySchema2(
+    () => zodSchema2(
+      external_exports.object({
+        container: external_exports.union([
+          external_exports.string(),
+          external_exports.object({
+            fileIds: external_exports.array(external_exports.string()).optional()
+          })
+        ]).optional()
+      })
+    )
+  );
+  var codeInterpreterToolFactory = createProviderToolFactoryWithOutputSchema2({
+    id: "openai.code_interpreter",
+    inputSchema: codeInterpreterInputSchema,
+    outputSchema: codeInterpreterOutputSchema
+  });
+  var codeInterpreter = (args = {}) => {
+    return codeInterpreterToolFactory(args);
+  };
+  var customArgsSchema = lazySchema2(
+    () => zodSchema2(
+      external_exports.object({
+        name: external_exports.string(),
+        description: external_exports.string().optional(),
+        format: external_exports.union([
+          external_exports.object({
+            type: external_exports.literal("grammar"),
+            syntax: external_exports.enum(["regex", "lark"]),
+            definition: external_exports.string()
+          }),
+          external_exports.object({
+            type: external_exports.literal("text")
+          })
+        ]).optional()
+      })
+    )
+  );
+  var customInputSchema = lazySchema2(() => zodSchema2(external_exports.string()));
+  var customToolFactory = createProviderToolFactory2({
+    id: "openai.custom",
+    inputSchema: customInputSchema
+  });
+  var customTool = (args) => customToolFactory(args);
+  var comparisonFilterSchema = external_exports.object({
+    key: external_exports.string(),
+    type: external_exports.enum(["eq", "ne", "gt", "gte", "lt", "lte", "in", "nin"]),
+    value: external_exports.union([external_exports.string(), external_exports.number(), external_exports.boolean(), external_exports.array(external_exports.string())])
+  });
+  var compoundFilterSchema = external_exports.object({
+    type: external_exports.enum(["and", "or"]),
+    filters: external_exports.array(
+      external_exports.union([comparisonFilterSchema, external_exports.lazy(() => compoundFilterSchema)])
+    )
+  });
+  var fileSearchArgsSchema2 = lazySchema2(
+    () => zodSchema2(
+      external_exports.object({
+        vectorStoreIds: external_exports.array(external_exports.string()),
+        maxNumResults: external_exports.number().optional(),
+        ranking: external_exports.object({
+          ranker: external_exports.string().optional(),
+          scoreThreshold: external_exports.number().optional()
+        }).optional(),
+        filters: external_exports.union([comparisonFilterSchema, compoundFilterSchema]).optional()
+      })
+    )
+  );
+  var fileSearchOutputSchema = lazySchema2(
+    () => zodSchema2(
+      external_exports.object({
+        queries: external_exports.array(external_exports.string()),
+        results: external_exports.array(
+          external_exports.object({
+            attributes: external_exports.record(external_exports.string(), external_exports.unknown()),
+            fileId: external_exports.string(),
+            filename: external_exports.string(),
+            score: external_exports.number(),
+            text: external_exports.string()
+          })
+        ).nullable()
+      })
+    )
+  );
+  var fileSearch2 = createProviderToolFactoryWithOutputSchema2({
+    id: "openai.file_search",
+    inputSchema: external_exports.object({}),
+    outputSchema: fileSearchOutputSchema
+  });
+  var imageGenerationArgsSchema = lazySchema2(
+    () => zodSchema2(
+      external_exports.object({
+        background: external_exports.enum(["auto", "opaque", "transparent"]).optional(),
+        inputFidelity: external_exports.enum(["low", "high"]).optional(),
+        inputImageMask: external_exports.object({
+          fileId: external_exports.string().optional(),
+          imageUrl: external_exports.string().optional()
+        }).optional(),
+        model: external_exports.string().optional(),
+        moderation: external_exports.enum(["auto"]).optional(),
+        outputCompression: external_exports.number().int().min(0).max(100).optional(),
+        outputFormat: external_exports.enum(["png", "jpeg", "webp"]).optional(),
+        partialImages: external_exports.number().int().min(0).max(3).optional(),
+        quality: external_exports.enum(["auto", "low", "medium", "high"]).optional(),
+        size: external_exports.enum(["1024x1024", "1024x1536", "1536x1024", "auto"]).optional()
+      }).strict()
+    )
+  );
+  var imageGenerationInputSchema = lazySchema2(() => zodSchema2(external_exports.object({})));
+  var imageGenerationOutputSchema = lazySchema2(
+    () => zodSchema2(external_exports.object({ result: external_exports.string() }))
+  );
+  var imageGenerationToolFactory = createProviderToolFactoryWithOutputSchema2({
+    id: "openai.image_generation",
+    inputSchema: imageGenerationInputSchema,
+    outputSchema: imageGenerationOutputSchema
+  });
+  var imageGeneration = (args = {}) => {
+    return imageGenerationToolFactory(args);
+  };
+  var localShellInputSchema = lazySchema2(
+    () => zodSchema2(
+      external_exports.object({
+        action: external_exports.object({
+          type: external_exports.literal("exec"),
+          command: external_exports.array(external_exports.string()),
+          timeoutMs: external_exports.number().optional(),
+          user: external_exports.string().optional(),
+          workingDirectory: external_exports.string().optional(),
+          env: external_exports.record(external_exports.string(), external_exports.string()).optional()
+        })
+      })
+    )
+  );
+  var localShellOutputSchema = lazySchema2(
+    () => zodSchema2(external_exports.object({ output: external_exports.string() }))
+  );
+  var localShell = createProviderToolFactoryWithOutputSchema2({
+    id: "openai.local_shell",
+    inputSchema: localShellInputSchema,
+    outputSchema: localShellOutputSchema
+  });
+  var shellInputSchema = lazySchema2(
+    () => zodSchema2(
+      external_exports.object({
+        action: external_exports.object({
+          commands: external_exports.array(external_exports.string()),
+          timeoutMs: external_exports.number().optional(),
+          maxOutputLength: external_exports.number().optional()
+        })
+      })
+    )
+  );
+  var shellOutputSchema = lazySchema2(
+    () => zodSchema2(
+      external_exports.object({
+        output: external_exports.array(
+          external_exports.object({
+            stdout: external_exports.string(),
+            stderr: external_exports.string(),
+            outcome: external_exports.discriminatedUnion("type", [
+              external_exports.object({ type: external_exports.literal("timeout") }),
+              external_exports.object({ type: external_exports.literal("exit"), exitCode: external_exports.number() })
+            ])
+          })
+        )
+      })
+    )
+  );
+  var shellSkillsSchema = external_exports.array(
+    external_exports.discriminatedUnion("type", [
+      external_exports.object({
+        type: external_exports.literal("skillReference"),
+        skillId: external_exports.string(),
+        version: external_exports.string().optional()
+      }),
+      external_exports.object({
+        type: external_exports.literal("inline"),
+        name: external_exports.string(),
+        description: external_exports.string(),
+        source: external_exports.object({
+          type: external_exports.literal("base64"),
+          mediaType: external_exports.literal("application/zip"),
+          data: external_exports.string()
+        })
+      })
+    ])
+  ).optional();
+  var shellArgsSchema = lazySchema2(
+    () => zodSchema2(
+      external_exports.object({
+        environment: external_exports.union([
+          external_exports.object({
+            type: external_exports.literal("containerAuto"),
+            fileIds: external_exports.array(external_exports.string()).optional(),
+            memoryLimit: external_exports.enum(["1g", "4g", "16g", "64g"]).optional(),
+            networkPolicy: external_exports.discriminatedUnion("type", [
+              external_exports.object({ type: external_exports.literal("disabled") }),
+              external_exports.object({
+                type: external_exports.literal("allowlist"),
+                allowedDomains: external_exports.array(external_exports.string()),
+                domainSecrets: external_exports.array(
+                  external_exports.object({
+                    domain: external_exports.string(),
+                    name: external_exports.string(),
+                    value: external_exports.string()
+                  })
+                ).optional()
+              })
+            ]).optional(),
+            skills: shellSkillsSchema
+          }),
+          external_exports.object({
+            type: external_exports.literal("containerReference"),
+            containerId: external_exports.string()
+          }),
+          external_exports.object({
+            type: external_exports.literal("local").optional(),
+            skills: external_exports.array(
+              external_exports.object({
+                name: external_exports.string(),
+                description: external_exports.string(),
+                path: external_exports.string()
+              })
+            ).optional()
+          })
+        ]).optional()
+      })
+    )
+  );
+  var shell = createProviderToolFactoryWithOutputSchema2({
+    id: "openai.shell",
+    inputSchema: shellInputSchema,
+    outputSchema: shellOutputSchema
+  });
+  var toolSearchArgsSchema = lazySchema2(
+    () => zodSchema2(
+      external_exports.object({
+        execution: external_exports.enum(["server", "client"]).optional(),
+        description: external_exports.string().optional(),
+        parameters: external_exports.record(external_exports.string(), external_exports.unknown()).optional()
+      })
+    )
+  );
+  var toolSearchInputSchema = lazySchema2(
+    () => zodSchema2(
+      external_exports.object({
+        arguments: external_exports.unknown().optional(),
+        call_id: external_exports.string().nullish()
+      })
+    )
+  );
+  var toolSearchOutputSchema = lazySchema2(
+    () => zodSchema2(
+      external_exports.object({
+        tools: external_exports.array(external_exports.record(external_exports.string(), external_exports.unknown()))
+      })
+    )
+  );
+  var toolSearchToolFactory = createProviderToolFactoryWithOutputSchema2({
+    id: "openai.tool_search",
+    inputSchema: toolSearchInputSchema,
+    outputSchema: toolSearchOutputSchema
+  });
+  var toolSearch = (args = {}) => toolSearchToolFactory(args);
+  var webSearchArgsSchema = lazySchema2(
+    () => zodSchema2(
+      external_exports.object({
+        externalWebAccess: external_exports.boolean().optional(),
+        filters: external_exports.object({ allowedDomains: external_exports.array(external_exports.string()).optional() }).optional(),
+        searchContextSize: external_exports.enum(["low", "medium", "high"]).optional(),
+        userLocation: external_exports.object({
+          type: external_exports.literal("approximate"),
+          country: external_exports.string().optional(),
+          city: external_exports.string().optional(),
+          region: external_exports.string().optional(),
+          timezone: external_exports.string().optional()
+        }).optional()
+      })
+    )
+  );
+  var webSearchInputSchema = lazySchema2(() => zodSchema2(external_exports.object({})));
+  var webSearchOutputSchema = lazySchema2(
+    () => zodSchema2(
+      external_exports.object({
+        action: external_exports.discriminatedUnion("type", [
+          external_exports.object({
+            type: external_exports.literal("search"),
+            query: external_exports.string().optional()
+          }),
+          external_exports.object({
+            type: external_exports.literal("openPage"),
+            url: external_exports.string().nullish()
+          }),
+          external_exports.object({
+            type: external_exports.literal("findInPage"),
+            url: external_exports.string().nullish(),
+            pattern: external_exports.string().nullish()
+          })
+        ]).optional(),
+        sources: external_exports.array(
+          external_exports.discriminatedUnion("type", [
+            external_exports.object({ type: external_exports.literal("url"), url: external_exports.string() }),
+            external_exports.object({ type: external_exports.literal("api"), name: external_exports.string() })
+          ])
+        ).optional()
+      })
+    )
+  );
+  var webSearchToolFactory = createProviderToolFactoryWithOutputSchema2({
+    id: "openai.web_search",
+    inputSchema: webSearchInputSchema,
+    outputSchema: webSearchOutputSchema
+  });
+  var webSearch = (args = {}) => webSearchToolFactory(args);
+  var webSearchPreviewArgsSchema = lazySchema2(
+    () => zodSchema2(
+      external_exports.object({
+        searchContextSize: external_exports.enum(["low", "medium", "high"]).optional(),
+        userLocation: external_exports.object({
+          type: external_exports.literal("approximate"),
+          country: external_exports.string().optional(),
+          city: external_exports.string().optional(),
+          region: external_exports.string().optional(),
+          timezone: external_exports.string().optional()
+        }).optional()
+      })
+    )
+  );
+  var webSearchPreviewInputSchema = lazySchema2(
+    () => zodSchema2(external_exports.object({}))
+  );
+  var webSearchPreviewOutputSchema = lazySchema2(
+    () => zodSchema2(
+      external_exports.object({
+        action: external_exports.discriminatedUnion("type", [
+          external_exports.object({
+            type: external_exports.literal("search"),
+            query: external_exports.string().optional()
+          }),
+          external_exports.object({
+            type: external_exports.literal("openPage"),
+            url: external_exports.string().nullish()
+          }),
+          external_exports.object({
+            type: external_exports.literal("findInPage"),
+            url: external_exports.string().nullish(),
+            pattern: external_exports.string().nullish()
+          })
+        ]).optional()
+      })
+    )
+  );
+  var webSearchPreview = createProviderToolFactoryWithOutputSchema2({
+    id: "openai.web_search_preview",
+    inputSchema: webSearchPreviewInputSchema,
+    outputSchema: webSearchPreviewOutputSchema
+  });
+  var jsonValueSchema2 = external_exports.lazy(
+    () => external_exports.union([
+      external_exports.string(),
+      external_exports.number(),
+      external_exports.boolean(),
+      external_exports.null(),
+      external_exports.array(jsonValueSchema2),
+      external_exports.record(external_exports.string(), jsonValueSchema2)
+    ])
+  );
+  var mcpArgsSchema = lazySchema2(
+    () => zodSchema2(
+      external_exports.object({
+        serverLabel: external_exports.string(),
+        allowedTools: external_exports.union([
+          external_exports.array(external_exports.string()),
+          external_exports.object({
+            readOnly: external_exports.boolean().optional(),
+            toolNames: external_exports.array(external_exports.string()).optional()
+          })
+        ]).optional(),
+        authorization: external_exports.string().optional(),
+        connectorId: external_exports.string().optional(),
+        headers: external_exports.record(external_exports.string(), external_exports.string()).optional(),
+        requireApproval: external_exports.union([
+          external_exports.enum(["always", "never"]),
+          external_exports.object({
+            never: external_exports.object({
+              toolNames: external_exports.array(external_exports.string()).optional()
+            }).optional()
+          })
+        ]).optional(),
+        serverDescription: external_exports.string().optional(),
+        serverUrl: external_exports.string().optional()
+      }).refine(
+        (v) => v.serverUrl != null || v.connectorId != null,
+        "One of serverUrl or connectorId must be provided."
+      )
+    )
+  );
+  var mcpInputSchema = lazySchema2(() => zodSchema2(external_exports.object({})));
+  var mcpOutputSchema = lazySchema2(
+    () => zodSchema2(
+      external_exports.object({
+        type: external_exports.literal("call"),
+        serverLabel: external_exports.string(),
+        name: external_exports.string(),
+        arguments: external_exports.string(),
+        output: external_exports.string().nullish(),
+        error: external_exports.union([external_exports.string(), jsonValueSchema2]).optional()
+      })
+    )
+  );
+  var mcpToolFactory = createProviderToolFactoryWithOutputSchema2({
+    id: "openai.mcp",
+    inputSchema: mcpInputSchema,
+    outputSchema: mcpOutputSchema
+  });
+  var mcp = (args) => mcpToolFactory(args);
+  var openaiTools = {
+    /**
+     * The apply_patch tool lets GPT-5.1 create, update, and delete files in your
+     * codebase using structured diffs. Instead of just suggesting edits, the model
+     * emits patch operations that your application applies and then reports back on,
+     * enabling iterative, multi-step code editing workflows.
+     *
+     */
+    applyPatch,
+    /**
+     * Custom tools let callers constrain model output to a grammar (regex or
+     * Lark syntax). The model returns a `custom_tool_call` output item whose
+     * `input` field is a string matching the specified grammar.
+     *
+     * @param name - The name of the custom tool.
+     * @param description - An optional description of the tool.
+     * @param format - The output format constraint (grammar type, syntax, and definition).
+     */
+    customTool,
+    /**
+     * The Code Interpreter tool allows models to write and run Python code in a
+     * sandboxed environment to solve complex problems in domains like data analysis,
+     * coding, and math.
+     *
+     * @param container - The container to use for the code interpreter.
+     */
+    codeInterpreter,
+    /**
+     * File search is a tool available in the Responses API. It enables models to
+     * retrieve information in a knowledge base of previously uploaded files through
+     * semantic and keyword search.
+     *
+     * @param vectorStoreIds - The vector store IDs to use for the file search.
+     * @param maxNumResults - The maximum number of results to return.
+     * @param ranking - The ranking options to use for the file search.
+     * @param filters - The filters to use for the file search.
+     */
+    fileSearch: fileSearch2,
+    /**
+     * The image generation tool allows you to generate images using a text prompt,
+     * and optionally image inputs. It leverages the GPT Image model,
+     * and automatically optimizes text inputs for improved performance.
+     *
+     * @param background - Background type for the generated image. One of 'auto', 'opaque', or 'transparent'.
+     * @param inputFidelity - Input fidelity for the generated image. One of 'low' or 'high'.
+     * @param inputImageMask - Optional mask for inpainting. Contains fileId and/or imageUrl.
+     * @param model - The image generation model to use. Default: gpt-image-1.
+     * @param moderation - Moderation level for the generated image. Default: 'auto'.
+     * @param outputCompression - Compression level for the output image (0-100).
+     * @param outputFormat - The output format of the generated image. One of 'png', 'jpeg', or 'webp'.
+     * @param partialImages - Number of partial images to generate in streaming mode (0-3).
+     * @param quality - The quality of the generated image. One of 'auto', 'low', 'medium', or 'high'.
+     * @param size - The size of the generated image. One of 'auto', '1024x1024', '1024x1536', or '1536x1024'.
+     */
+    imageGeneration,
+    /**
+     * Local shell is a tool that allows agents to run shell commands locally
+     * on a machine you or the user provides.
+     *
+     * Supported models: `gpt-5-codex`
+     */
+    localShell,
+    /**
+     * The shell tool allows the model to interact with your local computer through
+     * a controlled command-line interface. The model proposes shell commands; your
+     * integration executes them and returns the outputs.
+     *
+     * Available through the Responses API for use with GPT-5.1.
+     *
+     * WARNING: Running arbitrary shell commands can be dangerous. Always sandbox
+     * execution or add strict allow-/deny-lists before forwarding a command to
+     * the system shell.
+     */
+    shell,
+    /**
+     * Web search allows models to access up-to-date information from the internet
+     * and provide answers with sourced citations.
+     *
+     * @param searchContextSize - The search context size to use for the web search.
+     * @param userLocation - The user location to use for the web search.
+     */
+    webSearchPreview,
+    /**
+     * Web search allows models to access up-to-date information from the internet
+     * and provide answers with sourced citations.
+     *
+     * @param filters - The filters to use for the web search.
+     * @param searchContextSize - The search context size to use for the web search.
+     * @param userLocation - The user location to use for the web search.
+     */
+    webSearch,
+    /**
+     * MCP (Model Context Protocol) allows models to call tools exposed by
+     * remote MCP servers or service connectors.
+     *
+     * @param serverLabel - Label to identify the MCP server.
+     * @param allowedTools - Allowed tool names or filter object.
+     * @param authorization - OAuth access token for the MCP server/connector.
+     * @param connectorId - Identifier for a service connector.
+     * @param headers - Optional headers to include in MCP requests.
+     * // param requireApproval - Approval policy ('always'|'never'|filter object). (Removed - always 'never')
+     * @param serverDescription - Optional description of the server.
+     * @param serverUrl - URL for the MCP server.
+     */
+    mcp,
+    /**
+     * Tool search allows the model to dynamically search for and load deferred
+     * tools into the model's context as needed. This helps reduce overall token
+     * usage, cost, and latency by only loading tools when the model needs them.
+     *
+     * To use tool search, mark functions or namespaces with `defer_loading: true`
+     * in the tools array. The model will use tool search to load these tools
+     * when it determines they are needed.
+     */
+    toolSearch
+  };
+  function convertOpenAIResponsesUsage(usage) {
+    var _a24, _b18, _c, _d;
+    if (usage == null) {
+      return {
+        inputTokens: {
+          total: void 0,
+          noCache: void 0,
+          cacheRead: void 0,
+          cacheWrite: void 0
+        },
+        outputTokens: {
+          total: void 0,
+          text: void 0,
+          reasoning: void 0
+        },
+        raw: void 0
+      };
+    }
+    const inputTokens = usage.input_tokens;
+    const outputTokens = usage.output_tokens;
+    const cachedTokens = (_b18 = (_a24 = usage.input_tokens_details) == null ? void 0 : _a24.cached_tokens) != null ? _b18 : 0;
+    const reasoningTokens = (_d = (_c = usage.output_tokens_details) == null ? void 0 : _c.reasoning_tokens) != null ? _d : 0;
+    return {
+      inputTokens: {
+        total: inputTokens,
+        noCache: inputTokens - cachedTokens,
+        cacheRead: cachedTokens,
+        cacheWrite: void 0
+      },
+      outputTokens: {
+        total: outputTokens,
+        text: outputTokens - reasoningTokens,
+        reasoning: reasoningTokens
+      },
+      raw: usage
+    };
+  }
+  function isFileId(data, prefixes) {
+    if (!prefixes) return false;
+    return prefixes.some((prefix) => data.startsWith(prefix));
+  }
+  async function convertToOpenAIResponsesInput({
+    prompt,
+    toolNameMapping,
+    systemMessageMode,
+    providerOptionsName,
+    fileIdPrefixes,
+    store,
+    hasConversation = false,
+    hasLocalShellTool = false,
+    hasShellTool = false,
+    hasApplyPatchTool = false,
+    customProviderToolNames
+  }) {
+    var _a24, _b18, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q;
+    let input = [];
+    const warnings = [];
+    const processedApprovalIds = /* @__PURE__ */ new Set();
+    for (const { role, content } of prompt) {
+      switch (role) {
+        case "system": {
+          switch (systemMessageMode) {
+            case "system": {
+              input.push({ role: "system", content });
+              break;
+            }
+            case "developer": {
+              input.push({ role: "developer", content });
+              break;
+            }
+            case "remove": {
+              warnings.push({
+                type: "other",
+                message: "system messages are removed for this model"
+              });
+              break;
+            }
+            default: {
+              const _exhaustiveCheck = systemMessageMode;
+              throw new Error(
+                `Unsupported system message mode: ${_exhaustiveCheck}`
+              );
+            }
+          }
+          break;
+        }
+        case "user": {
+          input.push({
+            role: "user",
+            content: content.map((part, index) => {
+              var _a25, _b23, _c2;
+              switch (part.type) {
+                case "text": {
+                  return { type: "input_text", text: part.text };
+                }
+                case "file": {
+                  if (part.mediaType.startsWith("image/")) {
+                    const mediaType = part.mediaType === "image/*" ? "image/jpeg" : part.mediaType;
+                    return {
+                      type: "input_image",
+                      ...part.data instanceof URL ? { image_url: part.data.toString() } : typeof part.data === "string" && isFileId(part.data, fileIdPrefixes) ? { file_id: part.data } : {
+                        image_url: `data:${mediaType};base64,${convertToBase642(part.data)}`
+                      },
+                      detail: (_b23 = (_a25 = part.providerOptions) == null ? void 0 : _a25[providerOptionsName]) == null ? void 0 : _b23.imageDetail
+                    };
+                  } else if (part.mediaType === "application/pdf") {
+                    if (part.data instanceof URL) {
+                      return {
+                        type: "input_file",
+                        file_url: part.data.toString()
+                      };
+                    }
+                    return {
+                      type: "input_file",
+                      ...typeof part.data === "string" && isFileId(part.data, fileIdPrefixes) ? { file_id: part.data } : {
+                        filename: (_c2 = part.filename) != null ? _c2 : `part-${index}.pdf`,
+                        file_data: `data:application/pdf;base64,${convertToBase642(part.data)}`
+                      }
+                    };
+                  } else {
+                    throw new UnsupportedFunctionalityError({
+                      functionality: `file part media type ${part.mediaType}`
+                    });
+                  }
+                }
+              }
+            })
+          });
+          break;
+        }
+        case "assistant": {
+          const reasoningMessages = {};
+          for (const part of content) {
+            switch (part.type) {
+              case "text": {
+                const providerOpts = (_a24 = part.providerOptions) == null ? void 0 : _a24[providerOptionsName];
+                const id = providerOpts == null ? void 0 : providerOpts.itemId;
+                const phase = providerOpts == null ? void 0 : providerOpts.phase;
+                if (hasConversation && id != null) {
+                  break;
+                }
+                if (store && id != null) {
+                  input.push({ type: "item_reference", id });
+                  break;
+                }
+                input.push({
+                  role: "assistant",
+                  content: [{ type: "output_text", text: part.text }],
+                  id,
+                  ...phase != null && { phase }
+                });
+                break;
+              }
+              case "tool-call": {
+                const id = (_f = (_c = (_b18 = part.providerOptions) == null ? void 0 : _b18[providerOptionsName]) == null ? void 0 : _c.itemId) != null ? _f : (_e = (_d = part.providerMetadata) == null ? void 0 : _d[providerOptionsName]) == null ? void 0 : _e.itemId;
+                if (hasConversation && id != null) {
+                  break;
+                }
+                const resolvedToolName = toolNameMapping.toProviderToolName(
+                  part.toolName
+                );
+                if (resolvedToolName === "tool_search") {
+                  if (store && id != null) {
+                    input.push({ type: "item_reference", id });
+                    break;
+                  }
+                  const parsedInput = typeof part.input === "string" ? await parseJSON2({
+                    text: part.input,
+                    schema: toolSearchInputSchema
+                  }) : await validateTypes2({
+                    value: part.input,
+                    schema: toolSearchInputSchema
+                  });
+                  const execution = parsedInput.call_id != null ? "client" : "server";
+                  input.push({
+                    type: "tool_search_call",
+                    id: id != null ? id : part.toolCallId,
+                    execution,
+                    call_id: (_g = parsedInput.call_id) != null ? _g : null,
+                    status: "completed",
+                    arguments: parsedInput.arguments
+                  });
+                  break;
+                }
+                if (part.providerExecuted) {
+                  if (store && id != null) {
+                    input.push({ type: "item_reference", id });
+                  }
+                  break;
+                }
+                if (store && id != null) {
+                  input.push({ type: "item_reference", id });
+                  break;
+                }
+                if (hasLocalShellTool && resolvedToolName === "local_shell") {
+                  const parsedInput = await validateTypes2({
+                    value: part.input,
+                    schema: localShellInputSchema
+                  });
+                  input.push({
+                    type: "local_shell_call",
+                    call_id: part.toolCallId,
+                    id,
+                    action: {
+                      type: "exec",
+                      command: parsedInput.action.command,
+                      timeout_ms: parsedInput.action.timeoutMs,
+                      user: parsedInput.action.user,
+                      working_directory: parsedInput.action.workingDirectory,
+                      env: parsedInput.action.env
+                    }
+                  });
+                  break;
+                }
+                if (hasShellTool && resolvedToolName === "shell") {
+                  const parsedInput = await validateTypes2({
+                    value: part.input,
+                    schema: shellInputSchema
+                  });
+                  input.push({
+                    type: "shell_call",
+                    call_id: part.toolCallId,
+                    id,
+                    status: "completed",
+                    action: {
+                      commands: parsedInput.action.commands,
+                      timeout_ms: parsedInput.action.timeoutMs,
+                      max_output_length: parsedInput.action.maxOutputLength
+                    }
+                  });
+                  break;
+                }
+                if (hasApplyPatchTool && resolvedToolName === "apply_patch") {
+                  const parsedInput = await validateTypes2({
+                    value: part.input,
+                    schema: applyPatchInputSchema
+                  });
+                  input.push({
+                    type: "apply_patch_call",
+                    call_id: parsedInput.callId,
+                    id,
+                    status: "completed",
+                    operation: parsedInput.operation
+                  });
+                  break;
+                }
+                if (customProviderToolNames == null ? void 0 : customProviderToolNames.has(resolvedToolName)) {
+                  input.push({
+                    type: "custom_tool_call",
+                    call_id: part.toolCallId,
+                    name: resolvedToolName,
+                    input: typeof part.input === "string" ? part.input : JSON.stringify(part.input),
+                    id
+                  });
+                  break;
+                }
+                input.push({
+                  type: "function_call",
+                  call_id: part.toolCallId,
+                  name: resolvedToolName,
+                  arguments: JSON.stringify(part.input),
+                  id
+                });
+                break;
+              }
+              // assistant tool result parts are from provider-executed tools:
+              case "tool-result": {
+                if (part.output.type === "execution-denied" || part.output.type === "json" && typeof part.output.value === "object" && part.output.value != null && "type" in part.output.value && part.output.value.type === "execution-denied") {
+                  break;
+                }
+                if (hasConversation) {
+                  break;
+                }
+                const resolvedResultToolName = toolNameMapping.toProviderToolName(
+                  part.toolName
+                );
+                if (resolvedResultToolName === "tool_search") {
+                  const itemId = (_j = (_i = (_h = part.providerOptions) == null ? void 0 : _h[providerOptionsName]) == null ? void 0 : _i.itemId) != null ? _j : part.toolCallId;
+                  if (store) {
+                    input.push({ type: "item_reference", id: itemId });
+                  } else if (part.output.type === "json") {
+                    const parsedOutput = await validateTypes2({
+                      value: part.output.value,
+                      schema: toolSearchOutputSchema
+                    });
+                    input.push({
+                      type: "tool_search_output",
+                      id: itemId,
+                      execution: "server",
+                      call_id: null,
+                      status: "completed",
+                      tools: parsedOutput.tools
+                    });
+                  }
+                  break;
+                }
+                if (hasShellTool && resolvedResultToolName === "shell") {
+                  if (part.output.type === "json") {
+                    const parsedOutput = await validateTypes2({
+                      value: part.output.value,
+                      schema: shellOutputSchema
+                    });
+                    input.push({
+                      type: "shell_call_output",
+                      call_id: part.toolCallId,
+                      output: parsedOutput.output.map((item) => ({
+                        stdout: item.stdout,
+                        stderr: item.stderr,
+                        outcome: item.outcome.type === "timeout" ? { type: "timeout" } : {
+                          type: "exit",
+                          exit_code: item.outcome.exitCode
+                        }
+                      }))
+                    });
+                  }
+                  break;
+                }
+                if (store) {
+                  const itemId = (_m = (_l = (_k = part.providerOptions) == null ? void 0 : _k[providerOptionsName]) == null ? void 0 : _l.itemId) != null ? _m : part.toolCallId;
+                  input.push({ type: "item_reference", id: itemId });
+                } else {
+                  warnings.push({
+                    type: "other",
+                    message: `Results for OpenAI tool ${part.toolName} are not sent to the API when store is false`
+                  });
+                }
+                break;
+              }
+              case "reasoning": {
+                const providerOptions = await parseProviderOptions2({
+                  provider: providerOptionsName,
+                  providerOptions: part.providerOptions,
+                  schema: openaiResponsesReasoningProviderOptionsSchema
+                });
+                const reasoningId = providerOptions == null ? void 0 : providerOptions.itemId;
+                if (hasConversation && reasoningId != null) {
+                  break;
+                }
+                if (reasoningId != null) {
+                  const reasoningMessage = reasoningMessages[reasoningId];
+                  if (store) {
+                    if (reasoningMessage === void 0) {
+                      input.push({ type: "item_reference", id: reasoningId });
+                      reasoningMessages[reasoningId] = {
+                        type: "reasoning",
+                        id: reasoningId,
+                        summary: []
+                      };
+                    }
+                  } else {
+                    const summaryParts = [];
+                    if (part.text.length > 0) {
+                      summaryParts.push({
+                        type: "summary_text",
+                        text: part.text
+                      });
+                    } else if (reasoningMessage !== void 0) {
+                      warnings.push({
+                        type: "other",
+                        message: `Cannot append empty reasoning part to existing reasoning sequence. Skipping reasoning part: ${JSON.stringify(part)}.`
+                      });
+                    }
+                    if (reasoningMessage === void 0) {
+                      reasoningMessages[reasoningId] = {
+                        type: "reasoning",
+                        id: reasoningId,
+                        encrypted_content: providerOptions == null ? void 0 : providerOptions.reasoningEncryptedContent,
+                        summary: summaryParts
+                      };
+                      input.push(reasoningMessages[reasoningId]);
+                    } else {
+                      reasoningMessage.summary.push(...summaryParts);
+                      if ((providerOptions == null ? void 0 : providerOptions.reasoningEncryptedContent) != null) {
+                        reasoningMessage.encrypted_content = providerOptions.reasoningEncryptedContent;
+                      }
+                    }
+                  }
+                } else {
+                  const encryptedContent = providerOptions == null ? void 0 : providerOptions.reasoningEncryptedContent;
+                  if (encryptedContent != null) {
+                    const summaryParts = [];
+                    if (part.text.length > 0) {
+                      summaryParts.push({
+                        type: "summary_text",
+                        text: part.text
+                      });
+                    }
+                    input.push({
+                      type: "reasoning",
+                      encrypted_content: encryptedContent,
+                      summary: summaryParts
+                    });
+                  } else {
+                    warnings.push({
+                      type: "other",
+                      message: `Non-OpenAI reasoning parts are not supported. Skipping reasoning part: ${JSON.stringify(part)}.`
+                    });
+                  }
+                }
+                break;
+              }
+            }
+          }
+          break;
+        }
+        case "tool": {
+          for (const part of content) {
+            if (part.type === "tool-approval-response") {
+              const approvalResponse = part;
+              if (processedApprovalIds.has(approvalResponse.approvalId)) {
+                continue;
+              }
+              processedApprovalIds.add(approvalResponse.approvalId);
+              if (store) {
+                input.push({
+                  type: "item_reference",
+                  id: approvalResponse.approvalId
+                });
+              }
+              input.push({
+                type: "mcp_approval_response",
+                approval_request_id: approvalResponse.approvalId,
+                approve: approvalResponse.approved
+              });
+              continue;
+            }
+            const output = part.output;
+            if (output.type === "execution-denied") {
+              const approvalId = (_o = (_n = output.providerOptions) == null ? void 0 : _n.openai) == null ? void 0 : _o.approvalId;
+              if (approvalId) {
+                continue;
+              }
+            }
+            const resolvedToolName = toolNameMapping.toProviderToolName(
+              part.toolName
+            );
+            if (resolvedToolName === "tool_search" && output.type === "json") {
+              const parsedOutput = await validateTypes2({
+                value: output.value,
+                schema: toolSearchOutputSchema
+              });
+              input.push({
+                type: "tool_search_output",
+                execution: "client",
+                call_id: part.toolCallId,
+                status: "completed",
+                tools: parsedOutput.tools
+              });
+              continue;
+            }
+            if (hasLocalShellTool && resolvedToolName === "local_shell" && output.type === "json") {
+              const parsedOutput = await validateTypes2({
+                value: output.value,
+                schema: localShellOutputSchema
+              });
+              input.push({
+                type: "local_shell_call_output",
+                call_id: part.toolCallId,
+                output: parsedOutput.output
+              });
+              continue;
+            }
+            if (hasShellTool && resolvedToolName === "shell" && output.type === "json") {
+              const parsedOutput = await validateTypes2({
+                value: output.value,
+                schema: shellOutputSchema
+              });
+              input.push({
+                type: "shell_call_output",
+                call_id: part.toolCallId,
+                output: parsedOutput.output.map((item) => ({
+                  stdout: item.stdout,
+                  stderr: item.stderr,
+                  outcome: item.outcome.type === "timeout" ? { type: "timeout" } : {
+                    type: "exit",
+                    exit_code: item.outcome.exitCode
+                  }
+                }))
+              });
+              continue;
+            }
+            if (hasApplyPatchTool && part.toolName === "apply_patch" && output.type === "json") {
+              const parsedOutput = await validateTypes2({
+                value: output.value,
+                schema: applyPatchOutputSchema
+              });
+              input.push({
+                type: "apply_patch_call_output",
+                call_id: part.toolCallId,
+                status: parsedOutput.status,
+                output: parsedOutput.output
+              });
+              continue;
+            }
+            if (customProviderToolNames == null ? void 0 : customProviderToolNames.has(resolvedToolName)) {
+              let outputValue;
+              switch (output.type) {
+                case "text":
+                case "error-text":
+                  outputValue = output.value;
+                  break;
+                case "execution-denied":
+                  outputValue = (_p = output.reason) != null ? _p : "Tool execution denied.";
+                  break;
+                case "json":
+                case "error-json":
+                  outputValue = JSON.stringify(output.value);
+                  break;
+                case "content":
+                  outputValue = output.value.map((item) => {
+                    var _a25;
+                    switch (item.type) {
+                      case "text":
+                        return { type: "input_text", text: item.text };
+                      case "image-data":
+                        return {
+                          type: "input_image",
+                          image_url: `data:${item.mediaType};base64,${item.data}`
+                        };
+                      case "image-url":
+                        return {
+                          type: "input_image",
+                          image_url: item.url
+                        };
+                      case "file-data":
+                        return {
+                          type: "input_file",
+                          filename: (_a25 = item.filename) != null ? _a25 : "data",
+                          file_data: `data:${item.mediaType};base64,${item.data}`
+                        };
+                      case "file-url":
+                        return {
+                          type: "input_file",
+                          file_url: item.url
+                        };
+                      default:
+                        warnings.push({
+                          type: "other",
+                          message: `unsupported custom tool content part type: ${item.type}`
+                        });
+                        return void 0;
+                    }
+                  }).filter(isNonNullable);
+                  break;
+                default:
+                  outputValue = "";
+              }
+              input.push({
+                type: "custom_tool_call_output",
+                call_id: part.toolCallId,
+                output: outputValue
+              });
+              continue;
+            }
+            let contentValue;
+            switch (output.type) {
+              case "text":
+              case "error-text":
+                contentValue = output.value;
+                break;
+              case "execution-denied":
+                contentValue = (_q = output.reason) != null ? _q : "Tool execution denied.";
+                break;
+              case "json":
+              case "error-json":
+                contentValue = JSON.stringify(output.value);
+                break;
+              case "content":
+                contentValue = output.value.map((item) => {
+                  var _a25;
+                  switch (item.type) {
+                    case "text": {
+                      return { type: "input_text", text: item.text };
+                    }
+                    case "image-data": {
+                      return {
+                        type: "input_image",
+                        image_url: `data:${item.mediaType};base64,${item.data}`
+                      };
+                    }
+                    case "image-url": {
+                      return {
+                        type: "input_image",
+                        image_url: item.url
+                      };
+                    }
+                    case "file-data": {
+                      return {
+                        type: "input_file",
+                        filename: (_a25 = item.filename) != null ? _a25 : "data",
+                        file_data: `data:${item.mediaType};base64,${item.data}`
+                      };
+                    }
+                    case "file-url": {
+                      return {
+                        type: "input_file",
+                        file_url: item.url
+                      };
+                    }
+                    default: {
+                      warnings.push({
+                        type: "other",
+                        message: `unsupported tool content part type: ${item.type}`
+                      });
+                      return void 0;
+                    }
+                  }
+                }).filter(isNonNullable);
+                break;
+            }
+            input.push({
+              type: "function_call_output",
+              call_id: part.toolCallId,
+              output: contentValue
+            });
+          }
+          break;
+        }
+        default: {
+          const _exhaustiveCheck = role;
+          throw new Error(`Unsupported role: ${_exhaustiveCheck}`);
+        }
+      }
+    }
+    if (!store && input.some(
+      (item) => "type" in item && item.type === "reasoning" && item.encrypted_content == null
+    )) {
+      warnings.push({
+        type: "other",
+        message: "Reasoning parts without encrypted content are not supported when store is false. Skipping reasoning parts."
+      });
+      input = input.filter(
+        (item) => !("type" in item) || item.type !== "reasoning" || item.encrypted_content != null
+      );
+    }
+    return { input, warnings };
+  }
+  var openaiResponsesReasoningProviderOptionsSchema = external_exports.object({
+    itemId: external_exports.string().nullish(),
+    reasoningEncryptedContent: external_exports.string().nullish()
+  });
+  function mapOpenAIResponseFinishReason({
+    finishReason,
+    hasFunctionCall
+  }) {
+    switch (finishReason) {
+      case void 0:
+      case null:
+        return hasFunctionCall ? "tool-calls" : "stop";
+      case "max_output_tokens":
+        return "length";
+      case "content_filter":
+        return "content-filter";
+      default:
+        return hasFunctionCall ? "tool-calls" : "other";
+    }
+  }
+  var jsonValueSchema22 = external_exports.lazy(
+    () => external_exports.union([
+      external_exports.string(),
+      external_exports.number(),
+      external_exports.boolean(),
+      external_exports.null(),
+      external_exports.array(jsonValueSchema22),
+      external_exports.record(external_exports.string(), jsonValueSchema22.optional())
+    ])
+  );
+  var openaiResponsesChunkSchema = lazySchema2(
+    () => zodSchema2(
+      external_exports.union([
+        external_exports.object({
+          type: external_exports.literal("response.output_text.delta"),
+          item_id: external_exports.string(),
+          delta: external_exports.string(),
+          logprobs: external_exports.array(
+            external_exports.object({
+              token: external_exports.string(),
+              logprob: external_exports.number(),
+              top_logprobs: external_exports.array(
+                external_exports.object({
+                  token: external_exports.string(),
+                  logprob: external_exports.number()
+                })
+              )
+            })
+          ).nullish()
+        }),
+        external_exports.object({
+          type: external_exports.enum(["response.completed", "response.incomplete"]),
+          response: external_exports.object({
+            incomplete_details: external_exports.object({ reason: external_exports.string() }).nullish(),
+            usage: external_exports.object({
+              input_tokens: external_exports.number(),
+              input_tokens_details: external_exports.object({ cached_tokens: external_exports.number().nullish() }).nullish(),
+              output_tokens: external_exports.number(),
+              output_tokens_details: external_exports.object({ reasoning_tokens: external_exports.number().nullish() }).nullish()
+            }),
+            service_tier: external_exports.string().nullish()
+          })
+        }),
+        external_exports.object({
+          type: external_exports.literal("response.failed"),
+          response: external_exports.object({
+            error: external_exports.object({
+              code: external_exports.string().nullish(),
+              message: external_exports.string()
+            }).nullish(),
+            incomplete_details: external_exports.object({ reason: external_exports.string() }).nullish(),
+            usage: external_exports.object({
+              input_tokens: external_exports.number(),
+              input_tokens_details: external_exports.object({ cached_tokens: external_exports.number().nullish() }).nullish(),
+              output_tokens: external_exports.number(),
+              output_tokens_details: external_exports.object({ reasoning_tokens: external_exports.number().nullish() }).nullish()
+            }).nullish(),
+            service_tier: external_exports.string().nullish()
+          })
+        }),
+        external_exports.object({
+          type: external_exports.literal("response.created"),
+          response: external_exports.object({
+            id: external_exports.string(),
+            created_at: external_exports.number(),
+            model: external_exports.string(),
+            service_tier: external_exports.string().nullish()
+          })
+        }),
+        external_exports.object({
+          type: external_exports.literal("response.output_item.added"),
+          output_index: external_exports.number(),
+          item: external_exports.discriminatedUnion("type", [
+            external_exports.object({
+              type: external_exports.literal("message"),
+              id: external_exports.string(),
+              phase: external_exports.enum(["commentary", "final_answer"]).nullish()
+            }),
+            external_exports.object({
+              type: external_exports.literal("reasoning"),
+              id: external_exports.string(),
+              encrypted_content: external_exports.string().nullish()
+            }),
+            external_exports.object({
+              type: external_exports.literal("function_call"),
+              id: external_exports.string(),
+              call_id: external_exports.string(),
+              name: external_exports.string(),
+              arguments: external_exports.string()
+            }),
+            external_exports.object({
+              type: external_exports.literal("web_search_call"),
+              id: external_exports.string(),
+              status: external_exports.string()
+            }),
+            external_exports.object({
+              type: external_exports.literal("computer_call"),
+              id: external_exports.string(),
+              status: external_exports.string()
+            }),
+            external_exports.object({
+              type: external_exports.literal("file_search_call"),
+              id: external_exports.string()
+            }),
+            external_exports.object({
+              type: external_exports.literal("image_generation_call"),
+              id: external_exports.string()
+            }),
+            external_exports.object({
+              type: external_exports.literal("code_interpreter_call"),
+              id: external_exports.string(),
+              container_id: external_exports.string(),
+              code: external_exports.string().nullable(),
+              outputs: external_exports.array(
+                external_exports.discriminatedUnion("type", [
+                  external_exports.object({ type: external_exports.literal("logs"), logs: external_exports.string() }),
+                  external_exports.object({ type: external_exports.literal("image"), url: external_exports.string() })
+                ])
+              ).nullable(),
+              status: external_exports.string()
+            }),
+            external_exports.object({
+              type: external_exports.literal("mcp_call"),
+              id: external_exports.string(),
+              status: external_exports.string(),
+              approval_request_id: external_exports.string().nullish()
+            }),
+            external_exports.object({
+              type: external_exports.literal("mcp_list_tools"),
+              id: external_exports.string()
+            }),
+            external_exports.object({
+              type: external_exports.literal("mcp_approval_request"),
+              id: external_exports.string()
+            }),
+            external_exports.object({
+              type: external_exports.literal("apply_patch_call"),
+              id: external_exports.string(),
+              call_id: external_exports.string(),
+              status: external_exports.enum(["in_progress", "completed"]),
+              operation: external_exports.discriminatedUnion("type", [
+                external_exports.object({
+                  type: external_exports.literal("create_file"),
+                  path: external_exports.string(),
+                  diff: external_exports.string()
+                }),
+                external_exports.object({
+                  type: external_exports.literal("delete_file"),
+                  path: external_exports.string()
+                }),
+                external_exports.object({
+                  type: external_exports.literal("update_file"),
+                  path: external_exports.string(),
+                  diff: external_exports.string()
+                })
+              ])
+            }),
+            external_exports.object({
+              type: external_exports.literal("custom_tool_call"),
+              id: external_exports.string(),
+              call_id: external_exports.string(),
+              name: external_exports.string(),
+              input: external_exports.string()
+            }),
+            external_exports.object({
+              type: external_exports.literal("shell_call"),
+              id: external_exports.string(),
+              call_id: external_exports.string(),
+              status: external_exports.enum(["in_progress", "completed", "incomplete"]),
+              action: external_exports.object({
+                commands: external_exports.array(external_exports.string())
+              })
+            }),
+            external_exports.object({
+              type: external_exports.literal("shell_call_output"),
+              id: external_exports.string(),
+              call_id: external_exports.string(),
+              status: external_exports.enum(["in_progress", "completed", "incomplete"]),
+              output: external_exports.array(
+                external_exports.object({
+                  stdout: external_exports.string(),
+                  stderr: external_exports.string(),
+                  outcome: external_exports.discriminatedUnion("type", [
+                    external_exports.object({ type: external_exports.literal("timeout") }),
+                    external_exports.object({
+                      type: external_exports.literal("exit"),
+                      exit_code: external_exports.number()
+                    })
+                  ])
+                })
+              )
+            }),
+            external_exports.object({
+              type: external_exports.literal("tool_search_call"),
+              id: external_exports.string(),
+              execution: external_exports.enum(["server", "client"]),
+              call_id: external_exports.string().nullable(),
+              status: external_exports.enum(["in_progress", "completed", "incomplete"]),
+              arguments: external_exports.unknown()
+            }),
+            external_exports.object({
+              type: external_exports.literal("tool_search_output"),
+              id: external_exports.string(),
+              execution: external_exports.enum(["server", "client"]),
+              call_id: external_exports.string().nullable(),
+              status: external_exports.enum(["in_progress", "completed", "incomplete"]),
+              tools: external_exports.array(external_exports.record(external_exports.string(), jsonValueSchema22.optional()))
+            })
+          ])
+        }),
+        external_exports.object({
+          type: external_exports.literal("response.output_item.done"),
+          output_index: external_exports.number(),
+          item: external_exports.discriminatedUnion("type", [
+            external_exports.object({
+              type: external_exports.literal("message"),
+              id: external_exports.string(),
+              phase: external_exports.enum(["commentary", "final_answer"]).nullish()
+            }),
+            external_exports.object({
+              type: external_exports.literal("reasoning"),
+              id: external_exports.string(),
+              encrypted_content: external_exports.string().nullish()
+            }),
+            external_exports.object({
+              type: external_exports.literal("function_call"),
+              id: external_exports.string(),
+              call_id: external_exports.string(),
+              name: external_exports.string(),
+              arguments: external_exports.string(),
+              status: external_exports.literal("completed")
+            }),
+            external_exports.object({
+              type: external_exports.literal("custom_tool_call"),
+              id: external_exports.string(),
+              call_id: external_exports.string(),
+              name: external_exports.string(),
+              input: external_exports.string(),
+              status: external_exports.literal("completed")
+            }),
+            external_exports.object({
+              type: external_exports.literal("code_interpreter_call"),
+              id: external_exports.string(),
+              code: external_exports.string().nullable(),
+              container_id: external_exports.string(),
+              outputs: external_exports.array(
+                external_exports.discriminatedUnion("type", [
+                  external_exports.object({ type: external_exports.literal("logs"), logs: external_exports.string() }),
+                  external_exports.object({ type: external_exports.literal("image"), url: external_exports.string() })
+                ])
+              ).nullable()
+            }),
+            external_exports.object({
+              type: external_exports.literal("image_generation_call"),
+              id: external_exports.string(),
+              result: external_exports.string()
+            }),
+            external_exports.object({
+              type: external_exports.literal("web_search_call"),
+              id: external_exports.string(),
+              status: external_exports.string(),
+              action: external_exports.discriminatedUnion("type", [
+                external_exports.object({
+                  type: external_exports.literal("search"),
+                  query: external_exports.string().nullish(),
+                  sources: external_exports.array(
+                    external_exports.discriminatedUnion("type", [
+                      external_exports.object({ type: external_exports.literal("url"), url: external_exports.string() }),
+                      external_exports.object({ type: external_exports.literal("api"), name: external_exports.string() })
+                    ])
+                  ).nullish()
+                }),
+                external_exports.object({
+                  type: external_exports.literal("open_page"),
+                  url: external_exports.string().nullish()
+                }),
+                external_exports.object({
+                  type: external_exports.literal("find_in_page"),
+                  url: external_exports.string().nullish(),
+                  pattern: external_exports.string().nullish()
+                })
+              ]).nullish()
+            }),
+            external_exports.object({
+              type: external_exports.literal("file_search_call"),
+              id: external_exports.string(),
+              queries: external_exports.array(external_exports.string()),
+              results: external_exports.array(
+                external_exports.object({
+                  attributes: external_exports.record(
+                    external_exports.string(),
+                    external_exports.union([external_exports.string(), external_exports.number(), external_exports.boolean()])
+                  ),
+                  file_id: external_exports.string(),
+                  filename: external_exports.string(),
+                  score: external_exports.number(),
+                  text: external_exports.string()
+                })
+              ).nullish()
+            }),
+            external_exports.object({
+              type: external_exports.literal("local_shell_call"),
+              id: external_exports.string(),
+              call_id: external_exports.string(),
+              action: external_exports.object({
+                type: external_exports.literal("exec"),
+                command: external_exports.array(external_exports.string()),
+                timeout_ms: external_exports.number().optional(),
+                user: external_exports.string().optional(),
+                working_directory: external_exports.string().optional(),
+                env: external_exports.record(external_exports.string(), external_exports.string()).optional()
+              })
+            }),
+            external_exports.object({
+              type: external_exports.literal("computer_call"),
+              id: external_exports.string(),
+              status: external_exports.literal("completed")
+            }),
+            external_exports.object({
+              type: external_exports.literal("mcp_call"),
+              id: external_exports.string(),
+              status: external_exports.string(),
+              arguments: external_exports.string(),
+              name: external_exports.string(),
+              server_label: external_exports.string(),
+              output: external_exports.string().nullish(),
+              error: external_exports.union([
+                external_exports.string(),
+                external_exports.object({
+                  type: external_exports.string().optional(),
+                  code: external_exports.union([external_exports.number(), external_exports.string()]).optional(),
+                  message: external_exports.string().optional()
+                }).loose()
+              ]).nullish(),
+              approval_request_id: external_exports.string().nullish()
+            }),
+            external_exports.object({
+              type: external_exports.literal("mcp_list_tools"),
+              id: external_exports.string(),
+              server_label: external_exports.string(),
+              tools: external_exports.array(
+                external_exports.object({
+                  name: external_exports.string(),
+                  description: external_exports.string().optional(),
+                  input_schema: external_exports.any(),
+                  annotations: external_exports.record(external_exports.string(), external_exports.unknown()).optional()
+                })
+              ),
+              error: external_exports.union([
+                external_exports.string(),
+                external_exports.object({
+                  type: external_exports.string().optional(),
+                  code: external_exports.union([external_exports.number(), external_exports.string()]).optional(),
+                  message: external_exports.string().optional()
+                }).loose()
+              ]).optional()
+            }),
+            external_exports.object({
+              type: external_exports.literal("mcp_approval_request"),
+              id: external_exports.string(),
+              server_label: external_exports.string(),
+              name: external_exports.string(),
+              arguments: external_exports.string(),
+              approval_request_id: external_exports.string().optional()
+            }),
+            external_exports.object({
+              type: external_exports.literal("apply_patch_call"),
+              id: external_exports.string(),
+              call_id: external_exports.string(),
+              status: external_exports.enum(["in_progress", "completed"]),
+              operation: external_exports.discriminatedUnion("type", [
+                external_exports.object({
+                  type: external_exports.literal("create_file"),
+                  path: external_exports.string(),
+                  diff: external_exports.string()
+                }),
+                external_exports.object({
+                  type: external_exports.literal("delete_file"),
+                  path: external_exports.string()
+                }),
+                external_exports.object({
+                  type: external_exports.literal("update_file"),
+                  path: external_exports.string(),
+                  diff: external_exports.string()
+                })
+              ])
+            }),
+            external_exports.object({
+              type: external_exports.literal("shell_call"),
+              id: external_exports.string(),
+              call_id: external_exports.string(),
+              status: external_exports.enum(["in_progress", "completed", "incomplete"]),
+              action: external_exports.object({
+                commands: external_exports.array(external_exports.string())
+              })
+            }),
+            external_exports.object({
+              type: external_exports.literal("shell_call_output"),
+              id: external_exports.string(),
+              call_id: external_exports.string(),
+              status: external_exports.enum(["in_progress", "completed", "incomplete"]),
+              output: external_exports.array(
+                external_exports.object({
+                  stdout: external_exports.string(),
+                  stderr: external_exports.string(),
+                  outcome: external_exports.discriminatedUnion("type", [
+                    external_exports.object({ type: external_exports.literal("timeout") }),
+                    external_exports.object({
+                      type: external_exports.literal("exit"),
+                      exit_code: external_exports.number()
+                    })
+                  ])
+                })
+              )
+            }),
+            external_exports.object({
+              type: external_exports.literal("tool_search_call"),
+              id: external_exports.string(),
+              execution: external_exports.enum(["server", "client"]),
+              call_id: external_exports.string().nullable(),
+              status: external_exports.enum(["in_progress", "completed", "incomplete"]),
+              arguments: external_exports.unknown()
+            }),
+            external_exports.object({
+              type: external_exports.literal("tool_search_output"),
+              id: external_exports.string(),
+              execution: external_exports.enum(["server", "client"]),
+              call_id: external_exports.string().nullable(),
+              status: external_exports.enum(["in_progress", "completed", "incomplete"]),
+              tools: external_exports.array(external_exports.record(external_exports.string(), jsonValueSchema22.optional()))
+            })
+          ])
+        }),
+        external_exports.object({
+          type: external_exports.literal("response.function_call_arguments.delta"),
+          item_id: external_exports.string(),
+          output_index: external_exports.number(),
+          delta: external_exports.string()
+        }),
+        external_exports.object({
+          type: external_exports.literal("response.custom_tool_call_input.delta"),
+          item_id: external_exports.string(),
+          output_index: external_exports.number(),
+          delta: external_exports.string()
+        }),
+        external_exports.object({
+          type: external_exports.literal("response.image_generation_call.partial_image"),
+          item_id: external_exports.string(),
+          output_index: external_exports.number(),
+          partial_image_b64: external_exports.string()
+        }),
+        external_exports.object({
+          type: external_exports.literal("response.code_interpreter_call_code.delta"),
+          item_id: external_exports.string(),
+          output_index: external_exports.number(),
+          delta: external_exports.string()
+        }),
+        external_exports.object({
+          type: external_exports.literal("response.code_interpreter_call_code.done"),
+          item_id: external_exports.string(),
+          output_index: external_exports.number(),
+          code: external_exports.string()
+        }),
+        external_exports.object({
+          type: external_exports.literal("response.output_text.annotation.added"),
+          annotation: external_exports.discriminatedUnion("type", [
+            external_exports.object({
+              type: external_exports.literal("url_citation"),
+              start_index: external_exports.number(),
+              end_index: external_exports.number(),
+              url: external_exports.string(),
+              title: external_exports.string()
+            }),
+            external_exports.object({
+              type: external_exports.literal("file_citation"),
+              file_id: external_exports.string(),
+              filename: external_exports.string(),
+              index: external_exports.number()
+            }),
+            external_exports.object({
+              type: external_exports.literal("container_file_citation"),
+              container_id: external_exports.string(),
+              file_id: external_exports.string(),
+              filename: external_exports.string(),
+              start_index: external_exports.number(),
+              end_index: external_exports.number()
+            }),
+            external_exports.object({
+              type: external_exports.literal("file_path"),
+              file_id: external_exports.string(),
+              index: external_exports.number()
+            })
+          ])
+        }),
+        external_exports.object({
+          type: external_exports.literal("response.reasoning_summary_part.added"),
+          item_id: external_exports.string(),
+          summary_index: external_exports.number()
+        }),
+        external_exports.object({
+          type: external_exports.literal("response.reasoning_summary_text.delta"),
+          item_id: external_exports.string(),
+          summary_index: external_exports.number(),
+          delta: external_exports.string()
+        }),
+        external_exports.object({
+          type: external_exports.literal("response.reasoning_summary_part.done"),
+          item_id: external_exports.string(),
+          summary_index: external_exports.number()
+        }),
+        external_exports.object({
+          type: external_exports.literal("response.apply_patch_call_operation_diff.delta"),
+          item_id: external_exports.string(),
+          output_index: external_exports.number(),
+          delta: external_exports.string(),
+          obfuscation: external_exports.string().nullish()
+        }),
+        external_exports.object({
+          type: external_exports.literal("response.apply_patch_call_operation_diff.done"),
+          item_id: external_exports.string(),
+          output_index: external_exports.number(),
+          diff: external_exports.string()
+        }),
+        external_exports.object({
+          type: external_exports.literal("error"),
+          sequence_number: external_exports.number(),
+          error: external_exports.object({
+            type: external_exports.string(),
+            code: external_exports.string(),
+            message: external_exports.string(),
+            param: external_exports.string().nullish()
+          })
+        }),
+        external_exports.object({ type: external_exports.string() }).loose().transform((value) => ({
+          type: "unknown_chunk",
+          message: value.type
+        }))
+        // fallback for unknown chunks
+      ])
+    )
+  );
+  var openaiResponsesResponseSchema = lazySchema2(
+    () => zodSchema2(
+      external_exports.object({
+        id: external_exports.string().optional(),
+        created_at: external_exports.number().optional(),
+        error: external_exports.object({
+          message: external_exports.string(),
+          type: external_exports.string(),
+          param: external_exports.string().nullish(),
+          code: external_exports.string()
+        }).nullish(),
+        model: external_exports.string().optional(),
+        output: external_exports.array(
+          external_exports.discriminatedUnion("type", [
+            external_exports.object({
+              type: external_exports.literal("message"),
+              role: external_exports.literal("assistant"),
+              id: external_exports.string(),
+              phase: external_exports.enum(["commentary", "final_answer"]).nullish(),
+              content: external_exports.array(
+                external_exports.object({
+                  type: external_exports.literal("output_text"),
+                  text: external_exports.string(),
+                  logprobs: external_exports.array(
+                    external_exports.object({
+                      token: external_exports.string(),
+                      logprob: external_exports.number(),
+                      top_logprobs: external_exports.array(
+                        external_exports.object({
+                          token: external_exports.string(),
+                          logprob: external_exports.number()
+                        })
+                      )
+                    })
+                  ).nullish(),
+                  annotations: external_exports.array(
+                    external_exports.discriminatedUnion("type", [
+                      external_exports.object({
+                        type: external_exports.literal("url_citation"),
+                        start_index: external_exports.number(),
+                        end_index: external_exports.number(),
+                        url: external_exports.string(),
+                        title: external_exports.string()
+                      }),
+                      external_exports.object({
+                        type: external_exports.literal("file_citation"),
+                        file_id: external_exports.string(),
+                        filename: external_exports.string(),
+                        index: external_exports.number()
+                      }),
+                      external_exports.object({
+                        type: external_exports.literal("container_file_citation"),
+                        container_id: external_exports.string(),
+                        file_id: external_exports.string(),
+                        filename: external_exports.string(),
+                        start_index: external_exports.number(),
+                        end_index: external_exports.number()
+                      }),
+                      external_exports.object({
+                        type: external_exports.literal("file_path"),
+                        file_id: external_exports.string(),
+                        index: external_exports.number()
+                      })
+                    ])
+                  )
+                })
+              )
+            }),
+            external_exports.object({
+              type: external_exports.literal("web_search_call"),
+              id: external_exports.string(),
+              status: external_exports.string(),
+              action: external_exports.discriminatedUnion("type", [
+                external_exports.object({
+                  type: external_exports.literal("search"),
+                  query: external_exports.string().nullish(),
+                  sources: external_exports.array(
+                    external_exports.discriminatedUnion("type", [
+                      external_exports.object({ type: external_exports.literal("url"), url: external_exports.string() }),
+                      external_exports.object({
+                        type: external_exports.literal("api"),
+                        name: external_exports.string()
+                      })
+                    ])
+                  ).nullish()
+                }),
+                external_exports.object({
+                  type: external_exports.literal("open_page"),
+                  url: external_exports.string().nullish()
+                }),
+                external_exports.object({
+                  type: external_exports.literal("find_in_page"),
+                  url: external_exports.string().nullish(),
+                  pattern: external_exports.string().nullish()
+                })
+              ]).nullish()
+            }),
+            external_exports.object({
+              type: external_exports.literal("file_search_call"),
+              id: external_exports.string(),
+              queries: external_exports.array(external_exports.string()),
+              results: external_exports.array(
+                external_exports.object({
+                  attributes: external_exports.record(
+                    external_exports.string(),
+                    external_exports.union([external_exports.string(), external_exports.number(), external_exports.boolean()])
+                  ),
+                  file_id: external_exports.string(),
+                  filename: external_exports.string(),
+                  score: external_exports.number(),
+                  text: external_exports.string()
+                })
+              ).nullish()
+            }),
+            external_exports.object({
+              type: external_exports.literal("code_interpreter_call"),
+              id: external_exports.string(),
+              code: external_exports.string().nullable(),
+              container_id: external_exports.string(),
+              outputs: external_exports.array(
+                external_exports.discriminatedUnion("type", [
+                  external_exports.object({ type: external_exports.literal("logs"), logs: external_exports.string() }),
+                  external_exports.object({ type: external_exports.literal("image"), url: external_exports.string() })
+                ])
+              ).nullable()
+            }),
+            external_exports.object({
+              type: external_exports.literal("image_generation_call"),
+              id: external_exports.string(),
+              result: external_exports.string()
+            }),
+            external_exports.object({
+              type: external_exports.literal("local_shell_call"),
+              id: external_exports.string(),
+              call_id: external_exports.string(),
+              action: external_exports.object({
+                type: external_exports.literal("exec"),
+                command: external_exports.array(external_exports.string()),
+                timeout_ms: external_exports.number().optional(),
+                user: external_exports.string().optional(),
+                working_directory: external_exports.string().optional(),
+                env: external_exports.record(external_exports.string(), external_exports.string()).optional()
+              })
+            }),
+            external_exports.object({
+              type: external_exports.literal("function_call"),
+              call_id: external_exports.string(),
+              name: external_exports.string(),
+              arguments: external_exports.string(),
+              id: external_exports.string()
+            }),
+            external_exports.object({
+              type: external_exports.literal("custom_tool_call"),
+              call_id: external_exports.string(),
+              name: external_exports.string(),
+              input: external_exports.string(),
+              id: external_exports.string()
+            }),
+            external_exports.object({
+              type: external_exports.literal("computer_call"),
+              id: external_exports.string(),
+              status: external_exports.string().optional()
+            }),
+            external_exports.object({
+              type: external_exports.literal("reasoning"),
+              id: external_exports.string(),
+              encrypted_content: external_exports.string().nullish(),
+              summary: external_exports.array(
+                external_exports.object({
+                  type: external_exports.literal("summary_text"),
+                  text: external_exports.string()
+                })
+              )
+            }),
+            external_exports.object({
+              type: external_exports.literal("mcp_call"),
+              id: external_exports.string(),
+              status: external_exports.string(),
+              arguments: external_exports.string(),
+              name: external_exports.string(),
+              server_label: external_exports.string(),
+              output: external_exports.string().nullish(),
+              error: external_exports.union([
+                external_exports.string(),
+                external_exports.object({
+                  type: external_exports.string().optional(),
+                  code: external_exports.union([external_exports.number(), external_exports.string()]).optional(),
+                  message: external_exports.string().optional()
+                }).loose()
+              ]).nullish(),
+              approval_request_id: external_exports.string().nullish()
+            }),
+            external_exports.object({
+              type: external_exports.literal("mcp_list_tools"),
+              id: external_exports.string(),
+              server_label: external_exports.string(),
+              tools: external_exports.array(
+                external_exports.object({
+                  name: external_exports.string(),
+                  description: external_exports.string().optional(),
+                  input_schema: external_exports.any(),
+                  annotations: external_exports.record(external_exports.string(), external_exports.unknown()).optional()
+                })
+              ),
+              error: external_exports.union([
+                external_exports.string(),
+                external_exports.object({
+                  type: external_exports.string().optional(),
+                  code: external_exports.union([external_exports.number(), external_exports.string()]).optional(),
+                  message: external_exports.string().optional()
+                }).loose()
+              ]).optional()
+            }),
+            external_exports.object({
+              type: external_exports.literal("mcp_approval_request"),
+              id: external_exports.string(),
+              server_label: external_exports.string(),
+              name: external_exports.string(),
+              arguments: external_exports.string(),
+              approval_request_id: external_exports.string().optional()
+            }),
+            external_exports.object({
+              type: external_exports.literal("apply_patch_call"),
+              id: external_exports.string(),
+              call_id: external_exports.string(),
+              status: external_exports.enum(["in_progress", "completed"]),
+              operation: external_exports.discriminatedUnion("type", [
+                external_exports.object({
+                  type: external_exports.literal("create_file"),
+                  path: external_exports.string(),
+                  diff: external_exports.string()
+                }),
+                external_exports.object({
+                  type: external_exports.literal("delete_file"),
+                  path: external_exports.string()
+                }),
+                external_exports.object({
+                  type: external_exports.literal("update_file"),
+                  path: external_exports.string(),
+                  diff: external_exports.string()
+                })
+              ])
+            }),
+            external_exports.object({
+              type: external_exports.literal("shell_call"),
+              id: external_exports.string(),
+              call_id: external_exports.string(),
+              status: external_exports.enum(["in_progress", "completed", "incomplete"]),
+              action: external_exports.object({
+                commands: external_exports.array(external_exports.string())
+              })
+            }),
+            external_exports.object({
+              type: external_exports.literal("shell_call_output"),
+              id: external_exports.string(),
+              call_id: external_exports.string(),
+              status: external_exports.enum(["in_progress", "completed", "incomplete"]),
+              output: external_exports.array(
+                external_exports.object({
+                  stdout: external_exports.string(),
+                  stderr: external_exports.string(),
+                  outcome: external_exports.discriminatedUnion("type", [
+                    external_exports.object({ type: external_exports.literal("timeout") }),
+                    external_exports.object({
+                      type: external_exports.literal("exit"),
+                      exit_code: external_exports.number()
+                    })
+                  ])
+                })
+              )
+            }),
+            external_exports.object({
+              type: external_exports.literal("tool_search_call"),
+              id: external_exports.string(),
+              execution: external_exports.enum(["server", "client"]),
+              call_id: external_exports.string().nullable(),
+              status: external_exports.enum(["in_progress", "completed", "incomplete"]),
+              arguments: external_exports.unknown()
+            }),
+            external_exports.object({
+              type: external_exports.literal("tool_search_output"),
+              id: external_exports.string(),
+              execution: external_exports.enum(["server", "client"]),
+              call_id: external_exports.string().nullable(),
+              status: external_exports.enum(["in_progress", "completed", "incomplete"]),
+              tools: external_exports.array(external_exports.record(external_exports.string(), jsonValueSchema22.optional()))
+            })
+          ])
+        ).optional(),
+        service_tier: external_exports.string().nullish(),
+        incomplete_details: external_exports.object({ reason: external_exports.string() }).nullish(),
+        usage: external_exports.object({
+          input_tokens: external_exports.number(),
+          input_tokens_details: external_exports.object({ cached_tokens: external_exports.number().nullish() }).nullish(),
+          output_tokens: external_exports.number(),
+          output_tokens_details: external_exports.object({ reasoning_tokens: external_exports.number().nullish() }).nullish()
+        }).optional()
+      })
+    )
+  );
+  var TOP_LOGPROBS_MAX = 20;
+  var openaiResponsesReasoningModelIds = [
+    "o1",
+    "o1-2024-12-17",
+    "o3",
+    "o3-2025-04-16",
+    "o3-mini",
+    "o3-mini-2025-01-31",
+    "o4-mini",
+    "o4-mini-2025-04-16",
+    "gpt-5",
+    "gpt-5-2025-08-07",
+    "gpt-5-codex",
+    "gpt-5-mini",
+    "gpt-5-mini-2025-08-07",
+    "gpt-5-nano",
+    "gpt-5-nano-2025-08-07",
+    "gpt-5-pro",
+    "gpt-5-pro-2025-10-06",
+    "gpt-5.1",
+    "gpt-5.1-chat-latest",
+    "gpt-5.1-codex-mini",
+    "gpt-5.1-codex",
+    "gpt-5.1-codex-max",
+    "gpt-5.2",
+    "gpt-5.2-chat-latest",
+    "gpt-5.2-pro",
+    "gpt-5.2-codex",
+    "gpt-5.3-chat-latest",
+    "gpt-5.3-codex",
+    "gpt-5.4",
+    "gpt-5.4-2026-03-05",
+    "gpt-5.4-mini",
+    "gpt-5.4-mini-2026-03-17",
+    "gpt-5.4-nano",
+    "gpt-5.4-nano-2026-03-17",
+    "gpt-5.4-pro",
+    "gpt-5.4-pro-2026-03-05"
+  ];
+  var openaiResponsesModelIds = [
+    "gpt-4.1",
+    "gpt-4.1-2025-04-14",
+    "gpt-4.1-mini",
+    "gpt-4.1-mini-2025-04-14",
+    "gpt-4.1-nano",
+    "gpt-4.1-nano-2025-04-14",
+    "gpt-4o",
+    "gpt-4o-2024-05-13",
+    "gpt-4o-2024-08-06",
+    "gpt-4o-2024-11-20",
+    "gpt-4o-audio-preview",
+    "gpt-4o-audio-preview-2024-12-17",
+    "gpt-4o-search-preview",
+    "gpt-4o-search-preview-2025-03-11",
+    "gpt-4o-mini-search-preview",
+    "gpt-4o-mini-search-preview-2025-03-11",
+    "gpt-4o-mini",
+    "gpt-4o-mini-2024-07-18",
+    "gpt-3.5-turbo-0125",
+    "gpt-3.5-turbo",
+    "gpt-3.5-turbo-1106",
+    "gpt-5-chat-latest",
+    ...openaiResponsesReasoningModelIds
+  ];
+  var openaiLanguageModelResponsesOptionsSchema = lazySchema2(
+    () => zodSchema2(
+      external_exports.object({
+        /**
+         * The ID of the OpenAI Conversation to continue.
+         * You must create a conversation first via the OpenAI API.
+         * Cannot be used in conjunction with `previousResponseId`.
+         * Defaults to `undefined`.
+         * @see https://platform.openai.com/docs/api-reference/conversations/create
+         */
+        conversation: external_exports.string().nullish(),
+        /**
+         * The set of extra fields to include in the response (advanced, usually not needed).
+         * Example values: 'reasoning.encrypted_content', 'file_search_call.results', 'message.output_text.logprobs'.
+         */
+        include: external_exports.array(
+          external_exports.enum([
+            "reasoning.encrypted_content",
+            // handled internally by default, only needed for unknown reasoning models
+            "file_search_call.results",
+            "message.output_text.logprobs"
+          ])
+        ).nullish(),
+        /**
+         * Instructions for the model.
+         * They can be used to change the system or developer message when continuing a conversation using the `previousResponseId` option.
+         * Defaults to `undefined`.
+         */
+        instructions: external_exports.string().nullish(),
+        /**
+         * Return the log probabilities of the tokens. Including logprobs will increase
+         * the response size and can slow down response times. However, it can
+         * be useful to better understand how the model is behaving.
+         *
+         * Setting to true will return the log probabilities of the tokens that
+         * were generated.
+         *
+         * Setting to a number will return the log probabilities of the top n
+         * tokens that were generated.
+         *
+         * @see https://platform.openai.com/docs/api-reference/responses/create
+         * @see https://cookbook.openai.com/examples/using_logprobs
+         */
+        logprobs: external_exports.union([external_exports.boolean(), external_exports.number().min(1).max(TOP_LOGPROBS_MAX)]).optional(),
+        /**
+         * The maximum number of total calls to built-in tools that can be processed in a response.
+         * This maximum number applies across all built-in tool calls, not per individual tool.
+         * Any further attempts to call a tool by the model will be ignored.
+         */
+        maxToolCalls: external_exports.number().nullish(),
+        /**
+         * Additional metadata to store with the generation.
+         */
+        metadata: external_exports.any().nullish(),
+        /**
+         * Whether to use parallel tool calls. Defaults to `true`.
+         */
+        parallelToolCalls: external_exports.boolean().nullish(),
+        /**
+         * The ID of the previous response. You can use it to continue a conversation.
+         * Defaults to `undefined`.
+         */
+        previousResponseId: external_exports.string().nullish(),
+        /**
+         * Sets a cache key to tie this prompt to cached prefixes for better caching performance.
+         */
+        promptCacheKey: external_exports.string().nullish(),
+        /**
+         * The retention policy for the prompt cache.
+         * - 'in_memory': Default. Standard prompt caching behavior.
+         * - '24h': Extended prompt caching that keeps cached prefixes active for up to 24 hours.
+         *          Currently only available for 5.1 series models.
+         *
+         * @default 'in_memory'
+         */
+        promptCacheRetention: external_exports.enum(["in_memory", "24h"]).nullish(),
+        /**
+         * Reasoning effort for reasoning models. Defaults to `medium`. If you use
+         * `providerOptions` to set the `reasoningEffort` option, this model setting will be ignored.
+         * Valid values: 'none' | 'minimal' | 'low' | 'medium' | 'high' | 'xhigh'
+         *
+         * The 'none' type for `reasoningEffort` is only available for OpenAI's GPT-5.1
+         * models. Also, the 'xhigh' type for `reasoningEffort` is only available for
+         * OpenAI's GPT-5.1-Codex-Max model. Setting `reasoningEffort` to 'none' or 'xhigh' with unsupported models will result in
+         * an error.
+         */
+        reasoningEffort: external_exports.string().nullish(),
+        /**
+         * Controls reasoning summary output from the model.
+         * Set to "auto" to automatically receive the richest level available,
+         * or "detailed" for comprehensive summaries.
+         */
+        reasoningSummary: external_exports.string().nullish(),
+        /**
+         * The identifier for safety monitoring and tracking.
+         */
+        safetyIdentifier: external_exports.string().nullish(),
+        /**
+         * Service tier for the request.
+         * Set to 'flex' for 50% cheaper processing at the cost of increased latency (available for o3, o4-mini, and gpt-5 models).
+         * Set to 'priority' for faster processing with Enterprise access (available for gpt-4, gpt-5, gpt-5-mini, o3, o4-mini; gpt-5-nano is not supported).
+         *
+         * Defaults to 'auto'.
+         */
+        serviceTier: external_exports.enum(["auto", "flex", "priority", "default"]).nullish(),
+        /**
+         * Whether to store the generation. Defaults to `true`.
+         */
+        store: external_exports.boolean().nullish(),
+        /**
+         * Whether to use strict JSON schema validation.
+         * Defaults to `true`.
+         */
+        strictJsonSchema: external_exports.boolean().nullish(),
+        /**
+         * Controls the verbosity of the model's responses. Lower values ('low') will result
+         * in more concise responses, while higher values ('high') will result in more verbose responses.
+         * Valid values: 'low', 'medium', 'high'.
+         */
+        textVerbosity: external_exports.enum(["low", "medium", "high"]).nullish(),
+        /**
+         * Controls output truncation. 'auto' (default) performs truncation automatically;
+         * 'disabled' turns truncation off.
+         */
+        truncation: external_exports.enum(["auto", "disabled"]).nullish(),
+        /**
+         * A unique identifier representing your end-user, which can help OpenAI to
+         * monitor and detect abuse.
+         * Defaults to `undefined`.
+         * @see https://platform.openai.com/docs/guides/safety-best-practices/end-user-ids
+         */
+        user: external_exports.string().nullish(),
+        /**
+         * Override the system message mode for this model.
+         * - 'system': Use the 'system' role for system messages (default for most models)
+         * - 'developer': Use the 'developer' role for system messages (used by reasoning models)
+         * - 'remove': Remove system messages entirely
+         *
+         * If not specified, the mode is automatically determined based on the model.
+         */
+        systemMessageMode: external_exports.enum(["system", "developer", "remove"]).optional(),
+        /**
+         * Force treating this model as a reasoning model.
+         *
+         * This is useful for "stealth" reasoning models (e.g. via a custom baseURL)
+         * where the model ID is not recognized by the SDK's allowlist.
+         *
+         * When enabled, the SDK applies reasoning-model parameter compatibility rules
+         * and defaults `systemMessageMode` to `developer` unless overridden.
+         */
+        forceReasoning: external_exports.boolean().optional()
+      })
+    )
+  );
+  async function prepareResponsesTools({
+    tools,
+    toolChoice,
+    toolNameMapping,
+    customProviderToolNames
+  }) {
+    var _a24, _b18;
+    tools = (tools == null ? void 0 : tools.length) ? tools : void 0;
+    const toolWarnings = [];
+    if (tools == null) {
+      return { tools: void 0, toolChoice: void 0, toolWarnings };
+    }
+    const openaiTools2 = [];
+    const resolvedCustomProviderToolNames = customProviderToolNames != null ? customProviderToolNames : /* @__PURE__ */ new Set();
+    for (const tool3 of tools) {
+      switch (tool3.type) {
+        case "function": {
+          const openaiOptions = (_a24 = tool3.providerOptions) == null ? void 0 : _a24.openai;
+          const deferLoading = openaiOptions == null ? void 0 : openaiOptions.deferLoading;
+          openaiTools2.push({
+            type: "function",
+            name: tool3.name,
+            description: tool3.description,
+            parameters: tool3.inputSchema,
+            ...tool3.strict != null ? { strict: tool3.strict } : {},
+            ...deferLoading != null ? { defer_loading: deferLoading } : {}
+          });
+          break;
+        }
+        case "provider": {
+          switch (tool3.id) {
+            case "openai.file_search": {
+              const args = await validateTypes2({
+                value: tool3.args,
+                schema: fileSearchArgsSchema2
+              });
+              openaiTools2.push({
+                type: "file_search",
+                vector_store_ids: args.vectorStoreIds,
+                max_num_results: args.maxNumResults,
+                ranking_options: args.ranking ? {
+                  ranker: args.ranking.ranker,
+                  score_threshold: args.ranking.scoreThreshold
+                } : void 0,
+                filters: args.filters
+              });
+              break;
+            }
+            case "openai.local_shell": {
+              openaiTools2.push({
+                type: "local_shell"
+              });
+              break;
+            }
+            case "openai.shell": {
+              const args = await validateTypes2({
+                value: tool3.args,
+                schema: shellArgsSchema
+              });
+              openaiTools2.push({
+                type: "shell",
+                ...args.environment && {
+                  environment: mapShellEnvironment(args.environment)
+                }
+              });
+              break;
+            }
+            case "openai.apply_patch": {
+              openaiTools2.push({
+                type: "apply_patch"
+              });
+              break;
+            }
+            case "openai.web_search_preview": {
+              const args = await validateTypes2({
+                value: tool3.args,
+                schema: webSearchPreviewArgsSchema
+              });
+              openaiTools2.push({
+                type: "web_search_preview",
+                search_context_size: args.searchContextSize,
+                user_location: args.userLocation
+              });
+              break;
+            }
+            case "openai.web_search": {
+              const args = await validateTypes2({
+                value: tool3.args,
+                schema: webSearchArgsSchema
+              });
+              openaiTools2.push({
+                type: "web_search",
+                filters: args.filters != null ? { allowed_domains: args.filters.allowedDomains } : void 0,
+                external_web_access: args.externalWebAccess,
+                search_context_size: args.searchContextSize,
+                user_location: args.userLocation
+              });
+              break;
+            }
+            case "openai.code_interpreter": {
+              const args = await validateTypes2({
+                value: tool3.args,
+                schema: codeInterpreterArgsSchema
+              });
+              openaiTools2.push({
+                type: "code_interpreter",
+                container: args.container == null ? { type: "auto", file_ids: void 0 } : typeof args.container === "string" ? args.container : { type: "auto", file_ids: args.container.fileIds }
+              });
+              break;
+            }
+            case "openai.image_generation": {
+              const args = await validateTypes2({
+                value: tool3.args,
+                schema: imageGenerationArgsSchema
+              });
+              openaiTools2.push({
+                type: "image_generation",
+                background: args.background,
+                input_fidelity: args.inputFidelity,
+                input_image_mask: args.inputImageMask ? {
+                  file_id: args.inputImageMask.fileId,
+                  image_url: args.inputImageMask.imageUrl
+                } : void 0,
+                model: args.model,
+                moderation: args.moderation,
+                partial_images: args.partialImages,
+                quality: args.quality,
+                output_compression: args.outputCompression,
+                output_format: args.outputFormat,
+                size: args.size
+              });
+              break;
+            }
+            case "openai.mcp": {
+              const args = await validateTypes2({
+                value: tool3.args,
+                schema: mcpArgsSchema
+              });
+              const mapApprovalFilter = (filter3) => ({
+                tool_names: filter3.toolNames
+              });
+              const requireApproval = args.requireApproval;
+              const requireApprovalParam = requireApproval == null ? void 0 : typeof requireApproval === "string" ? requireApproval : requireApproval.never != null ? { never: mapApprovalFilter(requireApproval.never) } : void 0;
+              openaiTools2.push({
+                type: "mcp",
+                server_label: args.serverLabel,
+                allowed_tools: Array.isArray(args.allowedTools) ? args.allowedTools : args.allowedTools ? {
+                  read_only: args.allowedTools.readOnly,
+                  tool_names: args.allowedTools.toolNames
+                } : void 0,
+                authorization: args.authorization,
+                connector_id: args.connectorId,
+                headers: args.headers,
+                require_approval: requireApprovalParam != null ? requireApprovalParam : "never",
+                server_description: args.serverDescription,
+                server_url: args.serverUrl
+              });
+              break;
+            }
+            case "openai.custom": {
+              const args = await validateTypes2({
+                value: tool3.args,
+                schema: customArgsSchema
+              });
+              openaiTools2.push({
+                type: "custom",
+                name: args.name,
+                description: args.description,
+                format: args.format
+              });
+              resolvedCustomProviderToolNames.add(args.name);
+              break;
+            }
+            case "openai.tool_search": {
+              const args = await validateTypes2({
+                value: tool3.args,
+                schema: toolSearchArgsSchema
+              });
+              openaiTools2.push({
+                type: "tool_search",
+                ...args.execution != null ? { execution: args.execution } : {},
+                ...args.description != null ? { description: args.description } : {},
+                ...args.parameters != null ? { parameters: args.parameters } : {}
+              });
+              break;
+            }
+          }
+          break;
+        }
+        default:
+          toolWarnings.push({
+            type: "unsupported",
+            feature: `function tool ${tool3}`
+          });
+          break;
+      }
+    }
+    if (toolChoice == null) {
+      return { tools: openaiTools2, toolChoice: void 0, toolWarnings };
+    }
+    const type = toolChoice.type;
+    switch (type) {
+      case "auto":
+      case "none":
+      case "required":
+        return { tools: openaiTools2, toolChoice: type, toolWarnings };
+      case "tool": {
+        const resolvedToolName = (_b18 = toolNameMapping == null ? void 0 : toolNameMapping.toProviderToolName(toolChoice.toolName)) != null ? _b18 : toolChoice.toolName;
+        return {
+          tools: openaiTools2,
+          toolChoice: resolvedToolName === "code_interpreter" || resolvedToolName === "file_search" || resolvedToolName === "image_generation" || resolvedToolName === "web_search_preview" || resolvedToolName === "web_search" || resolvedToolName === "mcp" || resolvedToolName === "apply_patch" ? { type: resolvedToolName } : resolvedCustomProviderToolNames.has(resolvedToolName) ? { type: "custom", name: resolvedToolName } : { type: "function", name: resolvedToolName },
+          toolWarnings
+        };
+      }
+      default: {
+        const _exhaustiveCheck = type;
+        throw new UnsupportedFunctionalityError({
+          functionality: `tool choice type: ${_exhaustiveCheck}`
+        });
+      }
+    }
+  }
+  function mapShellEnvironment(environment) {
+    if (environment.type === "containerReference") {
+      const env2 = environment;
+      return {
+        type: "container_reference",
+        container_id: env2.containerId
+      };
+    }
+    if (environment.type === "containerAuto") {
+      const env2 = environment;
+      return {
+        type: "container_auto",
+        file_ids: env2.fileIds,
+        memory_limit: env2.memoryLimit,
+        network_policy: env2.networkPolicy == null ? void 0 : env2.networkPolicy.type === "disabled" ? { type: "disabled" } : {
+          type: "allowlist",
+          allowed_domains: env2.networkPolicy.allowedDomains,
+          domain_secrets: env2.networkPolicy.domainSecrets
+        },
+        skills: mapShellSkills(env2.skills)
+      };
+    }
+    const env = environment;
+    return {
+      type: "local",
+      skills: env.skills
+    };
+  }
+  function mapShellSkills(skills) {
+    return skills == null ? void 0 : skills.map(
+      (skill) => skill.type === "skillReference" ? {
+        type: "skill_reference",
+        skill_id: skill.skillId,
+        version: skill.version
+      } : {
+        type: "inline",
+        name: skill.name,
+        description: skill.description,
+        source: {
+          type: "base64",
+          media_type: skill.source.mediaType,
+          data: skill.source.data
+        }
+      }
+    );
+  }
+  function extractApprovalRequestIdToToolCallIdMapping(prompt) {
+    var _a24, _b18;
+    const mapping = {};
+    for (const message of prompt) {
+      if (message.role !== "assistant") continue;
+      for (const part of message.content) {
+        if (part.type !== "tool-call") continue;
+        const approvalRequestId = (_b18 = (_a24 = part.providerOptions) == null ? void 0 : _a24.openai) == null ? void 0 : _b18.approvalRequestId;
+        if (approvalRequestId != null) {
+          mapping[approvalRequestId] = part.toolCallId;
+        }
+      }
+    }
+    return mapping;
+  }
+  var OpenAIResponsesLanguageModel = class {
+    constructor(modelId, config2) {
+      this.specificationVersion = "v3";
+      this.supportedUrls = {
+        "image/*": [/^https?:\/\/.*$/],
+        "application/pdf": [/^https?:\/\/.*$/]
+      };
+      this.modelId = modelId;
+      this.config = config2;
+    }
+    get provider() {
+      return this.config.provider;
+    }
+    async getArgs({
+      maxOutputTokens,
+      temperature,
+      stopSequences,
+      topP,
+      topK,
+      presencePenalty,
+      frequencyPenalty,
+      seed,
+      prompt,
+      providerOptions,
+      tools,
+      toolChoice,
+      responseFormat
+    }) {
+      var _a24, _b18, _c, _d, _e, _f, _g, _h, _i;
+      const warnings = [];
+      const modelCapabilities = getOpenAILanguageModelCapabilities(this.modelId);
+      if (topK != null) {
+        warnings.push({ type: "unsupported", feature: "topK" });
+      }
+      if (seed != null) {
+        warnings.push({ type: "unsupported", feature: "seed" });
+      }
+      if (presencePenalty != null) {
+        warnings.push({ type: "unsupported", feature: "presencePenalty" });
+      }
+      if (frequencyPenalty != null) {
+        warnings.push({ type: "unsupported", feature: "frequencyPenalty" });
+      }
+      if (stopSequences != null) {
+        warnings.push({ type: "unsupported", feature: "stopSequences" });
+      }
+      const providerOptionsName = this.config.provider.includes("azure") ? "azure" : "openai";
+      let openaiOptions = await parseProviderOptions2({
+        provider: providerOptionsName,
+        providerOptions,
+        schema: openaiLanguageModelResponsesOptionsSchema
+      });
+      if (openaiOptions == null && providerOptionsName !== "openai") {
+        openaiOptions = await parseProviderOptions2({
+          provider: "openai",
+          providerOptions,
+          schema: openaiLanguageModelResponsesOptionsSchema
+        });
+      }
+      const isReasoningModel = (_a24 = openaiOptions == null ? void 0 : openaiOptions.forceReasoning) != null ? _a24 : modelCapabilities.isReasoningModel;
+      if ((openaiOptions == null ? void 0 : openaiOptions.conversation) && (openaiOptions == null ? void 0 : openaiOptions.previousResponseId)) {
+        warnings.push({
+          type: "unsupported",
+          feature: "conversation",
+          details: "conversation and previousResponseId cannot be used together"
+        });
+      }
+      const toolNameMapping = createToolNameMapping({
+        tools,
+        providerToolNames: {
+          "openai.code_interpreter": "code_interpreter",
+          "openai.file_search": "file_search",
+          "openai.image_generation": "image_generation",
+          "openai.local_shell": "local_shell",
+          "openai.shell": "shell",
+          "openai.web_search": "web_search",
+          "openai.web_search_preview": "web_search_preview",
+          "openai.mcp": "mcp",
+          "openai.apply_patch": "apply_patch",
+          "openai.tool_search": "tool_search"
+        },
+        resolveProviderToolName: (tool3) => tool3.id === "openai.custom" ? tool3.args.name : void 0
+      });
+      const customProviderToolNames = /* @__PURE__ */ new Set();
+      const {
+        tools: openaiTools2,
+        toolChoice: openaiToolChoice,
+        toolWarnings
+      } = await prepareResponsesTools({
+        tools,
+        toolChoice,
+        toolNameMapping,
+        customProviderToolNames
+      });
+      const { input, warnings: inputWarnings } = await convertToOpenAIResponsesInput({
+        prompt,
+        toolNameMapping,
+        systemMessageMode: (_b18 = openaiOptions == null ? void 0 : openaiOptions.systemMessageMode) != null ? _b18 : isReasoningModel ? "developer" : modelCapabilities.systemMessageMode,
+        providerOptionsName,
+        fileIdPrefixes: this.config.fileIdPrefixes,
+        store: (_c = openaiOptions == null ? void 0 : openaiOptions.store) != null ? _c : true,
+        hasConversation: (openaiOptions == null ? void 0 : openaiOptions.conversation) != null,
+        hasLocalShellTool: hasOpenAITool("openai.local_shell"),
+        hasShellTool: hasOpenAITool("openai.shell"),
+        hasApplyPatchTool: hasOpenAITool("openai.apply_patch"),
+        customProviderToolNames: customProviderToolNames.size > 0 ? customProviderToolNames : void 0
+      });
+      warnings.push(...inputWarnings);
+      const strictJsonSchema = (_d = openaiOptions == null ? void 0 : openaiOptions.strictJsonSchema) != null ? _d : true;
+      let include = openaiOptions == null ? void 0 : openaiOptions.include;
+      function addInclude(key) {
+        if (include == null) {
+          include = [key];
+        } else if (!include.includes(key)) {
+          include = [...include, key];
+        }
+      }
+      function hasOpenAITool(id) {
+        return (tools == null ? void 0 : tools.find((tool3) => tool3.type === "provider" && tool3.id === id)) != null;
+      }
+      const topLogprobs = typeof (openaiOptions == null ? void 0 : openaiOptions.logprobs) === "number" ? openaiOptions == null ? void 0 : openaiOptions.logprobs : (openaiOptions == null ? void 0 : openaiOptions.logprobs) === true ? TOP_LOGPROBS_MAX : void 0;
+      if (topLogprobs) {
+        addInclude("message.output_text.logprobs");
+      }
+      const webSearchToolName = (_e = tools == null ? void 0 : tools.find(
+        (tool3) => tool3.type === "provider" && (tool3.id === "openai.web_search" || tool3.id === "openai.web_search_preview")
+      )) == null ? void 0 : _e.name;
+      if (webSearchToolName) {
+        addInclude("web_search_call.action.sources");
+      }
+      if (hasOpenAITool("openai.code_interpreter")) {
+        addInclude("code_interpreter_call.outputs");
+      }
+      const store = openaiOptions == null ? void 0 : openaiOptions.store;
+      if (store === false && isReasoningModel) {
+        addInclude("reasoning.encrypted_content");
+      }
+      const baseArgs = {
+        model: this.modelId,
+        input,
+        temperature,
+        top_p: topP,
+        max_output_tokens: maxOutputTokens,
+        ...((responseFormat == null ? void 0 : responseFormat.type) === "json" || (openaiOptions == null ? void 0 : openaiOptions.textVerbosity)) && {
+          text: {
+            ...(responseFormat == null ? void 0 : responseFormat.type) === "json" && {
+              format: responseFormat.schema != null ? {
+                type: "json_schema",
+                strict: strictJsonSchema,
+                name: (_f = responseFormat.name) != null ? _f : "response",
+                description: responseFormat.description,
+                schema: responseFormat.schema
+              } : { type: "json_object" }
+            },
+            ...(openaiOptions == null ? void 0 : openaiOptions.textVerbosity) && {
+              verbosity: openaiOptions.textVerbosity
+            }
+          }
+        },
+        // provider options:
+        conversation: openaiOptions == null ? void 0 : openaiOptions.conversation,
+        max_tool_calls: openaiOptions == null ? void 0 : openaiOptions.maxToolCalls,
+        metadata: openaiOptions == null ? void 0 : openaiOptions.metadata,
+        parallel_tool_calls: openaiOptions == null ? void 0 : openaiOptions.parallelToolCalls,
+        previous_response_id: openaiOptions == null ? void 0 : openaiOptions.previousResponseId,
+        store,
+        user: openaiOptions == null ? void 0 : openaiOptions.user,
+        instructions: openaiOptions == null ? void 0 : openaiOptions.instructions,
+        service_tier: openaiOptions == null ? void 0 : openaiOptions.serviceTier,
+        include,
+        prompt_cache_key: openaiOptions == null ? void 0 : openaiOptions.promptCacheKey,
+        prompt_cache_retention: openaiOptions == null ? void 0 : openaiOptions.promptCacheRetention,
+        safety_identifier: openaiOptions == null ? void 0 : openaiOptions.safetyIdentifier,
+        top_logprobs: topLogprobs,
+        truncation: openaiOptions == null ? void 0 : openaiOptions.truncation,
+        // model-specific settings:
+        ...isReasoningModel && ((openaiOptions == null ? void 0 : openaiOptions.reasoningEffort) != null || (openaiOptions == null ? void 0 : openaiOptions.reasoningSummary) != null) && {
+          reasoning: {
+            ...(openaiOptions == null ? void 0 : openaiOptions.reasoningEffort) != null && {
+              effort: openaiOptions.reasoningEffort
+            },
+            ...(openaiOptions == null ? void 0 : openaiOptions.reasoningSummary) != null && {
+              summary: openaiOptions.reasoningSummary
+            }
+          }
+        }
+      };
+      if (isReasoningModel) {
+        if (!((openaiOptions == null ? void 0 : openaiOptions.reasoningEffort) === "none" && modelCapabilities.supportsNonReasoningParameters)) {
+          if (baseArgs.temperature != null) {
+            baseArgs.temperature = void 0;
+            warnings.push({
+              type: "unsupported",
+              feature: "temperature",
+              details: "temperature is not supported for reasoning models"
+            });
+          }
+          if (baseArgs.top_p != null) {
+            baseArgs.top_p = void 0;
+            warnings.push({
+              type: "unsupported",
+              feature: "topP",
+              details: "topP is not supported for reasoning models"
+            });
+          }
+        }
+      } else {
+        if ((openaiOptions == null ? void 0 : openaiOptions.reasoningEffort) != null) {
+          warnings.push({
+            type: "unsupported",
+            feature: "reasoningEffort",
+            details: "reasoningEffort is not supported for non-reasoning models"
+          });
+        }
+        if ((openaiOptions == null ? void 0 : openaiOptions.reasoningSummary) != null) {
+          warnings.push({
+            type: "unsupported",
+            feature: "reasoningSummary",
+            details: "reasoningSummary is not supported for non-reasoning models"
+          });
+        }
+      }
+      if ((openaiOptions == null ? void 0 : openaiOptions.serviceTier) === "flex" && !modelCapabilities.supportsFlexProcessing) {
+        warnings.push({
+          type: "unsupported",
+          feature: "serviceTier",
+          details: "flex processing is only available for o3, o4-mini, and gpt-5 models"
+        });
+        delete baseArgs.service_tier;
+      }
+      if ((openaiOptions == null ? void 0 : openaiOptions.serviceTier) === "priority" && !modelCapabilities.supportsPriorityProcessing) {
+        warnings.push({
+          type: "unsupported",
+          feature: "serviceTier",
+          details: "priority processing is only available for supported models (gpt-4, gpt-5, gpt-5-mini, o3, o4-mini) and requires Enterprise access. gpt-5-nano is not supported"
+        });
+        delete baseArgs.service_tier;
+      }
+      const shellToolEnvType = (_i = (_h = (_g = tools == null ? void 0 : tools.find(
+        (tool3) => tool3.type === "provider" && tool3.id === "openai.shell"
+      )) == null ? void 0 : _g.args) == null ? void 0 : _h.environment) == null ? void 0 : _i.type;
+      const isShellProviderExecuted = shellToolEnvType === "containerAuto" || shellToolEnvType === "containerReference";
+      return {
+        webSearchToolName,
+        args: {
+          ...baseArgs,
+          tools: openaiTools2,
+          tool_choice: openaiToolChoice
+        },
+        warnings: [...warnings, ...toolWarnings],
+        store,
+        toolNameMapping,
+        providerOptionsName,
+        isShellProviderExecuted
+      };
+    }
+    async doGenerate(options) {
+      var _a24, _b18, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _A, _B;
+      const {
+        args: body,
+        warnings,
+        webSearchToolName,
+        toolNameMapping,
+        providerOptionsName,
+        isShellProviderExecuted
+      } = await this.getArgs(options);
+      const url2 = this.config.url({
+        path: "/responses",
+        modelId: this.modelId
+      });
+      const approvalRequestIdToDummyToolCallIdFromPrompt = extractApprovalRequestIdToToolCallIdMapping(options.prompt);
+      const {
+        responseHeaders,
+        value: response,
+        rawValue: rawResponse
+      } = await postJsonToApi2({
+        url: url2,
+        headers: combineHeaders2(this.config.headers(), options.headers),
+        body,
+        failedResponseHandler: openaiFailedResponseHandler,
+        successfulResponseHandler: createJsonResponseHandler2(
+          openaiResponsesResponseSchema
+        ),
+        abortSignal: options.abortSignal,
+        fetch: this.config.fetch
+      });
+      if (response.error) {
+        throw new APICallError({
+          message: response.error.message,
+          url: url2,
+          requestBodyValues: body,
+          statusCode: 400,
+          responseHeaders,
+          responseBody: rawResponse,
+          isRetryable: false
+        });
+      }
+      const content = [];
+      const logprobs = [];
+      let hasFunctionCall = false;
+      const hostedToolSearchCallIds = [];
+      for (const part of response.output) {
+        switch (part.type) {
+          case "reasoning": {
+            if (part.summary.length === 0) {
+              part.summary.push({ type: "summary_text", text: "" });
+            }
+            for (const summary of part.summary) {
+              content.push({
+                type: "reasoning",
+                text: summary.text,
+                providerMetadata: {
+                  [providerOptionsName]: {
+                    itemId: part.id,
+                    reasoningEncryptedContent: (_a24 = part.encrypted_content) != null ? _a24 : null
+                  }
+                }
+              });
+            }
+            break;
+          }
+          case "image_generation_call": {
+            content.push({
+              type: "tool-call",
+              toolCallId: part.id,
+              toolName: toolNameMapping.toCustomToolName("image_generation"),
+              input: "{}",
+              providerExecuted: true
+            });
+            content.push({
+              type: "tool-result",
+              toolCallId: part.id,
+              toolName: toolNameMapping.toCustomToolName("image_generation"),
+              result: {
+                result: part.result
+              }
+            });
+            break;
+          }
+          case "tool_search_call": {
+            const toolCallId = (_b18 = part.call_id) != null ? _b18 : part.id;
+            const isHosted = part.execution === "server";
+            if (isHosted) {
+              hostedToolSearchCallIds.push(toolCallId);
+            }
+            content.push({
+              type: "tool-call",
+              toolCallId,
+              toolName: toolNameMapping.toCustomToolName("tool_search"),
+              input: JSON.stringify({
+                arguments: part.arguments,
+                call_id: part.call_id
+              }),
+              ...isHosted ? { providerExecuted: true } : {},
+              providerMetadata: {
+                [providerOptionsName]: {
+                  itemId: part.id
+                }
+              }
+            });
+            break;
+          }
+          case "tool_search_output": {
+            const toolCallId = (_d = (_c = part.call_id) != null ? _c : hostedToolSearchCallIds.shift()) != null ? _d : part.id;
+            content.push({
+              type: "tool-result",
+              toolCallId,
+              toolName: toolNameMapping.toCustomToolName("tool_search"),
+              result: {
+                tools: part.tools
+              },
+              providerMetadata: {
+                [providerOptionsName]: {
+                  itemId: part.id
+                }
+              }
+            });
+            break;
+          }
+          case "local_shell_call": {
+            content.push({
+              type: "tool-call",
+              toolCallId: part.call_id,
+              toolName: toolNameMapping.toCustomToolName("local_shell"),
+              input: JSON.stringify({
+                action: part.action
+              }),
+              providerMetadata: {
+                [providerOptionsName]: {
+                  itemId: part.id
+                }
+              }
+            });
+            break;
+          }
+          case "shell_call": {
+            content.push({
+              type: "tool-call",
+              toolCallId: part.call_id,
+              toolName: toolNameMapping.toCustomToolName("shell"),
+              input: JSON.stringify({
+                action: {
+                  commands: part.action.commands
+                }
+              }),
+              ...isShellProviderExecuted && { providerExecuted: true },
+              providerMetadata: {
+                [providerOptionsName]: {
+                  itemId: part.id
+                }
+              }
+            });
+            break;
+          }
+          case "shell_call_output": {
+            content.push({
+              type: "tool-result",
+              toolCallId: part.call_id,
+              toolName: toolNameMapping.toCustomToolName("shell"),
+              result: {
+                output: part.output.map((item) => ({
+                  stdout: item.stdout,
+                  stderr: item.stderr,
+                  outcome: item.outcome.type === "exit" ? {
+                    type: "exit",
+                    exitCode: item.outcome.exit_code
+                  } : { type: "timeout" }
+                }))
+              }
+            });
+            break;
+          }
+          case "message": {
+            for (const contentPart of part.content) {
+              if (((_f = (_e = options.providerOptions) == null ? void 0 : _e[providerOptionsName]) == null ? void 0 : _f.logprobs) && contentPart.logprobs) {
+                logprobs.push(contentPart.logprobs);
+              }
+              const providerMetadata2 = {
+                itemId: part.id,
+                ...part.phase != null && { phase: part.phase },
+                ...contentPart.annotations.length > 0 && {
+                  annotations: contentPart.annotations
+                }
+              };
+              content.push({
+                type: "text",
+                text: contentPart.text,
+                providerMetadata: {
+                  [providerOptionsName]: providerMetadata2
+                }
+              });
+              for (const annotation of contentPart.annotations) {
+                if (annotation.type === "url_citation") {
+                  content.push({
+                    type: "source",
+                    sourceType: "url",
+                    id: (_i = (_h = (_g = this.config).generateId) == null ? void 0 : _h.call(_g)) != null ? _i : generateId2(),
+                    url: annotation.url,
+                    title: annotation.title
+                  });
+                } else if (annotation.type === "file_citation") {
+                  content.push({
+                    type: "source",
+                    sourceType: "document",
+                    id: (_l = (_k = (_j = this.config).generateId) == null ? void 0 : _k.call(_j)) != null ? _l : generateId2(),
+                    mediaType: "text/plain",
+                    title: annotation.filename,
+                    filename: annotation.filename,
+                    providerMetadata: {
+                      [providerOptionsName]: {
+                        type: annotation.type,
+                        fileId: annotation.file_id,
+                        index: annotation.index
+                      }
+                    }
+                  });
+                } else if (annotation.type === "container_file_citation") {
+                  content.push({
+                    type: "source",
+                    sourceType: "document",
+                    id: (_o = (_n = (_m = this.config).generateId) == null ? void 0 : _n.call(_m)) != null ? _o : generateId2(),
+                    mediaType: "text/plain",
+                    title: annotation.filename,
+                    filename: annotation.filename,
+                    providerMetadata: {
+                      [providerOptionsName]: {
+                        type: annotation.type,
+                        fileId: annotation.file_id,
+                        containerId: annotation.container_id
+                      }
+                    }
+                  });
+                } else if (annotation.type === "file_path") {
+                  content.push({
+                    type: "source",
+                    sourceType: "document",
+                    id: (_r = (_q = (_p = this.config).generateId) == null ? void 0 : _q.call(_p)) != null ? _r : generateId2(),
+                    mediaType: "application/octet-stream",
+                    title: annotation.file_id,
+                    filename: annotation.file_id,
+                    providerMetadata: {
+                      [providerOptionsName]: {
+                        type: annotation.type,
+                        fileId: annotation.file_id,
+                        index: annotation.index
+                      }
+                    }
+                  });
+                }
+              }
+            }
+            break;
+          }
+          case "function_call": {
+            hasFunctionCall = true;
+            content.push({
+              type: "tool-call",
+              toolCallId: part.call_id,
+              toolName: part.name,
+              input: part.arguments,
+              providerMetadata: {
+                [providerOptionsName]: {
+                  itemId: part.id
+                }
+              }
+            });
+            break;
+          }
+          case "custom_tool_call": {
+            hasFunctionCall = true;
+            const toolName = toolNameMapping.toCustomToolName(part.name);
+            content.push({
+              type: "tool-call",
+              toolCallId: part.call_id,
+              toolName,
+              input: JSON.stringify(part.input),
+              providerMetadata: {
+                [providerOptionsName]: {
+                  itemId: part.id
+                }
+              }
+            });
+            break;
+          }
+          case "web_search_call": {
+            content.push({
+              type: "tool-call",
+              toolCallId: part.id,
+              toolName: toolNameMapping.toCustomToolName(
+                webSearchToolName != null ? webSearchToolName : "web_search"
+              ),
+              input: JSON.stringify({}),
+              providerExecuted: true
+            });
+            content.push({
+              type: "tool-result",
+              toolCallId: part.id,
+              toolName: toolNameMapping.toCustomToolName(
+                webSearchToolName != null ? webSearchToolName : "web_search"
+              ),
+              result: mapWebSearchOutput(part.action)
+            });
+            break;
+          }
+          case "mcp_call": {
+            const toolCallId = part.approval_request_id != null ? (_s = approvalRequestIdToDummyToolCallIdFromPrompt[part.approval_request_id]) != null ? _s : part.id : part.id;
+            const toolName = `mcp.${part.name}`;
+            content.push({
+              type: "tool-call",
+              toolCallId,
+              toolName,
+              input: part.arguments,
+              providerExecuted: true,
+              dynamic: true
+            });
+            content.push({
+              type: "tool-result",
+              toolCallId,
+              toolName,
+              result: {
+                type: "call",
+                serverLabel: part.server_label,
+                name: part.name,
+                arguments: part.arguments,
+                ...part.output != null ? { output: part.output } : {},
+                ...part.error != null ? { error: part.error } : {}
+              },
+              providerMetadata: {
+                [providerOptionsName]: {
+                  itemId: part.id
+                }
+              }
+            });
+            break;
+          }
+          case "mcp_list_tools": {
+            break;
+          }
+          case "mcp_approval_request": {
+            const approvalRequestId = (_t = part.approval_request_id) != null ? _t : part.id;
+            const dummyToolCallId = (_w = (_v = (_u = this.config).generateId) == null ? void 0 : _v.call(_u)) != null ? _w : generateId2();
+            const toolName = `mcp.${part.name}`;
+            content.push({
+              type: "tool-call",
+              toolCallId: dummyToolCallId,
+              toolName,
+              input: part.arguments,
+              providerExecuted: true,
+              dynamic: true
+            });
+            content.push({
+              type: "tool-approval-request",
+              approvalId: approvalRequestId,
+              toolCallId: dummyToolCallId
+            });
+            break;
+          }
+          case "computer_call": {
+            content.push({
+              type: "tool-call",
+              toolCallId: part.id,
+              toolName: toolNameMapping.toCustomToolName("computer_use"),
+              input: "",
+              providerExecuted: true
+            });
+            content.push({
+              type: "tool-result",
+              toolCallId: part.id,
+              toolName: toolNameMapping.toCustomToolName("computer_use"),
+              result: {
+                type: "computer_use_tool_result",
+                status: part.status || "completed"
+              }
+            });
+            break;
+          }
+          case "file_search_call": {
+            content.push({
+              type: "tool-call",
+              toolCallId: part.id,
+              toolName: toolNameMapping.toCustomToolName("file_search"),
+              input: "{}",
+              providerExecuted: true
+            });
+            content.push({
+              type: "tool-result",
+              toolCallId: part.id,
+              toolName: toolNameMapping.toCustomToolName("file_search"),
+              result: {
+                queries: part.queries,
+                results: (_y = (_x = part.results) == null ? void 0 : _x.map((result) => ({
+                  attributes: result.attributes,
+                  fileId: result.file_id,
+                  filename: result.filename,
+                  score: result.score,
+                  text: result.text
+                }))) != null ? _y : null
+              }
+            });
+            break;
+          }
+          case "code_interpreter_call": {
+            content.push({
+              type: "tool-call",
+              toolCallId: part.id,
+              toolName: toolNameMapping.toCustomToolName("code_interpreter"),
+              input: JSON.stringify({
+                code: part.code,
+                containerId: part.container_id
+              }),
+              providerExecuted: true
+            });
+            content.push({
+              type: "tool-result",
+              toolCallId: part.id,
+              toolName: toolNameMapping.toCustomToolName("code_interpreter"),
+              result: {
+                outputs: part.outputs
+              }
+            });
+            break;
+          }
+          case "apply_patch_call": {
+            content.push({
+              type: "tool-call",
+              toolCallId: part.call_id,
+              toolName: toolNameMapping.toCustomToolName("apply_patch"),
+              input: JSON.stringify({
+                callId: part.call_id,
+                operation: part.operation
+              }),
+              providerMetadata: {
+                [providerOptionsName]: {
+                  itemId: part.id
+                }
+              }
+            });
+            break;
+          }
+        }
+      }
+      const providerMetadata = {
+        [providerOptionsName]: {
+          responseId: response.id,
+          ...logprobs.length > 0 ? { logprobs } : {},
+          ...typeof response.service_tier === "string" ? { serviceTier: response.service_tier } : {}
+        }
+      };
+      const usage = response.usage;
+      return {
+        content,
+        finishReason: {
+          unified: mapOpenAIResponseFinishReason({
+            finishReason: (_z = response.incomplete_details) == null ? void 0 : _z.reason,
+            hasFunctionCall
+          }),
+          raw: (_B = (_A = response.incomplete_details) == null ? void 0 : _A.reason) != null ? _B : void 0
+        },
+        usage: convertOpenAIResponsesUsage(usage),
+        request: { body },
+        response: {
+          id: response.id,
+          timestamp: new Date(response.created_at * 1e3),
+          modelId: response.model,
+          headers: responseHeaders,
+          body: rawResponse
+        },
+        providerMetadata,
+        warnings
+      };
+    }
+    async doStream(options) {
+      const {
+        args: body,
+        warnings,
+        webSearchToolName,
+        toolNameMapping,
+        store,
+        providerOptionsName,
+        isShellProviderExecuted
+      } = await this.getArgs(options);
+      const { responseHeaders, value: response } = await postJsonToApi2({
+        url: this.config.url({
+          path: "/responses",
+          modelId: this.modelId
+        }),
+        headers: combineHeaders2(this.config.headers(), options.headers),
+        body: {
+          ...body,
+          stream: true
+        },
+        failedResponseHandler: openaiFailedResponseHandler,
+        successfulResponseHandler: createEventSourceResponseHandler2(
+          openaiResponsesChunkSchema
+        ),
+        abortSignal: options.abortSignal,
+        fetch: this.config.fetch
+      });
+      const self2 = this;
+      const approvalRequestIdToDummyToolCallIdFromPrompt = extractApprovalRequestIdToToolCallIdMapping(options.prompt);
+      const approvalRequestIdToDummyToolCallIdFromStream = /* @__PURE__ */ new Map();
+      let finishReason = {
+        unified: "other",
+        raw: void 0
+      };
+      let usage = void 0;
+      const logprobs = [];
+      let responseId = null;
+      const ongoingToolCalls = {};
+      const ongoingAnnotations = [];
+      let activeMessagePhase;
+      let hasFunctionCall = false;
+      const activeReasoning = {};
+      let serviceTier;
+      const hostedToolSearchCallIds = [];
+      return {
+        stream: response.pipeThrough(
+          new TransformStream({
+            start(controller) {
+              controller.enqueue({ type: "stream-start", warnings });
+            },
+            transform(chunk, controller) {
+              var _a24, _b18, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _A, _B, _C, _D, _E, _F, _G, _H, _I, _J, _K, _L;
+              if (options.includeRawChunks) {
+                controller.enqueue({ type: "raw", rawValue: chunk.rawValue });
+              }
+              if (!chunk.success) {
+                finishReason = { unified: "error", raw: void 0 };
+                controller.enqueue({ type: "error", error: chunk.error });
+                return;
+              }
+              const value = chunk.value;
+              if (isResponseOutputItemAddedChunk(value)) {
+                if (value.item.type === "function_call") {
+                  ongoingToolCalls[value.output_index] = {
+                    toolName: value.item.name,
+                    toolCallId: value.item.call_id
+                  };
+                  controller.enqueue({
+                    type: "tool-input-start",
+                    id: value.item.call_id,
+                    toolName: value.item.name
+                  });
+                } else if (value.item.type === "custom_tool_call") {
+                  const toolName = toolNameMapping.toCustomToolName(
+                    value.item.name
+                  );
+                  ongoingToolCalls[value.output_index] = {
+                    toolName,
+                    toolCallId: value.item.call_id
+                  };
+                  controller.enqueue({
+                    type: "tool-input-start",
+                    id: value.item.call_id,
+                    toolName
+                  });
+                } else if (value.item.type === "web_search_call") {
+                  ongoingToolCalls[value.output_index] = {
+                    toolName: toolNameMapping.toCustomToolName(
+                      webSearchToolName != null ? webSearchToolName : "web_search"
+                    ),
+                    toolCallId: value.item.id
+                  };
+                  controller.enqueue({
+                    type: "tool-input-start",
+                    id: value.item.id,
+                    toolName: toolNameMapping.toCustomToolName(
+                      webSearchToolName != null ? webSearchToolName : "web_search"
+                    ),
+                    providerExecuted: true
+                  });
+                  controller.enqueue({
+                    type: "tool-input-end",
+                    id: value.item.id
+                  });
+                  controller.enqueue({
+                    type: "tool-call",
+                    toolCallId: value.item.id,
+                    toolName: toolNameMapping.toCustomToolName(
+                      webSearchToolName != null ? webSearchToolName : "web_search"
+                    ),
+                    input: JSON.stringify({}),
+                    providerExecuted: true
+                  });
+                } else if (value.item.type === "computer_call") {
+                  ongoingToolCalls[value.output_index] = {
+                    toolName: toolNameMapping.toCustomToolName("computer_use"),
+                    toolCallId: value.item.id
+                  };
+                  controller.enqueue({
+                    type: "tool-input-start",
+                    id: value.item.id,
+                    toolName: toolNameMapping.toCustomToolName("computer_use"),
+                    providerExecuted: true
+                  });
+                } else if (value.item.type === "code_interpreter_call") {
+                  ongoingToolCalls[value.output_index] = {
+                    toolName: toolNameMapping.toCustomToolName("code_interpreter"),
+                    toolCallId: value.item.id,
+                    codeInterpreter: {
+                      containerId: value.item.container_id
+                    }
+                  };
+                  controller.enqueue({
+                    type: "tool-input-start",
+                    id: value.item.id,
+                    toolName: toolNameMapping.toCustomToolName("code_interpreter"),
+                    providerExecuted: true
+                  });
+                  controller.enqueue({
+                    type: "tool-input-delta",
+                    id: value.item.id,
+                    delta: `{"containerId":"${value.item.container_id}","code":"`
+                  });
+                } else if (value.item.type === "file_search_call") {
+                  controller.enqueue({
+                    type: "tool-call",
+                    toolCallId: value.item.id,
+                    toolName: toolNameMapping.toCustomToolName("file_search"),
+                    input: "{}",
+                    providerExecuted: true
+                  });
+                } else if (value.item.type === "image_generation_call") {
+                  controller.enqueue({
+                    type: "tool-call",
+                    toolCallId: value.item.id,
+                    toolName: toolNameMapping.toCustomToolName("image_generation"),
+                    input: "{}",
+                    providerExecuted: true
+                  });
+                } else if (value.item.type === "tool_search_call") {
+                  const toolCallId = value.item.id;
+                  const toolName = toolNameMapping.toCustomToolName("tool_search");
+                  const isHosted = value.item.execution === "server";
+                  ongoingToolCalls[value.output_index] = {
+                    toolName,
+                    toolCallId,
+                    toolSearchExecution: (_a24 = value.item.execution) != null ? _a24 : "server"
+                  };
+                  if (isHosted) {
+                    controller.enqueue({
+                      type: "tool-input-start",
+                      id: toolCallId,
+                      toolName,
+                      providerExecuted: true
+                    });
+                  }
+                } else if (value.item.type === "tool_search_output") {
+                } else if (value.item.type === "mcp_call" || value.item.type === "mcp_list_tools" || value.item.type === "mcp_approval_request") {
+                } else if (value.item.type === "apply_patch_call") {
+                  const { call_id: callId, operation } = value.item;
+                  ongoingToolCalls[value.output_index] = {
+                    toolName: toolNameMapping.toCustomToolName("apply_patch"),
+                    toolCallId: callId,
+                    applyPatch: {
+                      // delete_file doesn't have diff
+                      hasDiff: operation.type === "delete_file",
+                      endEmitted: operation.type === "delete_file"
+                    }
+                  };
+                  controller.enqueue({
+                    type: "tool-input-start",
+                    id: callId,
+                    toolName: toolNameMapping.toCustomToolName("apply_patch")
+                  });
+                  if (operation.type === "delete_file") {
+                    const inputString = JSON.stringify({
+                      callId,
+                      operation
+                    });
+                    controller.enqueue({
+                      type: "tool-input-delta",
+                      id: callId,
+                      delta: inputString
+                    });
+                    controller.enqueue({
+                      type: "tool-input-end",
+                      id: callId
+                    });
+                  } else {
+                    controller.enqueue({
+                      type: "tool-input-delta",
+                      id: callId,
+                      delta: `{"callId":"${escapeJSONDelta(callId)}","operation":{"type":"${escapeJSONDelta(operation.type)}","path":"${escapeJSONDelta(operation.path)}","diff":"`
+                    });
+                  }
+                } else if (value.item.type === "shell_call") {
+                  ongoingToolCalls[value.output_index] = {
+                    toolName: toolNameMapping.toCustomToolName("shell"),
+                    toolCallId: value.item.call_id
+                  };
+                } else if (value.item.type === "shell_call_output") {
+                } else if (value.item.type === "message") {
+                  ongoingAnnotations.splice(0, ongoingAnnotations.length);
+                  activeMessagePhase = (_b18 = value.item.phase) != null ? _b18 : void 0;
+                  controller.enqueue({
+                    type: "text-start",
+                    id: value.item.id,
+                    providerMetadata: {
+                      [providerOptionsName]: {
+                        itemId: value.item.id,
+                        ...value.item.phase != null && {
+                          phase: value.item.phase
+                        }
+                      }
+                    }
+                  });
+                } else if (isResponseOutputItemAddedChunk(value) && value.item.type === "reasoning") {
+                  activeReasoning[value.item.id] = {
+                    encryptedContent: value.item.encrypted_content,
+                    summaryParts: { 0: "active" }
+                  };
+                  controller.enqueue({
+                    type: "reasoning-start",
+                    id: `${value.item.id}:0`,
+                    providerMetadata: {
+                      [providerOptionsName]: {
+                        itemId: value.item.id,
+                        reasoningEncryptedContent: (_c = value.item.encrypted_content) != null ? _c : null
+                      }
+                    }
+                  });
+                }
+              } else if (isResponseOutputItemDoneChunk(value)) {
+                if (value.item.type === "message") {
+                  const phase = (_d = value.item.phase) != null ? _d : activeMessagePhase;
+                  activeMessagePhase = void 0;
+                  controller.enqueue({
+                    type: "text-end",
+                    id: value.item.id,
+                    providerMetadata: {
+                      [providerOptionsName]: {
+                        itemId: value.item.id,
+                        ...phase != null && { phase },
+                        ...ongoingAnnotations.length > 0 && {
+                          annotations: ongoingAnnotations
+                        }
+                      }
+                    }
+                  });
+                } else if (value.item.type === "function_call") {
+                  ongoingToolCalls[value.output_index] = void 0;
+                  hasFunctionCall = true;
+                  controller.enqueue({
+                    type: "tool-input-end",
+                    id: value.item.call_id
+                  });
+                  controller.enqueue({
+                    type: "tool-call",
+                    toolCallId: value.item.call_id,
+                    toolName: value.item.name,
+                    input: value.item.arguments,
+                    providerMetadata: {
+                      [providerOptionsName]: {
+                        itemId: value.item.id
+                      }
+                    }
+                  });
+                } else if (value.item.type === "custom_tool_call") {
+                  ongoingToolCalls[value.output_index] = void 0;
+                  hasFunctionCall = true;
+                  const toolName = toolNameMapping.toCustomToolName(
+                    value.item.name
+                  );
+                  controller.enqueue({
+                    type: "tool-input-end",
+                    id: value.item.call_id
+                  });
+                  controller.enqueue({
+                    type: "tool-call",
+                    toolCallId: value.item.call_id,
+                    toolName,
+                    input: JSON.stringify(value.item.input),
+                    providerMetadata: {
+                      [providerOptionsName]: {
+                        itemId: value.item.id
+                      }
+                    }
+                  });
+                } else if (value.item.type === "web_search_call") {
+                  ongoingToolCalls[value.output_index] = void 0;
+                  controller.enqueue({
+                    type: "tool-result",
+                    toolCallId: value.item.id,
+                    toolName: toolNameMapping.toCustomToolName(
+                      webSearchToolName != null ? webSearchToolName : "web_search"
+                    ),
+                    result: mapWebSearchOutput(value.item.action)
+                  });
+                } else if (value.item.type === "computer_call") {
+                  ongoingToolCalls[value.output_index] = void 0;
+                  controller.enqueue({
+                    type: "tool-input-end",
+                    id: value.item.id
+                  });
+                  controller.enqueue({
+                    type: "tool-call",
+                    toolCallId: value.item.id,
+                    toolName: toolNameMapping.toCustomToolName("computer_use"),
+                    input: "",
+                    providerExecuted: true
+                  });
+                  controller.enqueue({
+                    type: "tool-result",
+                    toolCallId: value.item.id,
+                    toolName: toolNameMapping.toCustomToolName("computer_use"),
+                    result: {
+                      type: "computer_use_tool_result",
+                      status: value.item.status || "completed"
+                    }
+                  });
+                } else if (value.item.type === "file_search_call") {
+                  ongoingToolCalls[value.output_index] = void 0;
+                  controller.enqueue({
+                    type: "tool-result",
+                    toolCallId: value.item.id,
+                    toolName: toolNameMapping.toCustomToolName("file_search"),
+                    result: {
+                      queries: value.item.queries,
+                      results: (_f = (_e = value.item.results) == null ? void 0 : _e.map((result) => ({
+                        attributes: result.attributes,
+                        fileId: result.file_id,
+                        filename: result.filename,
+                        score: result.score,
+                        text: result.text
+                      }))) != null ? _f : null
+                    }
+                  });
+                } else if (value.item.type === "code_interpreter_call") {
+                  ongoingToolCalls[value.output_index] = void 0;
+                  controller.enqueue({
+                    type: "tool-result",
+                    toolCallId: value.item.id,
+                    toolName: toolNameMapping.toCustomToolName("code_interpreter"),
+                    result: {
+                      outputs: value.item.outputs
+                    }
+                  });
+                } else if (value.item.type === "image_generation_call") {
+                  controller.enqueue({
+                    type: "tool-result",
+                    toolCallId: value.item.id,
+                    toolName: toolNameMapping.toCustomToolName("image_generation"),
+                    result: {
+                      result: value.item.result
+                    }
+                  });
+                } else if (value.item.type === "tool_search_call") {
+                  const toolCall = ongoingToolCalls[value.output_index];
+                  const isHosted = value.item.execution === "server";
+                  if (toolCall != null) {
+                    const toolCallId = isHosted ? toolCall.toolCallId : (_g = value.item.call_id) != null ? _g : value.item.id;
+                    if (isHosted) {
+                      hostedToolSearchCallIds.push(toolCallId);
+                    } else {
+                      controller.enqueue({
+                        type: "tool-input-start",
+                        id: toolCallId,
+                        toolName: toolCall.toolName
+                      });
+                    }
+                    controller.enqueue({
+                      type: "tool-input-end",
+                      id: toolCallId
+                    });
+                    controller.enqueue({
+                      type: "tool-call",
+                      toolCallId,
+                      toolName: toolCall.toolName,
+                      input: JSON.stringify({
+                        arguments: value.item.arguments,
+                        call_id: isHosted ? null : toolCallId
+                      }),
+                      ...isHosted ? { providerExecuted: true } : {},
+                      providerMetadata: {
+                        [providerOptionsName]: {
+                          itemId: value.item.id
+                        }
+                      }
+                    });
+                  }
+                  ongoingToolCalls[value.output_index] = void 0;
+                } else if (value.item.type === "tool_search_output") {
+                  const toolCallId = (_i = (_h = value.item.call_id) != null ? _h : hostedToolSearchCallIds.shift()) != null ? _i : value.item.id;
+                  controller.enqueue({
+                    type: "tool-result",
+                    toolCallId,
+                    toolName: toolNameMapping.toCustomToolName("tool_search"),
+                    result: {
+                      tools: value.item.tools
+                    },
+                    providerMetadata: {
+                      [providerOptionsName]: {
+                        itemId: value.item.id
+                      }
+                    }
+                  });
+                } else if (value.item.type === "mcp_call") {
+                  ongoingToolCalls[value.output_index] = void 0;
+                  const approvalRequestId = (_j = value.item.approval_request_id) != null ? _j : void 0;
+                  const aliasedToolCallId = approvalRequestId != null ? (_l = (_k = approvalRequestIdToDummyToolCallIdFromStream.get(
+                    approvalRequestId
+                  )) != null ? _k : approvalRequestIdToDummyToolCallIdFromPrompt[approvalRequestId]) != null ? _l : value.item.id : value.item.id;
+                  const toolName = `mcp.${value.item.name}`;
+                  controller.enqueue({
+                    type: "tool-call",
+                    toolCallId: aliasedToolCallId,
+                    toolName,
+                    input: value.item.arguments,
+                    providerExecuted: true,
+                    dynamic: true
+                  });
+                  controller.enqueue({
+                    type: "tool-result",
+                    toolCallId: aliasedToolCallId,
+                    toolName,
+                    result: {
+                      type: "call",
+                      serverLabel: value.item.server_label,
+                      name: value.item.name,
+                      arguments: value.item.arguments,
+                      ...value.item.output != null ? { output: value.item.output } : {},
+                      ...value.item.error != null ? { error: value.item.error } : {}
+                    },
+                    providerMetadata: {
+                      [providerOptionsName]: {
+                        itemId: value.item.id
+                      }
+                    }
+                  });
+                } else if (value.item.type === "mcp_list_tools") {
+                  ongoingToolCalls[value.output_index] = void 0;
+                } else if (value.item.type === "apply_patch_call") {
+                  const toolCall = ongoingToolCalls[value.output_index];
+                  if ((toolCall == null ? void 0 : toolCall.applyPatch) && !toolCall.applyPatch.endEmitted && value.item.operation.type !== "delete_file") {
+                    if (!toolCall.applyPatch.hasDiff) {
+                      controller.enqueue({
+                        type: "tool-input-delta",
+                        id: toolCall.toolCallId,
+                        delta: escapeJSONDelta(value.item.operation.diff)
+                      });
+                    }
+                    controller.enqueue({
+                      type: "tool-input-delta",
+                      id: toolCall.toolCallId,
+                      delta: '"}}'
+                    });
+                    controller.enqueue({
+                      type: "tool-input-end",
+                      id: toolCall.toolCallId
+                    });
+                    toolCall.applyPatch.endEmitted = true;
+                  }
+                  if (toolCall && value.item.status === "completed") {
+                    controller.enqueue({
+                      type: "tool-call",
+                      toolCallId: toolCall.toolCallId,
+                      toolName: toolNameMapping.toCustomToolName("apply_patch"),
+                      input: JSON.stringify({
+                        callId: value.item.call_id,
+                        operation: value.item.operation
+                      }),
+                      providerMetadata: {
+                        [providerOptionsName]: {
+                          itemId: value.item.id
+                        }
+                      }
+                    });
+                  }
+                  ongoingToolCalls[value.output_index] = void 0;
+                } else if (value.item.type === "mcp_approval_request") {
+                  ongoingToolCalls[value.output_index] = void 0;
+                  const dummyToolCallId = (_o = (_n = (_m = self2.config).generateId) == null ? void 0 : _n.call(_m)) != null ? _o : generateId2();
+                  const approvalRequestId = (_p = value.item.approval_request_id) != null ? _p : value.item.id;
+                  approvalRequestIdToDummyToolCallIdFromStream.set(
+                    approvalRequestId,
+                    dummyToolCallId
+                  );
+                  const toolName = `mcp.${value.item.name}`;
+                  controller.enqueue({
+                    type: "tool-call",
+                    toolCallId: dummyToolCallId,
+                    toolName,
+                    input: value.item.arguments,
+                    providerExecuted: true,
+                    dynamic: true
+                  });
+                  controller.enqueue({
+                    type: "tool-approval-request",
+                    approvalId: approvalRequestId,
+                    toolCallId: dummyToolCallId
+                  });
+                } else if (value.item.type === "local_shell_call") {
+                  ongoingToolCalls[value.output_index] = void 0;
+                  controller.enqueue({
+                    type: "tool-call",
+                    toolCallId: value.item.call_id,
+                    toolName: toolNameMapping.toCustomToolName("local_shell"),
+                    input: JSON.stringify({
+                      action: {
+                        type: "exec",
+                        command: value.item.action.command,
+                        timeoutMs: value.item.action.timeout_ms,
+                        user: value.item.action.user,
+                        workingDirectory: value.item.action.working_directory,
+                        env: value.item.action.env
+                      }
+                    }),
+                    providerMetadata: {
+                      [providerOptionsName]: { itemId: value.item.id }
+                    }
+                  });
+                } else if (value.item.type === "shell_call") {
+                  ongoingToolCalls[value.output_index] = void 0;
+                  controller.enqueue({
+                    type: "tool-call",
+                    toolCallId: value.item.call_id,
+                    toolName: toolNameMapping.toCustomToolName("shell"),
+                    input: JSON.stringify({
+                      action: {
+                        commands: value.item.action.commands
+                      }
+                    }),
+                    ...isShellProviderExecuted && {
+                      providerExecuted: true
+                    },
+                    providerMetadata: {
+                      [providerOptionsName]: { itemId: value.item.id }
+                    }
+                  });
+                } else if (value.item.type === "shell_call_output") {
+                  controller.enqueue({
+                    type: "tool-result",
+                    toolCallId: value.item.call_id,
+                    toolName: toolNameMapping.toCustomToolName("shell"),
+                    result: {
+                      output: value.item.output.map(
+                        (item) => ({
+                          stdout: item.stdout,
+                          stderr: item.stderr,
+                          outcome: item.outcome.type === "exit" ? {
+                            type: "exit",
+                            exitCode: item.outcome.exit_code
+                          } : { type: "timeout" }
+                        })
+                      )
+                    }
+                  });
+                } else if (value.item.type === "reasoning") {
+                  const activeReasoningPart = activeReasoning[value.item.id];
+                  const summaryPartIndices = Object.entries(
+                    activeReasoningPart.summaryParts
+                  ).filter(
+                    ([_, status]) => status === "active" || status === "can-conclude"
+                  ).map(([summaryIndex]) => summaryIndex);
+                  for (const summaryIndex of summaryPartIndices) {
+                    controller.enqueue({
+                      type: "reasoning-end",
+                      id: `${value.item.id}:${summaryIndex}`,
+                      providerMetadata: {
+                        [providerOptionsName]: {
+                          itemId: value.item.id,
+                          reasoningEncryptedContent: (_q = value.item.encrypted_content) != null ? _q : null
+                        }
+                      }
+                    });
+                  }
+                  delete activeReasoning[value.item.id];
+                }
+              } else if (isResponseFunctionCallArgumentsDeltaChunk(value)) {
+                const toolCall = ongoingToolCalls[value.output_index];
+                if (toolCall != null) {
+                  controller.enqueue({
+                    type: "tool-input-delta",
+                    id: toolCall.toolCallId,
+                    delta: value.delta
+                  });
+                }
+              } else if (isResponseCustomToolCallInputDeltaChunk(value)) {
+                const toolCall = ongoingToolCalls[value.output_index];
+                if (toolCall != null) {
+                  controller.enqueue({
+                    type: "tool-input-delta",
+                    id: toolCall.toolCallId,
+                    delta: value.delta
+                  });
+                }
+              } else if (isResponseApplyPatchCallOperationDiffDeltaChunk(value)) {
+                const toolCall = ongoingToolCalls[value.output_index];
+                if (toolCall == null ? void 0 : toolCall.applyPatch) {
+                  controller.enqueue({
+                    type: "tool-input-delta",
+                    id: toolCall.toolCallId,
+                    delta: escapeJSONDelta(value.delta)
+                  });
+                  toolCall.applyPatch.hasDiff = true;
+                }
+              } else if (isResponseApplyPatchCallOperationDiffDoneChunk(value)) {
+                const toolCall = ongoingToolCalls[value.output_index];
+                if ((toolCall == null ? void 0 : toolCall.applyPatch) && !toolCall.applyPatch.endEmitted) {
+                  if (!toolCall.applyPatch.hasDiff) {
+                    controller.enqueue({
+                      type: "tool-input-delta",
+                      id: toolCall.toolCallId,
+                      delta: escapeJSONDelta(value.diff)
+                    });
+                    toolCall.applyPatch.hasDiff = true;
+                  }
+                  controller.enqueue({
+                    type: "tool-input-delta",
+                    id: toolCall.toolCallId,
+                    delta: '"}}'
+                  });
+                  controller.enqueue({
+                    type: "tool-input-end",
+                    id: toolCall.toolCallId
+                  });
+                  toolCall.applyPatch.endEmitted = true;
+                }
+              } else if (isResponseImageGenerationCallPartialImageChunk(value)) {
+                controller.enqueue({
+                  type: "tool-result",
+                  toolCallId: value.item_id,
+                  toolName: toolNameMapping.toCustomToolName("image_generation"),
+                  result: {
+                    result: value.partial_image_b64
+                  },
+                  preliminary: true
+                });
+              } else if (isResponseCodeInterpreterCallCodeDeltaChunk(value)) {
+                const toolCall = ongoingToolCalls[value.output_index];
+                if (toolCall != null) {
+                  controller.enqueue({
+                    type: "tool-input-delta",
+                    id: toolCall.toolCallId,
+                    delta: escapeJSONDelta(value.delta)
+                  });
+                }
+              } else if (isResponseCodeInterpreterCallCodeDoneChunk(value)) {
+                const toolCall = ongoingToolCalls[value.output_index];
+                if (toolCall != null) {
+                  controller.enqueue({
+                    type: "tool-input-delta",
+                    id: toolCall.toolCallId,
+                    delta: '"}'
+                  });
+                  controller.enqueue({
+                    type: "tool-input-end",
+                    id: toolCall.toolCallId
+                  });
+                  controller.enqueue({
+                    type: "tool-call",
+                    toolCallId: toolCall.toolCallId,
+                    toolName: toolNameMapping.toCustomToolName("code_interpreter"),
+                    input: JSON.stringify({
+                      code: value.code,
+                      containerId: toolCall.codeInterpreter.containerId
+                    }),
+                    providerExecuted: true
+                  });
+                }
+              } else if (isResponseCreatedChunk(value)) {
+                responseId = value.response.id;
+                controller.enqueue({
+                  type: "response-metadata",
+                  id: value.response.id,
+                  timestamp: new Date(value.response.created_at * 1e3),
+                  modelId: value.response.model
+                });
+              } else if (isTextDeltaChunk(value)) {
+                controller.enqueue({
+                  type: "text-delta",
+                  id: value.item_id,
+                  delta: value.delta
+                });
+                if (((_s = (_r = options.providerOptions) == null ? void 0 : _r[providerOptionsName]) == null ? void 0 : _s.logprobs) && value.logprobs) {
+                  logprobs.push(value.logprobs);
+                }
+              } else if (value.type === "response.reasoning_summary_part.added") {
+                if (value.summary_index > 0) {
+                  const activeReasoningPart = activeReasoning[value.item_id];
+                  activeReasoningPart.summaryParts[value.summary_index] = "active";
+                  for (const summaryIndex of Object.keys(
+                    activeReasoningPart.summaryParts
+                  )) {
+                    if (activeReasoningPart.summaryParts[summaryIndex] === "can-conclude") {
+                      controller.enqueue({
+                        type: "reasoning-end",
+                        id: `${value.item_id}:${summaryIndex}`,
+                        providerMetadata: {
+                          [providerOptionsName]: {
+                            itemId: value.item_id
+                          }
+                        }
+                      });
+                      activeReasoningPart.summaryParts[summaryIndex] = "concluded";
+                    }
+                  }
+                  controller.enqueue({
+                    type: "reasoning-start",
+                    id: `${value.item_id}:${value.summary_index}`,
+                    providerMetadata: {
+                      [providerOptionsName]: {
+                        itemId: value.item_id,
+                        reasoningEncryptedContent: (_u = (_t = activeReasoning[value.item_id]) == null ? void 0 : _t.encryptedContent) != null ? _u : null
+                      }
+                    }
+                  });
+                }
+              } else if (value.type === "response.reasoning_summary_text.delta") {
+                controller.enqueue({
+                  type: "reasoning-delta",
+                  id: `${value.item_id}:${value.summary_index}`,
+                  delta: value.delta,
+                  providerMetadata: {
+                    [providerOptionsName]: {
+                      itemId: value.item_id
+                    }
+                  }
+                });
+              } else if (value.type === "response.reasoning_summary_part.done") {
+                if (store) {
+                  controller.enqueue({
+                    type: "reasoning-end",
+                    id: `${value.item_id}:${value.summary_index}`,
+                    providerMetadata: {
+                      [providerOptionsName]: {
+                        itemId: value.item_id
+                      }
+                    }
+                  });
+                  activeReasoning[value.item_id].summaryParts[value.summary_index] = "concluded";
+                } else {
+                  activeReasoning[value.item_id].summaryParts[value.summary_index] = "can-conclude";
+                }
+              } else if (isResponseFinishedChunk(value)) {
+                finishReason = {
+                  unified: mapOpenAIResponseFinishReason({
+                    finishReason: (_v = value.response.incomplete_details) == null ? void 0 : _v.reason,
+                    hasFunctionCall
+                  }),
+                  raw: (_x = (_w = value.response.incomplete_details) == null ? void 0 : _w.reason) != null ? _x : void 0
+                };
+                usage = value.response.usage;
+                if (typeof value.response.service_tier === "string") {
+                  serviceTier = value.response.service_tier;
+                }
+              } else if (isResponseFailedChunk(value)) {
+                const incompleteReason = (_y = value.response.incomplete_details) == null ? void 0 : _y.reason;
+                finishReason = {
+                  unified: incompleteReason ? mapOpenAIResponseFinishReason({
+                    finishReason: incompleteReason,
+                    hasFunctionCall
+                  }) : "error",
+                  raw: incompleteReason != null ? incompleteReason : "error"
+                };
+                usage = (_z = value.response.usage) != null ? _z : void 0;
+              } else if (isResponseAnnotationAddedChunk(value)) {
+                ongoingAnnotations.push(value.annotation);
+                if (value.annotation.type === "url_citation") {
+                  controller.enqueue({
+                    type: "source",
+                    sourceType: "url",
+                    id: (_C = (_B = (_A = self2.config).generateId) == null ? void 0 : _B.call(_A)) != null ? _C : generateId2(),
+                    url: value.annotation.url,
+                    title: value.annotation.title
+                  });
+                } else if (value.annotation.type === "file_citation") {
+                  controller.enqueue({
+                    type: "source",
+                    sourceType: "document",
+                    id: (_F = (_E = (_D = self2.config).generateId) == null ? void 0 : _E.call(_D)) != null ? _F : generateId2(),
+                    mediaType: "text/plain",
+                    title: value.annotation.filename,
+                    filename: value.annotation.filename,
+                    providerMetadata: {
+                      [providerOptionsName]: {
+                        type: value.annotation.type,
+                        fileId: value.annotation.file_id,
+                        index: value.annotation.index
+                      }
+                    }
+                  });
+                } else if (value.annotation.type === "container_file_citation") {
+                  controller.enqueue({
+                    type: "source",
+                    sourceType: "document",
+                    id: (_I = (_H = (_G = self2.config).generateId) == null ? void 0 : _H.call(_G)) != null ? _I : generateId2(),
+                    mediaType: "text/plain",
+                    title: value.annotation.filename,
+                    filename: value.annotation.filename,
+                    providerMetadata: {
+                      [providerOptionsName]: {
+                        type: value.annotation.type,
+                        fileId: value.annotation.file_id,
+                        containerId: value.annotation.container_id
+                      }
+                    }
+                  });
+                } else if (value.annotation.type === "file_path") {
+                  controller.enqueue({
+                    type: "source",
+                    sourceType: "document",
+                    id: (_L = (_K = (_J = self2.config).generateId) == null ? void 0 : _K.call(_J)) != null ? _L : generateId2(),
+                    mediaType: "application/octet-stream",
+                    title: value.annotation.file_id,
+                    filename: value.annotation.file_id,
+                    providerMetadata: {
+                      [providerOptionsName]: {
+                        type: value.annotation.type,
+                        fileId: value.annotation.file_id,
+                        index: value.annotation.index
+                      }
+                    }
+                  });
+                }
+              } else if (isErrorChunk(value)) {
+                controller.enqueue({ type: "error", error: value });
+              }
+            },
+            flush(controller) {
+              const providerMetadata = {
+                [providerOptionsName]: {
+                  responseId,
+                  ...logprobs.length > 0 ? { logprobs } : {},
+                  ...serviceTier !== void 0 ? { serviceTier } : {}
+                }
+              };
+              controller.enqueue({
+                type: "finish",
+                finishReason,
+                usage: convertOpenAIResponsesUsage(usage),
+                providerMetadata
+              });
+            }
+          })
+        ),
+        request: { body },
+        response: { headers: responseHeaders }
+      };
+    }
+  };
+  function isTextDeltaChunk(chunk) {
+    return chunk.type === "response.output_text.delta";
+  }
+  function isResponseOutputItemDoneChunk(chunk) {
+    return chunk.type === "response.output_item.done";
+  }
+  function isResponseFinishedChunk(chunk) {
+    return chunk.type === "response.completed" || chunk.type === "response.incomplete";
+  }
+  function isResponseFailedChunk(chunk) {
+    return chunk.type === "response.failed";
+  }
+  function isResponseCreatedChunk(chunk) {
+    return chunk.type === "response.created";
+  }
+  function isResponseFunctionCallArgumentsDeltaChunk(chunk) {
+    return chunk.type === "response.function_call_arguments.delta";
+  }
+  function isResponseCustomToolCallInputDeltaChunk(chunk) {
+    return chunk.type === "response.custom_tool_call_input.delta";
+  }
+  function isResponseImageGenerationCallPartialImageChunk(chunk) {
+    return chunk.type === "response.image_generation_call.partial_image";
+  }
+  function isResponseCodeInterpreterCallCodeDeltaChunk(chunk) {
+    return chunk.type === "response.code_interpreter_call_code.delta";
+  }
+  function isResponseCodeInterpreterCallCodeDoneChunk(chunk) {
+    return chunk.type === "response.code_interpreter_call_code.done";
+  }
+  function isResponseApplyPatchCallOperationDiffDeltaChunk(chunk) {
+    return chunk.type === "response.apply_patch_call_operation_diff.delta";
+  }
+  function isResponseApplyPatchCallOperationDiffDoneChunk(chunk) {
+    return chunk.type === "response.apply_patch_call_operation_diff.done";
+  }
+  function isResponseOutputItemAddedChunk(chunk) {
+    return chunk.type === "response.output_item.added";
+  }
+  function isResponseAnnotationAddedChunk(chunk) {
+    return chunk.type === "response.output_text.annotation.added";
+  }
+  function isErrorChunk(chunk) {
+    return chunk.type === "error";
+  }
+  function mapWebSearchOutput(action) {
+    var _a24;
+    if (action == null) {
+      return {};
+    }
+    switch (action.type) {
+      case "search":
+        return {
+          action: { type: "search", query: (_a24 = action.query) != null ? _a24 : void 0 },
+          // include sources when provided by the Responses API (behind include flag)
+          ...action.sources != null && { sources: action.sources }
+        };
+      case "open_page":
+        return { action: { type: "openPage", url: action.url } };
+      case "find_in_page":
+        return {
+          action: {
+            type: "findInPage",
+            url: action.url,
+            pattern: action.pattern
+          }
+        };
+    }
+  }
+  function escapeJSONDelta(delta) {
+    return JSON.stringify(delta).slice(1, -1);
+  }
+  var openaiSpeechModelOptionsSchema = lazySchema2(
+    () => zodSchema2(
+      external_exports.object({
+        instructions: external_exports.string().nullish(),
+        speed: external_exports.number().min(0.25).max(4).default(1).nullish()
+      })
+    )
+  );
+  var OpenAISpeechModel = class {
+    constructor(modelId, config2) {
+      this.modelId = modelId;
+      this.config = config2;
+      this.specificationVersion = "v3";
+    }
+    get provider() {
+      return this.config.provider;
+    }
+    async getArgs({
+      text: text2,
+      voice = "alloy",
+      outputFormat = "mp3",
+      speed,
+      instructions,
+      language,
+      providerOptions
+    }) {
+      const warnings = [];
+      const openAIOptions = await parseProviderOptions2({
+        provider: "openai",
+        providerOptions,
+        schema: openaiSpeechModelOptionsSchema
+      });
+      const requestBody = {
+        model: this.modelId,
+        input: text2,
+        voice,
+        response_format: "mp3",
+        speed,
+        instructions
+      };
+      if (outputFormat) {
+        if (["mp3", "opus", "aac", "flac", "wav", "pcm"].includes(outputFormat)) {
+          requestBody.response_format = outputFormat;
+        } else {
+          warnings.push({
+            type: "unsupported",
+            feature: "outputFormat",
+            details: `Unsupported output format: ${outputFormat}. Using mp3 instead.`
+          });
+        }
+      }
+      if (openAIOptions) {
+        const speechModelOptions = {};
+        for (const key in speechModelOptions) {
+          const value = speechModelOptions[key];
+          if (value !== void 0) {
+            requestBody[key] = value;
+          }
+        }
+      }
+      if (language) {
+        warnings.push({
+          type: "unsupported",
+          feature: "language",
+          details: `OpenAI speech models do not support language selection. Language parameter "${language}" was ignored.`
+        });
+      }
+      return {
+        requestBody,
+        warnings
+      };
+    }
+    async doGenerate(options) {
+      var _a24, _b18, _c;
+      const currentDate = (_c = (_b18 = (_a24 = this.config._internal) == null ? void 0 : _a24.currentDate) == null ? void 0 : _b18.call(_a24)) != null ? _c : /* @__PURE__ */ new Date();
+      const { requestBody, warnings } = await this.getArgs(options);
+      const {
+        value: audio,
+        responseHeaders,
+        rawValue: rawResponse
+      } = await postJsonToApi2({
+        url: this.config.url({
+          path: "/audio/speech",
+          modelId: this.modelId
+        }),
+        headers: combineHeaders2(this.config.headers(), options.headers),
+        body: requestBody,
+        failedResponseHandler: openaiFailedResponseHandler,
+        successfulResponseHandler: createBinaryResponseHandler(),
+        abortSignal: options.abortSignal,
+        fetch: this.config.fetch
+      });
+      return {
+        audio,
+        warnings,
+        request: {
+          body: JSON.stringify(requestBody)
+        },
+        response: {
+          timestamp: currentDate,
+          modelId: this.modelId,
+          headers: responseHeaders,
+          body: rawResponse
+        }
+      };
+    }
+  };
+  var openaiTranscriptionResponseSchema = lazySchema2(
+    () => zodSchema2(
+      external_exports.object({
+        text: external_exports.string(),
+        language: external_exports.string().nullish(),
+        duration: external_exports.number().nullish(),
+        words: external_exports.array(
+          external_exports.object({
+            word: external_exports.string(),
+            start: external_exports.number(),
+            end: external_exports.number()
+          })
+        ).nullish(),
+        segments: external_exports.array(
+          external_exports.object({
+            id: external_exports.number(),
+            seek: external_exports.number(),
+            start: external_exports.number(),
+            end: external_exports.number(),
+            text: external_exports.string(),
+            tokens: external_exports.array(external_exports.number()),
+            temperature: external_exports.number(),
+            avg_logprob: external_exports.number(),
+            compression_ratio: external_exports.number(),
+            no_speech_prob: external_exports.number()
+          })
+        ).nullish()
+      })
+    )
+  );
+  var openAITranscriptionModelOptions = lazySchema2(
+    () => zodSchema2(
+      external_exports.object({
+        /**
+         * Additional information to include in the transcription response.
+         */
+        include: external_exports.array(external_exports.string()).optional(),
+        /**
+         * The language of the input audio in ISO-639-1 format.
+         */
+        language: external_exports.string().optional(),
+        /**
+         * An optional text to guide the model's style or continue a previous audio segment.
+         */
+        prompt: external_exports.string().optional(),
+        /**
+         * The sampling temperature, between 0 and 1.
+         * @default 0
+         */
+        temperature: external_exports.number().min(0).max(1).default(0).optional(),
+        /**
+         * The timestamp granularities to populate for this transcription.
+         * @default ['segment']
+         */
+        timestampGranularities: external_exports.array(external_exports.enum(["word", "segment"])).default(["segment"]).optional()
+      })
+    )
+  );
+  var languageMap = {
+    afrikaans: "af",
+    arabic: "ar",
+    armenian: "hy",
+    azerbaijani: "az",
+    belarusian: "be",
+    bosnian: "bs",
+    bulgarian: "bg",
+    catalan: "ca",
+    chinese: "zh",
+    croatian: "hr",
+    czech: "cs",
+    danish: "da",
+    dutch: "nl",
+    english: "en",
+    estonian: "et",
+    finnish: "fi",
+    french: "fr",
+    galician: "gl",
+    german: "de",
+    greek: "el",
+    hebrew: "he",
+    hindi: "hi",
+    hungarian: "hu",
+    icelandic: "is",
+    indonesian: "id",
+    italian: "it",
+    japanese: "ja",
+    kannada: "kn",
+    kazakh: "kk",
+    korean: "ko",
+    latvian: "lv",
+    lithuanian: "lt",
+    macedonian: "mk",
+    malay: "ms",
+    marathi: "mr",
+    maori: "mi",
+    nepali: "ne",
+    norwegian: "no",
+    persian: "fa",
+    polish: "pl",
+    portuguese: "pt",
+    romanian: "ro",
+    russian: "ru",
+    serbian: "sr",
+    slovak: "sk",
+    slovenian: "sl",
+    spanish: "es",
+    swahili: "sw",
+    swedish: "sv",
+    tagalog: "tl",
+    tamil: "ta",
+    thai: "th",
+    turkish: "tr",
+    ukrainian: "uk",
+    urdu: "ur",
+    vietnamese: "vi",
+    welsh: "cy"
+  };
+  var OpenAITranscriptionModel = class {
+    constructor(modelId, config2) {
+      this.modelId = modelId;
+      this.config = config2;
+      this.specificationVersion = "v3";
+    }
+    get provider() {
+      return this.config.provider;
+    }
+    async getArgs({
+      audio,
+      mediaType,
+      providerOptions
+    }) {
+      const warnings = [];
+      const openAIOptions = await parseProviderOptions2({
+        provider: "openai",
+        providerOptions,
+        schema: openAITranscriptionModelOptions
+      });
+      const formData = new FormData();
+      const blob = audio instanceof Uint8Array ? new Blob([audio]) : new Blob([convertBase64ToUint8Array2(audio)]);
+      formData.append("model", this.modelId);
+      const fileExtension = mediaTypeToExtension(mediaType);
+      formData.append(
+        "file",
+        new File([blob], "audio", { type: mediaType }),
+        `audio.${fileExtension}`
+      );
+      if (openAIOptions) {
+        const transcriptionModelOptions = {
+          include: openAIOptions.include,
+          language: openAIOptions.language,
+          prompt: openAIOptions.prompt,
+          // https://platform.openai.com/docs/api-reference/audio/createTranscription#audio_createtranscription-response_format
+          // prefer verbose_json to get segments for models that support it
+          response_format: [
+            "gpt-4o-transcribe",
+            "gpt-4o-mini-transcribe"
+          ].includes(this.modelId) ? "json" : "verbose_json",
+          temperature: openAIOptions.temperature,
+          timestamp_granularities: openAIOptions.timestampGranularities
+        };
+        for (const [key, value] of Object.entries(transcriptionModelOptions)) {
+          if (value != null) {
+            if (Array.isArray(value)) {
+              for (const item of value) {
+                formData.append(`${key}[]`, String(item));
+              }
+            } else {
+              formData.append(key, String(value));
+            }
+          }
+        }
+      }
+      return {
+        formData,
+        warnings
+      };
+    }
+    async doGenerate(options) {
+      var _a24, _b18, _c, _d, _e, _f, _g, _h;
+      const currentDate = (_c = (_b18 = (_a24 = this.config._internal) == null ? void 0 : _a24.currentDate) == null ? void 0 : _b18.call(_a24)) != null ? _c : /* @__PURE__ */ new Date();
+      const { formData, warnings } = await this.getArgs(options);
+      const {
+        value: response,
+        responseHeaders,
+        rawValue: rawResponse
+      } = await postFormDataToApi({
+        url: this.config.url({
+          path: "/audio/transcriptions",
+          modelId: this.modelId
+        }),
+        headers: combineHeaders2(this.config.headers(), options.headers),
+        formData,
+        failedResponseHandler: openaiFailedResponseHandler,
+        successfulResponseHandler: createJsonResponseHandler2(
+          openaiTranscriptionResponseSchema
+        ),
+        abortSignal: options.abortSignal,
+        fetch: this.config.fetch
+      });
+      const language = response.language != null && response.language in languageMap ? languageMap[response.language] : void 0;
+      return {
+        text: response.text,
+        segments: (_g = (_f = (_d = response.segments) == null ? void 0 : _d.map((segment) => ({
+          text: segment.text,
+          startSecond: segment.start,
+          endSecond: segment.end
+        }))) != null ? _f : (_e = response.words) == null ? void 0 : _e.map((word) => ({
+          text: word.word,
+          startSecond: word.start,
+          endSecond: word.end
+        }))) != null ? _g : [],
+        language,
+        durationInSeconds: (_h = response.duration) != null ? _h : void 0,
+        warnings,
+        response: {
+          timestamp: currentDate,
+          modelId: this.modelId,
+          headers: responseHeaders,
+          body: rawResponse
+        }
+      };
+    }
+  };
+  var VERSION7 = true ? "3.0.50" : "0.0.0-test";
+  function createOpenAI(options = {}) {
+    var _a24, _b18;
+    const baseURL = (_a24 = withoutTrailingSlash2(
+      loadOptionalSetting2({
+        settingValue: options.baseURL,
+        environmentVariableName: "OPENAI_BASE_URL"
+      })
+    )) != null ? _a24 : "https://api.openai.com/v1";
+    const providerName = (_b18 = options.name) != null ? _b18 : "openai";
+    const getHeaders = () => withUserAgentSuffix2(
+      {
+        Authorization: `Bearer ${loadApiKey2({
+          apiKey: options.apiKey,
+          environmentVariableName: "OPENAI_API_KEY",
+          description: "OpenAI"
+        })}`,
+        "OpenAI-Organization": options.organization,
+        "OpenAI-Project": options.project,
+        ...options.headers
+      },
+      `ai-sdk/openai/${VERSION7}`
+    );
+    const createChatModel = (modelId) => new OpenAIChatLanguageModel(modelId, {
+      provider: `${providerName}.chat`,
+      url: ({ path }) => `${baseURL}${path}`,
+      headers: getHeaders,
+      fetch: options.fetch
+    });
+    const createCompletionModel = (modelId) => new OpenAICompletionLanguageModel(modelId, {
+      provider: `${providerName}.completion`,
+      url: ({ path }) => `${baseURL}${path}`,
+      headers: getHeaders,
+      fetch: options.fetch
+    });
+    const createEmbeddingModel = (modelId) => new OpenAIEmbeddingModel(modelId, {
+      provider: `${providerName}.embedding`,
+      url: ({ path }) => `${baseURL}${path}`,
+      headers: getHeaders,
+      fetch: options.fetch
+    });
+    const createImageModel = (modelId) => new OpenAIImageModel(modelId, {
+      provider: `${providerName}.image`,
+      url: ({ path }) => `${baseURL}${path}`,
+      headers: getHeaders,
+      fetch: options.fetch
+    });
+    const createTranscriptionModel = (modelId) => new OpenAITranscriptionModel(modelId, {
+      provider: `${providerName}.transcription`,
+      url: ({ path }) => `${baseURL}${path}`,
+      headers: getHeaders,
+      fetch: options.fetch
+    });
+    const createSpeechModel = (modelId) => new OpenAISpeechModel(modelId, {
+      provider: `${providerName}.speech`,
+      url: ({ path }) => `${baseURL}${path}`,
+      headers: getHeaders,
+      fetch: options.fetch
+    });
+    const createLanguageModel = (modelId) => {
+      if (new.target) {
+        throw new Error(
+          "The OpenAI model function cannot be called with the new keyword."
+        );
+      }
+      return createResponsesModel(modelId);
+    };
+    const createResponsesModel = (modelId) => {
+      return new OpenAIResponsesLanguageModel(modelId, {
+        provider: `${providerName}.responses`,
+        url: ({ path }) => `${baseURL}${path}`,
+        headers: getHeaders,
+        fetch: options.fetch,
+        fileIdPrefixes: ["file-"]
+      });
+    };
+    const provider = function(modelId) {
+      return createLanguageModel(modelId);
+    };
+    provider.specificationVersion = "v3";
+    provider.languageModel = createLanguageModel;
+    provider.chat = createChatModel;
+    provider.completion = createCompletionModel;
+    provider.responses = createResponsesModel;
+    provider.embedding = createEmbeddingModel;
+    provider.embeddingModel = createEmbeddingModel;
+    provider.textEmbedding = createEmbeddingModel;
+    provider.textEmbeddingModel = createEmbeddingModel;
+    provider.image = createImageModel;
+    provider.imageModel = createImageModel;
+    provider.transcription = createTranscriptionModel;
+    provider.transcriptionModel = createTranscriptionModel;
+    provider.speech = createSpeechModel;
+    provider.speechModel = createSpeechModel;
+    provider.tools = openaiTools;
+    return provider;
+  }
+  var openai = createOpenAI();
 
   // src/http.js
   var FORUM_BASE = "https://www.uscardforum.com";
@@ -30391,9 +39101,9 @@ Learn more: \x1B[34m${moreInfoURL}\x1B[0m
   async function getUserReplies({ username, offset }) {
     return getUserActions({ username, filter: 5, offset });
   }
-  async function getUserActions({ username, filter: filter2, offset }) {
+  async function getUserActions({ username, filter: filter3, offset }) {
     const params = { username };
-    if (filter2 !== void 0) params.filter = filter2;
+    if (filter3 !== void 0) params.filter = filter3;
     if (offset !== void 0) params.offset = offset;
     const data = await forumGet("/user_actions.json", params);
     if (isError(data)) return data;
@@ -30666,6 +39376,10 @@ Category IDs for search operators:
 
   // src/agent.js
   function createModel({ provider, apiKey, model, baseUrl }) {
+    if (provider === "openai") {
+      const openai2 = createOpenAI({ apiKey, baseURL: baseUrl });
+      return openai2(model);
+    }
     const opts = { apiKey };
     if (provider === "litellm" && baseUrl) {
       opts.baseURL = baseUrl;
@@ -30680,7 +39394,7 @@ Category IDs for search operators:
       tools: forumTools,
       stopWhen: stepCountIs(50)
     };
-    if (settings.thinking) {
+    if (settings.thinking && settings.provider !== "openai") {
       agentOpts.providerOptions = {
         google: {
           thinkingConfig: {
@@ -30876,42 +39590,42 @@ Category IDs for search operators:
       label: "Fetching notifications"
     }
   };
-  function describeToolCall(name21, args) {
-    const meta = TOOL_META[name21] || { icon: "\u2699", iconClass: "list", label: name21 };
+  function describeToolCall(name24, args) {
+    const meta = TOOL_META[name24] || { icon: "\u2699", iconClass: "list", label: name24 };
     const argVal = meta.argKey && args?.[meta.argKey];
     let title = meta.label;
     let subtitle = "";
-    if (name21 === "search_forum") {
+    if (name24 === "search_forum") {
       title = `Searching "${args?.query || ""}"`;
       const parts = [];
       if (args?.order) parts.push(`sorted by ${args.order}`);
       if (args?.page) parts.push(`page ${args.page}`);
       subtitle = parts.join(", ") || "full-text search";
-    } else if (name21 === "get_topic_posts") {
+    } else if (name24 === "get_topic_posts") {
       title = `Reading topic #${args?.topic_id || "?"}`;
       subtitle = args?.post_number ? `from post ${args.post_number}` : "from the beginning";
-    } else if (name21 === "get_top_topics") {
+    } else if (name24 === "get_top_topics") {
       title = `Fetching top topics`;
       subtitle = args?.period || "monthly";
-    } else if (name21 === "get_user_summary") {
+    } else if (name24 === "get_user_summary") {
       title = `Looking up @${args?.username || "?"}`;
       subtitle = "profile summary";
-    } else if (name21 === "get_user_topics") {
+    } else if (name24 === "get_user_topics") {
       title = `Topics by @${args?.username || "?"}`;
       subtitle = args?.page ? `page ${args.page}` : "first page";
-    } else if (name21 === "get_user_replies") {
+    } else if (name24 === "get_user_replies") {
       title = `Replies by @${args?.username || "?"}`;
       subtitle = args?.offset ? `offset ${args.offset}` : "latest";
-    } else if (name21 === "get_user_actions") {
+    } else if (name24 === "get_user_actions") {
       title = `Activity for @${args?.username || "?"}`;
       subtitle = args?.filter ? `filter: ${args.filter}` : "all activity";
-    } else if (name21 === "get_user_profile") {
+    } else if (name24 === "get_user_profile") {
       title = `Profile of @${args?.username || "?"}`;
       subtitle = "detailed stats & badges";
-    } else if (name21 === "get_current_user") {
+    } else if (name24 === "get_current_user") {
       title = "Getting current user";
       subtitle = "session info";
-    } else if (name21 === "get_notifications") {
+    } else if (name24 === "get_notifications") {
       title = "Fetching notifications";
       subtitle = args?.limit ? `latest ${args.limit}` : "all recent";
     } else if (argVal) {
@@ -30919,35 +39633,35 @@ Category IDs for search operators:
     }
     return { icon: meta.icon, iconClass: meta.iconClass, title, subtitle };
   }
-  function summarizeToolResult(name21, result) {
+  function summarizeToolResult(name24, result) {
     if (!result) return "no data";
     if (result._httpError) return `HTTP ${result._httpError} error`;
-    if (name21 === "search_forum") {
+    if (name24 === "search_forum") {
       const posts = result.posts?.length || 0;
       const topics = result.topics?.length || 0;
       return `${posts} posts, ${topics} topics found`;
     }
-    if (name21 === "get_categories") {
+    if (name24 === "get_categories") {
       return `${Array.isArray(result) ? result.length : 0} categories`;
     }
-    if (name21 === "get_topic_posts") {
+    if (name24 === "get_topic_posts") {
       const count = Array.isArray(result) ? result.length : 0;
       return `${count} posts loaded`;
     }
-    if (name21 === "get_user_summary") {
+    if (name24 === "get_user_summary") {
       const stats = result.stats || {};
       return `${stats.post_count || 0} posts, ${stats.likes_received || 0} likes`;
     }
-    if (name21 === "get_current_user") {
+    if (name24 === "get_current_user") {
       return result.username ? `@${result.username}` : "not logged in";
     }
-    if (name21 === "get_notifications") {
+    if (name24 === "get_notifications") {
       return `${Array.isArray(result) ? result.length : 0} notifications`;
     }
     if (Array.isArray(result)) {
       return `${result.length} results`;
     }
-    if (name21.startsWith("get_hot") || name21.startsWith("get_new") || name21.startsWith("get_top")) {
+    if (name24.startsWith("get_hot") || name24.startsWith("get_new") || name24.startsWith("get_top")) {
       return `${Array.isArray(result) ? result.length : 0} topics`;
     }
     return "done";
@@ -31045,6 +39759,18 @@ Category IDs for search operators:
 .settings input:focus,.settings select:focus{outline:none;border-color:rgba(139,92,246,.5);box-shadow:0 0 10px rgba(139,92,246,.1)}
 .settings .row-base-url{display:none}
 .settings.show-base-url .row-base-url{display:block}
+.settings.show-base-url .row-model-list{display:flex}
+.row-model-list{display:none;gap:6px;margin-bottom:10px}
+.row-model-list select{flex:1;margin-bottom:0}
+.row-model-list button{
+  flex:0 0 auto;padding:6px 12px;
+  background:rgba(139,92,246,.12);border:1px solid rgba(139,92,246,.25);
+  color:#c4b5fd;border-radius:8px;cursor:pointer;
+  font-size:11px;font-family:inherit;font-weight:500;transition:all .2s;
+  white-space:nowrap;
+}
+.row-model-list button:hover{background:rgba(139,92,246,.2);border-color:rgba(139,92,246,.4)}
+.row-model-list button:disabled{opacity:.4;cursor:not-allowed}
 .settings .row-toggle{
   display:flex;align-items:center;justify-content:space-between;
   margin-bottom:10px;
@@ -31279,6 +40005,7 @@ Category IDs for search operators:
     <select class="in-provider">
       <option value="gemini">Gemini API</option>
       <option value="litellm">LiteLLM (Gemini-compatible)</option>
+      <option value="openai">OpenAI Compatible</option>
     </select>
     <label>API Key</label>
     <input type="password" class="in-key" placeholder="API Key">
@@ -31287,6 +40014,10 @@ Category IDs for search operators:
     <div class="row-base-url">
       <label>Base URL</label>
       <input type="text" class="in-base-url" placeholder="https://your-litellm-server/v1">
+    </div>
+    <div class="row-model-list">
+      <select class="in-model-select"><option value="">-- fetch models first --</option></select>
+      <button class="btn-list-models">List Models</button>
     </div>
     <div class="row-toggle">
       <label>Thinking Mode</label>
@@ -31325,13 +40056,70 @@ Category IDs for search operators:
     const inputEl = $(".in-text");
     const sendBtn = $(".btn-send");
     function syncProviderUI() {
-      if (providerEl.value === "litellm") {
+      const isCustomUrl = providerEl.value === "litellm" || providerEl.value === "openai";
+      if (isCustomUrl) {
         settingsEl.classList.add("show-base-url");
       } else {
         settingsEl.classList.remove("show-base-url");
       }
     }
     providerEl.addEventListener("change", syncProviderUI);
+    const modelSelectEl = $(".in-model-select");
+    const listModelsBtn = $(".btn-list-models");
+    listModelsBtn.addEventListener("click", () => {
+      const baseUrl = $(".in-base-url").value.replace(/\/+$/, "");
+      const apiKey = $(".in-key").value;
+      if (!baseUrl) return;
+      listModelsBtn.disabled = true;
+      listModelsBtn.textContent = "Loading...";
+      GM_xmlhttpRequest({
+        method: "GET",
+        url: `${baseUrl}/v1/models`,
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          Accept: "application/json"
+        },
+        onload(res) {
+          listModelsBtn.disabled = false;
+          listModelsBtn.textContent = "List Models";
+          try {
+            const json3 = JSON.parse(res.responseText);
+            const models = (json3.data || []).map((m) => m.id).sort();
+            modelSelectEl.innerHTML = "";
+            if (models.length === 0) {
+              modelSelectEl.innerHTML = '<option value="">No models found</option>';
+              return;
+            }
+            for (const id of models) {
+              const opt = document.createElement("option");
+              opt.value = id;
+              opt.textContent = id;
+              modelSelectEl.appendChild(opt);
+            }
+            const currentModel = $(".in-model").value;
+            if (models.includes(currentModel)) {
+              modelSelectEl.value = currentModel;
+            } else {
+              modelSelectEl.value = models[0];
+              $(".in-model").value = models[0];
+            }
+          } catch {
+            modelSelectEl.innerHTML = '<option value="">Error fetching models</option>';
+          }
+        },
+        onerror() {
+          listModelsBtn.disabled = false;
+          listModelsBtn.textContent = "List Models";
+          modelSelectEl.innerHTML = '<option value="">Connection error</option>';
+        }
+      });
+    });
+    modelSelectEl.addEventListener("change", () => {
+      if (modelSelectEl.value) {
+        $(".in-model").value = modelSelectEl.value;
+        $(".in-model").dispatchEvent(new Event("change"));
+      }
+    });
     $(".toggle").addEventListener("click", () => {
       panel.classList.toggle("open");
       if (panel.classList.contains("open")) requestAnimationFrame(() => inputEl.focus());
@@ -31383,8 +40171,8 @@ Category IDs for search operators:
       const d = el("msg-ai", renderMarkdown(content));
       return append(d);
     }
-    function addToolCard(name21, args) {
-      const meta = describeToolCall(name21, args);
+    function addToolCard(name24, args) {
+      const meta = describeToolCall(name24, args);
       const card = el("tool running", `
       <div class="tool-hdr">
         <div class="tool-ico ${meta.iconClass}">${meta.icon}</div>
@@ -31530,6 +40318,8 @@ Category IDs for search operators:
       apiKeyInput: $(".in-key"),
       modelInput: $(".in-model"),
       baseUrlInput: $(".in-base-url"),
+      modelSelectInput: modelSelectEl,
+      listModelsBtn,
       thinkingInput: $(".in-thinking"),
       syncProviderUI,
       messagesEl: msgs,
