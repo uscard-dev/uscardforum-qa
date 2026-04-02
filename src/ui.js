@@ -93,6 +93,7 @@ const CSS = `
 .settings input:focus,.settings select:focus{outline:none;border-color:rgba(139,92,246,.5);box-shadow:0 0 10px rgba(139,92,246,.1)}
 .settings .row-base-url{display:none}
 .settings.show-base-url .row-base-url{display:block}
+.settings .hint{display:block;font-size:10px;color:#52525b;margin:-6px 0 8px;font-style:italic}
 .settings.show-base-url .row-model-list{display:flex}
 .row-model-list{display:none;gap:6px;margin-bottom:10px}
 .row-model-list select{flex:1;margin-bottom:0}
@@ -348,7 +349,8 @@ const HTML = `
     <input type="text" class="in-model" placeholder="gemini-3.1-pro-preview">
     <div class="row-base-url">
       <label>Base URL</label>
-      <input type="text" class="in-base-url" placeholder="https://your-litellm-server/v1">
+      <input type="text" class="in-base-url" placeholder="https://your-server.example.com">
+      <span class="hint">e.g. https://my-proxy.ngrok.io — /v1 is added automatically</span>
     </div>
     <div class="row-model-list">
       <select class="in-model-select"><option value="">-- fetch models first --</option></select>
