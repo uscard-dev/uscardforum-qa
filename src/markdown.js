@@ -1,6 +1,6 @@
 export function renderMarkdown(text) {
   if (!text) return '';
-  const lines = text.split('\n');
+  const lines = text.replace(/<br\s*\/?>/gi, '\n').split('\n');
   const blocks = [];
   let i = 0;
 

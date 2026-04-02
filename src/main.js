@@ -9,15 +9,30 @@ import {
   newConversationId,
 } from './conversations.js';
 
+function hideDifyChatbot() {
+  const btn = document.getElementById('dify-chatbot-bubble-button');
+  const win = document.getElementById('dify-chatbot-bubble-window');
+  if (btn) btn.style.display = 'none';
+  if (win) win.style.display = 'none';
+}
+
 function init() {
+  // Hide the site's built-in Dify chatbot
+  hideDifyChatbot();
+  const observer = new MutationObserver(hideDifyChatbot);
+  observer.observe(document.body, { childList: true, subtree: true });
+
   const settings = loadSettings();
   const ui = createUI();
 
   ui.providerInput.value = settings.provider;
   ui.apiKeyInput.value = settings.apiKey;
   ui.modelInput.value = settings.model;
+  ui.modelSelectInput.value = settings.model;
   ui.baseUrlInput.value = settings.baseUrl;
   ui.thinkingInput.checked = settings.thinking;
+  ui.themeInput.checked = settings.theme === 'light';
+  ui.applyTheme(settings.theme === 'light');
   ui.syncProviderUI();
 
   let running = false;
@@ -33,6 +48,7 @@ function init() {
       model: ui.modelInput.value,
       baseUrl: ui.baseUrlInput.value,
       thinking: ui.thinkingInput.checked,
+      theme: ui.themeInput.checked ? 'light' : 'dark',
     };
   }
 
@@ -49,6 +65,7 @@ function init() {
   ui.modelInput.addEventListener('change', onSettingsChange);
   ui.baseUrlInput.addEventListener('change', onSettingsChange);
   ui.thinkingInput.addEventListener('change', onSettingsChange);
+  ui.themeInput.addEventListener('change', onSettingsChange);
 
   function persistCurrentConvo() {
     if (!currentConvoId || conversationMessages.length === 0) return;
