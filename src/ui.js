@@ -410,6 +410,31 @@ export function createUI() {
   const modelSelectEl = $('.in-model-select');
   const listModelsBtn = $('.btn-list-models');
 
+  function populateModelSelect(models) {
+    modelSelectEl.innerHTML = '';
+    if (models.length === 0) {
+      modelSelectEl.innerHTML = '<option value="">No models found</option>';
+      return;
+    }
+    for (const id of models) {
+      const opt = document.createElement('option');
+      opt.value = id;
+      opt.textContent = id;
+      modelSelectEl.appendChild(opt);
+    }
+    const currentModel = $('.in-model').value;
+    if (models.includes(currentModel)) {
+      modelSelectEl.value = currentModel;
+    } else {
+      modelSelectEl.value = models[0];
+      $('.in-model').value = models[0];
+    }
+  }
+
+  // Restore cached models on load
+  const cachedModels = GM_getValue('cachedModels', null);
+  if (cachedModels && cachedModels.length > 0) populateModelSelect(cachedModels);
+
   listModelsBtn.addEventListener('click', () => {
     let baseUrl = $('.in-base-url').value.replace(/\/+$/, '');
     const apiKey = $('.in-key').value;
@@ -432,24 +457,8 @@ export function createUI() {
         try {
           const json = JSON.parse(res.responseText);
           const models = (json.data || []).map((m) => m.id).sort();
-          modelSelectEl.innerHTML = '';
-          if (models.length === 0) {
-            modelSelectEl.innerHTML = '<option value="">No models found</option>';
-            return;
-          }
-          for (const id of models) {
-            const opt = document.createElement('option');
-            opt.value = id;
-            opt.textContent = id;
-            modelSelectEl.appendChild(opt);
-          }
-          const currentModel = $('.in-model').value;
-          if (models.includes(currentModel)) {
-            modelSelectEl.value = currentModel;
-          } else {
-            modelSelectEl.value = models[0];
-            $('.in-model').value = models[0];
-          }
+          populateModelSelect(models);
+          GM_setValue('cachedModels', models);
         } catch {
           modelSelectEl.innerHTML = '<option value="">Error fetching models</option>';
         }
