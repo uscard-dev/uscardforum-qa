@@ -1,9 +1,14 @@
 import { ToolLoopAgent, stepCountIs } from 'ai';
 import { createGoogleGenerativeAI } from '@ai-sdk/google';
+import { createOpenAI } from '@ai-sdk/openai';
 import { forumTools } from './tools.js';
 import { SYSTEM_PROMPT } from './system-prompt.js';
 
 function createModel({ provider, apiKey, model, baseUrl }) {
+  if (provider === 'openai') {
+    const openai = createOpenAI({ apiKey, baseURL: baseUrl });
+    return openai(model);
+  }
   const opts = { apiKey };
   if (provider === 'litellm' && baseUrl) {
     opts.baseURL = baseUrl;
@@ -20,7 +25,7 @@ export function createAgent(settings) {
     stopWhen: stepCountIs(50),
   };
 
-  if (settings.thinking) {
+  if (settings.thinking && settings.provider !== 'openai') {
     agentOpts.providerOptions = {
       google: {
         thinkingConfig: {

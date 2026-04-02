@@ -93,6 +93,18 @@ const CSS = `
 .settings input:focus,.settings select:focus{outline:none;border-color:rgba(139,92,246,.5);box-shadow:0 0 10px rgba(139,92,246,.1)}
 .settings .row-base-url{display:none}
 .settings.show-base-url .row-base-url{display:block}
+.settings.show-base-url .row-model-list{display:flex}
+.row-model-list{display:none;gap:6px;margin-bottom:10px}
+.row-model-list select{flex:1;margin-bottom:0}
+.row-model-list button{
+  flex:0 0 auto;padding:6px 12px;
+  background:rgba(139,92,246,.12);border:1px solid rgba(139,92,246,.25);
+  color:#c4b5fd;border-radius:8px;cursor:pointer;
+  font-size:11px;font-family:inherit;font-weight:500;transition:all .2s;
+  white-space:nowrap;
+}
+.row-model-list button:hover{background:rgba(139,92,246,.2);border-color:rgba(139,92,246,.4)}
+.row-model-list button:disabled{opacity:.4;cursor:not-allowed}
 .settings .row-toggle{
   display:flex;align-items:center;justify-content:space-between;
   margin-bottom:10px;
@@ -328,6 +340,7 @@ const HTML = `
     <select class="in-provider">
       <option value="gemini">Gemini API</option>
       <option value="litellm">LiteLLM (Gemini-compatible)</option>
+      <option value="openai">OpenAI Compatible</option>
     </select>
     <label>API Key</label>
     <input type="password" class="in-key" placeholder="API Key">
@@ -336,6 +349,10 @@ const HTML = `
     <div class="row-base-url">
       <label>Base URL</label>
       <input type="text" class="in-base-url" placeholder="https://your-litellm-server/v1">
+    </div>
+    <div class="row-model-list">
+      <select class="in-model-select"><option value="">-- fetch models first --</option></select>
+      <button class="btn-list-models">List Models</button>
     </div>
     <div class="row-toggle">
       <label>Thinking Mode</label>
@@ -379,13 +396,75 @@ export function createUI() {
   const sendBtn = $('.btn-send');
 
   function syncProviderUI() {
-    if (providerEl.value === 'litellm') {
+    const isCustomUrl = providerEl.value === 'litellm' || providerEl.value === 'openai';
+    if (isCustomUrl) {
       settingsEl.classList.add('show-base-url');
     } else {
       settingsEl.classList.remove('show-base-url');
     }
   }
   providerEl.addEventListener('change', syncProviderUI);
+
+  const modelSelectEl = $('.in-model-select');
+  const listModelsBtn = $('.btn-list-models');
+
+  listModelsBtn.addEventListener('click', () => {
+    const baseUrl = $('.in-base-url').value.replace(/\/+$/, '');
+    const apiKey = $('.in-key').value;
+    if (!baseUrl) return;
+
+    listModelsBtn.disabled = true;
+    listModelsBtn.textContent = 'Loading...';
+
+    GM_xmlhttpRequest({
+      method: 'GET',
+      url: `${baseUrl}/v1/models`,
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        Accept: 'application/json',
+      },
+      onload(res) {
+        listModelsBtn.disabled = false;
+        listModelsBtn.textContent = 'List Models';
+        try {
+          const json = JSON.parse(res.responseText);
+          const models = (json.data || []).map((m) => m.id).sort();
+          modelSelectEl.innerHTML = '';
+          if (models.length === 0) {
+            modelSelectEl.innerHTML = '<option value="">No models found</option>';
+            return;
+          }
+          for (const id of models) {
+            const opt = document.createElement('option');
+            opt.value = id;
+            opt.textContent = id;
+            modelSelectEl.appendChild(opt);
+          }
+          const currentModel = $('.in-model').value;
+          if (models.includes(currentModel)) {
+            modelSelectEl.value = currentModel;
+          } else {
+            modelSelectEl.value = models[0];
+            $('.in-model').value = models[0];
+          }
+        } catch {
+          modelSelectEl.innerHTML = '<option value="">Error fetching models</option>';
+        }
+      },
+      onerror() {
+        listModelsBtn.disabled = false;
+        listModelsBtn.textContent = 'List Models';
+        modelSelectEl.innerHTML = '<option value="">Connection error</option>';
+      },
+    });
+  });
+
+  modelSelectEl.addEventListener('change', () => {
+    if (modelSelectEl.value) {
+      $('.in-model').value = modelSelectEl.value;
+      $('.in-model').dispatchEvent(new Event('change'));
+    }
+  });
 
   $('.toggle').addEventListener('click', () => {
     panel.classList.toggle('open');
@@ -605,6 +684,8 @@ export function createUI() {
     apiKeyInput: $('.in-key'),
     modelInput: $('.in-model'),
     baseUrlInput: $('.in-base-url'),
+    modelSelectInput: modelSelectEl,
+    listModelsBtn,
     thinkingInput: $('.in-thinking'),
     syncProviderUI,
     messagesEl: msgs,
