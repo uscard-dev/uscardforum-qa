@@ -7,7 +7,7 @@ import { SYSTEM_PROMPT } from './system-prompt.js';
 function createModel({ provider, apiKey, model, baseUrl }) {
   if (provider === 'openai') {
     const openai = createOpenAI({ apiKey, baseURL: baseUrl });
-    return openai(model);
+    return openai.chat(model);
   }
   const opts = { apiKey };
   if (provider === 'litellm' && baseUrl) {

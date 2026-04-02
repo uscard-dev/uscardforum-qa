@@ -39378,7 +39378,7 @@ Category IDs for search operators:
   function createModel({ provider, apiKey, model, baseUrl }) {
     if (provider === "openai") {
       const openai2 = createOpenAI({ apiKey, baseURL: baseUrl });
-      return openai2(model);
+      return openai2.chat(model);
     }
     const opts = { apiKey };
     if (provider === "litellm" && baseUrl) {
