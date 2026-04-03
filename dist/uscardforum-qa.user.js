@@ -39478,7 +39478,7 @@ Category IDs for search operators:
           qLines.push(lines[i].replace(/^(&gt; |> )/, ""));
           i++;
         }
-        blocks.push(`<blockquote>${inline(qLines.join("<br>"))}</blockquote>`);
+        blocks.push(`<blockquote>${qLines.map((l) => inline(l)).join("<br>")}</blockquote>`);
         continue;
       }
       if (/^[-*] /.test(line)) {
@@ -39509,7 +39509,7 @@ Category IDs for search operators:
         paraLines.push(lines[i]);
         i++;
       }
-      blocks.push(`<p>${inline(paraLines.join("<br>"))}</p>`);
+      blocks.push(`<p>${paraLines.map((l) => inline(l)).join("<br>")}</p>`);
     }
     return blocks.join("\n");
   }
@@ -39776,8 +39776,9 @@ Category IDs for search operators:
 
 /* \u2500\u2500 panel shell \u2500\u2500 */
 .panel{
-  position:fixed;bottom:84px;right:20px;
-  width:460px;height:640px;
+  position:fixed;bottom:84px;right:10px;left:auto;
+  width:460px;height:640px;max-height:calc(100vh - 104px);
+  max-width:calc(100% - 20px);
   background:var(--bg);
   color:var(--text);
   border-radius:20px;
@@ -39798,6 +39799,17 @@ Category IDs for search operators:
 .panel.overlay .input-area{padding:12px 10%}
 .panel.overlay .hdr{padding:12px 10%}
 .panel.overlay .settings{padding:12px 10%}
+
+@media(max-width:520px){
+  .panel{
+    top:0;left:0;right:0;bottom:0;
+    width:100%;height:100%;
+    border-radius:0;
+    max-width:100%;max-height:100%;
+  }
+  .panel .msgs{padding:16px 10px}
+  .panel .input-area{padding:12px 10px}
+}
 .panel.overlay .status{padding:6px 10%}
 
 /* \u2500\u2500 header \u2500\u2500 */
@@ -39895,7 +39907,7 @@ Category IDs for search operators:
 /* \u2500\u2500 scroll area \u2500\u2500 */
 .msgs{
   flex:1 1 0;
-  overflow-y:auto;
+  overflow-y:auto;overflow-x:hidden;
   padding:12px 14px;
   scrollbar-width:thin;
   scrollbar-color:rgba(139,92,246,.2) transparent;
@@ -39949,7 +39961,7 @@ Category IDs for search operators:
 .msg-ai p{margin:4px 0}
 .msg-ai strong{color:var(--text-ai-head)}
 .msg-ai hr{border:none;border-top:1px solid var(--border);margin:8px 0}
-.msg-ai table{border-collapse:collapse;width:100%;margin:6px 0;font-size:12px}
+.msg-ai table{border-collapse:collapse;width:100%;margin:6px 0;font-size:12px;table-layout:fixed;word-break:break-word}
 .msg-ai th,.msg-ai td{border:1px solid var(--table-border);padding:5px 8px;text-align:left}
 .msg-ai th{background:var(--table-th-bg);color:var(--text-ai-head);font-weight:600;font-size:11.5px}
 .msg-ai td{color:var(--text-muted)}
@@ -40401,7 +40413,7 @@ Category IDs for search operators:
       _renderTimer = setTimeout(() => {
         _renderTimer = null;
         _pendingNode.style.whiteSpace = "pre-wrap";
-        _pendingNode.textContent = _pendingText;
+        _pendingNode.textContent = _pendingText.replace(/<br\s*\/?>/gi, "\n");
         scroll();
       }, RENDER_INTERVAL);
     }

@@ -57,7 +57,7 @@ export function renderMarkdown(text) {
         qLines.push(lines[i].replace(/^(&gt; |> )/, ''));
         i++;
       }
-      blocks.push(`<blockquote>${inline(qLines.join('<br>'))}</blockquote>`);
+      blocks.push(`<blockquote>${qLines.map(l => inline(l)).join('<br>')}</blockquote>`);
       continue;
     }
 
@@ -96,7 +96,7 @@ export function renderMarkdown(text) {
       paraLines.push(lines[i]);
       i++;
     }
-    blocks.push(`<p>${inline(paraLines.join('<br>'))}</p>`);
+    blocks.push(`<p>${paraLines.map(l => inline(l)).join('<br>')}</p>`);
   }
 
   return blocks.join('\n');
