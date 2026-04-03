@@ -39888,8 +39888,8 @@ If a "User style instructions" system message is present, it takes HIGHEST PRIOR
 
 /* \u2500\u2500 panel shell \u2500\u2500 */
 .panel{
-  position:fixed;bottom:84px;right:10px;left:auto;
-  width:460px;height:640px;max-height:calc(100vh - 104px);
+  position:fixed;bottom:20px;right:10px;left:auto;
+  width:460px;height:640px;max-height:calc(100vh - 40px);
   max-width:calc(100% - 20px);
   background:var(--bg);
   color:var(--text);
@@ -39912,6 +39912,7 @@ If a "User style instructions" system message is present, it takes HIGHEST PRIOR
 .panel.overlay .hdr{padding:12px 10%}
 .panel.overlay .settings{padding:12px 10%}
 
+.toggle.panel-open{display:none}
 @media(max-width:520px){
   .panel{
     top:0;left:0;right:0;bottom:0;
@@ -40250,6 +40251,7 @@ If a "User style instructions" system message is present, it takes HIGHEST PRIOR
       <button class="btn-history">History</button>
       <button class="btn-settings">Settings</button>
       <button class="btn-new">+ New</button>
+      <button class="btn-close" title="Close panel">\u2715</button>
     </div>
   </div>
   <div class="settings">
@@ -40395,10 +40397,17 @@ If a "User style instructions" system message is present, it takes HIGHEST PRIOR
     }
     themeInput.addEventListener("change", () => applyTheme(themeInput.checked));
     let _onPanelToggle = null;
-    $(".toggle").addEventListener("click", () => {
+    const toggleBtn = $(".toggle");
+    toggleBtn.addEventListener("click", () => {
       panel.classList.toggle("open");
+      toggleBtn.classList.toggle("panel-open", panel.classList.contains("open"));
       if (panel.classList.contains("open")) requestAnimationFrame(() => inputEl.focus());
       if (_onPanelToggle) _onPanelToggle(panel.classList.contains("open"));
+    });
+    $(".btn-close").addEventListener("click", () => {
+      panel.classList.remove("open");
+      toggleBtn.classList.remove("panel-open");
+      if (_onPanelToggle) _onPanelToggle(false);
     });
     $(".btn-settings").addEventListener("click", () => settingsEl.classList.toggle("open"));
     $(".btn-expand").addEventListener("click", () => panel.classList.toggle("overlay"));
@@ -40725,6 +40734,7 @@ If a "User style instructions" system message is present, it takes HIGHEST PRIOR
       clearMessages,
       openPanel() {
         panel.classList.add("open");
+        toggleBtn.classList.add("panel-open");
       },
       set onPanelToggle(fn) {
         _onPanelToggle = fn;
@@ -40736,17 +40746,6 @@ If a "User style instructions" system message is present, it takes HIGHEST PRIOR
         _onReplyPost = fn;
       }
     };
-  }
-
-  // src/page-cache.js
-  var TOPIC_PATH_RE = /^\/t\/[^/]+\/(\d+)(?:\/\d+)?\/?$/;
-  function getPageCacheKey(rawUrl) {
-    const url2 = new URL(rawUrl);
-    const topicMatch = url2.pathname.match(TOPIC_PATH_RE);
-    if (topicMatch) {
-      return `${url2.origin}/t/topic/${topicMatch[1]}/`;
-    }
-    return `${url2.origin}${url2.pathname}`;
   }
 
   // src/conversation-session.js
@@ -40823,9 +40822,9 @@ If a "User style instructions" system message is present, it takes HIGHEST PRIOR
     if (win) win.style.display = "none";
   }
   function init() {
-    const pageCacheKey = getPageCacheKey(window.location.href);
-    const panelOpenKey = `panelOpen:${pageCacheKey}`;
-    const lastConvoKey = `lastConvoId:${pageCacheKey}`;
+    const siteKey = "uscardforum";
+    const panelOpenKey = `panelOpen:${siteKey}`;
+    const lastConvoKey = `lastConvoId:${siteKey}`;
     hideDifyChatbot();
     const observer = new MutationObserver(hideDifyChatbot);
     observer.observe(document.body, { childList: true, subtree: true });

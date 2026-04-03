@@ -1,5 +1,4 @@
 node_modules/
-dist/
 .playwright-mcp/
 coverage/
 *.log
