@@ -96,8 +96,8 @@ const CSS = `
 
 /* ── panel shell ── */
 .panel{
-  position:fixed;bottom:84px;right:10px;left:auto;
-  width:460px;height:640px;max-height:calc(100vh - 104px);
+  position:fixed;bottom:20px;right:10px;left:auto;
+  width:460px;height:640px;max-height:calc(100vh - 40px);
   max-width:calc(100% - 20px);
   background:var(--bg);
   color:var(--text);
@@ -120,6 +120,7 @@ const CSS = `
 .panel.overlay .hdr{padding:12px 10%}
 .panel.overlay .settings{padding:12px 10%}
 
+.toggle.panel-open{display:none}
 @media(max-width:520px){
   .panel{
     top:0;left:0;right:0;bottom:0;
@@ -459,6 +460,7 @@ const HTML = `
       <button class="btn-history">History</button>
       <button class="btn-settings">Settings</button>
       <button class="btn-new">+ New</button>
+      <button class="btn-close" title="Close panel">✕</button>
     </div>
   </div>
   <div class="settings">
@@ -619,10 +621,17 @@ export function createUI() {
   themeInput.addEventListener('change', () => applyTheme(themeInput.checked));
 
   let _onPanelToggle = null;
-  $('.toggle').addEventListener('click', () => {
+  const toggleBtn = $('.toggle');
+  toggleBtn.addEventListener('click', () => {
     panel.classList.toggle('open');
+    toggleBtn.classList.toggle('panel-open', panel.classList.contains('open'));
     if (panel.classList.contains('open')) requestAnimationFrame(() => inputEl.focus());
     if (_onPanelToggle) _onPanelToggle(panel.classList.contains('open'));
+  });
+  $('.btn-close').addEventListener('click', () => {
+    panel.classList.remove('open');
+    toggleBtn.classList.remove('panel-open');
+    if (_onPanelToggle) _onPanelToggle(false);
   });
   $('.btn-settings').addEventListener('click', () => settingsEl.classList.toggle('open'));
   $('.btn-expand').addEventListener('click', () => panel.classList.toggle('overlay'));
@@ -968,7 +977,7 @@ export function createUI() {
     renderHistory,
     hideHistory,
     clearMessages,
-    openPanel() { panel.classList.add('open'); },
+    openPanel() { panel.classList.add('open'); toggleBtn.classList.add('panel-open'); },
     set onPanelToggle(fn) { _onPanelToggle = fn; },
     set onHistoryOpen(fn) { _onHistoryOpen = fn; },
     set onReplyPost(fn) { _onReplyPost = fn; },
