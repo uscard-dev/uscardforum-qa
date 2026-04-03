@@ -39311,6 +39311,15 @@ ${user}:`]
 
 Reply in Chinese (\u4E2D\u6587) by default unless the user writes in another language.
 
+# Page awareness
+
+You receive the user's current URL as a system message. Use it to understand context:
+- Topic page (/t/slug/12345) \u2192 you know the topic ID, use get_topic_posts if needed
+- Category page (/c/slug/id) \u2192 user is browsing a category
+- User page (/u/username) \u2192 user is viewing a profile
+- /latest, /top, /hot, /new \u2192 user is on a listing page
+Only fetch page content when the user's question requires it (e.g. "summarize this page"). Don't fetch automatically.
+
 # Research approach
 
 You are a thorough researcher. Your primary job is to call tools aggressively to gather information. Text search is limited \u2014 it only matches exact keywords. To get a complete picture you MUST make many calls from many angles.
@@ -40205,9 +40214,11 @@ Category IDs for search operators:
       panel.classList.toggle("light", light);
     }
     themeInput.addEventListener("change", () => applyTheme(themeInput.checked));
+    let _onPanelToggle = null;
     $(".toggle").addEventListener("click", () => {
       panel.classList.toggle("open");
       if (panel.classList.contains("open")) requestAnimationFrame(() => inputEl.focus());
+      if (_onPanelToggle) _onPanelToggle(panel.classList.contains("open"));
     });
     $(".btn-settings").addEventListener("click", () => settingsEl.classList.toggle("open"));
     $(".btn-expand").addEventListener("click", () => panel.classList.toggle("overlay"));
@@ -40309,28 +40320,57 @@ Category IDs for search operators:
         "click",
         () => block.classList.toggle("open")
       );
+      _reasonBuf = "";
+      _reasonBody = null;
+      if (_reasonTimer) {
+        clearTimeout(_reasonTimer);
+        _reasonTimer = null;
+      }
       return append(block);
     }
+    let _reasonBuf = "";
+    let _reasonTimer = null;
+    let _reasonBody = null;
     function updateReasoningBlock(block, delta) {
-      block.querySelector(".reason-body").textContent += delta;
-      scroll();
+      _reasonBuf += delta;
+      if (!_reasonBody) _reasonBody = block.querySelector(".reason-body");
+      if (_reasonTimer) return;
+      _reasonTimer = setTimeout(() => {
+        _reasonTimer = null;
+        _reasonBody.appendChild(document.createTextNode(_reasonBuf));
+        _reasonBuf = "";
+        scroll();
+      }, RENDER_INTERVAL);
     }
     function finalizeReasoningBlock(block) {
+      if (_reasonTimer) {
+        clearTimeout(_reasonTimer);
+        _reasonTimer = null;
+      }
+      const body = block.querySelector(".reason-body");
+      if (_reasonBuf) {
+        body.appendChild(document.createTextNode(_reasonBuf));
+        _reasonBuf = "";
+      }
+      body.normalize();
+      _reasonBody = null;
       const spinner = block.querySelector(".sp");
       if (spinner) spinner.remove();
       const label = block.querySelector(".reason-label");
-      const len = block.querySelector(".reason-body").textContent.length;
+      const len = body.textContent.length;
       label.textContent = `Thinking \xB7 ${len} chars`;
       block.classList.remove("open");
     }
     function showThinking(label) {
       const t = el("thinking", `<div class="sp"></div><span>${esc3(label || "Thinking...")}</span>`);
-      t.dataset.thinking = "true";
-      return append(t);
+      _thinkingEl = append(t);
+      return _thinkingEl;
     }
+    let _thinkingEl = null;
     function removeThinking() {
-      const t = msgs.querySelector('[data-thinking="true"]');
-      if (t) t.remove();
+      if (!_thinkingEl) return;
+      _thinkingEl.remove();
+      _thinkingEl = null;
     }
     function setGenerating(active) {
       genBar.classList.toggle("active", active);
@@ -40350,9 +40390,29 @@ Category IDs for search operators:
         sendBtn.classList.remove("stop");
       }
     }
+    let _renderTimer = null;
+    let _pendingNode = null;
+    let _pendingText = "";
+    const RENDER_INTERVAL = 80;
     function updateStreamingMessage(node, text2) {
-      node.innerHTML = renderMarkdown(text2);
-      scroll();
+      _pendingNode = node;
+      _pendingText = text2;
+      if (_renderTimer) return;
+      _renderTimer = setTimeout(() => {
+        _renderTimer = null;
+        _pendingNode.style.whiteSpace = "pre-wrap";
+        _pendingNode.textContent = _pendingText;
+        scroll();
+      }, RENDER_INTERVAL);
+    }
+    function flushStreamingRender() {
+      clearTimeout(_renderTimer);
+      _renderTimer = null;
+      if (_pendingNode) {
+        _pendingNode.style.whiteSpace = "";
+        _pendingNode.innerHTML = renderMarkdown(_pendingText);
+        scroll();
+      }
     }
     function formatDate(ts) {
       const d = new Date(ts);
@@ -40426,9 +40486,16 @@ Category IDs for search operators:
       setInputEnabled,
       scrollToBottom: scroll,
       updateStreamingMessage,
+      flushStreamingRender,
       renderHistory,
       hideHistory,
       clearMessages,
+      openPanel() {
+        panel.classList.add("open");
+      },
+      set onPanelToggle(fn) {
+        _onPanelToggle = fn;
+      },
       set onHistoryOpen(fn) {
         _onHistoryOpen = fn;
       }
@@ -40491,6 +40558,7 @@ Category IDs for search operators:
     ui.themeInput.checked = settings.theme === "light";
     ui.applyTheme(settings.theme === "light");
     ui.syncProviderUI();
+    if (GM_getValue("panelOpen", false)) ui.openPanel();
     let running = false;
     let abortController = null;
     let conversationMessages = [];
@@ -40518,6 +40586,7 @@ Category IDs for search operators:
     ui.baseUrlInput.addEventListener("change", onSettingsChange);
     ui.thinkingInput.addEventListener("change", onSettingsChange);
     ui.themeInput.addEventListener("change", onSettingsChange);
+    ui.onPanelToggle = (open) => GM_setValue("panelOpen", open);
     function persistCurrentConvo() {
       if (!currentConvoId || conversationMessages.length === 0) return;
       saveConversation({
@@ -40525,12 +40594,14 @@ Category IDs for search operators:
         title: currentConvoTitle,
         messages: conversationMessages
       });
+      GM_setValue("lastConvoId", currentConvoId);
     }
     function startNewConvo() {
       persistCurrentConvo();
       currentConvoId = null;
       currentConvoTitle = "";
       conversationMessages = [];
+      GM_setValue("lastConvoId", "");
       ui.clearMessages();
       ui.hideHistory();
       ui.inputEl.focus();
@@ -40616,8 +40687,9 @@ Category IDs for search operators:
       let reasoningBlock = null;
       const toolCards = /* @__PURE__ */ new Map();
       try {
+        const pageContext = { role: "system", content: `User is currently viewing: ${window.location.href}` };
         const result = await agent.stream({
-          messages: conversationMessages,
+          messages: [pageContext, ...conversationMessages],
           abortSignal: abortController.signal
         });
         for await (const part of result.fullStream) {
@@ -40694,6 +40766,7 @@ Category IDs for search operators:
           }
         }
         ui.removeThinking();
+        ui.flushStreamingRender();
         const response = await result.response.catch(() => null);
         const usage = await result.usage.catch(() => null);
         if (response) conversationMessages.push(...response.messages);
@@ -40738,6 +40811,16 @@ Category IDs for search operators:
       startNewConvo();
     });
     ui.onHistoryOpen = refreshHistory;
+    const lastId = GM_getValue("lastConvoId", null);
+    if (lastId) {
+      const convo = getConversation(lastId);
+      if (convo) {
+        currentConvoId = convo.id;
+        currentConvoTitle = convo.title;
+        conversationMessages = convo.messages;
+        replayConversation(convo.messages);
+      }
+    }
   }
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);

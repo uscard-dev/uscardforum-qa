@@ -550,9 +550,11 @@ export function createUI() {
   }
   themeInput.addEventListener('change', () => applyTheme(themeInput.checked));
 
+  let _onPanelToggle = null;
   $('.toggle').addEventListener('click', () => {
     panel.classList.toggle('open');
     if (panel.classList.contains('open')) requestAnimationFrame(() => inputEl.focus());
+    if (_onPanelToggle) _onPanelToggle(panel.classList.contains('open'));
   });
   $('.btn-settings').addEventListener('click', () => settingsEl.classList.toggle('open'));
   $('.btn-expand').addEventListener('click', () => panel.classList.toggle('overlay'));
@@ -663,32 +665,55 @@ export function createUI() {
     block.querySelector('.reason-hdr').addEventListener('click', () =>
       block.classList.toggle('open'),
     );
+    _reasonBuf = '';
+    _reasonBody = null;
+    if (_reasonTimer) { clearTimeout(_reasonTimer); _reasonTimer = null; }
     return append(block);
   }
 
+  let _reasonBuf = '';
+  let _reasonTimer = null;
+  let _reasonBody = null;
   function updateReasoningBlock(block, delta) {
-    block.querySelector('.reason-body').textContent += delta;
-    scroll();
+    _reasonBuf += delta;
+    if (!_reasonBody) _reasonBody = block.querySelector('.reason-body');
+    if (_reasonTimer) return;
+    _reasonTimer = setTimeout(() => {
+      _reasonTimer = null;
+      _reasonBody.appendChild(document.createTextNode(_reasonBuf));
+      _reasonBuf = '';
+      scroll();
+    }, RENDER_INTERVAL);
   }
 
   function finalizeReasoningBlock(block) {
+    if (_reasonTimer) { clearTimeout(_reasonTimer); _reasonTimer = null; }
+    const body = block.querySelector('.reason-body');
+    if (_reasonBuf) {
+      body.appendChild(document.createTextNode(_reasonBuf));
+      _reasonBuf = '';
+    }
+    body.normalize();
+    _reasonBody = null;
     const spinner = block.querySelector('.sp');
     if (spinner) spinner.remove();
     const label = block.querySelector('.reason-label');
-    const len = block.querySelector('.reason-body').textContent.length;
+    const len = body.textContent.length;
     label.textContent = `Thinking · ${len} chars`;
     block.classList.remove('open');
   }
 
   function showThinking(label) {
     const t = el('thinking', `<div class="sp"></div><span>${esc(label || 'Thinking...')}</span>`);
-    t.dataset.thinking = 'true';
-    return append(t);
+    _thinkingEl = append(t);
+    return _thinkingEl;
   }
 
+  let _thinkingEl = null;
   function removeThinking() {
-    const t = msgs.querySelector('[data-thinking="true"]');
-    if (t) t.remove();
+    if (!_thinkingEl) return;
+    _thinkingEl.remove();
+    _thinkingEl = null;
   }
 
   function setGenerating(active) {
@@ -710,9 +735,29 @@ export function createUI() {
     }
   }
 
+  let _renderTimer = null;
+  let _pendingNode = null;
+  let _pendingText = '';
+  const RENDER_INTERVAL = 80;
   function updateStreamingMessage(node, text) {
-    node.innerHTML = renderMarkdown(text);
-    scroll();
+    _pendingNode = node;
+    _pendingText = text;
+    if (_renderTimer) return;
+    _renderTimer = setTimeout(() => {
+      _renderTimer = null;
+      _pendingNode.style.whiteSpace = 'pre-wrap';
+      _pendingNode.textContent = _pendingText;
+      scroll();
+    }, RENDER_INTERVAL);
+  }
+  function flushStreamingRender() {
+    clearTimeout(_renderTimer);
+    _renderTimer = null;
+    if (_pendingNode) {
+      _pendingNode.style.whiteSpace = '';
+      _pendingNode.innerHTML = renderMarkdown(_pendingText);
+      scroll();
+    }
   }
 
   function formatDate(ts) {
@@ -791,9 +836,12 @@ export function createUI() {
     setInputEnabled,
     scrollToBottom: scroll,
     updateStreamingMessage,
+    flushStreamingRender,
     renderHistory,
     hideHistory,
     clearMessages,
+    openPanel() { panel.classList.add('open'); },
+    set onPanelToggle(fn) { _onPanelToggle = fn; },
     set onHistoryOpen(fn) { _onHistoryOpen = fn; },
   };
 }
