@@ -637,10 +637,34 @@ export function createUI() {
       </div>
       <div class="tool-detail"></div>
     `);
+    card.dataset.callCount = '1';
     card.querySelector('.tool-hdr').addEventListener('click', () =>
       card.querySelector('.tool-detail').classList.toggle('open'),
     );
     return append(card);
+  }
+
+  function findToolCard(name) {
+    const cards = msgs.querySelectorAll('.tool.done');
+    for (let i = cards.length - 1; i >= 0; i--) {
+      if (cards[i].dataset.toolName === name) return cards[i];
+    }
+    return null;
+  }
+
+  function reuseToolCard(card, name, args) {
+    const meta = describeToolCall(name, args);
+    const count = (parseInt(card.dataset.callCount, 10) || 1) + 1;
+    card.dataset.callCount = String(count);
+    card.querySelector('.tool-title').textContent = `${meta.title} (×${count})`;
+    card.querySelector('.tool-sub').textContent = meta.subtitle;
+    card.classList.remove('done');
+    card.classList.add('running');
+    const st = card.querySelector('.tool-st');
+    st.className = 'tool-st running';
+    st.innerHTML = '<div class="sp"></div>';
+    scroll();
+    return card;
   }
 
   function updateToolCard(card, result, error) {
@@ -837,6 +861,8 @@ export function createUI() {
     newBtn: $('.btn-new'),
     addMessage,
     addToolCard,
+    findToolCard,
+    reuseToolCard,
     updateToolCard,
     addReasoningBlock,
     updateReasoningBlock,
