@@ -35,6 +35,9 @@ function init() {
   ui.applyTheme(settings.theme === 'light');
   ui.syncProviderUI();
 
+  // Restore panel open state
+  if (GM_getValue('panelOpen', false)) ui.openPanel();
+
   let running = false;
   let abortController = null;
   let conversationMessages = [];
@@ -67,6 +70,9 @@ function init() {
   ui.thinkingInput.addEventListener('change', onSettingsChange);
   ui.themeInput.addEventListener('change', onSettingsChange);
 
+  // Save panel open/close state
+  ui.onPanelToggle = (open) => GM_setValue('panelOpen', open);
+
   function persistCurrentConvo() {
     if (!currentConvoId || conversationMessages.length === 0) return;
     saveConversation({
@@ -74,6 +80,7 @@ function init() {
       title: currentConvoTitle,
       messages: conversationMessages,
     });
+    GM_setValue('lastConvoId', currentConvoId);
   }
 
   function startNewConvo() {
@@ -81,6 +88,7 @@ function init() {
     currentConvoId = null;
     currentConvoTitle = '';
     conversationMessages = [];
+    GM_setValue('lastConvoId', '');
     ui.clearMessages();
     ui.hideHistory();
     ui.inputEl.focus();
@@ -178,8 +186,9 @@ function init() {
     const toolCards = new Map();
 
     try {
+      const pageContext = { role: 'system', content: `User is currently viewing: ${window.location.href}` };
       const result = await agent.stream({
-        messages: conversationMessages,
+        messages: [pageContext, ...conversationMessages],
         abortSignal: abortController.signal,
       });
 
@@ -265,6 +274,7 @@ function init() {
       }
 
       ui.removeThinking();
+      ui.flushStreamingRender();
       const response = await result.response.catch(() => null);
       const usage = await result.usage.catch(() => null);
       if (response) conversationMessages.push(...response.messages);
@@ -312,6 +322,18 @@ function init() {
   });
 
   ui.onHistoryOpen = refreshHistory;
+
+  // Restore last conversation on load
+  const lastId = GM_getValue('lastConvoId', null);
+  if (lastId) {
+    const convo = getConversation(lastId);
+    if (convo) {
+      currentConvoId = convo.id;
+      currentConvoTitle = convo.title;
+      conversationMessages = convo.messages;
+      replayConversation(convo.messages);
+    }
+  }
 }
 
 if (document.readyState === 'loading') {
