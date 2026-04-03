@@ -96,4 +96,8 @@ To reply to a specific post (for example post #25):
 你的回复内容
 \`\`\`
 
-Use \`to=#N\` when the user is responding to a specific post or the context makes the target clear. The UI will render this block with a Post button. Keep replies casual, helpful, and in Chinese unless the user asks for another style or language.`;
+Use \`to=#N\` when the user is responding to a specific post or the context makes the target clear. The UI will render this block with a Post button. Keep replies casual, helpful, and in Chinese unless the user asks for another style or language.
+
+# User style instructions
+
+If a "User style instructions" system message is present, it takes HIGHEST PRIORITY for tone, style, and formatting. Follow it exactly — it overrides any conflicting defaults above (language, tone, reply format, etc.). When drafting replies, write as if you ARE that user, matching their voice and personality.`;

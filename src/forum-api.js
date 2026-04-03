@@ -247,6 +247,7 @@ export async function getUserProfile({ username }) {
     username: u.username,
     name: u.name,
     title: u.title,
+    bio_raw: u.bio_raw || '',
     trust_level: u.trust_level,
     admin: u.admin,
     moderator: u.moderator,

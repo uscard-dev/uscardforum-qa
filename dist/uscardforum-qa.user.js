@@ -39224,6 +39224,7 @@ ${user}:`]
       username: u.username,
       name: u.name,
       title: u.title,
+      bio_raw: u.bio_raw || "",
       trust_level: u.trust_level,
       admin: u.admin,
       moderator: u.moderator,
@@ -39478,7 +39479,11 @@ To reply to a specific post (for example post #25):
 \u4F60\u7684\u56DE\u590D\u5185\u5BB9
 \`\`\`
 
-Use \`to=#N\` when the user is responding to a specific post or the context makes the target clear. The UI will render this block with a Post button. Keep replies casual, helpful, and in Chinese unless the user asks for another style or language.`;
+Use \`to=#N\` when the user is responding to a specific post or the context makes the target clear. The UI will render this block with a Post button. Keep replies casual, helpful, and in Chinese unless the user asks for another style or language.
+
+# User style instructions
+
+If a "User style instructions" system message is present, it takes HIGHEST PRIORITY for tone, style, and formatting. Follow it exactly \u2014 it overrides any conflicting defaults above (language, tone, reply format, etc.). When drafting replies, write as if you ARE that user, matching their voice and personality.`;
 
   // src/agent.js
   function createModel({ provider, apiKey, model, baseUrl }) {
@@ -40223,6 +40228,17 @@ Use \`to=#N\` when the user is responding to a specific post or the context make
 .btn-send:disabled{background:var(--send-disabled-bg);color:var(--text-faint);cursor:default;box-shadow:none;transform:none}
 .btn-send.stop{background:linear-gradient(135deg,#ef4444,#dc2626);box-shadow:0 2px 10px rgba(239,68,68,.25)}
 .btn-send.stop:hover{box-shadow:0 4px 18px rgba(239,68,68,.4)}
+
+/* \u2500\u2500 shortcuts \u2500\u2500 */
+.shortcuts{
+  display:flex;gap:6px;padding:6px 12px 0;flex-wrap:wrap;
+}
+.shortcuts button{
+  background:var(--bg-input);color:var(--text-muted);border:1px solid var(--border-input);
+  border-radius:8px;padding:4px 10px;font-size:11.5px;font-family:inherit;
+  cursor:pointer;transition:all .15s;white-space:nowrap;
+}
+.shortcuts button:hover{background:var(--bg-hover);color:var(--text);border-color:rgba(139,92,246,.3)}
 `;
   var HTML = `
 <button class="toggle" title="QA Bot">\u2726</button>
@@ -40269,6 +40285,10 @@ Use \`to=#N\` when the user is responding to a specific post or the context make
   <div class="msgs"></div>
   <div class="gen-bar"><div class="gen-bar-inner"></div></div>
   <div class="status"></div>
+  <div class="shortcuts">
+    <button data-text="\u603B\u7ED3\u4E00\u4E0B\u8FD9\u4E2A\u5E16\u5B50">\u603B\u7ED3</button>
+    <button data-text="\u751F\u6210\u56DE\u590D">\u751F\u6210\u56DE\u590D</button>
+  </div>
   <div class="input-area">
     <textarea class="in-text" rows="1" placeholder="Ask anything about USCardForum..."></textarea>
     <button class="btn-send">Send</button>
@@ -40387,6 +40407,12 @@ Use \`to=#N\` when the user is responding to a specific post or the context make
       const opening = !historyEl.classList.contains("open");
       historyEl.classList.toggle("open");
       if (opening && _onHistoryOpen) _onHistoryOpen();
+    });
+    shadow.querySelector(".shortcuts").addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-text]");
+      if (!btn) return;
+      inputEl.value = btn.dataset.text;
+      inputEl.focus();
     });
     inputEl.addEventListener("input", () => {
       inputEl.style.height = "auto";
@@ -40805,6 +40831,10 @@ Use \`to=#N\` when the user is responding to a specific post or the context make
     observer.observe(document.body, { childList: true, subtree: true });
     const settings = loadSettings();
     const ui = createUI();
+    let cachedUsername = null;
+    getCurrentUser().then((u) => {
+      if (u && !u._httpError) cachedUsername = u.username;
+    });
     ui.providerInput.value = settings.provider;
     ui.apiKeyInput.value = settings.apiKey;
     ui.modelInput.value = settings.model;
@@ -40823,6 +40853,8 @@ Use \`to=#N\` when the user is responding to a specific post or the context make
         reply_to_post_number: replyTo
       });
       if (result._httpError) throw new Error(`HTTP ${result._httpError}`);
+      const slug = window.location.pathname.match(/^\/t\/([^/]+)\//)?.[1] || "topic";
+      window.location.href = `/t/${slug}/${result.topic_id}/${result.post_number}`;
       return result;
     };
     if (GM_getValue(panelOpenKey, false)) ui.openPanel();
@@ -40832,6 +40864,7 @@ Use \`to=#N\` when the user is responding to a specific post or the context make
     let currentConvoId = null;
     let currentConvoTitle = "";
     let inFlightAssistantText = "";
+    let userInstruction = null;
     function currentSettings() {
       return {
         provider: ui.providerInput.value,
@@ -40964,6 +40997,23 @@ Use \`to=#N\` when the user is responding to a specific post or the context make
       currentConvoId = nextTurn.currentConvoId;
       currentConvoTitle = nextTurn.currentConvoTitle;
       conversationMessages = nextTurn.conversationMessages;
+      if (conversationMessages.length === 1 && cachedUsername) {
+        try {
+          const profile = await getUserProfile({ username: cachedUsername });
+          if (profile && !profile._httpError && profile.bio_raw) {
+            const aiIdx = profile.bio_raw.indexOf("AI");
+            if (aiIdx !== -1) {
+              userInstruction = profile.bio_raw.slice(aiIdx);
+            } else {
+              userInstruction = null;
+            }
+          } else {
+            userInstruction = null;
+          }
+        } catch {
+          userInstruction = null;
+        }
+      }
       ui.addMessage("user", prompt);
       ui.inputEl.value = "";
       ui.inputEl.style.height = "auto";
@@ -40979,9 +41029,16 @@ Use \`to=#N\` when the user is responding to a specific post or the context make
       let reasoningBlock = null;
       const toolCards = /* @__PURE__ */ new Map();
       try {
-        const pageContext = { role: "system", content: `User is currently viewing: ${window.location.href}` };
+        const pageUrl = window.location.href.replace(/^(https?:\/\/[^/]+\/t\/[^/]+\/\d+)\/\d+\/?$/, "$1/");
+        const systemMessages = [
+          { role: "system", content: `User is currently viewing: ${pageUrl}` }
+        ];
+        if (userInstruction) {
+          systemMessages.push({ role: "system", content: `IMPORTANT \u2014 User style instructions (HIGHEST PRIORITY, override default tone and style):
+${userInstruction}` });
+        }
         const result = await agent.stream({
-          messages: [pageContext, ...conversationMessages],
+          messages: [...systemMessages, ...conversationMessages],
           abortSignal: abortController.signal
         });
         for await (const part of result.fullStream) {

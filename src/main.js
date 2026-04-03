@@ -2,7 +2,7 @@ import { loadSettings, saveSettings } from './settings.js';
 import { createAgent } from './agent.js';
 import { createUI } from './ui.js';
 import { getPageCacheKey } from './page-cache.js';
-import { createPost } from './forum-api.js';
+import { createPost, getCurrentUser, getUserProfile } from './forum-api.js';
 import {
   beginConversationTurn,
   snapshotConversationMessages,
@@ -35,6 +35,11 @@ function init() {
   const settings = loadSettings();
   const ui = createUI();
 
+  let cachedUsername = null;
+  getCurrentUser().then((u) => {
+    if (u && !u._httpError) cachedUsername = u.username;
+  });
+
   ui.providerInput.value = settings.provider;
   ui.apiKeyInput.value = settings.apiKey;
   ui.modelInput.value = settings.model;
@@ -56,6 +61,9 @@ function init() {
     });
 
     if (result._httpError) throw new Error(`HTTP ${result._httpError}`);
+
+    const slug = window.location.pathname.match(/^\/t\/([^/]+)\//)?.[1] || 'topic';
+    window.location.href = `/t/${slug}/${result.topic_id}/${result.post_number}`;
     return result;
   };
 
@@ -68,6 +76,7 @@ function init() {
   let currentConvoId = null;
   let currentConvoTitle = '';
   let inFlightAssistantText = '';
+  let userInstruction = null;
 
   function currentSettings() {
     return {
@@ -218,6 +227,25 @@ function init() {
     currentConvoTitle = nextTurn.currentConvoTitle;
     conversationMessages = nextTurn.conversationMessages;
 
+    // Fetch user bio instruction for new conversations
+    if (conversationMessages.length === 1 && cachedUsername) {
+      try {
+        const profile = await getUserProfile({ username: cachedUsername });
+        if (profile && !profile._httpError && profile.bio_raw) {
+          const aiIdx = profile.bio_raw.indexOf('AI');
+          if (aiIdx !== -1) {
+            userInstruction = profile.bio_raw.slice(aiIdx);
+          } else {
+            userInstruction = null;
+          }
+        } else {
+          userInstruction = null;
+        }
+      } catch {
+        userInstruction = null;
+      }
+    }
+
     ui.addMessage('user', prompt);
     ui.inputEl.value = '';
     ui.inputEl.style.height = 'auto';
@@ -236,9 +264,15 @@ function init() {
     const toolCards = new Map();
 
     try {
-      const pageContext = { role: 'system', content: `User is currently viewing: ${window.location.href}` };
+      const pageUrl = window.location.href.replace(/^(https?:\/\/[^/]+\/t\/[^/]+\/\d+)\/\d+\/?$/, '$1/');
+      const systemMessages = [
+        { role: 'system', content: `User is currently viewing: ${pageUrl}` },
+      ];
+      if (userInstruction) {
+        systemMessages.push({ role: 'system', content: `IMPORTANT — User style instructions (HIGHEST PRIORITY, override default tone and style):\n${userInstruction}` });
+      }
       const result = await agent.stream({
-        messages: [pageContext, ...conversationMessages],
+        messages: [...systemMessages, ...conversationMessages],
         abortSignal: abortController.signal,
       });
 

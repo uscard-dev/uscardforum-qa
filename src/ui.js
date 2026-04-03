@@ -436,6 +436,17 @@ const CSS = `
 .btn-send:disabled{background:var(--send-disabled-bg);color:var(--text-faint);cursor:default;box-shadow:none;transform:none}
 .btn-send.stop{background:linear-gradient(135deg,#ef4444,#dc2626);box-shadow:0 2px 10px rgba(239,68,68,.25)}
 .btn-send.stop:hover{box-shadow:0 4px 18px rgba(239,68,68,.4)}
+
+/* ── shortcuts ── */
+.shortcuts{
+  display:flex;gap:6px;padding:6px 12px 0;flex-wrap:wrap;
+}
+.shortcuts button{
+  background:var(--bg-input);color:var(--text-muted);border:1px solid var(--border-input);
+  border-radius:8px;padding:4px 10px;font-size:11.5px;font-family:inherit;
+  cursor:pointer;transition:all .15s;white-space:nowrap;
+}
+.shortcuts button:hover{background:var(--bg-hover);color:var(--text);border-color:rgba(139,92,246,.3)}
 `;
 
 const HTML = `
@@ -483,6 +494,10 @@ const HTML = `
   <div class="msgs"></div>
   <div class="gen-bar"><div class="gen-bar-inner"></div></div>
   <div class="status"></div>
+  <div class="shortcuts">
+    <button data-text="总结一下这个帖子">总结</button>
+    <button data-text="生成回复">生成回复</button>
+  </div>
   <div class="input-area">
     <textarea class="in-text" rows="1" placeholder="Ask anything about USCardForum..."></textarea>
     <button class="btn-send">Send</button>
@@ -617,6 +632,13 @@ export function createUI() {
     const opening = !historyEl.classList.contains('open');
     historyEl.classList.toggle('open');
     if (opening && _onHistoryOpen) _onHistoryOpen();
+  });
+
+  shadow.querySelector('.shortcuts').addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-text]');
+    if (!btn) return;
+    inputEl.value = btn.dataset.text;
+    inputEl.focus();
   });
 
   inputEl.addEventListener('input', () => {
