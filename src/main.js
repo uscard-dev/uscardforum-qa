@@ -1,7 +1,6 @@
 import { loadSettings, saveSettings } from './settings.js';
 import { createAgent } from './agent.js';
 import { createUI } from './ui.js';
-import { getPageCacheKey } from './page-cache.js';
 import { createPost, getCurrentUser, getUserProfile } from './forum-api.js';
 import {
   beginConversationTurn,
@@ -23,9 +22,9 @@ function hideDifyChatbot() {
 }
 
 function init() {
-  const pageCacheKey = getPageCacheKey(window.location.href);
-  const panelOpenKey = `panelOpen:${pageCacheKey}`;
-  const lastConvoKey = `lastConvoId:${pageCacheKey}`;
+  const siteKey = 'uscardforum';
+  const panelOpenKey = `panelOpen:${siteKey}`;
+  const lastConvoKey = `lastConvoId:${siteKey}`;
 
   // Hide the site's built-in Dify chatbot
   hideDifyChatbot();
