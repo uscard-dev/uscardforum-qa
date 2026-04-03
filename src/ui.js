@@ -323,6 +323,46 @@ const CSS = `
 .tool-detail.open{display:block}
 .tool-detail pre{margin:0;white-space:pre-wrap;word-break:break-all;font-family:'SF Mono','Fira Code',monospace;font-size:10.5px;line-height:1.4;color:var(--text-muted)}
 
+/* ── reply block ── */
+.reply-block{
+  background:var(--bg-elevated);
+  border:1px solid var(--border);
+  border-left:3px solid #8b5cf6;
+  border-radius:10px;
+  margin:8px 0;
+  overflow:hidden;
+}
+.reply-body{
+  padding:10px 12px;
+  font-size:12px;
+  line-height:1.6;
+  color:var(--text);
+  word-break:break-word;
+}
+.reply-footer{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:8px;
+  padding:0 10px 8px;
+}
+.reply-to{font-size:11px;color:var(--text-muted);margin-right:auto}
+.reply-post-btn{
+  padding:5px 16px;
+  border:none;
+  border-radius:6px;
+  font-size:12px;
+  font-weight:600;
+  background:#8b5cf6;
+  color:#fff;
+  cursor:pointer;
+  transition:background .15s,opacity .15s;
+}
+.reply-post-btn:hover{background:#7c3aed}
+.reply-post-btn:disabled{opacity:.5;cursor:default}
+.reply-post-btn.posted{background:#22c55e}
+.reply-post-btn.errored{background:#ef4444}
+
 /* ── reasoning ── */
 .reason{
   background:var(--reason-bg);border:1px solid rgba(139,92,246,.15);border-radius:10px;
@@ -487,6 +527,7 @@ export function createUI() {
 
   const modelSelectEl = $('.in-model-select');
   const listModelsBtn = $('.btn-list-models');
+  let _onReplyPost = null;
 
   function populateModelSelect(models) {
     modelSelectEl.innerHTML = '';
@@ -588,6 +629,33 @@ export function createUI() {
   msgs.addEventListener('scroll', () => {
     const distFromBottom = msgs.scrollHeight - msgs.scrollTop - msgs.clientHeight;
     userScrolledUp = distFromBottom > 40;
+  });
+
+  msgs.addEventListener('click', (event) => {
+    const target = event.target instanceof Element ? event.target : null;
+    const btn = target?.closest('.reply-post-btn');
+    if (!btn || btn.disabled) return;
+
+    const block = btn.closest('.reply-block');
+    const raw = block?.dataset.raw;
+    if (!raw || !_onReplyPost) return;
+
+    const replyTo = block.dataset.replyTo ? Number(block.dataset.replyTo) : undefined;
+    btn.disabled = true;
+    btn.textContent = 'Posting...';
+
+    _onReplyPost(raw, replyTo).then(() => {
+      btn.textContent = 'Posted';
+      btn.classList.add('posted');
+    }).catch(() => {
+      btn.textContent = 'Error';
+      btn.classList.add('errored');
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.textContent = 'Post';
+        btn.classList.remove('errored');
+      }, 3000);
+    });
   });
 
   function scroll() {
@@ -881,5 +949,6 @@ export function createUI() {
     openPanel() { panel.classList.add('open'); },
     set onPanelToggle(fn) { _onPanelToggle = fn; },
     set onHistoryOpen(fn) { _onHistoryOpen = fn; },
+    set onReplyPost(fn) { _onReplyPost = fn; },
   };
 }

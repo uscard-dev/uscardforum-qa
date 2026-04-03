@@ -38982,6 +38982,23 @@ ${user}:`]
     if (!res.ok) return { _httpError: res.status, url: url2.toString() };
     return res.json();
   }
+  async function forumPost(path, body = {}) {
+    const url2 = new URL(path, FORUM_BASE);
+    const csrf = document.querySelector('meta[name="csrf-token"]')?.content;
+    const headers = {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    };
+    if (csrf) headers["X-CSRF-Token"] = csrf;
+    const res = await fetch(url2.toString(), {
+      method: "POST",
+      credentials: "include",
+      headers,
+      body: JSON.stringify(body)
+    });
+    if (!res.ok) return { _httpError: res.status, url: url2.toString() };
+    return res.json();
+  }
 
   // src/forum-api.js
   function isError(data) {
@@ -39049,15 +39066,26 @@ ${user}:`]
     if (isError(data)) return data;
     const initialPosts = data.post_stream?.posts || [];
     const stream = data.post_stream?.stream || [];
-    const loadedIds = new Set(initialPosts.map((p) => p.id));
-    const remaining = stream.filter((id) => !loadedIds.has(id));
+    let startIndex = 0;
+    const anchor = initialPosts.find((p) => p.post_number >= startNum);
+    if (anchor) {
+      const anchorIdx = stream.indexOf(anchor.id);
+      if (anchorIdx >= 0) startIndex = anchorIdx;
+    } else if (startNum > 1) {
+      startIndex = Math.min(stream.length, startNum - 1);
+    }
+    const targetIds = stream.slice(startIndex, startIndex + 100);
+    if (targetIds.length === 0) return [];
+    const targetIdSet = new Set(targetIds);
+    const filteredInitialPosts = initialPosts.filter((p) => targetIdSet.has(p.id));
+    const loadedIds = new Set(filteredInitialPosts.map((p) => p.id));
+    const remaining = targetIds.filter((id) => !loadedIds.has(id));
     const extraPosts = [];
-    const batches = remaining.slice(0, 80);
-    if (batches.length > 0) {
+    if (remaining.length > 0) {
       const chunkSize = 20;
       const chunks = [];
-      for (let j = 0; j < batches.length; j += chunkSize) {
-        chunks.push(batches.slice(j, j + chunkSize));
+      for (let j = 0; j < remaining.length; j += chunkSize) {
+        chunks.push(remaining.slice(j, j + chunkSize));
       }
       const results = await Promise.all(
         chunks.map((ids) => {
@@ -39071,7 +39099,7 @@ ${user}:`]
         }
       }
     }
-    const allPosts = [...initialPosts, ...extraPosts];
+    const allPosts = [...filteredInitialPosts, ...extraPosts];
     const seen = /* @__PURE__ */ new Set();
     const unique = allPosts.filter((p) => {
       if (seen.has(p.id)) return false;
@@ -39222,6 +39250,19 @@ ${user}:`]
       groups: (u.groups || []).map((g) => ({ id: g.id, name: g.name }))
     };
   }
+  async function createPost({ topic_id, raw, reply_to_post_number }) {
+    const body = { topic_id, raw };
+    if (reply_to_post_number) body.reply_to_post_number = reply_to_post_number;
+    const data = await forumPost("/posts.json", body);
+    if (isError(data)) return data;
+    return {
+      id: data.id,
+      post_number: data.post_number,
+      topic_id: data.topic_id,
+      username: data.username,
+      created_at: data.created_at
+    };
+  }
   async function getNotifications({ limit }) {
     const data = await forumGet("/notifications.json");
     if (isError(data)) return data;
@@ -39273,7 +39314,7 @@ ${user}:`]
       execute: getTopTopics
     }),
     get_topic_posts: tool({
-      description: "Fetch a batch of ~100 posts from a topic starting at a specific position. Use for paginated reading.",
+      description: "Fetch up to 100 posts from a topic starting at a specific post number. For pagination, use the last post_number you received + 1. Do not repeat the same topic_id + post_number call.",
       inputSchema: external_exports2.object({
         topic_id: external_exports2.number().describe("The numeric topic ID"),
         post_number: external_exports2.number().optional().describe("Post number to start from (default: 1)")
@@ -39346,7 +39387,7 @@ Reply in Chinese (\u4E2D\u6587) by default unless the user writes in another lan
 # Page awareness
 
 You receive the user's current URL as a system message. Use it to understand context:
-- Topic page (/t/slug/12345) \u2192 you know the topic ID, use get_topic_posts if needed
+- Topic page (/t/slug/12345) \u2192 you know the topic ID; if the user asks about "this thread/page", start with one get_topic_posts call for this topic instead of searching
 - Category page (/c/slug/id) \u2192 user is browsing a category
 - User page (/u/username) \u2192 user is viewing a profile
 - /latest, /top, /hot, /new \u2192 user is on a listing page
@@ -39359,17 +39400,18 @@ You are a thorough researcher. Your primary job is to call tools aggressively to
 ## Core principles
 
 1. **Call tools first, talk later.** Never answer without calling tools. Even for "simple" questions, search first.
-2. **Every question deserves 3+ parallel searches.** Forum search is keyword-based, so a single query misses a lot. Always fire multiple searches simultaneously with different keywords:
+2. **Choose searches based on the question.** For broad research questions, forum search is keyword-based, so a single query misses a lot. Fire 2-3 searches simultaneously with different keywords. For page-specific requests, use the current page context first instead of searching:
    - Chinese slang + formal name + English abbreviation
    - Synonyms, alternate spellings, abbreviations
    - Different category scopes
    - Example: user asks about CSR \u2192 fire all at once: search("CSR \u7533\u5361"), search("Chase Sapphire Reserve"), search("CSR approval dp"), search("chase sapphire \u88AB\u62D2")
-3. **Read posts, not just titles.** Search results only show titles and snippets which are misleading. After searching, immediately read the most relevant 2-3 topics in parallel with get_topic_posts.
-4. **Go wide, then go deep.** Start with broad parallel searches \u2192 read promising topics in parallel \u2192 if needed, do a second round of targeted searches based on what you learned.
-5. **Paginate aggressively.** Topics with 100+ posts have valuable DPs buried deep. Don't stop at page 1 \u2014 read multiple pages.
+3. **Read posts, not just titles.** Search results only show titles and snippets which are misleading. After searching, read the most relevant 1-3 unique topics with get_topic_posts.
+4. **Go wide, then go deep.** Start with broad parallel searches \u2192 read promising topics \u2192 if needed, do a second round of targeted searches based on what you learned.
+5. **Paginate deliberately.** Topics with 100+ posts can have valuable DPs buried deep. Deleted posts create gaps in post numbers, so to paginate use the last post_number you received + 1 as the next start (e.g. if the last post was #148, request post_number=149). Do not reread overlapping ranges.
 6. **Cross-reference everything.** Compare DPs from different users and threads. Note contradictions. Search for "DP\u6C47\u603B" or "dp" threads for aggregated data.
 7. **Follow every lead.** If a post mentions a related strategy, card, or user \u2014 look it up immediately with another tool call.
 8. **Check recency.** Credit card policies change constantly. Use after:YYYY-MM-DD for recent results. Recent DPs override old ones.
+9. **Never repeat the same read.** Track which topic_id + post_number ranges you already fetched in the current answer. Reuse what you already have unless the user explicitly asks for a reread.
 
 ## Parallel call patterns
 
@@ -39380,6 +39422,10 @@ ALWAYS prefer calling multiple tools at once. Here are common patterns:
 
 **After getting search results**, read multiple topics in parallel:
 - get_topic_posts(topic_A) + get_topic_posts(topic_B) + get_topic_posts(topic_C)
+
+**On a topic page**, prefer the current thread first:
+- get_topic_posts(current_topic, 1)
+- Only then paginate using last post_number + 1 from the previous batch if the thread is long and the first batch is not enough
 
 **For user research**, query everything at once:
 - get_user_summary(user) + get_user_topics(user) + get_user_actions(user)
@@ -39416,7 +39462,23 @@ Category IDs for search operators:
 - Cite sources: topic ID, post number, author, date, like count
 - Highlight actionable data points and latest DPs
 - Structure complex answers with headings and bullets
-- Note when information is time-sensitive or YMMV`;
+- Note when information is time-sensitive or YMMV
+
+# Drafting replies
+
+When the user asks you to write, draft, or help compose a reply, output it inside a fenced code block with the language tag \`reply\`:
+
+For a general reply to the topic:
+\`\`\`reply
+\u4F60\u7684\u56DE\u590D\u5185\u5BB9
+\`\`\`
+
+To reply to a specific post (for example post #25):
+\`\`\`reply to=#25
+\u4F60\u7684\u56DE\u590D\u5185\u5BB9
+\`\`\`
+
+Use \`to=#N\` when the user is responding to a specific post or the context makes the target clear. The UI will render this block with a Post button. Keep replies casual, helpful, and in Chinese unless the user asks for another style or language.`;
 
   // src/agent.js
   function createModel({ provider, apiKey, model, baseUrl }) {
@@ -39474,7 +39536,17 @@ Category IDs for search operators:
           i++;
         }
         i++;
-        blocks.push(`<pre><code class="lang-${esc2(lang || "text")}">${esc2(codeLines.join("\n"))}</code></pre>`);
+        if (lang.startsWith("reply")) {
+          const raw = codeLines.join("\n");
+          const replyTo = lang.match(/(?:^|\s)to=#(\d+)/)?.[1] || "";
+          const replyLabel = replyTo ? `<span class="reply-to">replying to #${esc2(replyTo)}</span>` : "";
+          const replyBody = codeLines.map((codeLine) => esc2(codeLine)).join("<br>");
+          blocks.push(
+            `<div class="reply-block" data-raw="${escAttr(raw)}"${replyTo ? ` data-reply-to="${escAttr(replyTo)}"` : ""}><div class="reply-body">${replyBody}</div><div class="reply-footer">${replyLabel}<button class="reply-post-btn">Post</button></div></div>`
+          );
+        } else {
+          blocks.push(`<pre><code class="lang-${esc2(lang || "text")}">${esc2(codeLines.join("\n"))}</code></pre>`);
+        }
         continue;
       }
       if (/^\|.+\|/.test(line) && i + 1 < lines.length && /^\|[\s:|-]+\|$/.test(lines[i + 1]?.trim())) {
@@ -39558,6 +39630,9 @@ Category IDs for search operators:
   }
   function esc2(str) {
     return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+  function escAttr(str) {
+    return esc2(str).replace(/"/g, "&quot;").replace(/'/g, "&#39;");
   }
 
   // src/tool-labels.js
@@ -40035,6 +40110,46 @@ Category IDs for search operators:
 .tool-detail.open{display:block}
 .tool-detail pre{margin:0;white-space:pre-wrap;word-break:break-all;font-family:'SF Mono','Fira Code',monospace;font-size:10.5px;line-height:1.4;color:var(--text-muted)}
 
+/* \u2500\u2500 reply block \u2500\u2500 */
+.reply-block{
+  background:var(--bg-elevated);
+  border:1px solid var(--border);
+  border-left:3px solid #8b5cf6;
+  border-radius:10px;
+  margin:8px 0;
+  overflow:hidden;
+}
+.reply-body{
+  padding:10px 12px;
+  font-size:12px;
+  line-height:1.6;
+  color:var(--text);
+  word-break:break-word;
+}
+.reply-footer{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:8px;
+  padding:0 10px 8px;
+}
+.reply-to{font-size:11px;color:var(--text-muted);margin-right:auto}
+.reply-post-btn{
+  padding:5px 16px;
+  border:none;
+  border-radius:6px;
+  font-size:12px;
+  font-weight:600;
+  background:#8b5cf6;
+  color:#fff;
+  cursor:pointer;
+  transition:background .15s,opacity .15s;
+}
+.reply-post-btn:hover{background:#7c3aed}
+.reply-post-btn:disabled{opacity:.5;cursor:default}
+.reply-post-btn.posted{background:#22c55e}
+.reply-post-btn.errored{background:#ef4444}
+
 /* \u2500\u2500 reasoning \u2500\u2500 */
 .reason{
   background:var(--reason-bg);border:1px solid rgba(139,92,246,.15);border-radius:10px;
@@ -40192,6 +40307,7 @@ Category IDs for search operators:
     providerEl.addEventListener("change", syncProviderUI);
     const modelSelectEl = $(".in-model-select");
     const listModelsBtn = $(".btn-list-models");
+    let _onReplyPost = null;
     function populateModelSelect(models) {
       modelSelectEl.innerHTML = "";
       if (models.length === 0) {
@@ -40280,6 +40396,29 @@ Category IDs for search operators:
     msgs.addEventListener("scroll", () => {
       const distFromBottom = msgs.scrollHeight - msgs.scrollTop - msgs.clientHeight;
       userScrolledUp = distFromBottom > 40;
+    });
+    msgs.addEventListener("click", (event) => {
+      const target = event.target instanceof Element ? event.target : null;
+      const btn = target?.closest(".reply-post-btn");
+      if (!btn || btn.disabled) return;
+      const block = btn.closest(".reply-block");
+      const raw = block?.dataset.raw;
+      if (!raw || !_onReplyPost) return;
+      const replyTo = block.dataset.replyTo ? Number(block.dataset.replyTo) : void 0;
+      btn.disabled = true;
+      btn.textContent = "Posting...";
+      _onReplyPost(raw, replyTo).then(() => {
+        btn.textContent = "Posted";
+        btn.classList.add("posted");
+      }).catch(() => {
+        btn.textContent = "Error";
+        btn.classList.add("errored");
+        setTimeout(() => {
+          btn.disabled = false;
+          btn.textContent = "Post";
+          btn.classList.remove("errored");
+        }, 3e3);
+      });
     });
     function scroll() {
       if (userScrolledUp) return;
@@ -40566,8 +40705,54 @@ Category IDs for search operators:
       },
       set onHistoryOpen(fn) {
         _onHistoryOpen = fn;
+      },
+      set onReplyPost(fn) {
+        _onReplyPost = fn;
       }
     };
+  }
+
+  // src/page-cache.js
+  var TOPIC_PATH_RE = /^\/t\/[^/]+\/(\d+)(?:\/\d+)?\/?$/;
+  function getPageCacheKey(rawUrl) {
+    const url2 = new URL(rawUrl);
+    const topicMatch = url2.pathname.match(TOPIC_PATH_RE);
+    if (topicMatch) {
+      return `${url2.origin}/t/topic/${topicMatch[1]}/`;
+    }
+    return `${url2.origin}${url2.pathname}`;
+  }
+
+  // src/conversation-session.js
+  function beginConversationTurn({
+    currentConvoId,
+    currentConvoTitle,
+    conversationMessages,
+    prompt,
+    newConversationId: newConversationId2,
+    persistConversation
+  }) {
+    let nextConvoId = currentConvoId;
+    let nextConvoTitle = currentConvoTitle;
+    if (!nextConvoId) {
+      nextConvoId = newConversationId2();
+      nextConvoTitle = prompt.slice(0, 80);
+    }
+    const nextMessages = [...conversationMessages, { role: "user", content: prompt }];
+    persistConversation({
+      id: nextConvoId,
+      title: nextConvoTitle,
+      messages: nextMessages
+    });
+    return {
+      currentConvoId: nextConvoId,
+      currentConvoTitle: nextConvoTitle,
+      conversationMessages: nextMessages
+    };
+  }
+  function snapshotConversationMessages(conversationMessages, inFlightAssistantText) {
+    if (!inFlightAssistantText) return conversationMessages;
+    return [...conversationMessages, { role: "assistant", content: inFlightAssistantText }];
   }
 
   // src/conversations.js
@@ -40612,6 +40797,9 @@ Category IDs for search operators:
     if (win) win.style.display = "none";
   }
   function init() {
+    const pageCacheKey = getPageCacheKey(window.location.href);
+    const panelOpenKey = `panelOpen:${pageCacheKey}`;
+    const lastConvoKey = `lastConvoId:${pageCacheKey}`;
     hideDifyChatbot();
     const observer = new MutationObserver(hideDifyChatbot);
     observer.observe(document.body, { childList: true, subtree: true });
@@ -40626,12 +40814,24 @@ Category IDs for search operators:
     ui.themeInput.checked = settings.theme === "light";
     ui.applyTheme(settings.theme === "light");
     ui.syncProviderUI();
-    if (GM_getValue("panelOpen", false)) ui.openPanel();
+    ui.onReplyPost = async (raw, replyTo) => {
+      const match = window.location.pathname.match(/^\/t\/[^/]+\/(\d+)(?:\/\d+)?\/?$/);
+      if (!match) throw new Error("Not on a topic page");
+      const result = await createPost({
+        topic_id: Number(match[1]),
+        raw,
+        reply_to_post_number: replyTo
+      });
+      if (result._httpError) throw new Error(`HTTP ${result._httpError}`);
+      return result;
+    };
+    if (GM_getValue(panelOpenKey, false)) ui.openPanel();
     let running = false;
     let abortController = null;
     let conversationMessages = [];
     let currentConvoId = null;
     let currentConvoTitle = "";
+    let inFlightAssistantText = "";
     function currentSettings() {
       return {
         provider: ui.providerInput.value,
@@ -40654,7 +40854,7 @@ Category IDs for search operators:
     ui.baseUrlInput.addEventListener("change", onSettingsChange);
     ui.thinkingInput.addEventListener("change", onSettingsChange);
     ui.themeInput.addEventListener("change", onSettingsChange);
-    ui.onPanelToggle = (open) => GM_setValue("panelOpen", open);
+    ui.onPanelToggle = (open) => GM_setValue(panelOpenKey, open);
     function persistCurrentConvo() {
       if (!currentConvoId || conversationMessages.length === 0) return;
       saveConversation({
@@ -40662,14 +40862,27 @@ Category IDs for search operators:
         title: currentConvoTitle,
         messages: conversationMessages
       });
-      GM_setValue("lastConvoId", currentConvoId);
+      GM_setValue(lastConvoKey, currentConvoId);
     }
+    function persistConvoSnapshot(messages) {
+      if (!currentConvoId || messages.length === 0) return;
+      saveConversation({
+        id: currentConvoId,
+        title: currentConvoTitle,
+        messages
+      });
+      GM_setValue(lastConvoKey, currentConvoId);
+    }
+    window.addEventListener("beforeunload", () => {
+      const snapshot = snapshotConversationMessages(conversationMessages, inFlightAssistantText);
+      persistConvoSnapshot(snapshot);
+    });
     function startNewConvo() {
       persistCurrentConvo();
       currentConvoId = null;
       currentConvoTitle = "";
       conversationMessages = [];
-      GM_setValue("lastConvoId", "");
+      GM_setValue(lastConvoKey, "");
       ui.clearMessages();
       ui.hideHistory();
       ui.inputEl.focus();
@@ -40736,11 +40949,21 @@ Category IDs for search operators:
     async function handleSend() {
       const prompt = ui.inputEl.value.trim();
       if (!prompt || running) return;
-      if (!currentConvoId) {
-        currentConvoId = newConversationId();
-        currentConvoTitle = prompt.slice(0, 80);
-      }
-      conversationMessages.push({ role: "user", content: prompt });
+      const nextTurn = beginConversationTurn({
+        currentConvoId,
+        currentConvoTitle,
+        conversationMessages,
+        prompt,
+        newConversationId,
+        persistConversation(snapshot) {
+          currentConvoId = snapshot.id;
+          currentConvoTitle = snapshot.title;
+          persistConvoSnapshot(snapshot.messages);
+        }
+      });
+      currentConvoId = nextTurn.currentConvoId;
+      currentConvoTitle = nextTurn.currentConvoTitle;
+      conversationMessages = nextTurn.conversationMessages;
       ui.addMessage("user", prompt);
       ui.inputEl.value = "";
       ui.inputEl.style.height = "auto";
@@ -40751,6 +40974,7 @@ Category IDs for search operators:
       ui.showThinking("Thinking...");
       let streamEl = null;
       let fullText = "";
+      inFlightAssistantText = "";
       let stepCount = 0;
       let reasoningBlock = null;
       const toolCards = /* @__PURE__ */ new Map();
@@ -40805,6 +41029,7 @@ Category IDs for search operators:
                 streamEl = ui.addMessage("assistant", "");
               }
               fullText += part.text;
+              inFlightAssistantText = fullText;
               ui.updateStreamingMessage(streamEl, fullText);
               break;
             }
@@ -40844,6 +41069,7 @@ Category IDs for search operators:
         const response = await result.response.catch(() => null);
         const usage = await result.usage.catch(() => null);
         if (response) conversationMessages.push(...response.messages);
+        inFlightAssistantText = "";
         const totalIn = usage?.inputTokens || 0;
         const totalOut = usage?.outputTokens || 0;
         ui.setStatus(`${stepCount} step(s) \xB7 ${totalIn + totalOut} tokens`);
@@ -40853,12 +41079,14 @@ Category IDs for search operators:
           if (fullText) {
             conversationMessages.push({ role: "assistant", content: fullText });
           }
+          inFlightAssistantText = "";
           ui.setStatus("Stopped");
         } else {
           ui.addMessage("error", `Error: ${err.message}`);
           ui.setStatus("");
         }
       } finally {
+        inFlightAssistantText = "";
         abortController = null;
         running = false;
         ui.setGenerating(false);
@@ -40885,7 +41113,7 @@ Category IDs for search operators:
       startNewConvo();
     });
     ui.onHistoryOpen = refreshHistory;
-    const lastId = GM_getValue("lastConvoId", null);
+    const lastId = GM_getValue(lastConvoKey, null);
     if (lastId) {
       const convo = getConversation(lastId);
       if (convo) {

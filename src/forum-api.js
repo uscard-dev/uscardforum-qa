@@ -1,4 +1,4 @@
-import { forumGet } from './http.js';
+import { forumGet, forumPost } from './http.js';
 
 function isError(data) {
   return data && data._httpError;
@@ -72,17 +72,33 @@ export async function getTopicPosts({ topic_id, post_number }) {
 
   const initialPosts = data.post_stream?.posts || [];
   const stream = data.post_stream?.stream || [];
-  const loadedIds = new Set(initialPosts.map((p) => p.id));
-  const remaining = stream.filter((id) => !loadedIds.has(id));
 
-  // Fetch up to 4 extra batches (~80 more posts) via post_ids endpoint
+  // post_number can have gaps when posts are deleted, so find our place in
+  // the topic stream using the first returned post at or after startNum.
+  let startIndex = 0;
+  const anchor = initialPosts.find((p) => p.post_number >= startNum);
+  if (anchor) {
+    const anchorIdx = stream.indexOf(anchor.id);
+    if (anchorIdx >= 0) startIndex = anchorIdx;
+  } else if (startNum > 1) {
+    startIndex = Math.min(stream.length, startNum - 1);
+  }
+
+  const targetIds = stream.slice(startIndex, startIndex + 100);
+  if (targetIds.length === 0) return [];
+
+  const targetIdSet = new Set(targetIds);
+  const filteredInitialPosts = initialPosts.filter((p) => targetIdSet.has(p.id));
+  const loadedIds = new Set(filteredInitialPosts.map((p) => p.id));
+  const remaining = targetIds.filter((id) => !loadedIds.has(id));
+
+  // Fetch any missing posts in the requested window via post_ids endpoint.
   const extraPosts = [];
-  const batches = remaining.slice(0, 80);
-  if (batches.length > 0) {
+  if (remaining.length > 0) {
     const chunkSize = 20;
     const chunks = [];
-    for (let j = 0; j < batches.length; j += chunkSize) {
-      chunks.push(batches.slice(j, j + chunkSize));
+    for (let j = 0; j < remaining.length; j += chunkSize) {
+      chunks.push(remaining.slice(j, j + chunkSize));
     }
     const results = await Promise.all(
       chunks.map((ids) => {
@@ -97,7 +113,7 @@ export async function getTopicPosts({ topic_id, post_number }) {
     }
   }
 
-  const allPosts = [...initialPosts, ...extraPosts];
+  const allPosts = [...filteredInitialPosts, ...extraPosts];
   // Deduplicate and sort by post_number
   const seen = new Set();
   const unique = allPosts.filter((p) => {
@@ -258,6 +274,22 @@ export async function getUserProfile({ username }) {
   };
 }
 
+export async function createPost({ topic_id, raw, reply_to_post_number }) {
+  const body = { topic_id, raw };
+  if (reply_to_post_number) body.reply_to_post_number = reply_to_post_number;
+
+  const data = await forumPost('/posts.json', body);
+  if (isError(data)) return data;
+
+  return {
+    id: data.id,
+    post_number: data.post_number,
+    topic_id: data.topic_id,
+    username: data.username,
+    created_at: data.created_at,
+  };
+}
+
 export async function getNotifications({ limit }) {
   const data = await forumGet('/notifications.json');
   if (isError(data)) return data;
@@ -274,4 +306,3 @@ export async function getNotifications({ limit }) {
   if (limit) notifications = notifications.slice(0, limit);
   return notifications;
 }
-

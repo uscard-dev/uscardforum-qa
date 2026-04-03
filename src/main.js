@@ -1,6 +1,12 @@
 import { loadSettings, saveSettings } from './settings.js';
 import { createAgent } from './agent.js';
 import { createUI } from './ui.js';
+import { getPageCacheKey } from './page-cache.js';
+import { createPost } from './forum-api.js';
+import {
+  beginConversationTurn,
+  snapshotConversationMessages,
+} from './conversation-session.js';
 import {
   listConversations,
   getConversation,
@@ -17,6 +23,10 @@ function hideDifyChatbot() {
 }
 
 function init() {
+  const pageCacheKey = getPageCacheKey(window.location.href);
+  const panelOpenKey = `panelOpen:${pageCacheKey}`;
+  const lastConvoKey = `lastConvoId:${pageCacheKey}`;
+
   // Hide the site's built-in Dify chatbot
   hideDifyChatbot();
   const observer = new MutationObserver(hideDifyChatbot);
@@ -35,14 +45,29 @@ function init() {
   ui.applyTheme(settings.theme === 'light');
   ui.syncProviderUI();
 
+  ui.onReplyPost = async (raw, replyTo) => {
+    const match = window.location.pathname.match(/^\/t\/[^/]+\/(\d+)(?:\/\d+)?\/?$/);
+    if (!match) throw new Error('Not on a topic page');
+
+    const result = await createPost({
+      topic_id: Number(match[1]),
+      raw,
+      reply_to_post_number: replyTo,
+    });
+
+    if (result._httpError) throw new Error(`HTTP ${result._httpError}`);
+    return result;
+  };
+
   // Restore panel open state
-  if (GM_getValue('panelOpen', false)) ui.openPanel();
+  if (GM_getValue(panelOpenKey, false)) ui.openPanel();
 
   let running = false;
   let abortController = null;
   let conversationMessages = [];
   let currentConvoId = null;
   let currentConvoTitle = '';
+  let inFlightAssistantText = '';
 
   function currentSettings() {
     return {
@@ -71,7 +96,7 @@ function init() {
   ui.themeInput.addEventListener('change', onSettingsChange);
 
   // Save panel open/close state
-  ui.onPanelToggle = (open) => GM_setValue('panelOpen', open);
+  ui.onPanelToggle = (open) => GM_setValue(panelOpenKey, open);
 
   function persistCurrentConvo() {
     if (!currentConvoId || conversationMessages.length === 0) return;
@@ -80,15 +105,30 @@ function init() {
       title: currentConvoTitle,
       messages: conversationMessages,
     });
-    GM_setValue('lastConvoId', currentConvoId);
+    GM_setValue(lastConvoKey, currentConvoId);
   }
+
+  function persistConvoSnapshot(messages) {
+    if (!currentConvoId || messages.length === 0) return;
+    saveConversation({
+      id: currentConvoId,
+      title: currentConvoTitle,
+      messages,
+    });
+    GM_setValue(lastConvoKey, currentConvoId);
+  }
+
+  window.addEventListener('beforeunload', () => {
+    const snapshot = snapshotConversationMessages(conversationMessages, inFlightAssistantText);
+    persistConvoSnapshot(snapshot);
+  });
 
   function startNewConvo() {
     persistCurrentConvo();
     currentConvoId = null;
     currentConvoTitle = '';
     conversationMessages = [];
-    GM_setValue('lastConvoId', '');
+    GM_setValue(lastConvoKey, '');
     ui.clearMessages();
     ui.hideHistory();
     ui.inputEl.focus();
@@ -162,12 +202,21 @@ function init() {
     const prompt = ui.inputEl.value.trim();
     if (!prompt || running) return;
 
-    if (!currentConvoId) {
-      currentConvoId = newConversationId();
-      currentConvoTitle = prompt.slice(0, 80);
-    }
-
-    conversationMessages.push({ role: 'user', content: prompt });
+    const nextTurn = beginConversationTurn({
+      currentConvoId,
+      currentConvoTitle,
+      conversationMessages,
+      prompt,
+      newConversationId,
+      persistConversation(snapshot) {
+        currentConvoId = snapshot.id;
+        currentConvoTitle = snapshot.title;
+        persistConvoSnapshot(snapshot.messages);
+      },
+    });
+    currentConvoId = nextTurn.currentConvoId;
+    currentConvoTitle = nextTurn.currentConvoTitle;
+    conversationMessages = nextTurn.conversationMessages;
 
     ui.addMessage('user', prompt);
     ui.inputEl.value = '';
@@ -181,6 +230,7 @@ function init() {
     ui.showThinking('Thinking...');
     let streamEl = null;
     let fullText = '';
+    inFlightAssistantText = '';
     let stepCount = 0;
     let reasoningBlock = null;
     const toolCards = new Map();
@@ -241,6 +291,7 @@ function init() {
               streamEl = ui.addMessage('assistant', '');
             }
             fullText += part.text;
+            inFlightAssistantText = fullText;
             ui.updateStreamingMessage(streamEl, fullText);
             break;
           }
@@ -284,6 +335,7 @@ function init() {
       const response = await result.response.catch(() => null);
       const usage = await result.usage.catch(() => null);
       if (response) conversationMessages.push(...response.messages);
+      inFlightAssistantText = '';
       const totalIn = usage?.inputTokens || 0;
       const totalOut = usage?.outputTokens || 0;
       ui.setStatus(`${stepCount} step(s) · ${totalIn + totalOut} tokens`);
@@ -293,12 +345,14 @@ function init() {
         if (fullText) {
           conversationMessages.push({ role: 'assistant', content: fullText });
         }
+        inFlightAssistantText = '';
         ui.setStatus('Stopped');
       } else {
         ui.addMessage('error', `Error: ${err.message}`);
         ui.setStatus('');
       }
     } finally {
+      inFlightAssistantText = '';
       abortController = null;
       running = false;
       ui.setGenerating(false);
@@ -330,7 +384,7 @@ function init() {
   ui.onHistoryOpen = refreshHistory;
 
   // Restore last conversation on load
-  const lastId = GM_getValue('lastConvoId', null);
+  const lastId = GM_getValue(lastConvoKey, null);
   if (lastId) {
     const convo = getConversation(lastId);
     if (convo) {

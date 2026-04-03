@@ -18,7 +18,22 @@ export function renderMarkdown(text) {
         i++;
       }
       i++;
-      blocks.push(`<pre><code class="lang-${esc(lang || 'text')}">${esc(codeLines.join('\n'))}</code></pre>`);
+      if (lang.startsWith('reply')) {
+        const raw = codeLines.join('\n');
+        const replyTo = lang.match(/(?:^|\s)to=#(\d+)/)?.[1] || '';
+        const replyLabel = replyTo
+          ? `<span class="reply-to">replying to #${esc(replyTo)}</span>`
+          : '';
+        const replyBody = codeLines.map((codeLine) => esc(codeLine)).join('<br>');
+        blocks.push(
+          `<div class="reply-block" data-raw="${escAttr(raw)}"${replyTo ? ` data-reply-to="${escAttr(replyTo)}"` : ''}>`
+          + `<div class="reply-body">${replyBody}</div>`
+          + `<div class="reply-footer">${replyLabel}<button class="reply-post-btn">Post</button></div>`
+          + '</div>',
+        );
+      } else {
+        blocks.push(`<pre><code class="lang-${esc(lang || 'text')}">${esc(codeLines.join('\n'))}</code></pre>`);
+      }
       continue;
     }
 
@@ -120,4 +135,10 @@ function esc(str) {
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;');
+}
+
+function escAttr(str) {
+  return esc(str)
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
