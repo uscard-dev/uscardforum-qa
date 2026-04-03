@@ -62,14 +62,52 @@ export async function getTopTopics({ period, page }) {
 }
 
 export async function getTopicPosts({ topic_id, post_number }) {
-  const params = {
-    post_number: post_number || 1,
+  const startNum = post_number || 1;
+  const data = await forumGet(`/t/topic/${topic_id}.json`, {
+    post_number: startNum,
     asc: 'true',
     include_suggested: 'false',
-  };
-  const data = await forumGet(`/t/topic/${topic_id}.json`, params);
+  });
   if (isError(data)) return data;
-  return (data.post_stream?.posts || []).map((p) => ({
+
+  const initialPosts = data.post_stream?.posts || [];
+  const stream = data.post_stream?.stream || [];
+  const loadedIds = new Set(initialPosts.map((p) => p.id));
+  const remaining = stream.filter((id) => !loadedIds.has(id));
+
+  // Fetch up to 4 extra batches (~80 more posts) via post_ids endpoint
+  const extraPosts = [];
+  const batches = remaining.slice(0, 80);
+  if (batches.length > 0) {
+    const chunkSize = 20;
+    const chunks = [];
+    for (let j = 0; j < batches.length; j += chunkSize) {
+      chunks.push(batches.slice(j, j + chunkSize));
+    }
+    const results = await Promise.all(
+      chunks.map((ids) => {
+        const url = `/t/${topic_id}/posts.json?${ids.map((id) => `post_ids[]=${id}`).join('&')}`;
+        return forumGet(url);
+      }),
+    );
+    for (const r of results) {
+      if (!isError(r) && r.post_stream?.posts) {
+        extraPosts.push(...r.post_stream.posts);
+      }
+    }
+  }
+
+  const allPosts = [...initialPosts, ...extraPosts];
+  // Deduplicate and sort by post_number
+  const seen = new Set();
+  const unique = allPosts.filter((p) => {
+    if (seen.has(p.id)) return false;
+    seen.add(p.id);
+    return true;
+  });
+  unique.sort((a, b) => a.post_number - b.post_number);
+
+  return unique.map((p) => ({
     post_number: p.post_number,
     username: p.username,
     cooked: p.cooked,

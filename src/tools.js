@@ -62,7 +62,7 @@ export const forumTools = {
 
   get_topic_posts: tool({
     description:
-      'Fetch a batch of ~20 posts from a topic starting at a specific position. Use for paginated reading.',
+      'Fetch a batch of ~100 posts from a topic starting at a specific position. Use for paginated reading.',
     inputSchema: z.object({
       topic_id: z.number().describe('The numeric topic ID'),
       post_number: z

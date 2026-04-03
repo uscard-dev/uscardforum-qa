@@ -251,7 +251,13 @@ function init() {
               ui.finalizeReasoningBlock(reasoningBlock);
               reasoningBlock = null;
             }
-            const card = ui.addToolCard(part.toolName, part.input);
+            const existingCard = ui.findToolCard(part.toolName);
+            let card;
+            if (existingCard) {
+              card = ui.reuseToolCard(existingCard, part.toolName, part.input);
+            } else {
+              card = ui.addToolCard(part.toolName, part.input);
+            }
             card.dataset.toolName = part.toolName;
             toolCards.set(part.toolCallId, card);
             break;

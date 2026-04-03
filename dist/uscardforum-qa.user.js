@@ -39040,14 +39040,46 @@ ${user}:`]
     return extractTopics(await forumGet("/top.json", params));
   }
   async function getTopicPosts({ topic_id, post_number }) {
-    const params = {
-      post_number: post_number || 1,
+    const startNum = post_number || 1;
+    const data = await forumGet(`/t/topic/${topic_id}.json`, {
+      post_number: startNum,
       asc: "true",
       include_suggested: "false"
-    };
-    const data = await forumGet(`/t/topic/${topic_id}.json`, params);
+    });
     if (isError(data)) return data;
-    return (data.post_stream?.posts || []).map((p) => ({
+    const initialPosts = data.post_stream?.posts || [];
+    const stream = data.post_stream?.stream || [];
+    const loadedIds = new Set(initialPosts.map((p) => p.id));
+    const remaining = stream.filter((id) => !loadedIds.has(id));
+    const extraPosts = [];
+    const batches = remaining.slice(0, 80);
+    if (batches.length > 0) {
+      const chunkSize = 20;
+      const chunks = [];
+      for (let j = 0; j < batches.length; j += chunkSize) {
+        chunks.push(batches.slice(j, j + chunkSize));
+      }
+      const results = await Promise.all(
+        chunks.map((ids) => {
+          const url2 = `/t/${topic_id}/posts.json?${ids.map((id) => `post_ids[]=${id}`).join("&")}`;
+          return forumGet(url2);
+        })
+      );
+      for (const r of results) {
+        if (!isError(r) && r.post_stream?.posts) {
+          extraPosts.push(...r.post_stream.posts);
+        }
+      }
+    }
+    const allPosts = [...initialPosts, ...extraPosts];
+    const seen = /* @__PURE__ */ new Set();
+    const unique = allPosts.filter((p) => {
+      if (seen.has(p.id)) return false;
+      seen.add(p.id);
+      return true;
+    });
+    unique.sort((a, b) => a.post_number - b.post_number);
+    return unique.map((p) => ({
       post_number: p.post_number,
       username: p.username,
       cooked: p.cooked,
@@ -39241,7 +39273,7 @@ ${user}:`]
       execute: getTopTopics
     }),
     get_topic_posts: tool({
-      description: "Fetch a batch of ~20 posts from a topic starting at a specific position. Use for paginated reading.",
+      description: "Fetch a batch of ~100 posts from a topic starting at a specific position. Use for paginated reading.",
       inputSchema: external_exports2.object({
         topic_id: external_exports2.number().describe("The numeric topic ID"),
         post_number: external_exports2.number().optional().describe("Post number to start from (default: 1)")
@@ -40292,11 +40324,33 @@ Category IDs for search operators:
       </div>
       <div class="tool-detail"></div>
     `);
+      card.dataset.callCount = "1";
       card.querySelector(".tool-hdr").addEventListener(
         "click",
         () => card.querySelector(".tool-detail").classList.toggle("open")
       );
       return append(card);
+    }
+    function findToolCard(name24) {
+      const cards = msgs.querySelectorAll(".tool.done");
+      for (let i = cards.length - 1; i >= 0; i--) {
+        if (cards[i].dataset.toolName === name24) return cards[i];
+      }
+      return null;
+    }
+    function reuseToolCard(card, name24, args) {
+      const meta = describeToolCall(name24, args);
+      const count = (parseInt(card.dataset.callCount, 10) || 1) + 1;
+      card.dataset.callCount = String(count);
+      card.querySelector(".tool-title").textContent = `${meta.title} (\xD7${count})`;
+      card.querySelector(".tool-sub").textContent = meta.subtitle;
+      card.classList.remove("done");
+      card.classList.add("running");
+      const st = card.querySelector(".tool-st");
+      st.className = "tool-st running";
+      st.innerHTML = '<div class="sp"></div>';
+      scroll();
+      return card;
     }
     function updateToolCard(card, result, error40) {
       const st = card.querySelector(".tool-st");
@@ -40487,6 +40541,8 @@ Category IDs for search operators:
       newBtn: $(".btn-new"),
       addMessage,
       addToolCard,
+      findToolCard,
+      reuseToolCard,
       updateToolCard,
       addReasoningBlock,
       updateReasoningBlock,
@@ -40758,7 +40814,13 @@ Category IDs for search operators:
                 ui.finalizeReasoningBlock(reasoningBlock);
                 reasoningBlock = null;
               }
-              const card = ui.addToolCard(part.toolName, part.input);
+              const existingCard = ui.findToolCard(part.toolName);
+              let card;
+              if (existingCard) {
+                card = ui.reuseToolCard(existingCard, part.toolName, part.input);
+              } else {
+                card = ui.addToolCard(part.toolName, part.input);
+              }
               card.dataset.toolName = part.toolName;
               toolCards.set(part.toolCallId, card);
               break;
